@@ -1,3 +1,5 @@
 /.idea
 /data/Semi_Automated_System_Used_for_Data_Collection
 /data/participants
+/src/tools/__pycache__
+

@@ -10,7 +10,7 @@ import scipy.signal as ss
 
 import tools.data_reader as dr
 
-from scipy.fft import fft, fftfreq, fftshift
+from scipy.fft import fft, fftfreq, fftshift, rfft, irfft
 
 
 FS_DICT = {
@@ -162,38 +162,84 @@ def clean_ecg(ecg_signal):
     fs = FS_DICT[dr.DataTypes.ECG]
     ecg_signal = hp.scale_data(ecg_signal)
     ecg_signal = hp.remove_baseline_wander(ecg_signal.flatten(), fs)
-    ecg_signal = hp.enhance_peaks(ecg_signal, iterations=3)
+    ecg_signal = hp.enhance_peaks(ecg_signal, iterations=2)
     
     sos = ss.butter(N=2, Wn=0.667, btype="highpass", fs=fs, output="sos")
     filtered = ss.sosfilt(sos, ecg_signal)
-    filtered = moving_average(filtered, 8)
+    # filtered = moving_average(filtered, 8)
     filtered = np.reshape(filtered, (filtered.size, 1))
+    filtered = clean_RR(filtered)
     return filtered
 
 
-def get_RR_intervals(clean_ecg_signal):
+def clean_RR(clean_ecg_signal):
     fs = FS_DICT[dr.DataTypes.ECG]
-    sos_1 = ss.butter(N=3, Wn=[8, 50], btype="bandpass", fs=fs, output="sos")
-    sos_2 = ss.butter(N=3, Wn=[0.75, 2.5], btype="bandpass", fs=fs, output="sos")
-    filtered = ss.sosfilt(sos_1, clean_ecg_signal)
-    filtered = ss.sosfilt(sos_2, filtered)
+    sos_low = ss.butter(N=3, Wn=[0.75], btype="low", fs=fs, output="sos")
+    sos_high = ss.butter(N=3, Wn=[50], btype="low", fs=fs, output="sos")
+    sos_bs = ss.butter(N=3, Wn=[2.5, 8], btype="bandstop", fs=fs, output="sos")
+    filtered = ss.sosfilt(sos_low, clean_ecg_signal)
+    filtered = ss.sosfilt(sos_high, filtered)
+    filtered = ss.sosfilt(sos_bs, filtered)
     return filtered
 
 
 def get_SC(eda_signal):
     fs = FS_DICT[dr.DataTypes.EDA]
-    n = eda_signal.size
-    sos = ss.butter(N=3, Wn=1, btype="lowpass", fs=fs, output="sos")
+    sos = ss.butter(N=3, Wn=1.0, btype="lowpass", fs=fs, output="sos")
     filtered = ss.sosfilt(sos, eda_signal)
     sr = 200*(272+filtered)/(752-filtered)
     sc = 1/sr
     return sc
 
 
-def get_phasic_SCL(sc_signal):
-    scl = scipy.ndimage.median_filter(sc_signal, size=4)
-    scr = sc_signal - scl
-    return scr
+def get_SC_tonic(eda_signal):  # Tonic SC = SCL
+    sc = get_SC(eda_signal)
+    sc_tonic = scipy.ndimage.median_filter(sc, size=4)
+    return sc_tonic
+
+
+def get_SC_phasic(eda_signal):  # Phasic SC = SCR
+    sc = get_SC(eda_signal)
+    sc_tonic = get_SC_tonic(eda_signal)
+    sc_phasic = sc - sc_tonic
+    return sc_phasic
+
+
+def get_mean_SCL(eda_signal):
+    fs = FS_DICT[dr.DataTypes.EDA]
+    scl = get_SC_tonic(eda_signal)
+    n = scl.size
+    start = 0
+    step = int(55*fs)
+    stop = start + step
+    out = []
+    while stop < n:
+        stop = start + step
+        segment = scl[start:stop:step]
+        segment_mean = np.mean(segment)
+        out.append(segment_mean)
+        start += int(5*fs)
+    return np.asarray(out)
+
+
+def get_SCR_rate(eda_signal):
+    fs = FS_DICT[dr.DataTypes.EDA]
+    scr = get_SC_phasic(eda_signal)
+    # threshold = np.max(scr)/10
+    threshold = 0
+    n = scr.size
+    start = 0
+    step = int(55*fs)
+    stop = start + step
+    out = []
+    while stop < n:
+        stop = start + step
+        segment = scr[start:stop:step]
+        num_responses = (segment > threshold).sum()
+        out.append(num_responses)
+        start += int(5*fs)
+    return np.asarray(out)
+
 
 
 def pad_list_of_ndarrays(array_list):
