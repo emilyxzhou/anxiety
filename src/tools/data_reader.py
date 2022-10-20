@@ -196,7 +196,7 @@ def get_dataframes_from_files(files):
     """
     dfs = []
     for f in files:
-        data = pd.read_csv(f, header=None)
+        data = pd.read_csv(f, header=None, skip_blank_lines=True)
         # remove extra last column from ankle data
         if "LeftAnkle" in f or "RightAnkle" in f:
             data = data.iloc[:, :-1]
@@ -238,7 +238,7 @@ def get_participant_dataframes_from_index(index, task, group):
 def get_participant_details(index, columns):
     # print(f"Retrieving participant {index}'s {columns} data...")
     file = os.path.join(Paths.DATA_DIR, "participants_details.csv")
-    df = pd.read_csv(file)
+    df = pd.read_csv(file, skip_blank_lines=True)
     p = df.iloc[index-1].loc[columns]
     return p
 

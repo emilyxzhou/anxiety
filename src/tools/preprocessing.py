@@ -160,6 +160,9 @@ def moving_average(x, w):
 
 
 def clean_ecg(ecg_signal):
+    if ecg_signal.size <= 1:
+        # print("ECG signal has size 0, returning None")
+        return None
     fs = FS_DICT[dr.DataTypes.ECG]
     ecg_signal = hp.scale_data(ecg_signal)
     ecg_signal = hp.remove_baseline_wander(ecg_signal.flatten(), fs)
@@ -187,6 +190,9 @@ def clean_RR(clean_ecg_signal):
 def get_hf_rr(ecg):
     fs = FS_DICT[dr.DataTypes.ECG]
     n = ecg.size
+    if n == 0:
+        print("ECG signal has length 0, returning None")
+        return None
     start = 0
     window_size = int(55*fs)
     stop = start + window_size
@@ -211,6 +217,9 @@ def get_hf_rr(ecg):
 def get_lf_rr(ecg):
     fs = FS_DICT[dr.DataTypes.ECG]
     n = ecg.size
+    if n == 0:
+        print("ECG signal has length 0, returning None")
+        return None
     start = 0
     window_size = int(55*fs)
     stop = start + window_size
@@ -233,6 +242,9 @@ def get_lf_rr(ecg):
 
 
 def get_SC(eda_signal):
+    if eda_signal.size == 0:
+        print("Warning: EDA signal has size 0, retuning None")
+        return None
     fs = FS_DICT[dr.DataTypes.EDA]
     sos = ss.butter(N=3, Wn=1.0, btype="lowpass", fs=fs, output="sos")
     filtered = ss.sosfilt(sos, eda_signal)
@@ -243,12 +255,16 @@ def get_SC(eda_signal):
 
 def get_SC_tonic(eda_signal):  # Tonic SC = SCL
     sc = get_SC(eda_signal)
+    if sc is None:
+        return sc
     sc_tonic = scipy.ndimage.median_filter(sc, size=4)
     return sc_tonic
 
 
 def get_SC_phasic(eda_signal):  # Phasic SC = SCR
     sc = get_SC(eda_signal)
+    if sc is None:
+        return None
     sc_tonic = get_SC_tonic(eda_signal)
     sc_phasic = sc - sc_tonic
     return sc_phasic
@@ -257,6 +273,8 @@ def get_SC_phasic(eda_signal):  # Phasic SC = SCR
 def get_mean_SCL(eda_signal):
     fs = FS_DICT[dr.DataTypes.EDA]
     scl = get_SC_tonic(eda_signal)
+    if scl is None:
+        return None
     n = scl.size
     start = 0
     window_size = int(55*fs)
@@ -274,6 +292,8 @@ def get_mean_SCL(eda_signal):
 def get_SCR_rate(eda_signal):
     fs = FS_DICT[dr.DataTypes.EDA]
     scr = get_SC_phasic(eda_signal)
+    if scr is None:
+        return None
     # threshold = np.max(scr)/10
     threshold = 0
     n = scr.size
