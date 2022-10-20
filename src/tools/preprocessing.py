@@ -44,7 +44,7 @@ DATA_TYPE_DIMENSION_LABELS = {
 }
 
 
-def load_data(task, data_type, phase, convert_sr):
+def load_data(task, data_type, phase, convert_sr=False, is_clean_ecg=True):
     """Returns a list of np arrays without timestamps and headings"""
     HA = dr.get_dataframes_from_files(
             glob.glob(dr.Paths.PARTICIPANT_DATA_DIR + "\\" + dr.Groups.HA + f"\\*\\{task}\\{data_type}_{phase}.csv")
@@ -61,8 +61,9 @@ def load_data(task, data_type, phase, convert_sr):
         LA = [samplerate.resample(LA[i], ratio=100.0 / 250.0) for i in range(len(LA))]
     
     if data_type == dr.DataTypes.ECG:
-        HA = [clean_ecg(HA[i]) for i in range(len(HA))]
-        LA = [clean_ecg(LA[i]) for i in range(len(LA))]
+        if is_clean_ecg:
+            HA = [clean_ecg(HA[i]) for i in range(len(HA))]
+            LA = [clean_ecg(LA[i]) for i in range(len(LA))]
 
     return HA, LA
 
@@ -183,6 +184,54 @@ def clean_RR(clean_ecg_signal):
     return filtered
 
 
+def get_hf_rr(ecg):
+    fs = FS_DICT[dr.DataTypes.ECG]
+    n = ecg.size
+    start = 0
+    window_size = int(55*fs)
+    stop = start + window_size
+    out = []
+    while stop < n:
+        stop = start + window_size
+        segment = ecg[start:stop]
+        freq, amp = calculate_fft_1d(segment, fs)
+        
+        low = 0.15
+        high = 0.4
+        freq[freq < low] = 0
+        freq[freq > high] = 0
+        
+        power = np.multiply(freq, amp).sum()
+        out.append(power)
+
+        start += int(5*fs)
+    return np.asarray(out)
+
+
+def get_lf_rr(ecg):
+    fs = FS_DICT[dr.DataTypes.ECG]
+    n = ecg.size
+    start = 0
+    window_size = int(55*fs)
+    stop = start + window_size
+    out = []
+    while stop < n:
+        stop = start + window_size
+        segment = ecg[start:stop]
+        freq, amp = calculate_fft_1d(segment, fs)
+        
+        low = 0.04
+        high = 0.15
+        freq[freq < low] = 0
+        freq[freq > high] = 0
+        
+        power = np.multiply(freq, amp).sum()
+        out.append(power)
+
+        start += int(5*fs)
+    return np.asarray(out)
+
+
 def get_SC(eda_signal):
     fs = FS_DICT[dr.DataTypes.EDA]
     sos = ss.butter(N=3, Wn=1.0, btype="lowpass", fs=fs, output="sos")
@@ -210,12 +259,12 @@ def get_mean_SCL(eda_signal):
     scl = get_SC_tonic(eda_signal)
     n = scl.size
     start = 0
-    step = int(55*fs)
-    stop = start + step
+    window_size = int(55*fs)
+    stop = start + window_size
     out = []
     while stop < n:
-        stop = start + step
-        segment = scl[start:stop:step]
+        stop = start + window_size
+        segment = scl[start:stop]
         segment_mean = np.mean(segment)
         out.append(segment_mean)
         start += int(5*fs)
@@ -229,12 +278,12 @@ def get_SCR_rate(eda_signal):
     threshold = 0
     n = scr.size
     start = 0
-    step = int(55*fs)
-    stop = start + step
+    window_size = int(55*fs)
+    stop = start + window_size
     out = []
     while stop < n:
-        stop = start + step
-        segment = scr[start:stop:step]
+        stop = start + window_size
+        segment = scr[start:stop]
         num_responses = (segment > threshold).sum()
         out.append(num_responses)
         start += int(5*fs)
