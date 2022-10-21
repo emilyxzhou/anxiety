@@ -1,7 +1,6 @@
 import glob
 import os
 import pandas as pd
-from regex import P
 
 
 class Tasks:

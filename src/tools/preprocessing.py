@@ -8,7 +8,7 @@ import samplerate
 import scipy
 import scipy.signal as ss
 
-import tools.data_reader as dr
+import tools.data_reader_apd as dr
 
 from scipy.fft import fft, fftfreq, fftshift, rfft, irfft
 

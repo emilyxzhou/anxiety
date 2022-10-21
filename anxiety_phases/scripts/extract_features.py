@@ -6,7 +6,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 from skimage.restoration import denoise_wavelet
-from tools import data_reader as dr
+from tools import data_reader_apd as dr
 from tools import display_tools as dt
 
 
