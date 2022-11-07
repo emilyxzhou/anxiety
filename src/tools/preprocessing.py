@@ -1,7 +1,12 @@
 # IMPORTING MODULES
+import os
+import sys
+# NOTE: THIS IS THE CORRECT WAY TO DO RELATIVE IMPORTS
+src_path = os.path.abspath(os.path.join(__file__, '..', '..'))
+sys.path.append(src_path)
 import glob
 import heartpy as hp
-import matplotlib.pyplot as plt
+import itertools
 import numpy as np
 import pandas as pd
 import samplerate
@@ -10,7 +15,8 @@ import scipy.signal as ss
 
 import tools.data_reader_apd as dr
 
-from scipy.fft import fft, fftfreq, fftshift, rfft, irfft
+from cvxEDA.src.cvxEDA import cvxEDA
+from scipy.fft import fft, fftfreq
 
 
 FS_DICT = {
@@ -241,43 +247,31 @@ def get_lf_rr(ecg):
     return np.asarray(out)
 
 
-def get_SC(eda_signal):
-    if eda_signal.size == 0:
+def get_SC_metrics(eda):
+    """Returns r (phasic), t (tonic) components of the input EDA signal."""
+    if eda.size == 0:
         print("Warning: EDA signal has size 0, retuning None")
-        return None
+        return None, None
     fs = FS_DICT[dr.DataTypes.EDA]
-    sos = ss.butter(N=3, Wn=1.0, btype="lowpass", fs=fs, output="sos")
-    filtered = ss.sosfilt(sos, eda_signal)
-    sr = 200*(272+filtered)/(752-filtered)
-    sc = 1/sr
-    return sc
-
-
-def get_SC_tonic(eda_signal):  # Tonic SC = SCL
-    sc = get_SC(eda_signal)
-    if sc is None:
-        return sc
-    sc_tonic = scipy.ndimage.median_filter(sc, size=4)
-    return sc_tonic
-
-
-def get_SC_phasic(eda_signal):  # Phasic SC = SCR
-    sc = get_SC(eda_signal)
-    if sc is None:
-        return None
-    sc_tonic = get_SC_tonic(eda_signal)
-    sc_phasic = sc - sc_tonic
-    return sc_phasic
+    eda = eda.astype(np.double)
+    # sos = ss.butter(N=3, Wn=4.0, btype="lowpass", fs=fs, output="sos")
+    # filtered = ss.sosfilt(sos, eda_signal)
+    # sr = 200*(272+filtered)/(752-filtered)
+    # sc = 1/sr
+    [r, p, t, l, d, e, obj] = cvxEDA(eda, 1./fs, options={"show_progress": False})
+    r = np.log10(r + 1)
+    p = np.log10(p + 1)
+    return r, p
 
 
 def get_mean_SCL(eda_signal):
     fs = FS_DICT[dr.DataTypes.EDA]
-    scl = get_SC_tonic(eda_signal)
+    _, scl = get_SC_metrics(eda_signal)
     if scl is None:
         return None
     n = scl.size
     start = 0
-    window_size = int(55*fs)
+    window_size = int(60*fs)
     stop = start + window_size
     out = []
     while stop < n:
@@ -291,21 +285,26 @@ def get_mean_SCL(eda_signal):
 
 def get_SCR_rate(eda_signal):
     fs = FS_DICT[dr.DataTypes.EDA]
-    scr = get_SC_phasic(eda_signal)
+    scr, _ = get_SC_metrics(eda_signal)
     if scr is None:
         return None
-    # threshold = np.max(scr)/10
-    threshold = 0
-    n = scr.size
+
+    grad = np.gradient(scr)
+    n = grad.size
     start = 0
-    window_size = int(55*fs)
+    window_size = int(60*fs)
     stop = start + window_size
+    # threshold = max()
+
     out = []
     while stop < n:
         stop = start + window_size
+        # segment = grad[start:stop]
         segment = scr[start:stop]
-        num_responses = (segment > threshold).sum()
-        out.append(num_responses)
+        # num_peaks = len(list(itertools.groupby(segment, lambda x: x > 0)))
+        peaks, _ = ss.find_peaks(segment)
+        num_peaks = len(peaks)
+        out.append(num_peaks//2 + 1)
         start += int(5*fs)
     return np.asarray(out)
 
@@ -373,9 +372,9 @@ if __name__ == "__main__":
     fs = FS_DICT[data_type]
     n_dim = DATA_TYPE_DIMENSIONS[data_type]
 
-    x, ha_ecg_mean = calculate_group_metric("HA", task, data_type, phase, metric="mean")
-    x, la_ecg_mean = calculate_group_metric("LA", task, data_type, phase, metric="mean")
-    x, ha_ecg_med = calculate_group_metric("HA", task, data_type, phase, metric="median")
-    x, la_ecg_med = calculate_group_metric("LA", task, data_type, phase, metric="median")
-    x, ha_ecg_fft = calculate_group_metric("HA", task, data_type, phase, metric="fft")
-    x, la_ecg_fft = calculate_group_metric("LA", task, data_type, phase, metric="fft")
+    # x, ha_ecg_mean = calculate_group_metric("HA", task, data_type, phase, metric="mean")
+    # x, la_ecg_mean = calculate_group_metric("LA", task, data_type, phase, metric="mean")
+    # x, ha_ecg_med = calculate_group_metric("HA", task, data_type, phase, metric="median")
+    # x, la_ecg_med = calculate_group_metric("LA", task, data_type, phase, metric="median")
+    # x, ha_ecg_fft = calculate_group_metric("HA", task, data_type, phase, metric="fft")
+    # x, la_ecg_fft = calculate_group_metric("LA", task, data_type, phase, metric="fft")
