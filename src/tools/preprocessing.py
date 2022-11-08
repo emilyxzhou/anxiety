@@ -2,7 +2,9 @@
 import os
 import sys
 # NOTE: THIS IS THE CORRECT WAY TO DO RELATIVE IMPORTS
+cvx_eda_path = os.path.abspath(os.path.join(__file__, '..', '..', '..', 'cvxEDA', 'src'))
 src_path = os.path.abspath(os.path.join(__file__, '..', '..'))
+sys.path.append(cvx_eda_path)
 sys.path.append(src_path)
 import glob
 import heartpy as hp
@@ -15,7 +17,7 @@ import scipy.signal as ss
 
 import tools.data_reader_apd as dr
 
-from cvxEDA.src.cvxEDA import cvxEDA
+from cvxEDA import cvxEDA
 from scipy.fft import fft, fftfreq
 
 
