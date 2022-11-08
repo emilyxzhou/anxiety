@@ -1,0 +1,3 @@
+[submodule "cvxEDA"]
+	path = cvxEDA
+	url = https://github.com/lciti/cvxEDA.git
