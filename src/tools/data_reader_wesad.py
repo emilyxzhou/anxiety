@@ -20,6 +20,15 @@ class Modalities:
     BVP = "BVP"  # wrist only
 
 
+class WESADKeys:
+    SUBJECT = "subject"
+    SIGNAL = "signal"
+    LABEL = "label"
+    
+    CHEST = "chest"
+    WRIST = "wrist"
+
+
 FS_DICT = {
     "chest": {
         "ACC": 700,
@@ -46,10 +55,14 @@ def get_participant_data(index):
 
 def get_modality(index, location, modality):
     data = get_participant_data(index)
-    return data["signal"][location][modality]
+    return data[WESADKeys.SIGNAL][location][modality]
+
+
+def get_self_reports(index):
+    file = os.path.join(Paths.WESAD, f"S{index}", f"S{index}_quest.csv")
+    df = pd.read_csv(file, sep=";", header=None, index_col=0)
 
 
 if __name__ == "__main__":
-    ecg_chest = get_modality(2, "chest", Modalities.ECG)
-
-    print(ecg_chest.shape)
+    ecg_chest_2 = get_modality(2, WESADKeys.CHEST, Modalities.ECG)
+    # responses_2 = get_self_reports(2)
