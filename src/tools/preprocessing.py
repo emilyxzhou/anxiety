@@ -61,17 +61,20 @@ def load_data(task, data_type, phase, convert_sr=False, is_clean_ecg=True):
         glob.glob(dr.Paths.PARTICIPANT_DATA_DIR + "\\" + dr.Groups.LA + f"\\*\\{task}\\{data_type}_{phase}.csv")
     )
     # get rid of timestamp and heading
-    HA = [df.iloc[1:, 1:].to_numpy().astype(np.float32) for df in HA]
-    LA = [df.iloc[1:, 1:].to_numpy().astype(np.float32) for df in LA]
+    HA = [df.iloc[1:, [0, 2]].to_numpy().astype(np.float32) for df in HA]
+    LA = [df.iloc[1:, [0, 2]].to_numpy().astype(np.float32) for df in LA]
 
     if convert_sr:
-        HA = [samplerate.resample(HA[i], ratio=100.0 / 250.0) for i in range(len(HA))]
-        LA = [samplerate.resample(LA[i], ratio=100.0 / 250.0) for i in range(len(LA))]
+        for i in range(len(HA)):
+            HA[i][:, -1] = samplerate.resample(HA[i][:, -1], ratio=100.0 / 250.0)
+        for i in range(len(LA)):
+            LA[i][:, -1] = samplerate.resample(LA[i][:, -1], ratio=100.0 / 250.0)
     
-    if data_type == dr.DataTypes.ECG:
-        if is_clean_ecg:
-            HA = [clean_ecg(HA[i]) for i in range(len(HA))]
-            LA = [clean_ecg(LA[i]) for i in range(len(LA))]
+    if data_type == dr.DataTypes.ECG and is_clean_ecg:
+        for i in range(len(HA)):
+            HA[i][:, -1] = clean_ecg(HA[i][:, -1])
+        for i in range(len(LA)):
+            LA[i][:, -1] = clean_ecg(LA[i][:, -1])
 
     return HA, LA
 
@@ -181,7 +184,7 @@ def clean_ecg(ecg_signal):
     # filtered = moving_average(filtered, 8)
     filtered = np.reshape(filtered, (filtered.size, 1))
     filtered = clean_RR(filtered)
-    return filtered
+    return filtered.flatten()
 
 
 def clean_RR(clean_ecg_signal):

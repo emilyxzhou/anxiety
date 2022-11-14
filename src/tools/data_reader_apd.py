@@ -195,10 +195,13 @@ def get_dataframes_from_files(files):
     """
     dfs = []
     for f in files:
+        subject = f.split("\\")[-3].split("_")[-1]
         data = pd.read_csv(f, header=None, skip_blank_lines=True)
         # remove extra last column from ankle data
         if "LeftAnkle" in f or "RightAnkle" in f:
             data = data.iloc[:, :-1]
+        num_rows = data.shape[0]
+        data.insert(0, "subject", pd.array([subject for _ in range(num_rows)]))
         dfs.append(data)
     return dfs
 
