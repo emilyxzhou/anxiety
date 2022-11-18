@@ -201,7 +201,12 @@ def get_dataframes_from_files(files):
         if "LeftAnkle" in f or "RightAnkle" in f:
             data = data.iloc[:, :-1]
         num_rows = data.shape[0]
-        data.insert(0, "subject", pd.array([subject for _ in range(num_rows)]))
+        if num_rows <= 1:
+            data = pd.DataFrame({"subject": [subject]*2, "0": [0]*2, "1": [0]*2})
+            # print(data.shape)
+            # print(data.head())
+        else: 
+            data.insert(0, "subject", pd.array([subject for _ in range(num_rows)]))
         dfs.append(data)
     return dfs
 

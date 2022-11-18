@@ -62,6 +62,7 @@ def load_data(task, data_type, phase, convert_sr=False, is_clean_ecg=True):
     )
     # get rid of timestamp and heading
     HA = [df.iloc[1:, [0, 2]].to_numpy().astype(np.float32) for df in HA]
+    # print([df.shape for df in HA])
     LA = [df.iloc[1:, [0, 2]].to_numpy().astype(np.float32) for df in LA]
 
     if convert_sr:
@@ -75,7 +76,6 @@ def load_data(task, data_type, phase, convert_sr=False, is_clean_ecg=True):
             HA[i][:, -1] = clean_ecg(HA[i][:, -1])
         for i in range(len(LA)):
             LA[i][:, -1] = clean_ecg(LA[i][:, -1])
-
     return HA, LA
 
 
