@@ -1,0 +1,338 @@
+import glob
+import importlib
+import matplotlib.pyplot as plt
+import numpy as np
+import os
+import sys
+import pandas as pd
+import random
+import scipy.signal as ss
+
+import tools.data_reader_apd as dr_a
+import tools.data_reader_wesad as dr_w
+import tools.preprocessing as preprocessing
+
+from scipy.fft import fft, fftfreq, fftshift
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+from sklearn.model_selection import train_test_split, cross_val_score, RepeatedKFold
+from sklearn.preprocessing import normalize
+
+import cvxopt.solvers
+cvxopt.solvers.options['show_progress'] = False
+
+import warnings
+warnings.filterwarnings(
+    "ignore", 
+    category=RuntimeWarning
+)
+
+
+def train_test_split(x, y, test_size=0.15, by_subject=True):
+    if by_subject:
+        subjects = list(x.loc[:, "subject"].unique())
+        indices = random.sample(subjects, int(len(subjects)*test_size))
+        # print(f"test subjects: {indices}")
+        x_train = x[~x["subject"].isin(indices)]
+        y_train = y[~y["subject"].isin(indices)]
+        x_test = x[x["subject"].isin(indices)]
+        y_test = y[y["subject"].isin(indices)]
+    else:
+        num_samples = x.shape[0]
+        indices = random.sample(range(num_samples), int(num_samples*test_size))
+        x_train = x[~x.index.isin(indices)]
+        y_train = y[~y.index.isin(indices)]
+        x_test = x[x.index.isin(indices)]
+        y_test = y[y.index.isin(indices)]
+
+    return x_train, y_train, x_test, y_test, indices
+
+
+def train_predict(models, x, y, test_size=0.15, by_subject=True, show_classification=True, target_names=["A", "B"]):
+    """
+    models: dictionary of {"name": model}
+    """
+    out = {}
+    x_train, y_train, x_test, y_test, test_subjects = train_test_split(x, y, test_size, by_subject)
+    # print(f"x_train: {x_train.shape}")
+    # print(f"y_train: {y_train.shape}")
+    y_true = y_test.loc[:, "label"]
+    for model_name in models.keys():
+        model = models[model_name]
+        model.fit(x_train, y_train.loc[:, "label"])
+        y_pred = model.predict(x_test)
+        if show_classification:
+            print(f"Results for {model_name} -------------------------")
+            print(classification_report(y_true, y_pred, target_names=target_names))
+        out[model_name] = accuracy_score(y_true, y_pred)
+    return out
+
+
+class Train_APD:
+    
+    def get_ratings():
+        SUDS_labels = [
+            "Participant",
+            "Baseline_SUDS",
+            "BugBox_Relax_SUDS", "BugBox_Preparation_SUDS", "BugBox_Exposure_SUDS", "BugBox_Break_SUDS",
+            "Speech_Relax_SUDS", "Speech_SUDS", "Speech_Exposure_SUDS", "Speech_Break_SUDS"
+        ]
+
+        ha_participant_indices = [
+            'P4', 'P6', 'P7', 'P8', 'P10', 'P12', 'P15', 'P16', 'P18', 'P22', 'P26', 'P27', 'P29', 'P31', 'P32', 'P33', 'P35', 'P42', 'P45', 'P47', 'P48', 'P49', 'P54', 'P55', 'P66', 'P69'
+        ]
+
+        la_participant_indices = [
+            'P14', 'P21', 'P23', 'P25', 'P34', 'P39', 'P43', 'P46', 'P51', 'P57', 'P71', 'P72', 'P77', 'P78', 'P79', 'P80', 'P82', 'P83', 'P84', 'P85', 'P87', 'P88', 'P89', 'P91', 'P92', 'P93'
+        ]
+
+        participant_file = os.path.join(dr_a.Paths.DATA_DIR, "participants_details.csv")
+        df = pd.read_csv(participant_file)
+
+        suds_df = df[SUDS_labels]
+        ha_suds_df = suds_df.loc[suds_df['Participant'].isin(ha_participant_indices)]
+        la_suds_df = suds_df.loc[suds_df['Participant'].isin(la_participant_indices)]
+
+        ha_suds_df = ha_suds_df.rename(columns={"Participant": "subject"})
+        la_suds_df = la_suds_df.rename(columns={"Participant": "subject"})
+
+        for i in range(ha_suds_df.shape[0]):
+            p = int(ha_suds_df.iloc[i, ha_suds_df.columns.get_loc("subject")][1:])
+            ha_suds_df.iloc[i, ha_suds_df.columns.get_loc("subject")] = p
+        for i in range(la_suds_df.shape[0]):
+            p = int(la_suds_df.iloc[i, la_suds_df.columns.get_loc("subject")][1:])
+            la_suds_df.iloc[i, la_suds_df.columns.get_loc("subject")] = p
+
+        # ha_suds_df['median'] = ha_suds_df.iloc[:, 1:].median(axis=1)
+        # la_suds_df['median'] = la_suds_df.iloc[:, 1:].median(axis=1)
+        ha_suds_df['median'] = ha_suds_df.iloc[:, 1:].median(axis=1)
+        la_suds_df['median'] = la_suds_df.iloc[:, 1:].median(axis=1)
+        columns = {c: SUDS_labels.index(c)-1 for c in ha_suds_df.columns[1:-1]}
+
+        ha_rankings = ha_suds_df.rename(columns={c: SUDS_labels.index(c)-1 for c in ha_suds_df.columns[1:-1]}).reset_index(drop=True)
+        la_rankings = la_suds_df.rename(columns={c: SUDS_labels.index(c)-1 for c in la_suds_df.columns[1:-1]}).reset_index(drop=True)
+
+        return ha_rankings, la_rankings
+
+
+    def get_apd_data_ranking(metrics, phases, verbose=False, anxiety_label_type=None):
+        """
+        anxiety_label_type: can be None, "Trait", "Anxiety", "Depression", "Gender", "Random"
+        """
+        metrics_folder = dr_a.Paths.METRICS
+        ha_rankings, la_rankings = Train_APD.get_ratings()
+
+        columns = metrics.copy()
+        columns.insert(0, "subject")
+
+        data_x = []
+        data_y = pd.concat([ha_rankings, la_rankings], axis=0).reset_index(drop=True)
+
+        for phase in phases:
+            if verbose: print(f"Generating features for phase {phase} " + "-"*30)
+            phase_id = phases.index(phase)
+            ha_features = []
+            la_features = []
+
+            for i in range(len(metrics)):
+                metric = metrics[i]
+                if verbose: print(f"Generating features for metric {metric}")
+                file = os.path.join(metrics_folder, f"{metric}_{phase}_ha.csv")
+                arr = pd.read_csv(file, index_col=[0]).to_numpy()
+
+                if i == 0:  # subject IDs
+                    ids = np.reshape(arr[:, 0], (arr[:, 0].size, 1))
+                    ids = pd.DataFrame(data=ids, columns=["subject"])
+                    ha_features.append(ids)
+
+                # arr = arr[1:, 1:]
+                col_mean = np.nanmean(arr, axis=1)
+                idx = np.where(np.isnan(arr))
+                arr[idx] = np.take(col_mean, idx[0])
+                arr = np.nan_to_num(arr)
+                arr = np.mean(arr[:, 1:], axis=1)
+                arr = np.reshape(arr, (arr.size, 1))
+                arr = pd.DataFrame(data=arr, columns=[f"{metric}"])
+                ha_features.append(arr)
+
+                file = os.path.join(metrics_folder, f"{metric}_{phase}_la.csv")
+                arr = pd.read_csv(file, index_col=[0]).to_numpy()
+
+                if i == 0:  # subject IDs
+                    ids = np.reshape(arr[:, 0], (arr[:, 0].size, 1))
+                    ids = pd.DataFrame(data=ids, columns=["subject"])
+                    la_features.append(ids)
+
+                # arr = arr[1:, 1:]
+                col_mean = np.nanmean(arr, axis=1)
+                idx = np.where(np.isnan(arr))
+                arr[idx] = np.take(col_mean, idx[0])
+                arr = np.nan_to_num(arr)
+                arr = np.mean(arr[:, 1:], axis=1)
+                arr = np.reshape(arr, (arr.size, 1))
+                arr = pd.DataFrame(data=arr, columns=[f"{metric}"])
+                la_features.append(arr)
+
+            if anxiety_label_type is not None: 
+                if anxiety_label_type == "Trait":
+                    ha_group = pd.DataFrame(data=[1 for _ in range(len(ha_features[0]))])
+                    la_group = pd.DataFrame(data=[0 for _ in range(len(la_features[0]))])
+                    anxiety_label = pd.concat([ha_group, la_group])
+                elif anxiety_label_type == "Anxiety":
+                    anxiety_label = dr_a.get_dass_labels("Anxiety")
+                elif anxiety_label_type == "Depression":
+                    anxiety_label = dr_a.get_dass_labels("Depression")
+                elif anxiety_label_type == "Gender":
+                    anxiety_label = dr_a.get_gender_labels()
+                    anxiety_label = dr_a.get_gender_labels()
+
+            ha_features = pd.concat(ha_features, axis=1)
+            la_features = pd.concat(la_features, axis=1)
+            x = pd.concat([ha_features, la_features], axis=0)
+            # print(x["subject"].value_counts().iloc[0:8])
+            phase = pd.DataFrame(data=[phase_id for _ in range(x.shape[0])])
+
+            x.insert(1, "phaseId", phase)
+
+            if anxiety_label_type is not None: 
+                x.insert(1, "anxietyGroup", anxiety_label)
+
+            data_x.append(x)
+        
+        data_x = pd.concat(data_x).reset_index(drop=True)
+        # data_x.sort_values(by=["phaseId", "subject"], inplace=True)
+
+        # print(data_x.head())
+        # print(data_y.head())
+
+        subjects = data_x.loc[:, "subject"]
+        phase_col = data_x.loc[:, "phaseId"]
+        label = []
+        for i in range(data_x.shape[0]):
+            s = int(subjects.iloc[i])
+            p = int(phase_col.iloc[i])
+            rating = data_y.loc[data_y["subject"] == s].loc[:, p].values[0]
+            med = data_y.loc[data_y["subject"] == s].loc[:, 'median'].values[0]
+            if rating < med:
+                label.append(0)  # low anxiety
+            else:
+                label.append(1)  # high anxiety
+        
+        data_y = pd.DataFrame({"subject": subjects, "label": label})
+        # data_y = pd.DataFrame({"ranking": ranking_col})
+
+        # print(data_x.shape)
+        # print(data_y.shape)
+        
+        return data_x, data_y
+
+
+class Train_WESAD:
+
+    def get_labels():
+        stai_scores = dr_w.get_stai_scores()
+        stai_scores = stai_scores[stai_scores.iloc[:, 0] != 3.0].reset_index(drop=True)  # remove subject 3 due to NaNs in Medi_2 phase
+        dim_scores_valence = dr_w.get_dim_scores(dim_type="valence")
+        dim_scores_valence = dim_scores_valence[dim_scores_valence.iloc[:, 0] != 3.0].reset_index(drop=True)
+        dim_scores_arousal = dr_w.get_dim_scores(dim_type="arousal")
+        dim_scores_arousal = dim_scores_arousal[dim_scores_arousal.iloc[:, 0] != 3.0].reset_index(drop=True)
+
+        return stai_scores, dim_scores_arousal, dim_scores_valence
+
+    def get_wesad_data(metrics, phases, verbose=False, label_type="stai"):
+        """
+        label_type: "stai", "arousal", "valence", "all"
+            label_type == "all": classification between stress and non-stress phases
+        """
+        metrics_folder = dr_w.Paths.METRICS
+        stai_scores, dim_scores_arousal, dim_scores_valence = Train_WESAD.get_labels()
+
+        columns = metrics.copy()
+        columns.insert(0, "subject")
+        
+        data_x = []
+        data_y = []
+
+        for phase in phases:
+            if verbose: print(f"Generating features for phase {phase} " + "-"*30)
+            phase_id = phases.index(phase)
+            features = []
+
+            for i in range(len(metrics)):
+                metric = metrics[i]
+                if verbose: print(f"Generating features for metric {metric}")
+                file = os.path.join(metrics_folder, f"{metric}_{phase}.csv")
+                arr = pd.read_csv(file, index_col=[0])
+                arr = arr[arr.iloc[:, 0] != 3.0].reset_index(drop=True).to_numpy()  # remove subject 3 due to NaNs in Medi_2 phase
+
+                if i == 0:  # subject IDs
+                    # ids = arr.iloc[:, 0]
+                    ids = arr[:, 0]
+                    ids = pd.DataFrame(data=ids, columns=["subject"])
+                    features.append(ids)
+                col_mean = np.nanmean(arr, axis=1)
+                idx = np.where(np.isnan(arr))
+                arr[idx] = np.take(col_mean, idx[0])
+                arr = np.nan_to_num(arr)
+                arr = np.mean(arr[:, 1:], axis=1)
+                arr = np.reshape(arr, (arr.size, 1))
+                arr = pd.DataFrame(data=arr, columns=[f"{metric}"])
+                features.append(arr)
+
+            x = pd.concat(features, axis=1)
+            if label_type == "all":
+                for scores in [stai_scores, dim_scores_arousal, dim_scores_valence]:
+                    x = pd.concat([x, scores.iloc[:, 1:]], axis=1)
+            phase = pd.DataFrame(data=[phase_id for _ in range(x.shape[0])])
+            x.insert(1, "phaseId", phase)
+                
+            data_x.append(x)
+        
+        data_x = pd.concat(data_x).reset_index(drop=True)
+
+        subjects = data_x.loc[:, "subject"]
+        phase_col = data_x.loc[:, "phaseId"]
+
+        if label_type == "all":
+            y_labels = []
+            for i in range(phase_col.shape[0]):
+                if phase_col.iloc[i] == 1:  # TSST phase
+                    y_labels.append(1)
+                else:
+                    y_labels.append(0)
+            data_y = pd.Series(data=y_labels)
+        else:
+            if label_type == "stai":
+                scores = stai_scores
+            elif label_type == "valence":
+                scores = dim_scores_valence
+            elif label_type == "arousal":
+                scores = dim_scores_arousal
+            else:
+                raise ValueError(f"Invalid label type: {label_type}")
+
+            columns = scores.columns
+
+            y_labels = []
+            for i in range(scores.shape[0]):
+                label_mean = scores.iloc[i, 1:].mean()
+                labels = [scores.iloc[i, 0]]  # subject ID
+                for j in range(1, scores.shape[1]):
+                    if scores.iloc[i, j] < label_mean:
+                        labels.append(0)
+                    else:
+                        labels.append(1)
+                y_labels.append(labels)
+            y_labels = pd.DataFrame(data=y_labels, columns=columns)
+
+            for i in range(data_x.shape[0]):
+                s = subjects.iloc[i]
+                p = int(phase_col.iloc[i])
+                label = y_labels.loc[y_labels["subject"] == s].iloc[0, p+1]
+                data_y.append(label)
+        data_y = pd.DataFrame({"subject": subjects, "label": data_y})
+
+        return data_x, data_y
+
+
+if __name__ == "__main__":
+    pass

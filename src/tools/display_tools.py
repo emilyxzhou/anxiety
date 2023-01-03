@@ -23,8 +23,10 @@ def plot_1d_data(data, data_type=None, title=None, labels=None, start=0, stop=No
 
     plt.plot(x, y, label=labels, color=colors[0], linewidth=2)
     plt.xlabel("Timestep")
-    plt.ylabel(f"{data_type}, {labels}")
-    plt.legend(loc="upper right")
+    if data_type and labels is not None:
+        plt.ylabel(f"{data_type}, {labels}")
+    if labels is not None:
+        plt.legend(loc="upper right")
     plt.title(title)
 
     y_min = np.min(y)

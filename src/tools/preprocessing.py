@@ -61,21 +61,32 @@ def load_data(task, data_type, phase, convert_sr=False, is_clean_ecg=True):
         glob.glob(dr.Paths.PARTICIPANT_DATA_DIR + "\\" + dr.Groups.LA + f"\\*\\{task}\\{data_type}_{phase}.csv")
     )
     # get rid of timestamp and heading
-    HA = [df.iloc[1:, [0, 2]].to_numpy().astype(np.float32) for df in HA]
-    # print([df.shape for df in HA])
-    LA = [df.iloc[1:, [0, 2]].to_numpy().astype(np.float32) for df in LA]
+    HA = [df.iloc[1:, [0, 2]].astype(np.float32) for df in HA]
+    LA = [df.iloc[1:, [0, 2]].astype(np.float32) for df in LA]
 
     if convert_sr:
         for i in range(len(HA)):
-            HA[i][:, -1] = samplerate.resample(HA[i][:, -1], ratio=100.0 / 250.0)
+            new_col = samplerate.resample(HA[i].iloc[:, -1], ratio=100.0 / 250.0)
+            HA[i] = HA[i].iloc[:, :-1]
+            HA[i] = pd.concat([HA[i], new_col], axis=1)
         for i in range(len(LA)):
-            LA[i][:, -1] = samplerate.resample(LA[i][:, -1], ratio=100.0 / 250.0)
+            new_col = samplerate.resample(LA[i].iloc[:, -1], ratio=100.0 / 250.0)
+            LA[i] = LA[i].iloc[:, :-1]
+            LA[i] = pd.concat([LA[i], new_col], axis=1)
     
-    if data_type == dr.DataTypes.ECG and is_clean_ecg:
+    if data_type == dr.DataTypes.ECG:
         for i in range(len(HA)):
-            HA[i][:, -1] = clean_ecg(HA[i][:, -1])
+            if is_clean_ecg:
+                new_col = clean_ecg(HA[i].iloc[:, -1]).reset_index(drop=True)
+                num_rows = new_col.shape[0]
+                HA[i] = HA[i].iloc[:num_rows, :-1].reset_index(drop=True)
+                HA[i] = pd.concat([HA[i], new_col], axis=1)
         for i in range(len(LA)):
-            LA[i][:, -1] = clean_ecg(LA[i][:, -1])
+            if is_clean_ecg:
+                new_col = clean_ecg(LA[i].iloc[:, -1]).reset_index(drop=True)
+                num_rows = new_col.shape[0]
+                LA[i] = LA[i].iloc[:num_rows, :-1].reset_index(drop=True)
+                LA[i] = pd.concat([LA[i], new_col], axis=1)
     return HA, LA
 
 
@@ -154,6 +165,7 @@ def calculate_fft(data, fs, feature_dim):
 
 def calculate_fft_1d(data, fs):
     """Perform FFT on a single 1D time signal, returns a frequencies and magnitudes"""
+    data = np.asarray(data)
     data_amp = np.abs(fft(data.flatten()))
     data_amp = data_amp
     n = data_amp.size
@@ -175,16 +187,28 @@ def clean_ecg(ecg_signal):
         # print("ECG signal has size 0, returning None")
         return None
     fs = FS_DICT[dr.DataTypes.ECG]
+    ecg_signal = hp.remove_baseline_wander(ecg_signal, fs)
     ecg_signal = hp.scale_data(ecg_signal)
-    ecg_signal = hp.remove_baseline_wander(ecg_signal.flatten(), fs)
-    ecg_signal = hp.enhance_peaks(ecg_signal, iterations=2)
+    # print(f"Size of scaled ECG signal: {ecg_signal.shape}")
+    ecg_signal = hp.enhance_ecg_peaks(
+        ecg_signal, fs, aggregation='median', iterations=5
+    )
+    # print(f"Size of enhanced ECG signal: {ecg_signal.shape}")
+    ecg_signal = pd.DataFrame(ecg_signal)
+    
+    # print("Stats --------------------")
+    # print(f"Min: {ecg_signal.min().iloc[0]}")
+    # print(f"Max: {ecg_signal.max().iloc[0]}")
+    # print(f"Median: {ecg_signal.median().iloc[0]}")
+    # print(f"Mean: {ecg_signal.mean().iloc[0]}")
     
     sos = ss.butter(N=2, Wn=0.667, btype="highpass", fs=fs, output="sos")
-    filtered = ss.sosfilt(sos, ecg_signal)
+    # ecg_signal = ss.sosfilt(sos, ecg_signal)
     # filtered = moving_average(filtered, 8)
-    filtered = np.reshape(filtered, (filtered.size, 1))
-    filtered = clean_RR(filtered)
-    return filtered.flatten()
+    # ecg_signal = np.reshape(ecg_signal, (ecg_signal.size, 1))
+    # ecg_signal = clean_RR(ecg_signal)
+    # ecg_signal = pd.DataFrame(ecg_signal.flatten())
+    return ecg_signal
 
 
 def clean_RR(clean_ecg_signal):
@@ -198,8 +222,7 @@ def clean_RR(clean_ecg_signal):
     return filtered
 
 
-def get_hf_rr(ecg):
-    fs = FS_DICT[dr.DataTypes.ECG]
+def get_hf_rr(ecg, fs=FS_DICT[dr.DataTypes.ECG]):
     n = ecg.size
     if n == 0:
         print("ECG signal has length 0, returning None")
@@ -210,7 +233,7 @@ def get_hf_rr(ecg):
     out = []
     while stop < n:
         stop = start + window_size
-        segment = ecg[start:stop]
+        segment = ecg.iloc[start:stop]
         freq, amp = calculate_fft_1d(segment, fs)
         
         low = 0.15
@@ -225,8 +248,7 @@ def get_hf_rr(ecg):
     return np.asarray(out)
 
 
-def get_lf_rr(ecg):
-    fs = FS_DICT[dr.DataTypes.ECG]
+def get_lf_rr(ecg, fs=FS_DICT[dr.DataTypes.ECG]):
     n = ecg.size
     if n == 0:
         print("ECG signal has length 0, returning None")
@@ -237,7 +259,7 @@ def get_lf_rr(ecg):
     out = []
     while stop < n:
         stop = start + window_size
-        segment = ecg[start:stop]
+        segment = ecg.iloc[start:stop]
         freq, amp = calculate_fft_1d(segment, fs)
         
         low = 0.04
@@ -269,8 +291,7 @@ def get_SC_metrics(eda):
     return r, p
 
 
-def get_mean_SCL(eda_signal):
-    fs = FS_DICT[dr.DataTypes.EDA]
+def get_mean_SCL(eda_signal, fs=FS_DICT[dr.DataTypes.EDA]):
     _, scl = get_SC_metrics(eda_signal)
     if scl is None:
         return None
@@ -288,8 +309,7 @@ def get_mean_SCL(eda_signal):
     return np.asarray(out)
 
 
-def get_SCR_rate(eda_signal):
-    fs = FS_DICT[dr.DataTypes.EDA]
+def get_SCR_rate(eda_signal, fs=FS_DICT[dr.DataTypes.EDA]):
     scr, _ = get_SC_metrics(eda_signal)
     if scr is None:
         return None

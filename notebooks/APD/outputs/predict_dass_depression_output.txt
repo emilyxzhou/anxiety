@@ -1,0 +1,54 @@
+KNN ACCURACY METRIC SPLIT------------------------------
+HIGHEST ACCURACY PHASES ------------------------------
+['BugBox_Relax', 'BugBox_Anticipate', 'BugBox_Exposure']: 0.9000000000000001, 0.6666666666666667, 1.0
+['Baseline_Rest', 'Baseline_Speech', 'BugBox_Break', 'BugBox_Reflect', 'BugBox_Exposure', 'Speech_Break', 'Speech_Reflect', 'Speech_Exposure']: 0.8499999999999999, 0.7777777777777778, 0.875
+['BugBox_Relax', 'BugBox_Anticipate', 'BugBox_Exposure', 'BugBox_Break', 'BugBox_Reflect']: 0.8400000000000001, 0.8888888888888891, 0.5333333333333333
+['Baseline_Rest', 'Baseline_Speech', 'Speech_Relax', 'Speech_Anticipate', 'Speech_Exposure']: 0.8400000000000001, 0.7333333333333333, 0.7333333333333333
+['BugBox_Break', 'BugBox_Reflect', 'BugBox_Exposure']: 0.8333333333333333, 1.0, 0.5833333333333333
+['Baseline_Rest', 'Baseline_Speech', 'BugBox_Relax', 'BugBox_Anticipate', 'BugBox_Exposure', 'BugBox_Break', 'BugBox_Reflect', 'Speech_Relax', 'Speech_Anticipate', 'Speech_Exposure', 'Speech_Break', 'Speech_Reflect']: 0.8083333333333333, 0.7358490566037734, 0.8125
+['Baseline_Rest', 'Baseline_Speech', 'Speech_Relax']: 0.7999999999999999, 0.909090909090909, 0.6666666666666667
+['Speech_Relax', 'Speech_Anticipate', 'Speech_Exposure', 'Speech_Break', 'Speech_Reflect']: 0.7999999999999999, 0.5999999999999999, 1.0
+['BugBox_Relax', 'BugBox_Anticipate', 'Speech_Relax', 'Speech_Anticipate']: 0.7999999999999999, 0.6666666666666667, 0.6666666666666667
+['Baseline_Rest', 'Baseline_Speech', 'BugBox_Relax', 'BugBox_Anticipate', 'Speech_Relax', 'Speech_Anticipate']: 0.7999999999999999, 0.6875, 0.9166666666666666
+['Baseline_Rest', 'Baseline_Speech', 'BugBox_Exposure', 'Speech_Exposure']: 0.7999999999999999, 0.7222222222222222, 0.8125
+['Baseline_Rest', 'Baseline_Speech', 'BugBox_Relax', 'BugBox_Anticipate', 'BugBox_Exposure']: 0.7999999999999999, 0.6666666666666667, 0.6666666666666667
+['Speech_Relax', 'Speech_Anticipate', 'Speech_Break', 'Speech_Reflect']: 0.7999999999999999, 0.6666666666666667, 0.6666666666666667
+['Baseline_Rest', 'Baseline_Speech', 'BugBox_Relax', 'BugBox_Anticipate', 'BugBox_Exposure', 'BugBox_Break', 'BugBox_Reflect']: 0.7857142857142857, 0.5999999999999999, 0.857142857142857
+['Speech_Relax', 'Speech_Anticipate', 'Speech_Exposure']: 0.7666666666666667, 0.7272727272727274, 0.6666666666666667
+['Baseline_Rest', 'Baseline_Speech', 'Speech_Relax', 'Speech_Anticipate', 'Speech_Break', 'Speech_Reflect']: 0.7666666666666667, 0.8076923076923077, 0.7000000000000001
+
+KNN ACCURACY PHASE SPLIT------------------------------
+HIGHEST ACCURACY PHASES ------------------------------
+['BugBox_Relax', 'BugBox_Anticipate', 'BugBox_Exposure', 'BugBox_Break', 'BugBox_Reflect']: 0.9000000000000001, 1.0, 0.7999999999999999
+['Baseline_Rest', 'Baseline_Speech']: 0.7999999999999999, 1.0, 0.5
+['Baseline_Rest', 'Baseline_Speech', 'BugBox_Exposure', 'Speech_Exposure']: 0.7999999999999999, 0.6666666666666667, 0.6666666666666667
+['BugBox_Break', 'BugBox_Reflect', 'BugBox_Exposure', 'Speech_Break', 'Speech_Reflect', 'Speech_Exposure']: 0.7999999999999999, 1.0, 0.5999999999999999
+['Baseline_Rest', 'Baseline_Speech', 'BugBox_Relax', 'BugBox_Anticipate', 'BugBox_Break', 'BugBox_Reflect', 'Speech_Relax', 'Speech_Anticipate', 'Speech_Break', 'Speech_Reflect']: 0.7999999999999999, 1.0, 0.5
+
+KNN ACCURACY METRIC SPLIT COMBINED------------------------------
+HIGHEST ACCURACY PHASES ------------------------------
+['Baseline_Rest', 'Baseline_Speech']: 1.0, 1.0, 1.0
+['BugBox_Relax']: 0.9000000000000001, 1.0, 0.75
+['BugBox_Relax', 'BugBox_Anticipate', 'BugBox_Exposure']: 0.9000000000000001, 0.75, 1.0
+['Baseline_Rest', 'Baseline_Speech', 'Speech_Relax', 'Speech_Anticipate', 'Speech_Exposure']: 0.9000000000000001, 0.6666666666666667, 1.0
+['Speech_Break', 'Speech_Reflect', 'Speech_Exposure']: 0.9000000000000001, 1.0, 0.8333333333333333
+['Speech_Relax', 'Speech_Anticipate', 'Speech_Exposure', 'Speech_Break', 'Speech_Reflect']: 0.7999999999999999, 0.5999999999999999, 1.0
+['BugBox_Relax', 'BugBox_Anticipate', 'BugBox_Exposure', 'BugBox_Break', 'BugBox_Reflect', 'Speech_Relax', 'Speech_Anticipate', 'Speech_Exposure', 'Speech_Break', 'Speech_Reflect']: 0.7999999999999999, 0.5999999999999999, 1.0
+['Baseline_Rest', 'Baseline_Speech', 'BugBox_Relax', 'BugBox_Anticipate', 'BugBox_Exposure', 'BugBox_Break', 'BugBox_Reflect']: 0.7999999999999999, 0.6666666666666667, 0.6666666666666667
+['BugBox_Relax', 'BugBox_Anticipate']: 0.7999999999999999, 1.0, 0.5
+['Baseline_Rest', 'Baseline_Speech', 'Speech_Relax', 'Speech_Anticipate']: 0.7999999999999999, 1.0, 0.5999999999999999
+['BugBox_Relax', 'BugBox_Anticipate', 'Speech_Exposure']: 0.7999999999999999, 1.0, 0.33333333333333337
+['Baseline_Rest', 'Baseline_Speech', 'BugBox_Break', 'BugBox_Reflect']: 0.7999999999999999, 0.75, 0.75
+['BugBox_Relax', 'BugBox_Anticipate', 'BugBox_Exposure', 'Speech_Relax', 'Speech_Anticipate', 'Speech_Exposure']: 0.7999999999999999, 1.0, 0.6666666666666667
+['Baseline_Rest', 'Baseline_Speech', 'BugBox_Relax', 'BugBox_Anticipate', 'BugBox_Exposure']: 0.7999999999999999, 0.7999999999999999, 0.7999999999999999
+['BugBox_Relax', 'BugBox_Anticipate', 'BugBox_Break', 'BugBox_Reflect']: 0.7999999999999999, 0.6666666666666667, 0.6666666666666667
+
+KNN ACCURACY PHASE SPLIT COMBINED------------------------------
+HIGHEST ACCURACY PHASES ------------------------------
+['Baseline_Rest', 'Baseline_Speech', 'BugBox_Break', 'BugBox_Reflect', 'Speech_Break', 'Speech_Reflect']: 0.9000000000000001, 1.0, 0.75
+['Baseline_Rest', 'Baseline_Speech', 'BugBox_Relax', 'BugBox_Anticipate', 'BugBox_Break', 'BugBox_Reflect']: 0.9000000000000001, 1.0, 0.6666666666666667
+['Baseline_Rest', 'Baseline_Speech', 'BugBox_Relax', 'BugBox_Anticipate', 'BugBox_Exposure', 'BugBox_Break', 'BugBox_Reflect', 'Speech_Relax', 'Speech_Anticipate', 'Speech_Exposure', 'Speech_Break', 'Speech_Reflect']: 0.7999999999999999, 0.75, 0.75
+['BugBox_Relax', 'BugBox_Anticipate', 'Speech_Exposure']: 0.7999999999999999, 0.5999999999999999, 1.0
+['Baseline_Rest', 'Baseline_Speech', 'Speech_Break', 'Speech_Reflect']: 0.7999999999999999, 0.75, 0.75
+['BugBox_Relax', 'BugBox_Anticipate', 'BugBox_Exposure']: 0.7999999999999999, 1.0, 0.5
+['BugBox_Break', 'BugBox_Reflect', 'BugBox_Exposure', 'Speech_Break', 'Speech_Reflect', 'Speech_Exposure']: 0.7999999999999999, 0.6666666666666667, 1.0
