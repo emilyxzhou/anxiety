@@ -61,8 +61,8 @@ def load_data(task, data_type, phase, convert_sr=False, is_clean_ecg=True):
         glob.glob(dr.Paths.PARTICIPANT_DATA_DIR + "\\" + dr.Groups.LA + f"\\*\\{task}\\{data_type}_{phase}.csv")
     )
     # get rid of timestamp and heading
-    HA = [df.iloc[1:, [0, 2]].astype(np.float32) for df in HA]
-    LA = [df.iloc[1:, [0, 2]].astype(np.float32) for df in LA]
+    HA = [df.drop(df.columns[[1]], axis=1).iloc[1:, :].astype(np.float32) for df in HA]
+    LA = [df.drop(df.columns[[1]], axis=1).iloc[1:, :].astype(np.float32) for df in LA]
 
     if convert_sr:
         for i in range(len(HA)):
@@ -184,9 +184,10 @@ def moving_average(x, w):
 
 def clean_ecg(ecg_signal):
     if ecg_signal.size <= 1:
-        # print("ECG signal has size 0, returning None")
-        return None
+        print("ECG signal has size 0, returning zero DataFrame")
+        return pd.DataFrame([0.0])
     fs = FS_DICT[dr.DataTypes.ECG]
+    ecg_signal = hp.filter_signal(ecg_signal, cutoff=50.0, sample_rate=fs, filtertype="lowpass")
     ecg_signal = hp.remove_baseline_wander(ecg_signal, fs)
     ecg_signal = hp.scale_data(ecg_signal)
     # print(f"Size of scaled ECG signal: {ecg_signal.shape}")
@@ -333,6 +334,65 @@ def get_SCR_rate(eda_signal, fs=FS_DICT[dr.DataTypes.EDA]):
         start += int(5*fs)
     return np.asarray(out)
 
+
+def clean_acc_data(acc_signal):
+    if acc_signal.size <= 1:
+        print("ACC signal has size 0, returning zero DataFrame")
+        return pd.DataFrame([0.0])
+    fs = FS_DICT[dr.DataTypes.ANKLE_L]
+    sos = ss.butter(N=2, Wn=0.8, btype="highpass", fs=fs, output="sos")
+    acc_signal = ss.sosfilt(sos, acc_signal)
+    return acc_signal
+
+
+def get_peak_acc_value(acc_signal, acc_type):
+    """
+    Calculate peak acceleration in the x-y plane.
+    """
+    if acc_type == "torso":
+        fs = FS_DICT[dr.DataTypes.POSTURE]
+    elif acc_type == "wrist":
+        fs = FS_DICT[dr.DataTypes.WRIST_L]
+    elif acc_type == "ankle":
+        fs = FS_DICT[dr.DataTypes.ANKLE_L]
+
+    n = acc_signal.shape[0]
+    start = 0
+    window_size = int(5*fs)
+    stop = start + window_size
+
+    out = []
+    while stop < n:
+        stop = start + window_size
+        segment = acc_signal.iloc[start:stop, 0:2]
+        segment = np.square(segment)
+        segment = segment.sum(axis=1)
+        segment = np.sqrt(segment)
+        peak = segment.max()
+        out.append(peak)
+        start += int(5*fs)
+    return np.asarray(out)
+
+
+def get_mean_ankle_activity(acc_signal):
+    fs = FS_DICT[dr.DataTypes.ANKLE_L]
+
+    n = acc_signal.shape[0]
+    start = 0
+    window_size = int(60*fs)
+    stop = start + window_size
+
+    out = []
+    while stop < n:
+        stop = start + window_size
+        segment = acc_signal.iloc[start:stop, 0:3]
+        segment = np.square(segment)
+        segment = np.mean(segment, axis=0)
+        segment = np.sqrt(segment)
+        mean = np.mean(segment)
+        out.append(mean)
+        start += int(5*fs)
+    return np.asarray(out)
 
 
 def pad_list_of_ndarrays(array_list):

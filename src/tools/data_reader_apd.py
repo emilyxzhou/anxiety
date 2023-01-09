@@ -287,7 +287,7 @@ def get_dataframes_from_files(files):
     dfs = []
     for f in files:
         subject = f.split("\\")[-3].split("_")[-1]
-        data = pd.read_csv(f, header=None, skip_blank_lines=True)
+        data = pd.read_csv(f, header=None, skip_blank_lines=True, low_memory=False)
         # remove extra last column from ankle data
         if "LeftAnkle" in f or "RightAnkle" in f:
             data = data.iloc[:, :-1]

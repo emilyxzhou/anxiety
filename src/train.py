@@ -238,7 +238,7 @@ class Train_WESAD:
 
         return stai_scores, dim_scores_arousal, dim_scores_valence
 
-    def get_wesad_data(metrics, phases, verbose=False, label_type="stai"):
+    def get_wesad_data(metrics, phases, verbose=False, label_type="stai", normalize=True):
         """
         label_type: "stai", "arousal", "valence", "all"
             label_type == "all": classification between stress and non-stress phases
@@ -300,6 +300,7 @@ class Train_WESAD:
                 else:
                     y_labels.append(0)
             data_y = pd.Series(data=y_labels)
+            data_x = data_x.drop("phaseId", axis=1)
         else:
             if label_type == "stai":
                 scores = stai_scores
@@ -330,6 +331,11 @@ class Train_WESAD:
                 label = y_labels.loc[y_labels["subject"] == s].iloc[0, p+1]
                 data_y.append(label)
         data_y = pd.DataFrame({"subject": subjects, "label": data_y})
+
+        for metric in metrics:
+            data_col = data_x[metric]
+            data_col = (data_col - data_col.min())/(data_col.max() - data_col.min())
+            data_x[metric] = data_col
 
         return data_x, data_y
 
