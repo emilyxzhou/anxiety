@@ -27,6 +27,43 @@ warnings.filterwarnings(
 )
 
 
+class Metrics:
+    BPM = "bpm"
+    RMSSD = "rmssd"
+    HF_RR = "hf_rr"
+    LF_RR = "lf_rr"
+    IBI=  "ibi"
+    SDNN = "sdnn"
+    MEAN_SCL = "mean_SCL"
+    SCR_RATE = "SCR_rate"
+    RESP = "breathingrate"
+    MEAN_ANKLE_ACT_L = "mean_ankle_activity_l"
+    MEAN_ANKLE_ACT_R =  "mean_ankle_activity_r"
+    MEAN_WRIST_ACT_L = "mean_wrist_activity_l"
+    MEAN_WRIST_ACT_R =  "mean_wrist_activity_r"
+    PEAK_ANKLE_ACC_L = "peak_ankle_acc_l"
+    PEAK_ANKLE_ACC_R = "peak_ankle_acc_r"
+    PEAK_WRIST_ACC_L = "peak_wrist_acc_l"
+    PEAK_WRIST_ACC_R = "peak_wrist_acc_r"
+    MEAN_POSTURE = "mean_posture"
+
+    ALL = [
+        BPM, RMSSD, HF_RR, LF_RR, IBI, SDNN,
+        MEAN_SCL, SCR_RATE,
+        RESP,
+        MEAN_ANKLE_ACT_L, MEAN_ANKLE_ACT_R,
+        MEAN_WRIST_ACT_L, MEAN_WRIST_ACT_R,
+        PEAK_ANKLE_ACC_L, PEAK_ANKLE_ACC_R,
+        PEAK_WRIST_ACC_L, PEAK_WRIST_ACC_R,
+        MEAN_POSTURE
+    ]
+
+    ECG = [BPM, RMSSD, HF_RR, LF_RR, IBI, SDNN]
+    EDA = [MEAN_SCL, SCR_RATE]
+    ANKLE = [MEAN_ANKLE_ACT_L, MEAN_ANKLE_ACT_R, PEAK_ANKLE_ACC_L, PEAK_ANKLE_ACC_R]
+    WRIST = [MEAN_WRIST_ACT_L, MEAN_WRIST_ACT_R, PEAK_WRIST_ACC_L, PEAK_WRIST_ACC_R]
+
+
 def train_test_split(x, y, test_size=0.15, by_subject=True):
     if by_subject:
         subjects = list(x.loc[:, "subject"].unique())

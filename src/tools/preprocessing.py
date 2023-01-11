@@ -395,6 +395,42 @@ def get_mean_ankle_activity(acc_signal):
     return np.asarray(out)
 
 
+def get_mean_posture(posture_signal):
+    fs = FS_DICT[dr.DataTypes.POSTURE]
+
+    n = posture_signal.shape[0]
+    start = 0
+    window_size = int(60*fs)
+    stop = start + window_size
+
+    out = []
+    while stop < n:
+        stop = start + window_size
+        segment = posture_signal.iloc[start:stop, 0]
+        mean = np.mean(segment)
+        out.append(mean)
+        start += int(5*fs)
+    return np.asarray(out)
+
+
+def get_mean_activity_torso(posture_signal):
+    fs = FS_DICT[dr.DataTypes.POSTURE]
+
+    n = posture_signal.shape[0]
+    start = 0
+    window_size = int(60*fs)
+    stop = start + window_size
+
+    out = []
+    while stop < n:
+        stop = start + window_size
+        segment = posture_signal.iloc[start:stop, 1]
+        mean = np.mean(segment)
+        out.append(mean)
+        start += int(5*fs)
+    return np.asarray(out)
+
+
 def pad_list_of_ndarrays(array_list):
     """
     Pads a list of np.ndarrays to the max size in each dimension.
