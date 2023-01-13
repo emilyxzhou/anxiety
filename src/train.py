@@ -257,10 +257,10 @@ class Train_APD:
         data_y = pd.DataFrame({"subject": subjects, "label": label})
         # data_y = pd.DataFrame({"ranking": ranking_col})
 
-        # print(data_x.shape)
-        # print(data_y.shape)
+        # out = pd.concat([data_x, data_y.iloc[:, 1:]], axis=1)
         
         return data_x, data_y
+        # return out
 
 
 class Train_WESAD:
