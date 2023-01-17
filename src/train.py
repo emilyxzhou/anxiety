@@ -379,5 +379,32 @@ class Train_WESAD:
         return data_x, data_y
 
 
+class Train_Multi_Dataset:
+    
+    def train_across_datasets(models, dataset_a_x, dataset_a_y, dataset_b_x, dataset_b_y, test_size=0.80, by_subject=True, show_classification=True, target_names=["A", "B"]):
+        """
+        test_size: Proportion of dataset_b to hold out for model testing.
+        """
+        out = {}
+        x_train_a, y_train_a, x_test_a, y_test_a, test_subjects = train_test_split(dataset_a_x, dataset_a_y, test_size=0, by_subject=by_subject)
+        x_train_b, y_train_b, x_test_b, y_test_b, test_subjects = train_test_split(dataset_b_x, dataset_b_y, test_size=test_size, by_subject=by_subject)
+        # print(f"x_train: {x_train.shape}")
+        # print(f"y_train: {y_train.shape}")
+        x_train = pd.concat([x_train_a, x_train_b])
+        y_train = pd.concat([y_train_a, y_train_b])
+        x_test = x_test_b
+        y_test = y_test_b.loc[:, "label"]
+        for model_name in models.keys():
+            model = models[model_name]
+            model.fit(x_train, y_train.loc[:, "label"])
+            y_pred = model.predict(x_test)
+            if show_classification:
+                print(f"Results for {model_name} -------------------------")
+                print(classification_report(y_test, y_pred, target_names=target_names))
+            out[model_name] = accuracy_score(y_test, y_pred)
+        return out
+
+
+
 if __name__ == "__main__":
     pass
