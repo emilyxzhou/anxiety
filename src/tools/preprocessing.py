@@ -234,7 +234,11 @@ def get_hf_rr(ecg, fs=FS_DICT[dr.DataTypes.ECG]):
     out = []
     while stop < n:
         stop = start + window_size
-        segment = ecg.iloc[start:stop]
+        try:
+            segment = ecg.iloc[start:stop]
+        except AttributeError:
+            segment = ecg[start:stop]
+
         freq, amp = calculate_fft_1d(segment, fs)
         
         low = 0.15
@@ -260,7 +264,10 @@ def get_lf_rr(ecg, fs=FS_DICT[dr.DataTypes.ECG]):
     out = []
     while stop < n:
         stop = start + window_size
-        segment = ecg.iloc[start:stop]
+        try:
+            segment = ecg.iloc[start:stop]
+        except AttributeError:
+            segment = ecg[start:stop]
         freq, amp = calculate_fft_1d(segment, fs)
         
         low = 0.04
