@@ -63,8 +63,6 @@ def get_signal(subject, phases, signal):
         
     br_file = os.path.join(Paths.SFI, f"VP{subject}", f"Bitalino{signal}.txt")
 
-    start_t = float(ts_df.loc[phases, "start"].values[0])
-    end_t = float(ts_df.loc[phases, "end"].values[0])
 
     with open(br_file) as f:
         stripped = (line.strip() for line in f)
@@ -74,6 +72,8 @@ def get_signal(subject, phases, signal):
 
     out = {}
     for phase in phases:
+        start_t = float(ts_df.loc[phase, "start"])
+        end_t = float(ts_df.loc[phase, "end"])
         phase_data = df.loc[(df["timestamp"] >= start_t) & (df["timestamp"] < end_t)].loc[:, "signal"].reset_index(drop=True)
         out[phase] = phase_data
     # out = pd.DataFrame(data=out).transpose()
