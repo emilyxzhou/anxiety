@@ -13,7 +13,8 @@ import tools.data_reader_wesad as dr_w
 import tools.preprocessing as preprocessing
 
 from scipy.fft import fft, fftfreq, fftshift
-from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix, precision_score, f1_score, \
+    recall_score, roc_auc_score
 from sklearn.model_selection import train_test_split, cross_val_score, RepeatedKFold
 from sklearn.preprocessing import normalize
 
@@ -86,23 +87,37 @@ def train_test_split(x, y, test_size=0.15, by_subject=True):
     return x_train, y_train, x_test, y_test, indices
 
 
-def train_predict(models, x, y, test_size=0.15, by_subject=True, show_classification=True, target_names=["A", "B"]):
+def train_predict(models, x, y, test_size=0.15, by_subject=True, save_metrics=True):
     """
     models: dictionary of {"name": model}
     """
     out = {}
     x_train, y_train, x_test, y_test, test_subjects = train_test_split(x, y, test_size, by_subject)
+    while y_test.loc[:, "label"].nunique() == 1:
+        print("Only one label in test data, rerunning train_test_split")
+        x_train, y_train, x_test, y_test, test_subjects = train_test_split(x, y, test_size, by_subject)
     # print(f"x_train: {x_train.shape}")
     # print(f"y_train: {y_train.shape}")
-    y_true = y_test.loc[:, "label"]
+    y_test = y_test.loc[:, "label"]
     for model_name in models.keys():
         model = models[model_name]
         model.fit(x_train, y_train.loc[:, "label"])
         y_pred = model.predict(x_test)
-        if show_classification:
-            print(f"Results for {model_name} -------------------------")
-            print(classification_report(y_true, y_pred, target_names=target_names))
-        out[model_name] = accuracy_score(y_true, y_pred)
+        acc = accuracy_score(y_test, y_pred)
+        if save_metrics:
+            precision = precision_score(y_test, y_pred, zero_division=0)
+            recall = recall_score(y_test, y_pred, zero_division=0)
+            f1 = f1_score(y_test, y_pred, zero_division=0)
+            auc = roc_auc_score(y_test, y_pred)
+            report = {
+                "precision": precision,
+                "recall": recall,
+                "f1": f1,
+                "auc": auc
+            }
+        else:
+            report = None
+        out[model_name] = (acc, report)
     return out
 
 
@@ -381,7 +396,7 @@ class Train_WESAD:
 
 class Train_Multi_Dataset:
     
-    def train_across_datasets(models, dataset_a_x, dataset_a_y, dataset_b_x, dataset_b_y, test_size=0.80, by_subject=True, show_classification=True, target_names=["A", "B"]):
+    def train_across_datasets(models, dataset_a_x, dataset_a_y, dataset_b_x, dataset_b_y, test_size=0.80, by_subject=True, save_metrics=True, target_names=["A", "B"]):
         """
         test_size: Proportion of dataset_b to hold out for model testing.
         """
@@ -398,10 +413,21 @@ class Train_Multi_Dataset:
             model = models[model_name]
             model.fit(x_train, y_train.loc[:, "label"])
             y_pred = model.predict(x_test)
-            if show_classification:
-                print(f"Results for {model_name} -------------------------")
-                print(classification_report(y_test, y_pred, target_names=target_names))
-            out[model_name] = accuracy_score(y_test, y_pred)
+            acc = accuracy_score(y_test, y_pred)
+            if save_metrics:
+                precision = precision_score(y_test, y_pred, zero_division=0)
+                recall = recall_score(y_test, y_pred, zero_division=0)
+                f1 = f1_score(y_test, y_pred, zero_division=0)
+                auc = roc_auc_score(y_test, y_pred)
+                report = {
+                    "precision": precision,
+                    "recall": recall,
+                    "f1": f1,
+                    "auc": auc
+                }
+            else:
+                report = None
+            out[model_name] = (acc, report)
         return out
 
 
