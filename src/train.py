@@ -401,7 +401,7 @@ class Train_Multi_Dataset:
         test_size: Proportion of dataset_b to hold out for model testing.
         """
         out = {}
-        x_train_a, y_train_a, x_test_a, y_test_a, test_subjects = train_test_split(dataset_a_x, dataset_a_y, test_size=0, by_subject=by_subject)
+        x_train_a, y_train_a, x_test_a, y_test_a, test_subjects = train_test_split(dataset_a_x, dataset_a_y, test_size=0.0, by_subject=by_subject)
         x_train_b, y_train_b, x_test_b, y_test_b, test_subjects = train_test_split(dataset_b_x, dataset_b_y, test_size=test_size, by_subject=by_subject)
         # print(f"x_train: {x_train.shape}")
         # print(f"y_train: {y_train.shape}")
@@ -415,9 +415,9 @@ class Train_Multi_Dataset:
             y_pred = model.predict(x_test)
             acc = accuracy_score(y_test, y_pred)
             if save_metrics:
-                precision = precision_score(y_test, y_pred, zero_division=0)
-                recall = recall_score(y_test, y_pred, zero_division=0)
-                f1 = f1_score(y_test, y_pred, zero_division=0)
+                precision = precision_score(y_test, y_pred, zero_division=1)
+                recall = recall_score(y_test, y_pred, zero_division=1)
+                f1 = f1_score(y_test, y_pred, zero_division=1)
                 auc = roc_auc_score(y_test, y_pred)
                 report = {
                     "precision": precision,
