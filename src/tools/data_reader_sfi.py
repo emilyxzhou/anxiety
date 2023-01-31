@@ -27,6 +27,7 @@ def get_participant_data(index):
 CLIP_INDICES = list(range(1, 17))
 subject_folders = glob.glob(Paths.SFI + "/VP*")
 SUBJECTS = [int(s.split("\\")[-1][-2:]) for s in subject_folders]
+SUBJECTS.remove(26)
 
 
 def get_clip_timestamps(subject):

@@ -282,12 +282,11 @@ def get_lf_rr(ecg, fs=FS_DICT[dr.DataTypes.ECG]):
     return np.asarray(out)
 
 
-def get_SC_metrics(eda):
+def get_SC_metrics(eda, fs=FS_DICT[dr.DataTypes.EDA]):
     """Returns r (phasic), t (tonic) components of the input EDA signal."""
     if eda.size == 0:
         print("Warning: EDA signal has size 0, retuning None")
         return None, None
-    fs = FS_DICT[dr.DataTypes.EDA]
     eda = eda.astype(np.double)
     # sos = ss.butter(N=3, Wn=4.0, btype="lowpass", fs=fs, output="sos")
     # filtered = ss.sosfilt(sos, eda_signal)
@@ -300,7 +299,7 @@ def get_SC_metrics(eda):
 
 
 def get_mean_SCL(eda_signal, fs=FS_DICT[dr.DataTypes.EDA]):
-    _, scl = get_SC_metrics(eda_signal)
+    _, scl = get_SC_metrics(eda_signal, fs)
     if scl is None:
         return None
     n = scl.size
@@ -318,7 +317,7 @@ def get_mean_SCL(eda_signal, fs=FS_DICT[dr.DataTypes.EDA]):
 
 
 def get_SCR_rate(eda_signal, fs=FS_DICT[dr.DataTypes.EDA]):
-    scr, _ = get_SC_metrics(eda_signal)
+    scr, _ = get_SC_metrics(eda_signal, fs)
     if scr is None:
         return None
 
