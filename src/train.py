@@ -6,6 +6,7 @@ import os
 import sys
 import pandas as pd
 import random
+import shap
 import scipy.signal as ss
 
 import tools.data_reader_apd as dr_a
@@ -396,7 +397,7 @@ class Train_WESAD:
 
 class Train_Multi_Dataset:
     
-    def train_across_datasets(models, dataset_a_x, dataset_a_y, dataset_b_x, dataset_b_y, test_size=0.80, by_subject=True, save_metrics=True, target_names=["A", "B"]):
+    def train_across_datasets(models, dataset_a_x, dataset_a_y, dataset_b_x, dataset_b_y, test_size=0.80, by_subject=True, save_metrics=True, target_names=["A", "B"], get_shap_values=True):
         """
         test_size: Proportion of dataset_b to hold out for model testing.
         """
@@ -411,7 +412,7 @@ class Train_Multi_Dataset:
         y_test = y_test_b.loc[:, "label"]
         for model_name in models.keys():
             model = models[model_name]
-            model.fit(x_train, y_train.loc[:, "label"])
+            model = model.fit(x_train, y_train.loc[:, "label"])
             y_pred = model.predict(x_test)
             acc = accuracy_score(y_test, y_pred)
             if save_metrics:
@@ -427,7 +428,12 @@ class Train_Multi_Dataset:
                 }
             else:
                 report = None
-            out[model_name] = (acc, report)
+            if get_shap_values:
+                explainer = shap.Explainer(model.predict, x_train)
+                shap_values = explainer(x_test)
+            else:
+                shap_values = None
+            out[model_name] = (acc, report, shap_values)
         return out
 
 
