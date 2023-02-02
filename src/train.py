@@ -10,6 +10,7 @@ import shap
 import scipy.signal as ss
 
 import tools.data_reader_apd as dr_a
+import tools.data_reader_sfi as dr_s
 import tools.data_reader_wesad as dr_w
 import tools.preprocessing as preprocessing
 
@@ -395,6 +396,79 @@ class Train_WESAD:
         return data_x, data_y
 
 
+class Train_SFI:
+
+    def get_sfi_data(metrics, phases, verbose=False, normalize=True):
+        metrics_folder = dr_s.Paths.METRICS
+        columns = metrics.copy()
+        columns.insert(0, "subject")
+        
+        data_x = []
+        data_y = []
+
+        features = []
+        for i in range(len(metrics)):
+            metric = metrics[i]
+            if verbose: print(f"Generating features for metric {metric}")
+            file = os.path.join(metrics_folder, f"{metric}.csv")
+            arr = pd.read_csv(file, index_col=[0])
+
+            if i == 0:  # subject IDs
+                # ids = arr.iloc[:, 0]
+                ids = arr.iloc[:, 0]
+                ids = pd.DataFrame(data=ids, columns=["subject"])
+                features.append(ids)
+            col_mean = np.nanmean(arr, axis=0)
+            idx = np.where(np.isnan(arr))
+            if idx[0].size > 0 and idx[1].size > 0:
+                print(idx)
+                arr[idx] = np.take(col_mean, idx[1])
+            arr = np.nan_to_num(arr)
+            arr = np.mean(arr[:, 1:], axis=1)
+            arr = np.reshape(arr, (arr.size, 1))
+            arr = pd.DataFrame(data=arr, columns=[f"{metric}"])
+            features.append(arr)
+
+        x = pd.concat(features, axis=1)
+            
+        data_x.append(x)
+        
+        data_x = pd.concat(data_x).reset_index(drop=True)
+
+        subjects = data_x.loc[:, "subject"]
+        phase_col = data_x.loc[:, "phaseId"]
+
+        y_labels = []
+        for phase in phases:
+            if phase == "BIOFEEDBACK-REST":
+                data_y.append(0)
+            else:
+                data_y.append(1)
+        for i in range(phase_col.shape[0]):
+            if phase_col.iloc[i] == 1:  # stress phase
+                y_labels.append(1)
+            else:
+                y_labels.append(0)
+        data_y = pd.Series(data=y_labels)
+        data_x = data_x.drop("phaseId", axis=1)
+
+        y_labels = pd.DataFrame(data=y_labels, columns=columns)
+
+        for i in range(data_x.shape[0]):
+            s = subjects.iloc[i]
+            p = int(phase_col.iloc[i])
+            label = y_labels.loc[y_labels["subject"] == s].iloc[0, p+1]
+            data_y.append(label)
+        data_y = pd.DataFrame({"subject": subjects, "label": data_y})
+
+        for metric in metrics:
+            data_col = data_x[metric]
+            data_col = (data_col - data_col.min())/(data_col.max() - data_col.min())
+            data_x[metric] = data_col
+
+        return data_x, data_y
+
+
 class Train_Multi_Dataset:
     
     def train_across_datasets(models, dataset_a_x, dataset_a_y, dataset_b_x, dataset_b_y, test_size=0.80, by_subject=True, save_metrics=True, target_names=["A", "B"], get_shap_values=True):
@@ -428,8 +502,11 @@ class Train_Multi_Dataset:
                 }
             else:
                 report = None
-            if get_shap_values:
-                explainer = shap.Explainer(model.predict, x_train)
+            if get_shap_values and acc > 0.65:
+                try: 
+                    explainer = shap.Explainer(model)
+                except Exception as e:
+                    explainer = shap.Explainer(model.predict, x_train)
                 shap_values = explainer(x_test)
             else:
                 shap_values = None
