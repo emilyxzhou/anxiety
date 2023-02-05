@@ -89,7 +89,7 @@ def train_test_split(x, y, test_size=0.15, by_subject=True):
     return x_train, y_train, x_test, y_test, indices
 
 
-def train_predict(models, x, y, test_size=0.15, by_subject=True, save_metrics=True):
+def train_predict(models, x, y, test_size=0.15, by_subject=True, save_metrics=True, get_shap_values=False):
     """
     models: dictionary of {"name": model}
     """
@@ -119,7 +119,15 @@ def train_predict(models, x, y, test_size=0.15, by_subject=True, save_metrics=Tr
             }
         else:
             report = None
-        out[model_name] = (acc, report)
+        if get_shap_values and acc > 0.65:
+            try: 
+                explainer = shap.Explainer(model)
+            except Exception as e:
+                explainer = shap.Explainer(model.predict, x_train)
+            shap_values = explainer(x_test)
+        else:
+            shap_values = None
+        out[model_name] = (acc, report, shap_values)
     return out
 
 
@@ -421,8 +429,7 @@ class Train_SFI:
             col_mean = np.nanmean(arr, axis=0)
             idx = np.where(np.isnan(arr))
             if idx[0].size > 0 and idx[1].size > 0:
-                print(idx)
-                arr[idx] = np.take(col_mean, idx[1])
+                arr.iloc[idx] = np.take(col_mean, idx[1])
             arr = np.nan_to_num(arr)
             arr = np.mean(arr[:, 1:], axis=1)
             arr = np.reshape(arr, (arr.size, 1))
@@ -436,30 +443,18 @@ class Train_SFI:
         data_x = pd.concat(data_x).reset_index(drop=True)
 
         subjects = data_x.loc[:, "subject"]
-        phase_col = data_x.loc[:, "phaseId"]
 
         y_labels = []
         for phase in phases:
             if phase == "BIOFEEDBACK-REST":
-                data_y.append(0)
-            else:
-                data_y.append(1)
-        for i in range(phase_col.shape[0]):
-            if phase_col.iloc[i] == 1:  # stress phase
-                y_labels.append(1)
-            else:
                 y_labels.append(0)
-        data_y = pd.Series(data=y_labels)
-        data_x = data_x.drop("phaseId", axis=1)
-
-        y_labels = pd.DataFrame(data=y_labels, columns=columns)
+            else:
+                y_labels.append(1)
+        y_labels = pd.Series(data=y_labels)
 
         for i in range(data_x.shape[0]):
             s = subjects.iloc[i]
-            p = int(phase_col.iloc[i])
-            label = y_labels.loc[y_labels["subject"] == s].iloc[0, p+1]
-            data_y.append(label)
-        data_y = pd.DataFrame({"subject": subjects, "label": data_y})
+        data_y = pd.DataFrame({"subject": subjects, "label": y_labels})
 
         for metric in metrics:
             data_col = data_x[metric]
@@ -471,7 +466,7 @@ class Train_SFI:
 
 class Train_Multi_Dataset:
     
-    def train_across_datasets(models, dataset_a_x, dataset_a_y, dataset_b_x, dataset_b_y, test_size=0.80, by_subject=True, save_metrics=True, target_names=["A", "B"], get_shap_values=True):
+    def train_across_datasets(models, dataset_a_x, dataset_a_y, dataset_b_x, dataset_b_y, test_size=0.80, by_subject=True, save_metrics=True, target_names=["A", "B"], get_shap_values=False):
         """
         test_size: Proportion of dataset_b to hold out for model testing.
         """
