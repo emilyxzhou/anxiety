@@ -479,6 +479,12 @@ class Train_Multi_Dataset:
         y_train = pd.concat([y_train_a, y_train_b])
         x_test = x_test_b
         y_test = y_test_b.loc[:, "label"]
+        
+        # print("Training data: ")
+        # print(y_train.loc[:, "label"].value_counts())
+        # print("Testing data: ")
+        # print(y_test.loc[:].value_counts())
+
         for model_name in models.keys():
             model = models[model_name]
             model = model.fit(x_train, y_train.loc[:, "label"])
