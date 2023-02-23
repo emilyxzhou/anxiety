@@ -10,6 +10,7 @@ import shap
 import scipy.signal as ss
 
 import tools.data_reader_apd as dr_a
+import tools.data_reader_popane as dr_p
 import tools.data_reader_sfi as dr_s
 import tools.data_reader_wesad as dr_w
 import tools.preprocessing as preprocessing
@@ -395,6 +396,66 @@ class Train_WESAD:
                 label = y_labels.loc[y_labels["subject"] == s].iloc[0, p+1]
                 data_y.append(label)
         data_y = pd.DataFrame({"subject": subjects, "label": data_y})
+
+        for metric in metrics:
+            data_col = data_x[metric]
+            data_col = (data_col - data_col.min())/(data_col.max() - data_col.min())
+            data_x[metric] = data_col
+
+        return data_x, data_y
+
+    
+class Train_POPANE:
+
+    def get_popane_data(metrics, phases, verbose=False, normalize=True):
+        metrics_folder = dr_s.Paths.METRICS
+        columns = metrics.copy()
+        columns.insert(0, "subject")
+        
+        data_x = []
+        data_y = []
+
+        features = []
+        for i in range(len(metrics)):
+            metric = metrics[i]
+            if verbose: print(f"Generating features for metric {metric}")
+            file = os.path.join(metrics_folder, f"{metric}.csv")
+            arr = pd.read_csv(file, index_col=[0])
+
+            if i == 0:  # subject IDs
+                # ids = arr.iloc[:, 0]
+                ids = arr.iloc[:, 0]
+                ids = pd.DataFrame(data=ids, columns=["subject"])
+                features.append(ids)
+            col_mean = np.nanmean(arr, axis=0)
+            idx = np.where(np.isnan(arr))
+            if idx[0].size > 0 and idx[1].size > 0:
+                arr.iloc[idx] = np.take(col_mean, idx[1])
+            arr = np.nan_to_num(arr)
+            arr = np.mean(arr[:, 1:], axis=1)
+            arr = np.reshape(arr, (arr.size, 1))
+            arr = pd.DataFrame(data=arr, columns=[f"{metric}"])
+            features.append(arr)
+
+        x = pd.concat(features, axis=1)
+            
+        data_x.append(x)
+        
+        data_x = pd.concat(data_x).reset_index(drop=True)
+
+        subjects = data_x.loc[:, "subject"]
+
+        y_labels = []
+        for phase in phases:
+            if phase == "BIOFEEDBACK-REST":
+                y_labels.append(0)
+            else:
+                y_labels.append(1)
+        y_labels = pd.Series(data=y_labels)
+
+        for i in range(data_x.shape[0]):
+            s = subjects.iloc[i]
+        data_y = pd.DataFrame({"subject": subjects, "label": y_labels})
 
         for metric in metrics:
             data_col = data_x[metric]
