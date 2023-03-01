@@ -223,13 +223,13 @@ def clean_RR(clean_ecg_signal):
     return filtered
 
 
-def get_hf_rr(ecg, fs=FS_DICT[dr.DataTypes.ECG]):
+def get_hf_rr(ecg, fs=FS_DICT[dr.DataTypes.ECG], window_size=55):
     n = ecg.size
     if n == 0:
         print("ECG signal has length 0, returning None")
         return None
     start = 0
-    window_size = int(55*fs)
+    window_size = int(window_size*fs)
     stop = start + window_size
     out = []
     while stop < n:
@@ -253,13 +253,13 @@ def get_hf_rr(ecg, fs=FS_DICT[dr.DataTypes.ECG]):
     return np.asarray(out)
 
 
-def get_lf_rr(ecg, fs=FS_DICT[dr.DataTypes.ECG]):
+def get_lf_rr(ecg, fs=FS_DICT[dr.DataTypes.ECG], window_size=55):
     n = ecg.size
     if n == 0:
         print("ECG signal has length 0, returning None")
         return None
     start = 0
-    window_size = int(55*fs)
+    window_size = int(window_size*fs)
     stop = start + window_size
     out = []
     while stop < n:
@@ -298,13 +298,13 @@ def get_SC_metrics(eda, fs=FS_DICT[dr.DataTypes.EDA]):
     return r, p
 
 
-def get_mean_SCL(eda_signal, fs=FS_DICT[dr.DataTypes.EDA]):
+def get_mean_SCL(eda_signal, fs=FS_DICT[dr.DataTypes.EDA], window_size=60):
     _, scl = get_SC_metrics(eda_signal, fs)
     if scl is None:
         return None
     n = scl.size
     start = 0
-    window_size = int(60*fs)
+    window_size = int(window_size*fs)
     stop = start + window_size
     out = []
     while stop < n:
@@ -316,7 +316,7 @@ def get_mean_SCL(eda_signal, fs=FS_DICT[dr.DataTypes.EDA]):
     return np.asarray(out)
 
 
-def get_SCR_rate(eda_signal, fs=FS_DICT[dr.DataTypes.EDA]):
+def get_SCR_rate(eda_signal, fs=FS_DICT[dr.DataTypes.EDA], window_size=60):
     scr, _ = get_SC_metrics(eda_signal, fs)
     if scr is None:
         return None
@@ -324,7 +324,7 @@ def get_SCR_rate(eda_signal, fs=FS_DICT[dr.DataTypes.EDA]):
     grad = np.gradient(scr)
     n = grad.size
     start = 0
-    window_size = int(60*fs)
+    window_size = int(window_size*fs)
     stop = start + window_size
     # threshold = max()
 
