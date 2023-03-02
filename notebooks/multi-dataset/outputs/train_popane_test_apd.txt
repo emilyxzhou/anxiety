@@ -1,18 +1,24 @@
 POPANE PHASES 0 --------------------------------------------------
 APD PHASES 0 --------------------------------------------------
+0    429
+1    397
+Name: label, dtype: int64
 SVM accuracy over 10 rounds: 0.3244444444444444
 KNN accuracy over 10 rounds: 0.3222222222222223
-DT accuracy over 10 rounds: 0.4228888888888889
+DT accuracy over 10 rounds: 0.396
 LogReg accuracy over 10 rounds: 0.46222222222222226
 Bayes accuracy over 10 rounds: 0.3222222222222223
-XGB accuracy over 10 rounds: 0.31999999999999995
+XGB accuracy over 10 rounds: 0.3222222222222223
 
 
 POPANE PHASES 1 --------------------------------------------------
 APD PHASES 0 --------------------------------------------------
+0    399
+1    325
+Name: label, dtype: int64
 SVM accuracy over 10 rounds: 0.34857142857142864
 KNN accuracy over 10 rounds: 0.6485714285714286
-DT accuracy over 10 rounds: 0.5874285714285714
+DT accuracy over 10 rounds: 0.5891428571428572
 LogReg accuracy over 10 rounds: 0.6485714285714286
 Bayes accuracy over 10 rounds: 0.6485714285714286
 XGB accuracy over 10 rounds: 0.5999999999999999
@@ -20,156 +26,195 @@ XGB accuracy over 10 rounds: 0.5999999999999999
 
 POPANE PHASES 2 --------------------------------------------------
 APD PHASES 0 --------------------------------------------------
+0    355
+1    267
+Name: label, dtype: int64
 SVM accuracy over 10 rounds: 0.30399999999999994
 KNN accuracy over 10 rounds: 0.30399999999999994
-DT accuracy over 10 rounds: 0.3576
-LogReg accuracy over 10 rounds: 0.5039999999999999
+DT accuracy over 10 rounds: 0.34719999999999995
+LogReg accuracy over 10 rounds: 0.492
 Bayes accuracy over 10 rounds: 0.7
 Model evaluation metrics for Bayes:
 Precision: 0.6987951807228916
 Recall: 1.0
 F1-score: 0.822695035460993
 AUC score: 0.506578947368421
-XGB accuracy over 10 rounds: 0.31599999999999995
+XGB accuracy over 10 rounds: 0.31999999999999995
 
 
 POPANE PHASES 3 --------------------------------------------------
 APD PHASES 0 --------------------------------------------------
+0    326
+1    143
+Name: label, dtype: int64
 SVM accuracy over 10 rounds: 0.4800000000000001
 KNN accuracy over 10 rounds: 0.4800000000000001
-DT accuracy over 10 rounds: 0.523
+DT accuracy over 10 rounds: 0.525
 LogReg accuracy over 10 rounds: 0.4800000000000001
 Bayes accuracy over 10 rounds: 0.4800000000000001
-XGB accuracy over 10 rounds: 0.4800000000000001
+XGB accuracy over 10 rounds: 0.4699999999999999
 
 
 POPANE PHASES 4 --------------------------------------------------
 APD PHASES 0 --------------------------------------------------
+0    326
+1    143
+Name: label, dtype: int64
 SVM accuracy over 10 rounds: 0.4800000000000001
 KNN accuracy over 10 rounds: 0.4800000000000001
-DT accuracy over 10 rounds: 0.41
+DT accuracy over 10 rounds: 0.45400000000000007
+LogReg accuracy over 10 rounds: 0.4800000000000001
+Bayes accuracy over 10 rounds: 0.4800000000000001
+XGB accuracy over 10 rounds: 0.4699999999999999
+
+
+POPANE PHASES 0 --------------------------------------------------
+APD PHASES 1 --------------------------------------------------
+1    584
+0    292
+Name: label, dtype: int64
+SVM accuracy over 10 rounds: 0.6799999999999999
+Model evaluation metrics for SVM:
+Precision: 0.6792873051224946
+Recall: 1.0
+F1-score: 0.8090185676392574
+AUC score: 0.503448275862069
+KNN accuracy over 10 rounds: 0.3222222222222223
+DT accuracy over 10 rounds: 0.39533333333333337
+LogReg accuracy over 10 rounds: 0.468888888888889
+Bayes accuracy over 10 rounds: 0.3222222222222223
+XGB accuracy over 10 rounds: 0.3466666666666667
+
+
+POPANE PHASES 1 --------------------------------------------------
+APD PHASES 1 --------------------------------------------------
+1    512
+0    262
+Name: label, dtype: int64
+SVM accuracy over 10 rounds: 0.6485714285714286
+KNN accuracy over 10 rounds: 0.6485714285714286
+DT accuracy over 10 rounds: 0.6437142857142856
+LogReg accuracy over 10 rounds: 0.6485714285714286
+Bayes accuracy over 10 rounds: 0.6485714285714286
+XGB accuracy over 10 rounds: 0.642857142857143
+
+
+POPANE PHASES 2 --------------------------------------------------
+APD PHASES 1 --------------------------------------------------
+1    454
+0    218
+Name: label, dtype: int64
+SVM accuracy over 10 rounds: 0.696
+Model evaluation metrics for SVM:
+Precision: 0.696
+Recall: 1.0
+F1-score: 0.820754716981132
+AUC score: 0.5
+KNN accuracy over 10 rounds: 0.30399999999999994
+DT accuracy over 10 rounds: 0.4928
+LogReg accuracy over 10 rounds: 0.44000000000000006
+Bayes accuracy over 10 rounds: 0.30399999999999994
+XGB accuracy over 10 rounds: 0.43600000000000005
+
+
+POPANE PHASES 3 --------------------------------------------------
+APD PHASES 1 --------------------------------------------------
+1    330
+0    189
+Name: label, dtype: int64
+SVM accuracy over 10 rounds: 0.5199999999999999
+KNN accuracy over 10 rounds: 0.4800000000000001
+DT accuracy over 10 rounds: 0.5429999999999999
+LogReg accuracy over 10 rounds: 0.4800000000000001
+Bayes accuracy over 10 rounds: 0.4800000000000001
+XGB accuracy over 10 rounds: 0.45
+
+
+POPANE PHASES 4 --------------------------------------------------
+APD PHASES 1 --------------------------------------------------
+1    330
+0    189
+Name: label, dtype: int64
+SVM accuracy over 10 rounds: 0.5199999999999999
+KNN accuracy over 10 rounds: 0.4800000000000001
+DT accuracy over 10 rounds: 0.5039999999999999
+LogReg accuracy over 10 rounds: 0.51
+Bayes accuracy over 10 rounds: 0.4800000000000001
+XGB accuracy over 10 rounds: 0.51
+
+
+POPANE PHASES 0 --------------------------------------------------
+APD PHASES 2 --------------------------------------------------
+1    753
+0    295
+Name: label, dtype: int64
+SVM accuracy over 10 rounds: 0.6799999999999999
+Model evaluation metrics for SVM:
+Precision: 0.6792873051224946
+Recall: 1.0
+F1-score: 0.8090185676392574
+AUC score: 0.503448275862069
+KNN accuracy over 10 rounds: 0.3222222222222223
+DT accuracy over 10 rounds: 0.41755555555555557
+LogReg accuracy over 10 rounds: 0.4666666666666667
+Bayes accuracy over 10 rounds: 0.32666666666666666
+XGB accuracy over 10 rounds: 0.3244444444444444
+
+
+POPANE PHASES 1 --------------------------------------------------
+APD PHASES 2 --------------------------------------------------
+1    681
+0    265
+Name: label, dtype: int64
+SVM accuracy over 10 rounds: 0.6485714285714286
+KNN accuracy over 10 rounds: 0.6485714285714286
+DT accuracy over 10 rounds: 0.5788571428571428
+LogReg accuracy over 10 rounds: 0.6485714285714286
+Bayes accuracy over 10 rounds: 0.6485714285714286
+XGB accuracy over 10 rounds: 0.6399999999999999
+
+
+POPANE PHASES 2 --------------------------------------------------
+APD PHASES 2 --------------------------------------------------
+1    623
+0    221
+Name: label, dtype: int64
+SVM accuracy over 10 rounds: 0.696
+Model evaluation metrics for SVM:
+Precision: 0.696
+Recall: 1.0
+F1-score: 0.820754716981132
+AUC score: 0.5
+KNN accuracy over 10 rounds: 0.30399999999999994
+DT accuracy over 10 rounds: 0.5923999999999999
+LogReg accuracy over 10 rounds: 0.44400000000000006
+Bayes accuracy over 10 rounds: 0.30399999999999994
+XGB accuracy over 10 rounds: 0.572
+
+
+POPANE PHASES 3 --------------------------------------------------
+APD PHASES 2 --------------------------------------------------
+1    499
+0    192
+Name: label, dtype: int64
+SVM accuracy over 10 rounds: 0.5199999999999999
+KNN accuracy over 10 rounds: 0.4800000000000001
+DT accuracy over 10 rounds: 0.43999999999999995
 LogReg accuracy over 10 rounds: 0.4800000000000001
 Bayes accuracy over 10 rounds: 0.4800000000000001
 XGB accuracy over 10 rounds: 0.4600000000000001
 
 
-POPANE PHASES 0 --------------------------------------------------
-APD PHASES 1 --------------------------------------------------
-SVM accuracy over 10 rounds: 0.6799999999999999
-Model evaluation metrics for SVM:
-Precision: 0.6792873051224946
-Recall: 1.0
-F1-score: 0.8090185676392574
-AUC score: 0.503448275862069
-KNN accuracy over 10 rounds: 0.34222222222222226
-DT accuracy over 10 rounds: 0.3933333333333333
-LogReg accuracy over 10 rounds: 0.468888888888889
-Bayes accuracy over 10 rounds: 0.3311111111111112
-XGB accuracy over 10 rounds: 0.3488888888888889
-
-
-POPANE PHASES 1 --------------------------------------------------
-APD PHASES 1 --------------------------------------------------
-SVM accuracy over 10 rounds: 0.6485714285714286
-KNN accuracy over 10 rounds: 0.6485714285714286
-DT accuracy over 10 rounds: 0.6431428571428571
-LogReg accuracy over 10 rounds: 0.6485714285714286
-Bayes accuracy over 10 rounds: 0.6485714285714286
-XGB accuracy over 10 rounds: 0.6485714285714286
-
-
-POPANE PHASES 2 --------------------------------------------------
-APD PHASES 1 --------------------------------------------------
-SVM accuracy over 10 rounds: 0.696
-Model evaluation metrics for SVM:
-Precision: 0.696
-Recall: 1.0
-F1-score: 0.820754716981132
-AUC score: 0.5
-KNN accuracy over 10 rounds: 0.43200000000000005
-DT accuracy over 10 rounds: 0.4784
-LogReg accuracy over 10 rounds: 0.43600000000000005
-Bayes accuracy over 10 rounds: 0.30399999999999994
-XGB accuracy over 10 rounds: 0.42000000000000004
-
-
-POPANE PHASES 3 --------------------------------------------------
-APD PHASES 1 --------------------------------------------------
-SVM accuracy over 10 rounds: 0.5199999999999999
-KNN accuracy over 10 rounds: 0.45
-DT accuracy over 10 rounds: 0.542
-LogReg accuracy over 10 rounds: 0.4800000000000001
-Bayes accuracy over 10 rounds: 0.4800000000000001
-XGB accuracy over 10 rounds: 0.44000000000000006
-
-
-POPANE PHASES 4 --------------------------------------------------
-APD PHASES 1 --------------------------------------------------
-SVM accuracy over 10 rounds: 0.5199999999999999
-KNN accuracy over 10 rounds: 0.49000000000000005
-DT accuracy over 10 rounds: 0.49399999999999994
-LogReg accuracy over 10 rounds: 0.5
-Bayes accuracy over 10 rounds: 0.4800000000000001
-XGB accuracy over 10 rounds: 0.4800000000000001
-
-
-POPANE PHASES 0 --------------------------------------------------
-APD PHASES 2 --------------------------------------------------
-SVM accuracy over 10 rounds: 0.6799999999999999
-Model evaluation metrics for SVM:
-Precision: 0.6792873051224946
-Recall: 1.0
-F1-score: 0.8090185676392574
-AUC score: 0.503448275862069
-KNN accuracy over 10 rounds: 0.34222222222222226
-DT accuracy over 10 rounds: 0.418
-LogReg accuracy over 10 rounds: 0.4666666666666667
-Bayes accuracy over 10 rounds: 0.32666666666666666
-XGB accuracy over 10 rounds: 0.3377777777777778
-
-
-POPANE PHASES 1 --------------------------------------------------
-APD PHASES 2 --------------------------------------------------
-SVM accuracy over 10 rounds: 0.6485714285714286
-KNN accuracy over 10 rounds: 0.6485714285714286
-DT accuracy over 10 rounds: 0.6191428571428571
-LogReg accuracy over 10 rounds: 0.6485714285714286
-Bayes accuracy over 10 rounds: 0.6485714285714286
-XGB accuracy over 10 rounds: 0.6485714285714286
-
-
-POPANE PHASES 2 --------------------------------------------------
-APD PHASES 2 --------------------------------------------------
-SVM accuracy over 10 rounds: 0.696
-Model evaluation metrics for SVM:
-Precision: 0.696
-Recall: 1.0
-F1-score: 0.820754716981132
-AUC score: 0.5
-KNN accuracy over 10 rounds: 0.5440000000000002
-DT accuracy over 10 rounds: 0.45120000000000005
-LogReg accuracy over 10 rounds: 0.44400000000000006
-Bayes accuracy over 10 rounds: 0.30399999999999994
-XGB accuracy over 10 rounds: 0.6079999999999999
-
-
-POPANE PHASES 3 --------------------------------------------------
-APD PHASES 2 --------------------------------------------------
-SVM accuracy over 10 rounds: 0.5199999999999999
-KNN accuracy over 10 rounds: 0.5
-DT accuracy over 10 rounds: 0.43900000000000006
-LogReg accuracy over 10 rounds: 0.4800000000000001
-Bayes accuracy over 10 rounds: 0.4800000000000001
-XGB accuracy over 10 rounds: 0.44000000000000006
-
-
 POPANE PHASES 4 --------------------------------------------------
 APD PHASES 2 --------------------------------------------------
+1    499
+0    192
+Name: label, dtype: int64
 SVM accuracy over 10 rounds: 0.5199999999999999
-KNN accuracy over 10 rounds: 0.51
-DT accuracy over 10 rounds: 0.4800000000000001
+KNN accuracy over 10 rounds: 0.4800000000000001
+DT accuracy over 10 rounds: 0.4699999999999999
 LogReg accuracy over 10 rounds: 0.5
 Bayes accuracy over 10 rounds: 0.4800000000000001
-XGB accuracy over 10 rounds: 0.5199999999999999
+XGB accuracy over 10 rounds: 0.49000000000000005
 
 

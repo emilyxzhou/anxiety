@@ -1,351 +1,180 @@
 WESAD PHASES 0 --------------------------------------------------
 APD PHASES 0 --------------------------------------------------
-SVM accuracy over 10 rounds: 0.6343529207838599
-KNN accuracy over 10 rounds: 0.5914371602806634
-DT accuracy over 10 rounds: 0.6156474495855182
-LogReg accuracy over 10 rounds: 0.6192709673432485
-XGB accuracy over 10 rounds: 0.6489803097388074
+SVM accuracy over 10 rounds: 0.3244444444444444
+KNN accuracy over 10 rounds: 0.3222222222222223
+DT accuracy over 10 rounds: 0.4295555555555556
+LogReg accuracy over 10 rounds: 0.468888888888889
+XGB accuracy over 10 rounds: 0.3377777777777778
 
 
 WESAD PHASES 0 --------------------------------------------------
 APD PHASES 1 --------------------------------------------------
-SVM accuracy over 10 rounds: 0.633129335414487
-KNN accuracy over 10 rounds: 0.5992037352829629
-DT accuracy over 10 rounds: 0.5909745829334241
-LogReg accuracy over 10 rounds: 0.6281011924113755
-XGB accuracy over 10 rounds: 0.6412829368142489
+SVM accuracy over 10 rounds: 0.6485714285714286
+KNN accuracy over 10 rounds: 0.6485714285714286
+DT accuracy over 10 rounds: 0.6474285714285715
+LogReg accuracy over 10 rounds: 0.6457142857142857
+XGB accuracy over 10 rounds: 0.6257142857142857
 
 
 WESAD PHASES 0 --------------------------------------------------
 APD PHASES 2 --------------------------------------------------
-SVM accuracy over 10 rounds: 0.6506652666316657
-Report:
-Precision: 0.6823107966373759
-Recall: 0.8792686001887832
-F1-score: 0.7396746740820338
-AUC score: 0.5050897823214571
-KNN accuracy over 10 rounds: 0.6287425060626515
-DT accuracy over 10 rounds: 0.5932069801745044
-LogReg accuracy over 10 rounds: 0.6507907447686192
-Report:
-Precision: 0.6996486689028487
-Recall: 0.8859029819825258
-F1-score: 0.776852452578925
-AUC score: 0.4956770836861103
-XGB accuracy over 10 rounds: 0.6267900447511188
+SVM accuracy over 10 rounds: 0.30399999999999994
+KNN accuracy over 10 rounds: 0.30399999999999994
+DT accuracy over 10 rounds: 0.49800000000000005
+LogReg accuracy over 10 rounds: 0.43600000000000005
+XGB accuracy over 10 rounds: 0.4
 
 
 WESAD PHASES 0 --------------------------------------------------
 APD PHASES 3 --------------------------------------------------
-SVM accuracy over 10 rounds: 0.6435809877443668
-KNN accuracy over 10 rounds: 0.6037661759992927
-DT accuracy over 10 rounds: 0.6228642247492328
-LogReg accuracy over 10 rounds: 0.634615118964736
-XGB accuracy over 10 rounds: 0.6593979010340114
-Report:
-Precision: 0.7147784932649607
-Recall: 0.800807661679577
-F1-score: 0.752775787107369
-AUC score: 0.6023004182821541
+SVM accuracy over 10 rounds: 0.4800000000000001
+KNN accuracy over 10 rounds: 0.4800000000000001
+DT accuracy over 10 rounds: 0.4749999999999999
+LogReg accuracy over 10 rounds: 0.4800000000000001
+XGB accuracy over 10 rounds: 0.4800000000000001
 
 
 WESAD PHASES 0 --------------------------------------------------
 APD PHASES 4 --------------------------------------------------
-SVM accuracy over 10 rounds: 0.4792715658696672
-KNN accuracy over 10 rounds: 0.49782055789967183
-DT accuracy over 10 rounds: 0.4992094467885607
-LogReg accuracy over 10 rounds: 0.5456540084388185
-XGB accuracy over 10 rounds: 0.4715986872948899
-
-
-WESAD PHASES 0 --------------------------------------------------
-APD PHASES 5 --------------------------------------------------
-SVM accuracy over 10 rounds: 0.5024843725582123
-KNN accuracy over 10 rounds: 0.5237220659478042
-DT accuracy over 10 rounds: 0.5353637287076105
-LogReg accuracy over 10 rounds: 0.5893090717299577
-XGB accuracy over 10 rounds: 0.5442244882012814
+SVM accuracy over 10 rounds: 0.4800000000000001
+KNN accuracy over 10 rounds: 0.4800000000000001
+DT accuracy over 10 rounds: 0.44400000000000006
+LogReg accuracy over 10 rounds: 0.5
+XGB accuracy over 10 rounds: 0.4800000000000001
 
 
 WESAD PHASES 1 --------------------------------------------------
 APD PHASES 0 --------------------------------------------------
-SVM accuracy over 10 rounds: 0.6703384251294302
-Report:
-Precision: 0.6766041355639834
-Recall: 0.9815724060748752
-F1-score: 0.8009525606679917
-AUC score: 0.5015813032975818
-KNN accuracy over 10 rounds: 0.5797027643743581
-DT accuracy over 10 rounds: 0.6406488724225559
-LogReg accuracy over 10 rounds: 0.6293899548301561
-XGB accuracy over 10 rounds: 0.6817396145195294
-Report:
-Precision: 0.7516698264780884
-Recall: 0.7917672141063521
-F1-score: 0.7706667711968129
-AUC score: 0.6226741584878356
+SVM accuracy over 10 rounds: 0.3244444444444444
+KNN accuracy over 10 rounds: 0.3222222222222223
+DT accuracy over 10 rounds: 0.4764444444444445
+LogReg accuracy over 10 rounds: 0.47333333333333333
+XGB accuracy over 10 rounds: 0.4177777777777778
 
 
 WESAD PHASES 1 --------------------------------------------------
 APD PHASES 1 --------------------------------------------------
-SVM accuracy over 10 rounds: 0.6465195149585762
-KNN accuracy over 10 rounds: 0.5873850202354475
-DT accuracy over 10 rounds: 0.6521632928991441
-Report:
-Precision: 0.7350189016018545
-Recall: 0.7392883258945325
-F1-score: 0.7358577886155264
-AUC score: 0.6124779464883743
-LogReg accuracy over 10 rounds: 0.6260455440033234
-XGB accuracy over 10 rounds: 0.6548055689302307
-Report:
-Precision: 0.7141463092054549
-Recall: 0.7990306833465259
-F1-score: 0.7524779681259834
-AUC score: 0.5908877819463119
+SVM accuracy over 10 rounds: 0.6485714285714286
+KNN accuracy over 10 rounds: 0.6485714285714286
+DT accuracy over 10 rounds: 0.6408571428571428
+LogReg accuracy over 10 rounds: 0.6485714285714286
+XGB accuracy over 10 rounds: 0.6485714285714286
 
 
 WESAD PHASES 1 --------------------------------------------------
 APD PHASES 2 --------------------------------------------------
-SVM accuracy over 10 rounds: 0.6870341727602597
-Report:
-Precision: 0.6931599315339603
-Recall: 0.9841222439508224
-F1-score: 0.8133010786502034
-AUC score: 0.5003562517971399
-KNN accuracy over 10 rounds: 0.646950237988623
-DT accuracy over 10 rounds: 0.6188395352210537
-LogReg accuracy over 10 rounds: 0.6594556616390657
-Report:
-Precision: 0.6868059663196393
-Recall: 0.9361480603540139
-F1-score: 0.7916314601338346
-AUC score: 0.4865566242688235
-XGB accuracy over 10 rounds: 0.6459675520353355
+SVM accuracy over 10 rounds: 0.30399999999999994
+KNN accuracy over 10 rounds: 0.30399999999999994
+DT accuracy over 10 rounds: 0.31959999999999994
+LogReg accuracy over 10 rounds: 0.44400000000000006
+XGB accuracy over 10 rounds: 0.42400000000000004
 
 
 WESAD PHASES 1 --------------------------------------------------
 APD PHASES 3 --------------------------------------------------
-SVM accuracy over 10 rounds: 0.6394778867907062
-KNN accuracy over 10 rounds: 0.5987412759707754
-DT accuracy over 10 rounds: 0.6172812289879791
-LogReg accuracy over 10 rounds: 0.6305414984978059
-XGB accuracy over 10 rounds: 0.6566643571495837
-Report:
-Precision: 0.6964529151555481
-Recall: 0.839625323303081
-F1-score: 0.7598994242537258
-AUC score: 0.5816848062008104
+SVM accuracy over 10 rounds: 0.4800000000000001
+KNN accuracy over 10 rounds: 0.4800000000000001
+DT accuracy over 10 rounds: 0.44399999999999995
+LogReg accuracy over 10 rounds: 0.45
+XGB accuracy over 10 rounds: 0.4600000000000001
 
 
 WESAD PHASES 1 --------------------------------------------------
 APD PHASES 4 --------------------------------------------------
-SVM accuracy over 10 rounds: 0.46403481012658226
-KNN accuracy over 10 rounds: 0.5094145569620252
-DT accuracy over 10 rounds: 0.489382911392405
-LogReg accuracy over 10 rounds: 0.5636550632911393
-XGB accuracy over 10 rounds: 0.5170253164556962
-
-
-WESAD PHASES 1 --------------------------------------------------
-APD PHASES 5 --------------------------------------------------
-SVM accuracy over 10 rounds: 0.47547468354430383
-KNN accuracy over 10 rounds: 0.5143987341772152
-DT accuracy over 10 rounds: 0.5068987341772152
-LogReg accuracy over 10 rounds: 0.5411867088607595
-XGB accuracy over 10 rounds: 0.5081012658227848
+SVM accuracy over 10 rounds: 0.4800000000000001
+KNN accuracy over 10 rounds: 0.4800000000000001
+DT accuracy over 10 rounds: 0.5199999999999999
+LogReg accuracy over 10 rounds: 0.44000000000000006
+XGB accuracy over 10 rounds: 0.51
 
 
 WESAD PHASES 2 --------------------------------------------------
 APD PHASES 0 --------------------------------------------------
-SVM accuracy over 10 rounds: 0.6712996606158386
-Report:
-Precision: 0.6757481449701792
-Recall: 0.9860128819463784
-F1-score: 0.8018581485774309
-AUC score: 0.5025117378943655
-KNN accuracy over 10 rounds: 0.5898800383111229
-DT accuracy over 10 rounds: 0.622118026978568
-LogReg accuracy over 10 rounds: 0.6510256314360982
-Report:
-Precision: 0.6753531340706342
-Recall: 0.9310260992422075
-F1-score: 0.7821119081537137
-AUC score: 0.5012311571485861
-XGB accuracy over 10 rounds: 0.6740405161354648
-Report:
-Precision: 0.7555943943386734
-Recall: 0.7664768482047669
-F1-score: 0.7599438159802119
-AUC score: 0.6254575115936061
+SVM accuracy over 10 rounds: 0.3244444444444444
+KNN accuracy over 10 rounds: 0.3222222222222223
+DT accuracy over 10 rounds: 0.4724444444444444
+LogReg accuracy over 10 rounds: 0.47111111111111115
+XGB accuracy over 10 rounds: 0.35111111111111104
 
 
 WESAD PHASES 2 --------------------------------------------------
 APD PHASES 1 --------------------------------------------------
-SVM accuracy over 10 rounds: 0.6397489132921528
-KNN accuracy over 10 rounds: 0.5946912278981599
-DT accuracy over 10 rounds: 0.6082308995435283
-LogReg accuracy over 10 rounds: 0.6293469948034122
-XGB accuracy over 10 rounds: 0.6497250547439292
+SVM accuracy over 10 rounds: 0.6485714285714286
+KNN accuracy over 10 rounds: 0.6485714285714286
+DT accuracy over 10 rounds: 0.6485714285714286
+LogReg accuracy over 10 rounds: 0.62
+XGB accuracy over 10 rounds: 0.6314285714285715
 
 
 WESAD PHASES 2 --------------------------------------------------
 APD PHASES 2 --------------------------------------------------
-SVM accuracy over 10 rounds: 0.6916571894495381
-Report:
-Precision: 0.6964797573074357
-Recall: 0.9856761340016105
-F1-score: 0.8160546421421566
-AUC score: 0.5054492922866525
-KNN accuracy over 10 rounds: 0.6536291516198797
-Report:
-Precision: 0.6963032780577996
-Recall: 0.8937265994377913
-F1-score: 0.7808431446558626
-AUC score: 0.5036338418161584
-DT accuracy over 10 rounds: 0.6010908179882715
-LogReg accuracy over 10 rounds: 0.6645916631826687
-Report:
-Precision: 0.6901776492719207
-Recall: 0.9391672110140734
-F1-score: 0.7936442505112178
-AUC score: 0.49237923242345916
-XGB accuracy over 10 rounds: 0.6300912642865576
+SVM accuracy over 10 rounds: 0.30399999999999994
+KNN accuracy over 10 rounds: 0.30399999999999994
+DT accuracy over 10 rounds: 0.46319999999999995
+LogReg accuracy over 10 rounds: 0.41200000000000003
+XGB accuracy over 10 rounds: 0.42000000000000004
 
 
 WESAD PHASES 2 --------------------------------------------------
 APD PHASES 3 --------------------------------------------------
-SVM accuracy over 10 rounds: 0.6357427790486505
-KNN accuracy over 10 rounds: 0.6024298993984536
-DT accuracy over 10 rounds: 0.5985024514950251
-LogReg accuracy over 10 rounds: 0.630356157470337
-XGB accuracy over 10 rounds: 0.6687037466800753
-Report:
-Precision: 0.7002537304942208
-Recall: 0.8536387780240522
-F1-score: 0.7674325485735888
-AUC score: 0.5985571517924353
+SVM accuracy over 10 rounds: 0.4800000000000001
+KNN accuracy over 10 rounds: 0.4800000000000001
+DT accuracy over 10 rounds: 0.48200000000000004
+LogReg accuracy over 10 rounds: 0.4800000000000001
+XGB accuracy over 10 rounds: 0.4800000000000001
 
 
 WESAD PHASES 2 --------------------------------------------------
 APD PHASES 4 --------------------------------------------------
-SVM accuracy over 10 rounds: 0.47167721518987343
-KNN accuracy over 10 rounds: 0.49685126582278477
-DT accuracy over 10 rounds: 0.4956487341772151
-LogReg accuracy over 10 rounds: 0.5873417721518988
-XGB accuracy over 10 rounds: 0.5195569620253164
-
-
-WESAD PHASES 2 --------------------------------------------------
-APD PHASES 5 --------------------------------------------------
-SVM accuracy over 10 rounds: 0.48678777934052186
-KNN accuracy over 10 rounds: 0.5207299968745117
-DT accuracy over 10 rounds: 0.49072609001406475
-LogReg accuracy over 10 rounds: 0.5696575636818253
-XGB accuracy over 10 rounds: 0.5192125722769182
+SVM accuracy over 10 rounds: 0.4800000000000001
+KNN accuracy over 10 rounds: 0.4800000000000001
+DT accuracy over 10 rounds: 0.5199999999999999
+LogReg accuracy over 10 rounds: 0.51
+XGB accuracy over 10 rounds: 0.4699999999999999
 
 
 WESAD PHASES 3 --------------------------------------------------
 APD PHASES 0 --------------------------------------------------
-SVM accuracy over 10 rounds: 0.6786214164032474
-Report:
-Precision: 0.6864274333028862
-Recall: 0.9769840215091679
-F1-score: 0.8061645457235811
-AUC score: 0.5050730634664731
-KNN accuracy over 10 rounds: 0.5746357224978588
-DT accuracy over 10 rounds: 0.6344252784872312
-LogReg accuracy over 10 rounds: 0.5971496800815508
-XGB accuracy over 10 rounds: 0.6933931074571048
-Report:
-Precision: 0.7821495265974459
-Recall: 0.7726818461241387
-F1-score: 0.7749025178864366
-AUC score: 0.6499051597742957
+SVM accuracy over 10 rounds: 0.3244444444444444
+KNN accuracy over 10 rounds: 0.3222222222222223
+DT accuracy over 10 rounds: 0.44622222222222224
+LogReg accuracy over 10 rounds: 0.468888888888889
+XGB accuracy over 10 rounds: 0.32666666666666666
 
 
 WESAD PHASES 3 --------------------------------------------------
 APD PHASES 1 --------------------------------------------------
-SVM accuracy over 10 rounds: 0.6413456151784871
-KNN accuracy over 10 rounds: 0.5976082840371191
-DT accuracy over 10 rounds: 0.668349588332024
-Report:
-Precision: 0.7444077704811033
-Recall: 0.7567702564122782
-F1-score: 0.7473148379834844
-AUC score: 0.6336302457317884
-LogReg accuracy over 10 rounds: 0.6266243875522931
-XGB accuracy over 10 rounds: 0.6815138388657688
-Report:
-Precision: 0.7277904487611433
-Recall: 0.8232243396802617
-F1-score: 0.770096089631176
-AUC score: 0.6237725637824525
+SVM accuracy over 10 rounds: 0.6485714285714286
+KNN accuracy over 10 rounds: 0.6485714285714286
+DT accuracy over 10 rounds: 0.6497142857142857
+LogReg accuracy over 10 rounds: 0.6485714285714286
+XGB accuracy over 10 rounds: 0.6485714285714286
 
 
 WESAD PHASES 3 --------------------------------------------------
 APD PHASES 2 --------------------------------------------------
-SVM accuracy over 10 rounds: 0.6815212114213747
-Report:
-Precision: 0.6884563244659591
-Recall: 0.9834819744864204
-F1-score: 0.8097635978396494
-AUC score: 0.49745800669177687
-KNN accuracy over 10 rounds: 0.643520290853806
-DT accuracy over 10 rounds: 0.6536756951101996
-Report:
-Precision: 0.7547248760414694
-Recall: 0.7404957539982021
-F1-score: 0.745372040407182
-AUC score: 0.6033874338629437
-LogReg accuracy over 10 rounds: 0.6619508346619557
-Report:
-Precision: 0.6884839149684634
-Recall: 0.9325159264243279
-F1-score: 0.7904684083903468
-AUC score: 0.4987577747255246
-XGB accuracy over 10 rounds: 0.7075866380570406
-Report:
-Precision: 0.7650989670642594
-Recall: 0.8413013830186717
-F1-score: 0.7987755448826512
-AUC score: 0.6299202908653896
+SVM accuracy over 10 rounds: 0.30399999999999994
+KNN accuracy over 10 rounds: 0.30399999999999994
+DT accuracy over 10 rounds: 0.41079999999999994
+LogReg accuracy over 10 rounds: 0.41600000000000004
+XGB accuracy over 10 rounds: 0.33199999999999996
 
 
 WESAD PHASES 3 --------------------------------------------------
 APD PHASES 3 --------------------------------------------------
-SVM accuracy over 10 rounds: 0.6421020253839732
-KNN accuracy over 10 rounds: 0.5859036581679766
-DT accuracy over 10 rounds: 0.656346720219639
-Report:
-Precision: 0.7394666159959136
-Recall: 0.7338444438527537
-F1-score: 0.734441133974535
-AUC score: 0.6258180404962899
-LogReg accuracy over 10 rounds: 0.6217625213340978
-XGB accuracy over 10 rounds: 0.6964956970252062
-Report:
-Precision: 0.740066693923455
-Recall: 0.829551815776434
-F1-score: 0.7798147092034614
-AUC score: 0.6416328929433064
+SVM accuracy over 10 rounds: 0.4800000000000001
+KNN accuracy over 10 rounds: 0.4800000000000001
+DT accuracy over 10 rounds: 0.48999999999999994
+LogReg accuracy over 10 rounds: 0.43
+XGB accuracy over 10 rounds: 0.4699999999999999
 
 
 WESAD PHASES 3 --------------------------------------------------
 APD PHASES 4 --------------------------------------------------
-SVM accuracy over 10 rounds: 0.489240506329114
-KNN accuracy over 10 rounds: 0.5007753164556962
-DT accuracy over 10 rounds: 0.5599525316455696
-LogReg accuracy over 10 rounds: 0.6114715189873418
-XGB accuracy over 10 rounds: 0.6102056962025316
-
-
-WESAD PHASES 3 --------------------------------------------------
-APD PHASES 5 --------------------------------------------------
-SVM accuracy over 10 rounds: 0.4754430379746835
-KNN accuracy over 10 rounds: 0.48441455696202534
-DT accuracy over 10 rounds: 0.5333860759493672
-LogReg accuracy over 10 rounds: 0.5988132911392404
-XGB accuracy over 10 rounds: 0.5575949367088608
+SVM accuracy over 10 rounds: 0.4800000000000001
+KNN accuracy over 10 rounds: 0.4800000000000001
+DT accuracy over 10 rounds: 0.4800000000000001
+LogReg accuracy over 10 rounds: 0.5
+XGB accuracy over 10 rounds: 0.49000000000000005
 
 

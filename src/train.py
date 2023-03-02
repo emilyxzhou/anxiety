@@ -407,54 +407,81 @@ class Train_WESAD:
     
 class Train_POPANE:
 
-    def get_popane_data(metrics, phases, verbose=False, normalize=True):
-        metrics_folder = dr_s.Paths.METRICS
+    def get_popane_data(study, metrics, phases, verbose=False, normalize=True, label_type="affect"):
+        metrics_folder = os.path.join(dr_p.Paths.METRICS, study)
+        columns = metrics.copy()
+        columns.insert(0, "subject")
+        
         columns = metrics.copy()
         columns.insert(0, "subject")
         
         data_x = []
         data_y = []
 
-        features = []
-        for i in range(len(metrics)):
-            metric = metrics[i]
-            if verbose: print(f"Generating features for metric {metric}")
-            file = os.path.join(metrics_folder, f"{metric}.csv")
-            arr = pd.read_csv(file, index_col=[0])
+        for phase in phases:
+            if verbose: print(f"Generating features for phase {phase} " + "-"*30)
+            phase_id = phases.index(phase)
+            features = []
 
-            if i == 0:  # subject IDs
-                # ids = arr.iloc[:, 0]
-                ids = arr.iloc[:, 0]
-                ids = pd.DataFrame(data=ids, columns=["subject"])
-                features.append(ids)
-            col_mean = np.nanmean(arr, axis=0)
-            idx = np.where(np.isnan(arr))
-            if idx[0].size > 0 and idx[1].size > 0:
-                arr.iloc[idx] = np.take(col_mean, idx[1])
-            arr = np.nan_to_num(arr)
-            arr = np.mean(arr[:, 1:], axis=1)
-            arr = np.reshape(arr, (arr.size, 1))
-            arr = pd.DataFrame(data=arr, columns=[f"{metric}"])
-            features.append(arr)
+            for i in range(len(metrics)):
+                metric = metrics[i]
+                if verbose: print(f"Generating features for metric {metric}")
+                file = os.path.join(metrics_folder, f"{metric}_{phase}.csv")
+                arr = pd.read_csv(file, index_col=[0])
+                arr = arr[arr.iloc[:, 0] != 3.0].reset_index(drop=True).to_numpy()  # remove subject 3 due to NaNs in Medi_2 phase
 
-        x = pd.concat(features, axis=1)
-            
-        data_x.append(x)
-        
+                if i == 0:  # subject IDs
+                    # ids = arr.iloc[:, 0]
+                    ids = arr[:, 0]
+                    ids = pd.DataFrame(data=ids, columns=["subject"])
+                    features.append(ids)
+                col_mean = np.nanmean(arr, axis=1)
+                idx = np.where(np.isnan(arr))
+                arr[idx] = np.take(col_mean, idx[0])
+                arr = np.nan_to_num(arr)
+                arr = np.mean(arr[:, 1:], axis=1)
+                arr = np.reshape(arr, (arr.size, 1))
+                arr = pd.DataFrame(data=arr, columns=[f"{metric}"])
+                # if arr.isnull().values.any():
+                #     print(arr)
+                features.append(arr)
+            # for arr in features:
+            #     print(arr.shape)
+            x = pd.concat(features, axis=1)
+            x.insert(1, "phaseId", phase_id)
+            # if x.isnull().values.any():
+            #     print(x)
+            data_x.append(x)
+
         data_x = pd.concat(data_x).reset_index(drop=True)
 
         subjects = data_x.loc[:, "subject"]
-
         y_labels = []
-        for phase in phases:
-            if phase == "BIOFEEDBACK-REST":
-                y_labels.append(0)
-            else:
-                y_labels.append(1)
-        y_labels = pd.Series(data=y_labels)
+        # TODO: need to edit phase labels
+        if label_type == "arousal":
+            for i in range(data_x.shape[0]):
+                if phases[data_x.loc[i, "phaseId"]] in dr_p.HIGH_AROUSAL:
+                    y_labels.append(0)
+                else:
+                    y_labels.append(1)
+        elif label_type == "valence":
+            for i in range(data_x.shape[0]):
+                if phases[data_x.loc[i, "phaseId"]] in dr_p.HIGH_AROUSAL:
+                    y_labels.append(0)
+                else:
+                    y_labels.append(1)
+        else:  # label_type == affect
+            self_report_df = pd.read_csv(os.path.join(dr_p.Paths.METRICS, study, "self_reports.csv"), index_col=0)
+            for i in range(data_x.shape[0]):
+                row = self_report_df.loc[self_report_df["subject"] == 1, :].iloc[:, 1:].replace(-1, np.NaN)
+                mean_report = np.nanmean(row)
+                phase = phases[data_x.loc[i, "phaseId"]]
+                if row.loc[:, phase][0] < mean_report:
+                    y_labels.append(0)
+                else:
+                    y_labels.append(1)
 
-        for i in range(data_x.shape[0]):
-            s = subjects.iloc[i]
+        y_labels = pd.Series(data=y_labels)
         data_y = pd.DataFrame({"subject": subjects, "label": y_labels})
 
         for metric in metrics:
@@ -513,8 +540,6 @@ class Train_SFI:
                 y_labels.append(1)
         y_labels = pd.Series(data=y_labels)
 
-        for i in range(data_x.shape[0]):
-            s = subjects.iloc[i]
         data_y = pd.DataFrame({"subject": subjects, "label": y_labels})
 
         for metric in metrics:
