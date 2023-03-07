@@ -585,7 +585,8 @@ class Train_Multi_Dataset:
                     "precision": precision,
                     "recall": recall,
                     "f1": f1,
-                    "auc": auc
+                    "auc": auc,
+                    "actual vs pred": [y_test, y_pred]
                 }
             else:
                 report = None
