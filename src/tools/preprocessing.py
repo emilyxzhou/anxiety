@@ -164,7 +164,7 @@ def calculate_fft(data, fs, feature_dim):
     
 
 def calculate_fft_1d(data, fs):
-    """Perform FFT on a single 1D time signal, returns a frequencies and magnitudes"""
+    """Perform FFT on a single 1D time signal, returns frequencies and magnitudes"""
     data = np.asarray(data)
     data_amp = np.abs(fft(data.flatten()))
     data_amp = data_amp
@@ -245,8 +245,9 @@ def get_hf_rr(ecg, fs=FS_DICT[dr.DataTypes.ECG], window_size=55):
         high = 0.4
         freq[freq < low] = 0
         freq[freq > high] = 0
+        amp = np.multiply(freq, amp)
         
-        power = np.multiply(freq, amp).sum()
+        power = np.multiply(amp, amp).sum() # Parseval's theorem
         out.append(power)
 
         start += int(5*fs)
