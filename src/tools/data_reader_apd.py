@@ -55,38 +55,38 @@ class Phases:
     BASE_SPEECH = "Baseline_Speech"
 
     BUG_RELAX = "BugBox_Relax"
-    BUG_INSTRUCTIONS = "BugBox_Instructions"
+    # BUG_INSTRUCTIONS = "BugBox_Instructions"
     BUG_ANTICIPATE = "BugBox_Anticipate"
-    BUG_DECISION = "BugBox_Decision"
+    # BUG_DECISION = "BugBox_Decision"
     BUG_EXPOSURE = "BugBox_Exposure"
     BUG_BREAK = "BugBox_Break"
-    BUG_REFLECT = "BugBox_Reflect"
+    # BUG_REFLECT = "BugBox_Reflect"
 
     SPEECH_RELAX = "Speech_Relax"
-    SPEECH_INSTRUCTIONS = "Speech_Instructions"
+    # SPEECH_INSTRUCTIONS = "Speech_Instructions"
     SPEECH_ANTICIPATE = "Speech_Anticipate"
-    SPEECH_DECISION = "Speech_Decision"
+    # SPEECH_DECISION = "Speech_Decision"
     SPEECH_EXPOSURE = "Speech_Exposure"
     SPEECH_BREAK = "Speech_Break"
-    SPEECH_REFLECT = "Speech_Reflect"
+    # SPEECH_REFLECT = "Speech_Reflect"
 
     PHASES_LIST = [
         BASE_REST,
         BASE_SPEECH,
         BUG_RELAX,
-        BUG_INSTRUCTIONS,
+        # BUG_INSTRUCTIONS,
         BUG_ANTICIPATE,
-        BUG_DECISION,
+        # BUG_DECISION,
         BUG_EXPOSURE,
         BUG_BREAK,
-        BUG_REFLECT,
+        # BUG_REFLECT,
         SPEECH_RELAX,
-        SPEECH_INSTRUCTIONS,
+        # SPEECH_INSTRUCTIONS,
         SPEECH_ANTICIPATE,
-        SPEECH_DECISION,
+        # SPEECH_DECISION,
         SPEECH_EXPOSURE,
         SPEECH_BREAK,
-        SPEECH_REFLECT
+        # SPEECH_REFLECT
     ]
 
     BASELINE_PHASES = [
@@ -96,22 +96,22 @@ class Phases:
 
     BUG_PHASES = [
         BUG_RELAX,
-        BUG_INSTRUCTIONS,
+        # BUG_INSTRUCTIONS,
         BUG_ANTICIPATE,
-        BUG_DECISION,
+        # BUG_DECISION,
         BUG_EXPOSURE,
         BUG_BREAK,
-        BUG_REFLECT
+        # BUG_REFLECT
     ]
 
     SPEECH_PHASES = [
         SPEECH_RELAX,
-        SPEECH_INSTRUCTIONS,
+        # SPEECH_INSTRUCTIONS,
         SPEECH_ANTICIPATE,
-        SPEECH_DECISION,
+        # SPEECH_DECISION,
         SPEECH_EXPOSURE,
         SPEECH_BREAK,
-        SPEECH_REFLECT
+        # SPEECH_REFLECT
     ]
 
     # NOTE: NO SELF-REPORTS AVAILABLE FOR 'BASE SPEECH' AND 'REFLECT' PHASES
