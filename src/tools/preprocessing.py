@@ -275,8 +275,9 @@ def get_lf_rr(ecg, fs=FS_DICT[dr.DataTypes.ECG], window_size=55):
         high = 0.15
         freq[freq < low] = 0
         freq[freq > high] = 0
+        amp = np.multiply(freq, amp)
         
-        power = np.multiply(freq, amp).sum()
+        power = np.multiply(amp, amp).sum() # Parseval's theorem
         out.append(power)
 
         start += int(5*fs)
