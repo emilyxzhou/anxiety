@@ -52,7 +52,7 @@ class Responses:
 
 class Phases:
     BASE_REST = "Baseline_Rest"
-    BASE_SPEECH = "Baseline_Speech"
+    # BASE_SPEECH = "Baseline_Speech"
 
     BUG_RELAX = "BugBox_Relax"
     # BUG_INSTRUCTIONS = "BugBox_Instructions"
@@ -72,7 +72,7 @@ class Phases:
 
     PHASES_LIST = [
         BASE_REST,
-        BASE_SPEECH,
+        # BASE_SPEECH,
         BUG_RELAX,
         # BUG_INSTRUCTIONS,
         BUG_ANTICIPATE,
@@ -91,7 +91,7 @@ class Phases:
 
     BASELINE_PHASES = [
         BASE_REST,
-        BASE_SPEECH
+        # BASE_SPEECH
     ]
 
     BUG_PHASES = [

@@ -397,10 +397,11 @@ class Train_WESAD:
                 data_y.append(label)
         data_y = pd.DataFrame({"subject": subjects, "label": data_y})
 
-        for metric in metrics:
-            data_col = data_x[metric]
-            data_col = (data_col - data_col.min())/(data_col.max() - data_col.min())
-            data_x[metric] = data_col
+        if normalize:
+            for metric in metrics:
+                data_col = data_x[metric]
+                data_col = (data_col - data_col.min())/(data_col.max() - data_col.min())
+                data_x[metric] = data_col
 
         return data_x, data_y
 
@@ -484,10 +485,11 @@ class Train_POPANE:
         y_labels = pd.Series(data=y_labels)
         data_y = pd.DataFrame({"subject": subjects, "label": y_labels})
 
-        for metric in metrics:
-            data_col = data_x[metric]
-            data_col = (data_col - data_col.min())/(data_col.max() - data_col.min())
-            data_x[metric] = data_col
+        if normalize: 
+            for metric in metrics:
+                data_col = data_x[metric]
+                data_col = (data_col - data_col.min())/(data_col.max() - data_col.min())
+                data_x[metric] = data_col
 
         return data_x, data_y
 
