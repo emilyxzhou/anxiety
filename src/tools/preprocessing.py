@@ -232,13 +232,8 @@ def get_hf_rr(ecg, fs=FS_DICT[dr.DataTypes.ECG], window_size=55):
     window_size = int(window_size*fs)
     stop = start + window_size
     out = []
-    while stop < n:
-        stop = start + window_size
-        try:
-            segment = ecg.iloc[start:stop]
-        except AttributeError:
-            segment = ecg[start:stop]
-
+    if stop > n:
+        segment = ecg
         freq, amp = calculate_fft_1d(segment, fs)
         
         low = 0.15
@@ -249,8 +244,26 @@ def get_hf_rr(ecg, fs=FS_DICT[dr.DataTypes.ECG], window_size=55):
         
         power = np.multiply(amp, amp).sum() # Parseval's theorem
         out.append(power)
+    else:
+        while stop < n:
+            stop = start + window_size
+            try:
+                segment = ecg.iloc[start:stop]
+            except AttributeError:
+                segment = ecg[start:stop]
 
-        start += int(5*fs)
+            freq, amp = calculate_fft_1d(segment, fs)
+            
+            low = 0.15
+            high = 0.4
+            freq[freq < low] = 0
+            freq[freq > high] = 0
+            amp = np.multiply(freq, amp)
+            
+            power = np.multiply(amp, amp).sum() # Parseval's theorem
+            out.append(power)
+
+            start += int(5*fs)
     return np.asarray(out)
 
 
@@ -263,24 +276,37 @@ def get_lf_rr(ecg, fs=FS_DICT[dr.DataTypes.ECG], window_size=55):
     window_size = int(window_size*fs)
     stop = start + window_size
     out = []
-    while stop < n:
-        stop = start + window_size
-        try:
-            segment = ecg.iloc[start:stop]
-        except AttributeError:
-            segment = ecg[start:stop]
+    if stop > n:
+        segment = ecg
         freq, amp = calculate_fft_1d(segment, fs)
         
-        low = 0.04
-        high = 0.15
+        low = 0.15
+        high = 0.4
         freq[freq < low] = 0
         freq[freq > high] = 0
         amp = np.multiply(freq, amp)
         
         power = np.multiply(amp, amp).sum() # Parseval's theorem
         out.append(power)
+    else:
+        while stop < n:
+            stop = start + window_size
+            try:
+                segment = ecg.iloc[start:stop]
+            except AttributeError:
+                segment = ecg[start:stop]
+            freq, amp = calculate_fft_1d(segment, fs)
+            
+            low = 0.04
+            high = 0.15
+            freq[freq < low] = 0
+            freq[freq > high] = 0
+            amp = np.multiply(freq, amp)
+            
+            power = np.multiply(amp, amp).sum() # Parseval's theorem
+            out.append(power)
 
-        start += int(5*fs)
+            start += int(5*fs)
     return np.asarray(out)
 
 

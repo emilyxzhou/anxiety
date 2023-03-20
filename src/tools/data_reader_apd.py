@@ -372,7 +372,7 @@ def get_gender_labels():
 
     return labels
 
-def get_dass_labels(dass="Anxiety"):
+def get_dass_labels(dass="Anxiety", threshold="fixed"):
     participant_file = os.path.join(Paths.DATA_DIR, "participants_details.csv")
     df = pd.read_csv(participant_file)
     if dass == "Anxiety":
@@ -385,8 +385,17 @@ def get_dass_labels(dass="Anxiety"):
     ha_dass_df = dass_labels.loc[dass_labels['Participant'].isin(Groups.ha_participant_indices)]
     la_dass_df = dass_labels.loc[dass_labels['Participant'].isin(Groups.la_participant_indices)]
 
-    indices_h = ha_dass_df.index[ha_dass_df[label] >= mean_dass]
-    indices_l = ha_dass_df.index[ha_dass_df[label] < mean_dass]
+    if threshold == "fixed":
+        if dass == "Anxiety":
+            indices_h = ha_dass_df.index[ha_dass_df[label] >= 10]
+            indices_l = ha_dass_df.index[ha_dass_df[label] < 10]
+        else:
+            indices_h = ha_dass_df.index[ha_dass_df[label] >= 14]
+            indices_l = ha_dass_df.index[ha_dass_df[label] < 14]
+    else:
+        indices_h = ha_dass_df.index[ha_dass_df[label] >= mean_dass]
+        indices_l = ha_dass_df.index[ha_dass_df[label] < mean_dass]
+
     temp_ha = ha_dass_df.loc[:, label].copy()
     temp_ha.loc[indices_h] = 1
     temp_ha.loc[indices_l] = 0

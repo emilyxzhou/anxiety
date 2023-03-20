@@ -179,7 +179,7 @@ class Train_APD:
         return ha_rankings, la_rankings
 
 
-    def get_apd_data_ranking(metrics, phases, verbose=False, anxiety_label_type=None):
+    def get_apd_data_ranking(metrics, phases, verbose=False, anxiety_label_type=None, threshold="fixed"):
         """
         anxiety_label_type: can be None, "Trait", "Anxiety", "Depression", "Gender", "Random"
         """
@@ -243,9 +243,9 @@ class Train_APD:
                     la_group = pd.DataFrame(data=[0 for _ in range(len(la_features[0]))])
                     anxiety_label = pd.concat([ha_group, la_group])
                 elif anxiety_label_type == "Anxiety":
-                    anxiety_label = dr_a.get_dass_labels("Anxiety")
+                    anxiety_label = dr_a.get_dass_labels("Anxiety", threshold)
                 elif anxiety_label_type == "Depression":
-                    anxiety_label = dr_a.get_dass_labels("Depression")
+                    anxiety_label = dr_a.get_dass_labels("Depression", threshold)
                 elif anxiety_label_type == "Gender":
                     anxiety_label = dr_a.get_gender_labels()
                     anxiety_label = dr_a.get_gender_labels()
