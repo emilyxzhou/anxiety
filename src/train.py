@@ -303,7 +303,7 @@ class Train_WESAD:
 
         return stai_scores, dim_scores_arousal, dim_scores_valence
 
-    def get_wesad_data(metrics, phases, verbose=False, label_type="stai", normalize=True):
+    def get_wesad_data(metrics, phases, verbose=False, label_type="stai", normalize=True, threshold="fixed"):
         """
         label_type: "stai", "arousal", "valence", "all"
             label_type == "all": classification between stress and non-stress phases
@@ -369,6 +369,8 @@ class Train_WESAD:
         else:
             if label_type == "stai":
                 scores = stai_scores
+                if threshold == "fixed":
+                    label_mean = 50
             elif label_type == "valence":
                 scores = dim_scores_valence
             elif label_type == "arousal":
@@ -380,7 +382,8 @@ class Train_WESAD:
 
             y_labels = []
             for i in range(scores.shape[0]):
-                label_mean = scores.iloc[i, 1:].mean()
+                if threshold != "fixed":
+                    label_mean = scores.iloc[i, 1:].mean()
                 labels = [scores.iloc[i, 0]]  # subject ID
                 for j in range(1, scores.shape[1]):
                     if scores.iloc[i, j] < label_mean:
@@ -408,7 +411,7 @@ class Train_WESAD:
     
 class Train_POPANE:
 
-    def get_popane_data(study, metrics, phases, verbose=False, normalize=True, label_type="affect"):
+    def get_popane_data(study, metrics, phases, verbose=False, normalize=True, label_type="affect", threshold="fixed"):
         metrics_folder = os.path.join(dr_p.Paths.METRICS, study)
         columns = metrics.copy()
         columns.insert(0, "subject")
@@ -475,8 +478,11 @@ class Train_POPANE:
             self_report_df = pd.read_csv(os.path.join(dr_p.Paths.METRICS, study, "self_reports.csv"), index_col=0)
             for i in range(data_x.shape[0]):
                 row = self_report_df.loc[self_report_df["subject"] == 1, :].iloc[:, 1:].replace(-1, np.NaN)
-                mean_report = np.nanmean(row)
                 phase = phases[data_x.loc[i, "phaseId"]]
+                if threshold == "fixed":
+                    mean_report = 5
+                else:
+                    mean_report = np.nanmean(row)
                 if row.loc[:, phase][0] < mean_report:
                     y_labels.append(0)
                 else:
