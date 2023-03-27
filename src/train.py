@@ -373,6 +373,7 @@ class Train_WESAD:
                     label_mean = 50
             elif label_type == "valence":
                 scores = dim_scores_valence
+                # not sure what the fixed threshold is for the DIM survey
             elif label_type == "arousal":
                 scores = dim_scores_arousal
             else:
@@ -588,7 +589,11 @@ class Train_Multi_Dataset:
                 precision = precision_score(y_test, y_pred, zero_division=1)
                 recall = recall_score(y_test, y_pred, zero_division=1)
                 f1 = f1_score(y_test, y_pred, zero_division=1)
-                auc = roc_auc_score(y_test, y_pred)
+                try:
+                    auc = roc_auc_score(y_test, y_pred)
+                except Exception as e:
+                    print("Only one class present in y_true. ROC AUC score is not defined in that case. Setting AUC score to -1.")
+                    auc = -1
                 report = {
                     "precision": precision,
                     "recall": recall,
