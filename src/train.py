@@ -181,7 +181,7 @@ class Train_APD:
 
     def get_apd_data_ranking(metrics, phases, verbose=False, anxiety_label_type=None, threshold="fixed"):
         """
-        anxiety_label_type: can be None, "Trait", "Anxiety", "Depression", "Gender", "Random"
+        anxiety_label_type: can be None, "Trait", "Anxiety", "Depression", "SUDS", "Gender", "Random"
         """
         metrics_folder = dr_a.Paths.METRICS
         ha_rankings, la_rankings = Train_APD.get_ratings()
@@ -477,17 +477,25 @@ class Train_POPANE:
                     y_labels.append(1)
         else:  # label_type == affect
             self_report_df = pd.read_csv(os.path.join(dr_p.Paths.METRICS, study, "self_reports.csv"), index_col=0)
+            print("SELF-REPORTS")
+            print(self_report_df.iloc[591:594, :])
             for i in range(data_x.shape[0]):
-                row = self_report_df.loc[self_report_df["subject"] == 1, :].iloc[:, 1:].replace(-1, np.NaN)
+                subject = data_x.iloc[i, :].loc["subject"]
+                row = self_report_df.loc[self_report_df["subject"] == subject, :].iloc[:, 1:].replace(-1, np.NaN)
                 phase = phases[data_x.loc[i, "phaseId"]]
                 if threshold == "fixed":
                     mean_report = 5
                 else:
                     mean_report = np.nanmean(row)
-                if row.loc[:, phase][0] < mean_report:
-                    y_labels.append(0)
-                else:
-                    y_labels.append(1)
+                try:
+                    if row.loc[:, phase].iloc[0] < mean_report:
+                        y_labels.append(0)
+                    else:
+                        y_labels.append(1)
+                except Exception as e:
+                    # TODO: double check this -- is it ok to just continue?
+                    # print(row)
+                    continue
 
         y_labels = pd.Series(data=y_labels)
         data_y = pd.DataFrame({"subject": subjects, "label": y_labels})

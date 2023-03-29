@@ -111,12 +111,32 @@ def get_stai_scores():
             stai.iloc[0, i] = 5 - stai.iloc[0, i]
             stai.iloc[3, i] = 5 - stai.iloc[3, i]
             stai.iloc[5, i] = 5 - stai.iloc[5, i]
-        stai = stai.sum(axis=0)/6*20
+        stai = stai.sum(axis=0)/6*20  # proper scaling
         stai = stai.tolist()
         stai.insert(0, int(s))
         stai_scores.append(stai)
     stai_scores = pd.DataFrame(data=stai_scores, columns=["subject"] + columns)
     return stai_scores
+
+def get_stai_labels(threshold="fixed"):
+    stai_scores = get_stai_scores()
+    columns = ["subject"] + [f"{phase}_STAI" for phase in Phases.PHASE_ORDER]
+
+    y_labels = []
+    for i in range(stai_scores.shape[0]):
+        if threshold != "fixed":
+            label_mean = stai_scores.iloc[i, 1:].mean()
+        else:
+            label_mean = 50
+        labels = [stai_scores.iloc[i, 0]]  # subject ID
+        for j in range(1, stai_scores.shape[1]):
+            if stai_scores.iloc[i, j] < label_mean:
+                labels.append(0)
+            else:
+                labels.append(1)
+        y_labels.append(labels)
+    y_labels = pd.DataFrame(data=y_labels, columns=columns)
+    return y_labels
 
 
 def get_dim_scores(dim_type="valence"):

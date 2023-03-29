@@ -143,6 +143,27 @@ def get_data_for_subject(study_num, subject, phase, signal):
     return data
 
 
+def get_affect_labels(study, phases, threshold="fixed"):
+    self_report_df = pd.read_csv(os.path.join(Paths.METRICS, study, "self_reports.csv"), index_col=0)
+    popane_affect_label = []
+
+    for i in range(self_report_df.shape[0]):
+        if threshold == "fixed":
+            mean = 5
+        else:
+            mean = np.nanmean(row)
+        subject = self_report_df["subject"].iloc[i]
+        row = self_report_df[phases].iloc[i].replace(-1, np.NaN)
+        zero_idx = row.index[row < mean]
+        one_idx = row.index[row >= mean]
+        row[zero_idx] = 0
+        row[one_idx] = 1
+        row = pd.concat([pd.Series([subject], index=["subject"]), row])
+        popane_affect_label.append(row)
+        
+    return pd.DataFrame(popane_affect_label, columns=["subject"] + phases)
+
+
 if __name__ == "__main__":
     data = get_data_for_subject(5, 285, Study5.ANGER2, Signals.ECG)
     print(data.head())

@@ -425,40 +425,40 @@ def get_suds_labels(threshold="fixed"):
     participant_file = os.path.join(Paths.DATA_DIR, "participants_details.csv")
     df = pd.read_csv(participant_file)
     labels = [
-        "Baseline_SUDS", "BugBox_Relax_SUDS", "BugBox_Preparation_SUDS", "BugBox_Exposure_SUDS", "BugBox_Exposure_SUDS", 
+        "Baseline_SUDS", "BugBox_Relax_SUDS", "BugBox_Preparation_SUDS", "BugBox_Exposure_SUDS", 
         "Speech_Relax_SUDS", "Speech_SUDS", "Speech_Exposure_SUDS", "Speech_Break_SUDS"
     ]
     suds_labels = df.loc[:, ["Participant"] + labels]
-    mean_suds = np.mean(suds_labels.loc[:, labels])
+    mean_suds = np.mean(suds_labels.loc[:, labels], axis=1)
 
     ha_suds_df = suds_labels.loc[suds_labels['Participant'].isin(Groups.ha_participant_indices)]
     la_suds_df = suds_labels.loc[suds_labels['Participant'].isin(Groups.la_participant_indices)]
+    
+    ha_suds_final = []
+    la_suds_final = []
 
-    if threshold == "fixed":
-        indices_h = ha_suds_df.index[ha_suds_df[label] >= 10]
-        indices_l = ha_dass_df.index[ha_dass_df[label] < 10]
-    else:
-        indices_h = ha_dass_df.index[ha_dass_df[label] >= mean_dass]
-        indices_l = ha_dass_df.index[ha_dass_df[label] < mean_dass]
+    for i in range(ha_suds_df.shape[0]):
+        if threshold == "fixed":
+            mean = 50
+        else:
+            mean = mean_suds.iloc[i, :]
+        ha_series = ha_suds_df[labels].iloc[i]
+        zero_idx = ha_series.index[ha_series < mean]
+        one_idx = ha_series.index[ha_series >= mean]
+        ha_series[zero_idx] = 0
+        ha_series[one_idx] = 1
 
-    temp_ha = ha_dass_df.loc[:, label].copy()
-    temp_ha.loc[indices_h] = 1
-    temp_ha.loc[indices_l] = 0
-    temp_ha = temp_ha.astype(int).reset_index(drop=True)
+        la_series = la_suds_df[labels].iloc[i]
+        zero_idx = la_series.index[la_series < mean]
+        one_idx = la_series.index[la_series >= mean]
+        la_series[zero_idx] = 0
+        la_series[one_idx] = 1
 
-    indices_h = la_dass_df.index[la_dass_df[label] >= mean_dass]
-    indices_l = la_dass_df.index[la_dass_df[label] < mean_dass]
-    temp_la = la_dass_df.loc[:, label].copy()
-    temp_la.loc[indices_h] = 1
-    temp_la.loc[indices_l] = 0
-    temp_la = temp_la.astype(int).reset_index(drop=True)
-
-    ha_dass_df = ha_dass_df.drop(label, axis=1)
-    la_dass_df = la_dass_df.drop(label, axis=1)
-    ha_dass_df[label] = temp_ha
-    la_dass_df[label] = temp_la
-
-    labels = pd.concat([temp_ha, temp_la])
+        ha_suds_final.append(ha_series)
+        la_suds_final.append(la_series)
+    ha_suds_final = pd.DataFrame(ha_suds_final)
+    la_suds_final = pd.DataFrame(la_suds_final)
+    labels = pd.concat([ha_suds_final, la_suds_final])
 
     return labels
 
