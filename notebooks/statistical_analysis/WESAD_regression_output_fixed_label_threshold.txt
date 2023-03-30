@@ -1,0 +1,154 @@
+PHASES: ['Base', 'Fun', 'TSST', 'Medi_1', 'Medi_2'] ------------------------------
+METRICS: ['bpm', 'ibi', 'sdnn', 'rmssd']
+R2: 0.5133256211630451
+
+METRICS: ['hf_rr', 'lf_rr']
+R2: 0.5081536176965591
+
+METRICS: ['mean_SCL', 'SCR_rate']
+R2: 0.5026630551204239
+
+METRICS: ['bpm', 'ibi', 'sdnn', 'rmssd', 'hf_rr', 'lf_rr', 'mean_SCL', 'SCR_rate']
+R2: 0.5274480984490956
+
+PHASES: ['Base', 'TSST', 'Medi_1', 'Medi_2'] ------------------------------
+METRICS: ['bpm', 'ibi', 'sdnn', 'rmssd']
+R2: 0.7427108998521504
+
+METRICS: ['hf_rr', 'lf_rr']
+R2: 0.5146255758934688
+
+METRICS: ['mean_SCL', 'SCR_rate']
+R2: 0.6121016335839891
+
+METRICS: ['bpm', 'ibi', 'sdnn', 'rmssd', 'hf_rr', 'lf_rr', 'mean_SCL', 'SCR_rate']
+R2: 0.788033153757035
+
+PHASES: ['Base', 'Medi_1', 'Medi_2'] ------------------------------
+METRICS: ['bpm', 'ibi', 'sdnn', 'rmssd']
+R2: 0.5623131140390946
+
+METRICS: ['hf_rr', 'lf_rr']
+R2: 0.5296957253321177
+
+METRICS: ['mean_SCL', 'SCR_rate']
+R2: 0.5817533120662839
+
+METRICS: ['bpm', 'ibi', 'sdnn', 'rmssd', 'hf_rr', 'lf_rr', 'mean_SCL', 'SCR_rate']
+R2: 0.6353756554179996
+
+PHASES: ['Base'] ------------------------------
+METRICS: ['bpm', 'ibi', 'sdnn', 'rmssd']
+R2: 1.0
+
+METRICS: ['hf_rr', 'lf_rr']
+R2: 1.0
+
+METRICS: ['mean_SCL', 'SCR_rate']
+R2: 1.0
+
+METRICS: ['bpm', 'ibi', 'sdnn', 'rmssd', 'hf_rr', 'lf_rr', 'mean_SCL', 'SCR_rate']
+R2: 1.0
+
+
+
+PHASES: ['Base', 'Fun', 'TSST', 'Medi_1', 'Medi_2'] ------------------------------
+METRICS: bpm
+R2: 0.5274480984490956
+
+METRICS: ibi
+R2: 0.5274480984490956
+
+METRICS: sdnn
+R2: 0.5274480984490956
+
+METRICS: rmssd
+R2: 0.5274480984490956
+
+METRICS: hf_rr
+R2: 0.5274480984490956
+
+METRICS: lf_rr
+R2: 0.5274480984490956
+
+METRICS: mean_SCL
+R2: 0.5274480984490956
+
+METRICS: SCR_rate
+R2: 0.5274480984490956
+
+PHASES: ['Base', 'TSST', 'Medi_1', 'Medi_2'] ------------------------------
+METRICS: bpm
+R2: 0.788033153757035
+
+METRICS: ibi
+R2: 0.788033153757035
+
+METRICS: sdnn
+R2: 0.788033153757035
+
+METRICS: rmssd
+R2: 0.788033153757035
+
+METRICS: hf_rr
+R2: 0.788033153757035
+
+METRICS: lf_rr
+R2: 0.788033153757035
+
+METRICS: mean_SCL
+R2: 0.788033153757035
+
+METRICS: SCR_rate
+R2: 0.788033153757035
+
+PHASES: ['Base', 'Medi_1', 'Medi_2'] ------------------------------
+METRICS: bpm
+R2: 0.6353756554179996
+
+METRICS: ibi
+R2: 0.6353756554179996
+
+METRICS: sdnn
+R2: 0.6353756554179996
+
+METRICS: rmssd
+R2: 0.6353756554179996
+
+METRICS: hf_rr
+R2: 0.6353756554179996
+
+METRICS: lf_rr
+R2: 0.6353756554179996
+
+METRICS: mean_SCL
+R2: 0.6353756554179996
+
+METRICS: SCR_rate
+R2: 0.6353756554179996
+
+PHASES: ['Base'] ------------------------------
+METRICS: bpm
+R2: 1.0
+
+METRICS: ibi
+R2: 1.0
+
+METRICS: sdnn
+R2: 1.0
+
+METRICS: rmssd
+R2: 1.0
+
+METRICS: hf_rr
+R2: 1.0
+
+METRICS: lf_rr
+R2: 1.0
+
+METRICS: mean_SCL
+R2: 1.0
+
+METRICS: SCR_rate
+R2: 1.0
+

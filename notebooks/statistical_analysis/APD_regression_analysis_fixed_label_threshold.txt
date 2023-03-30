@@ -1,0 +1,230 @@
+PHASES: ['Baseline_Rest', 'BugBox_Relax', 'BugBox_Anticipate', 'BugBox_Exposure', 'BugBox_Break', 'Speech_Relax', 'Speech_Anticipate', 'Speech_Exposure', 'Speech_Break'] ------------------------------
+METRICS: ['bpm', 'ibi', 'sdnn', 'rmssd']
+R2: 0.5204611565055625
+
+METRICS: ['hf_rr', 'lf_rr']
+R2: 0.5111019632109288
+
+METRICS: ['mean_SCL', 'SCR_rate']
+R2: 0.5172376839160537
+
+METRICS: ['bpm', 'ibi', 'sdnn', 'rmssd', 'hf_rr', 'lf_rr', 'mean_SCL', 'SCR_rate']
+R2: 0.5385417856869972
+
+PHASES: ['Baseline_Rest', 'BugBox_Relax', 'BugBox_Anticipate', 'BugBox_Break', 'Speech_Relax', 'Speech_Anticipate', 'Speech_Break'] ------------------------------
+METRICS: ['bpm', 'ibi', 'sdnn', 'rmssd']
+R2: 0.5172419148885729
+
+METRICS: ['hf_rr', 'lf_rr']
+R2: 0.5076065688802986
+
+METRICS: ['mean_SCL', 'SCR_rate']
+R2: 0.5032961240530138
+
+METRICS: ['bpm', 'ibi', 'sdnn', 'rmssd', 'hf_rr', 'lf_rr', 'mean_SCL', 'SCR_rate']
+R2: 0.5222935543701022
+
+PHASES: ['Baseline_Rest', 'BugBox_Relax', 'BugBox_Anticipate', 'Speech_Relax', 'Speech_Anticipate'] ------------------------------
+METRICS: ['bpm', 'ibi', 'sdnn', 'rmssd']
+R2: 0.5131840221133739
+
+METRICS: ['hf_rr', 'lf_rr']
+R2: 0.5062944449647963
+
+METRICS: ['mean_SCL', 'SCR_rate']
+R2: 0.5080025402156267
+
+METRICS: ['bpm', 'ibi', 'sdnn', 'rmssd', 'hf_rr', 'lf_rr', 'mean_SCL', 'SCR_rate']
+R2: 0.516687825126654
+
+PHASES: ['Baseline_Rest', 'BugBox_Relax', 'Speech_Relax'] ------------------------------
+METRICS: ['bpm', 'ibi', 'sdnn', 'rmssd']
+R2: 0.5190898622779425
+
+METRICS: ['hf_rr', 'lf_rr']
+R2: 0.513195734833489
+
+METRICS: ['mean_SCL', 'SCR_rate']
+R2: 0.5114098288126291
+
+METRICS: ['bpm', 'ibi', 'sdnn', 'rmssd', 'hf_rr', 'lf_rr', 'mean_SCL', 'SCR_rate']
+R2: 0.5345550012287131
+
+PHASES: ['BugBox_Break', 'Speech_Break'] ------------------------------
+METRICS: ['bpm', 'ibi', 'sdnn', 'rmssd']
+R2: 0.517216706229894
+
+METRICS: ['hf_rr', 'lf_rr']
+R2: 0.5260876317222809
+
+METRICS: ['mean_SCL', 'SCR_rate']
+R2: 0.5227418677302695
+
+METRICS: ['bpm', 'ibi', 'sdnn', 'rmssd', 'hf_rr', 'lf_rr', 'mean_SCL', 'SCR_rate']
+R2: 0.533633138138554
+
+PHASES: ['BugBox_Exposure', 'Speech_Exposure'] ------------------------------
+METRICS: ['bpm', 'ibi', 'sdnn', 'rmssd']
+R2: 0.5191222869313801
+
+METRICS: ['hf_rr', 'lf_rr']
+R2: 0.5203602473891331
+
+METRICS: ['mean_SCL', 'SCR_rate']
+R2: 0.5215472714299361
+
+METRICS: ['bpm', 'ibi', 'sdnn', 'rmssd', 'hf_rr', 'lf_rr', 'mean_SCL', 'SCR_rate']
+R2: 0.5304513641205705
+
+
+
+PHASES: ['Baseline_Rest', 'BugBox_Relax', 'BugBox_Anticipate', 'BugBox_Exposure', 'BugBox_Break', 'Speech_Relax', 'Speech_Anticipate', 'Speech_Exposure', 'Speech_Break'] ------------------------------
+METRICS: bpm
+R2: 0.5385417856869972
+
+METRICS: ibi
+R2: 0.5385417856869972
+
+METRICS: sdnn
+R2: 0.5385417856869972
+
+METRICS: rmssd
+R2: 0.5385417856869972
+
+METRICS: hf_rr
+R2: 0.5385417856869972
+
+METRICS: lf_rr
+R2: 0.5385417856869972
+
+METRICS: mean_SCL
+R2: 0.5385417856869972
+
+METRICS: SCR_rate
+R2: 0.5385417856869972
+
+PHASES: ['Baseline_Rest', 'BugBox_Relax', 'BugBox_Anticipate', 'BugBox_Break', 'Speech_Relax', 'Speech_Anticipate', 'Speech_Break'] ------------------------------
+METRICS: bpm
+R2: 0.5222935543701022
+
+METRICS: ibi
+R2: 0.5222935543701022
+
+METRICS: sdnn
+R2: 0.5222935543701022
+
+METRICS: rmssd
+R2: 0.5222935543701022
+
+METRICS: hf_rr
+R2: 0.5222935543701022
+
+METRICS: lf_rr
+R2: 0.5222935543701022
+
+METRICS: mean_SCL
+R2: 0.5222935543701022
+
+METRICS: SCR_rate
+R2: 0.5222935543701022
+
+PHASES: ['Baseline_Rest', 'BugBox_Relax', 'BugBox_Anticipate', 'Speech_Relax', 'Speech_Anticipate'] ------------------------------
+METRICS: bpm
+R2: 0.516687825126654
+
+METRICS: ibi
+R2: 0.516687825126654
+
+METRICS: sdnn
+R2: 0.516687825126654
+
+METRICS: rmssd
+R2: 0.516687825126654
+
+METRICS: hf_rr
+R2: 0.516687825126654
+
+METRICS: lf_rr
+R2: 0.516687825126654
+
+METRICS: mean_SCL
+R2: 0.516687825126654
+
+METRICS: SCR_rate
+R2: 0.516687825126654
+
+PHASES: ['Baseline_Rest', 'BugBox_Relax', 'Speech_Relax'] ------------------------------
+METRICS: bpm
+R2: 0.5345550012287131
+
+METRICS: ibi
+R2: 0.5345550012287131
+
+METRICS: sdnn
+R2: 0.5345550012287131
+
+METRICS: rmssd
+R2: 0.5345550012287131
+
+METRICS: hf_rr
+R2: 0.5345550012287131
+
+METRICS: lf_rr
+R2: 0.5345550012287131
+
+METRICS: mean_SCL
+R2: 0.5345550012287131
+
+METRICS: SCR_rate
+R2: 0.5345550012287131
+
+PHASES: ['BugBox_Break', 'Speech_Break'] ------------------------------
+METRICS: bpm
+R2: 0.533633138138554
+
+METRICS: ibi
+R2: 0.533633138138554
+
+METRICS: sdnn
+R2: 0.533633138138554
+
+METRICS: rmssd
+R2: 0.533633138138554
+
+METRICS: hf_rr
+R2: 0.533633138138554
+
+METRICS: lf_rr
+R2: 0.533633138138554
+
+METRICS: mean_SCL
+R2: 0.533633138138554
+
+METRICS: SCR_rate
+R2: 0.533633138138554
+
+PHASES: ['BugBox_Exposure', 'Speech_Exposure'] ------------------------------
+METRICS: bpm
+R2: 0.5304513641205705
+
+METRICS: ibi
+R2: 0.5304513641205705
+
+METRICS: sdnn
+R2: 0.5304513641205705
+
+METRICS: rmssd
+R2: 0.5304513641205705
+
+METRICS: hf_rr
+R2: 0.5304513641205705
+
+METRICS: lf_rr
+R2: 0.5304513641205705
+
+METRICS: mean_SCL
+R2: 0.5304513641205705
+
+METRICS: SCR_rate
+R2: 0.5304513641205705
+

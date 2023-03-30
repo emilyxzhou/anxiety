@@ -477,8 +477,6 @@ class Train_POPANE:
                     y_labels.append(1)
         else:  # label_type == affect
             self_report_df = pd.read_csv(os.path.join(dr_p.Paths.METRICS, study, "self_reports.csv"), index_col=0)
-            print("SELF-REPORTS")
-            print(self_report_df.iloc[591:594, :])
             for i in range(data_x.shape[0]):
                 subject = data_x.iloc[i, :].loc["subject"]
                 row = self_report_df.loc[self_report_df["subject"] == subject, :].iloc[:, 1:].replace(-1, np.NaN)
