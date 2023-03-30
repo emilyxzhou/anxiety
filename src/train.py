@@ -11,7 +11,7 @@ import scipy.signal as ss
 
 import tools.data_reader_apd as dr_a
 import tools.data_reader_popane as dr_p
-import tools.data_reader_sfi as dr_s
+# import tools.data_reader_sfi as dr_s
 import tools.data_reader_wesad as dr_w
 import tools.preprocessing as preprocessing
 
@@ -134,7 +134,7 @@ def train_predict(models, x, y, test_size=0.15, by_subject=True, save_metrics=Tr
 
 class Train_APD:
     
-    def get_ratings():
+    def get_ratings(threshold="fixed"):
         SUDS_labels = [
             "Participant",
             "Baseline_SUDS",
@@ -167,10 +167,12 @@ class Train_APD:
             p = int(la_suds_df.iloc[i, la_suds_df.columns.get_loc("subject")][1:])
             la_suds_df.iloc[i, la_suds_df.columns.get_loc("subject")] = p
 
-        # ha_suds_df['median'] = ha_suds_df.iloc[:, 1:].median(axis=1)
-        # la_suds_df['median'] = la_suds_df.iloc[:, 1:].median(axis=1)
-        ha_suds_df['median'] = ha_suds_df.iloc[:, 1:].median(axis=1)
-        la_suds_df['median'] = la_suds_df.iloc[:, 1:].median(axis=1)
+        if threshold == "fixed": 
+            ha_suds_df['mean'] = pd.Series([50 for _ in range(ha_suds_df.shape[0])])
+            la_suds_df['mean'] = pd.Series([50 for _ in range(la_suds_df.shape[0])])    
+        else:
+            ha_suds_df['mean'] = ha_suds_df.iloc[:, 1:].mean(axis=1)
+            la_suds_df['mean'] = la_suds_df.iloc[:, 1:].mean(axis=1)
         columns = {c: SUDS_labels.index(c)-1 for c in ha_suds_df.columns[1:-1]}
 
         ha_rankings = ha_suds_df.rename(columns={c: SUDS_labels.index(c)-1 for c in ha_suds_df.columns[1:-1]}).reset_index(drop=True)
@@ -181,10 +183,12 @@ class Train_APD:
 
     def get_apd_data_ranking(metrics, phases, verbose=False, anxiety_label_type=None, threshold="fixed"):
         """
-        anxiety_label_type: can be None, "Trait", "Anxiety", "Depression", "SUDS", "Gender", "Random"
+        anxiety_label_type: can be None, "Trait", "Anxiety", "Depression", "Gender", "Random"
+            - Adds an extra feature vector 
+            - Labels geerated based on SUDS responses
         """
         metrics_folder = dr_a.Paths.METRICS
-        ha_rankings, la_rankings = Train_APD.get_ratings()
+        ha_rankings, la_rankings = Train_APD.get_ratings(threshold)
 
         columns = metrics.copy()
         columns.insert(0, "subject")
@@ -248,7 +252,6 @@ class Train_APD:
                     anxiety_label = dr_a.get_dass_labels("Depression", threshold)
                 elif anxiety_label_type == "Gender":
                     anxiety_label = dr_a.get_gender_labels()
-                    anxiety_label = dr_a.get_gender_labels()
 
             ha_features = pd.concat(ha_features, axis=1)
             la_features = pd.concat(la_features, axis=1)
@@ -276,8 +279,8 @@ class Train_APD:
             s = int(subjects.iloc[i])
             p = int(phase_col.iloc[i])
             rating = data_y.loc[data_y["subject"] == s].loc[:, p].values[0]
-            med = data_y.loc[data_y["subject"] == s].loc[:, 'median'].values[0]
-            if rating < med:
+            mean = data_y.loc[data_y["subject"] == s].loc[:, 'mean'].values[0]
+            if rating < mean:
                 label.append(0)  # low anxiety
             else:
                 label.append(1)  # high anxiety
@@ -507,118 +510,118 @@ class Train_POPANE:
         return data_x, data_y
 
 
-class Train_SFI:
+# class Train_SFI:
 
-    def get_sfi_data(metrics, phases, verbose=False, normalize=True):
-        metrics_folder = dr_s.Paths.METRICS
-        columns = metrics.copy()
-        columns.insert(0, "subject")
+#     def get_sfi_data(metrics, phases, verbose=False, normalize=True):
+#         metrics_folder = dr_s.Paths.METRICS
+#         columns = metrics.copy()
+#         columns.insert(0, "subject")
         
-        data_x = []
-        data_y = []
+#         data_x = []
+#         data_y = []
 
-        features = []
-        for i in range(len(metrics)):
-            metric = metrics[i]
-            if verbose: print(f"Generating features for metric {metric}")
-            file = os.path.join(metrics_folder, f"{metric}.csv")
-            arr = pd.read_csv(file, index_col=[0])
+#         features = []
+#         for i in range(len(metrics)):
+#             metric = metrics[i]
+#             if verbose: print(f"Generating features for metric {metric}")
+#             file = os.path.join(metrics_folder, f"{metric}.csv")
+#             arr = pd.read_csv(file, index_col=[0])
 
-            if i == 0:  # subject IDs
-                # ids = arr.iloc[:, 0]
-                ids = arr.iloc[:, 0]
-                ids = pd.DataFrame(data=ids, columns=["subject"])
-                features.append(ids)
-            col_mean = np.nanmean(arr, axis=0)
-            idx = np.where(np.isnan(arr))
-            if idx[0].size > 0 and idx[1].size > 0:
-                arr.iloc[idx] = np.take(col_mean, idx[1])
-            arr = np.nan_to_num(arr)
-            arr = np.mean(arr[:, 1:], axis=1)
-            arr = np.reshape(arr, (arr.size, 1))
-            arr = pd.DataFrame(data=arr, columns=[f"{metric}"])
-            features.append(arr)
+#             if i == 0:  # subject IDs
+#                 # ids = arr.iloc[:, 0]
+#                 ids = arr.iloc[:, 0]
+#                 ids = pd.DataFrame(data=ids, columns=["subject"])
+#                 features.append(ids)
+#             col_mean = np.nanmean(arr, axis=0)
+#             idx = np.where(np.isnan(arr))
+#             if idx[0].size > 0 and idx[1].size > 0:
+#                 arr.iloc[idx] = np.take(col_mean, idx[1])
+#             arr = np.nan_to_num(arr)
+#             arr = np.mean(arr[:, 1:], axis=1)
+#             arr = np.reshape(arr, (arr.size, 1))
+#             arr = pd.DataFrame(data=arr, columns=[f"{metric}"])
+#             features.append(arr)
 
-        x = pd.concat(features, axis=1)
+#         x = pd.concat(features, axis=1)
             
-        data_x.append(x)
+#         data_x.append(x)
         
-        data_x = pd.concat(data_x).reset_index(drop=True)
+#         data_x = pd.concat(data_x).reset_index(drop=True)
 
-        subjects = data_x.loc[:, "subject"]
+#         subjects = data_x.loc[:, "subject"]
 
-        y_labels = []
-        for phase in phases:
-            if phase == "BIOFEEDBACK-REST":
-                y_labels.append(0)
-            else:
-                y_labels.append(1)
-        y_labels = pd.Series(data=y_labels)
+#         y_labels = []
+#         for phase in phases:
+#             if phase == "BIOFEEDBACK-REST":
+#                 y_labels.append(0)
+#             else:
+#                 y_labels.append(1)
+#         y_labels = pd.Series(data=y_labels)
 
-        data_y = pd.DataFrame({"subject": subjects, "label": y_labels})
+#         data_y = pd.DataFrame({"subject": subjects, "label": y_labels})
 
-        for metric in metrics:
-            data_col = data_x[metric]
-            data_col = (data_col - data_col.min())/(data_col.max() - data_col.min())
-            data_x[metric] = data_col
+#         for metric in metrics:
+#             data_col = data_x[metric]
+#             data_col = (data_col - data_col.min())/(data_col.max() - data_col.min())
+#             data_x[metric] = data_col
 
-        return data_x, data_y
+#         return data_x, data_y
 
 
-class Train_Multi_Dataset:
+# class Train_Multi_Dataset:
     
-    def train_across_datasets(models, dataset_a_x, dataset_a_y, dataset_b_x, dataset_b_y, test_size=0.80, by_subject=True, save_metrics=True, target_names=["A", "B"], get_shap_values=False):
-        """
-        test_size: Proportion of dataset_b to hold out for model testing.
-        """
-        out = {}
-        x_train_a, y_train_a, x_test_a, y_test_a, test_subjects = train_test_split(dataset_a_x, dataset_a_y, test_size=0.0, by_subject=by_subject)
-        x_train_b, y_train_b, x_test_b, y_test_b, test_subjects = train_test_split(dataset_b_x, dataset_b_y, test_size=test_size, by_subject=by_subject)
-        # print(f"x_train: {x_train.shape}")
-        # print(f"y_train: {y_train.shape}")
-        x_train = pd.concat([x_train_a, x_train_b])
-        y_train = pd.concat([y_train_a, y_train_b])
-        x_test = x_test_b
-        y_test = y_test_b.loc[:, "label"]
+#     def train_across_datasets(models, dataset_a_x, dataset_a_y, dataset_b_x, dataset_b_y, test_size=0.80, by_subject=True, save_metrics=True, target_names=["A", "B"], get_shap_values=False):
+#         """
+#         test_size: Proportion of dataset_b to hold out for model testing.
+#         """
+#         out = {}
+#         x_train_a, y_train_a, x_test_a, y_test_a, test_subjects = train_test_split(dataset_a_x, dataset_a_y, test_size=0.0, by_subject=by_subject)
+#         x_train_b, y_train_b, x_test_b, y_test_b, test_subjects = train_test_split(dataset_b_x, dataset_b_y, test_size=test_size, by_subject=by_subject)
+#         # print(f"x_train: {x_train.shape}")
+#         # print(f"y_train: {y_train.shape}")
+#         x_train = pd.concat([x_train_a, x_train_b])
+#         y_train = pd.concat([y_train_a, y_train_b])
+#         x_test = x_test_b
+#         y_test = y_test_b.loc[:, "label"]
         
-        # print("Training data: ")
-        # print(y_train.loc[:, "label"].value_counts())
-        # print("Testing data: ")
-        # print(y_test.loc[:].value_counts())
+#         # print("Training data: ")
+#         # print(y_train.loc[:, "label"].value_counts())
+#         # print("Testing data: ")
+#         # print(y_test.loc[:].value_counts())
 
-        for model_name in models.keys():
-            model = models[model_name]
-            model = model.fit(x_train, y_train.loc[:, "label"])
-            y_pred = model.predict(x_test)
-            acc = accuracy_score(y_test, y_pred)
-            if save_metrics:
-                precision = precision_score(y_test, y_pred, zero_division=1)
-                recall = recall_score(y_test, y_pred, zero_division=1)
-                f1 = f1_score(y_test, y_pred, zero_division=1)
-                try:
-                    auc = roc_auc_score(y_test, y_pred)
-                except Exception as e:
-                    print("Only one class present in y_true. ROC AUC score is not defined in that case. Setting AUC score to -1.")
-                    auc = -1
-                report = {
-                    "precision": precision,
-                    "recall": recall,
-                    "f1": f1,
-                    "auc": auc,
-                    "actual vs pred": [y_test, y_pred]
-                }
-            else:
-                report = None
-            if get_shap_values and acc > 0.65:
-                try: 
-                    explainer = shap.Explainer(model)
-                except Exception as e:
-                    explainer = shap.Explainer(model.predict, x_train)
-                shap_values = explainer(x_test)
-            else:
-                shap_values = None
-            out[model_name] = (acc, report, shap_values)
-        return out
+#         for model_name in models.keys():
+#             model = models[model_name]
+#             model = model.fit(x_train, y_train.loc[:, "label"])
+#             y_pred = model.predict(x_test)
+#             acc = accuracy_score(y_test, y_pred)
+#             if save_metrics:
+#                 precision = precision_score(y_test, y_pred, zero_division=1)
+#                 recall = recall_score(y_test, y_pred, zero_division=1)
+#                 f1 = f1_score(y_test, y_pred, zero_division=1)
+#                 try:
+#                     auc = roc_auc_score(y_test, y_pred)
+#                 except Exception as e:
+#                     print("Only one class present in y_true. ROC AUC score is not defined in that case. Setting AUC score to -1.")
+#                     auc = -1
+#                 report = {
+#                     "precision": precision,
+#                     "recall": recall,
+#                     "f1": f1,
+#                     "auc": auc,
+#                     "actual vs pred": [y_test, y_pred]
+#                 }
+#             else:
+#                 report = None
+#             if get_shap_values and acc > 0.65:
+#                 try: 
+#                     explainer = shap.Explainer(model)
+#                 except Exception as e:
+#                     explainer = shap.Explainer(model.predict, x_train)
+#                 shap_values = explainer(x_test)
+#             else:
+#                 shap_values = None
+#             out[model_name] = (acc, report, shap_values)
+#         return out
 
 
 

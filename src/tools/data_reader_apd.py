@@ -421,15 +421,24 @@ def get_dass_labels(dass="Anxiety", threshold="fixed"):
 
     return labels
 
-def get_suds_labels(threshold="fixed"):
+def get_suds_labels(phases, threshold="fixed"):
+    label_dict = {
+    "Baseline_Rest": "Baseline_SUDS", 
+    "BugBox_Relax": "BugBox_Relax_SUDS",
+    "BugBox_Anticipate": "BugBox_Preparation_SUDS",
+    "BugBox_Exposure": "BugBox_Exposure_SUDS", 
+    "BugBox_Break": "BugBox_Break_SUDS", 
+    "Speech_Relax": "Speech_Relax_SUDS",
+    "Speech_Anticipate": "Speech_SUDS",
+    "Speech_Exposure": "Speech_Exposure_SUDS",
+    "Speech_Break": "Speech_Break_SUDS"
+}
+    for i in range(len(phases)):
+        phases[i] = label_dict[phases[i]]
     participant_file = os.path.join(Paths.DATA_DIR, "participants_details.csv")
     df = pd.read_csv(participant_file)
-    labels = [
-        "Baseline_SUDS", "BugBox_Relax_SUDS", "BugBox_Preparation_SUDS", "BugBox_Exposure_SUDS", 
-        "Speech_Relax_SUDS", "Speech_SUDS", "Speech_Exposure_SUDS", "Speech_Break_SUDS"
-    ]
-    suds_labels = df.loc[:, ["Participant"] + labels]
-    mean_suds = np.mean(suds_labels.loc[:, labels], axis=1)
+    suds_labels = df.loc[:, ["Participant"] + phases]
+    mean_suds = np.mean(suds_labels.loc[:, phases], axis=1)
 
     ha_suds_df = suds_labels.loc[suds_labels['Participant'].isin(Groups.ha_participant_indices)]
     la_suds_df = suds_labels.loc[suds_labels['Participant'].isin(Groups.la_participant_indices)]
@@ -442,13 +451,13 @@ def get_suds_labels(threshold="fixed"):
             mean = 50
         else:
             mean = mean_suds.iloc[i, :]
-        ha_series = ha_suds_df[labels].iloc[i]
+        ha_series = ha_suds_df[phases].iloc[i]
         zero_idx = ha_series.index[ha_series < mean]
         one_idx = ha_series.index[ha_series >= mean]
         ha_series[zero_idx] = 0
         ha_series[one_idx] = 1
 
-        la_series = la_suds_df[labels].iloc[i]
+        la_series = la_suds_df[phases].iloc[i]
         zero_idx = la_series.index[la_series < mean]
         one_idx = la_series.index[la_series >= mean]
         la_series[zero_idx] = 0
