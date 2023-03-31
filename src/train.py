@@ -462,6 +462,7 @@ class Train_POPANE:
             data_x.append(x)
 
         data_x = pd.concat(data_x).reset_index(drop=True)
+        data_x = data_x[data_x["subject"].notna()].reset_index(drop=True)
 
         subjects = data_x.loc[:, "subject"]
         y_labels = []
@@ -495,7 +496,6 @@ class Train_POPANE:
                         y_labels.append(1)
                 except Exception as e:
                     # TODO: double check this -- is it ok to just continue?
-                    # print(row)
                     continue
 
         y_labels = pd.Series(data=y_labels)
