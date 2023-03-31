@@ -495,7 +495,6 @@ class Train_POPANE:
                     else:
                         y_labels.append(1)
                 except Exception as e:
-                    # TODO: double check this -- is it ok to just continue?
                     continue
 
         y_labels = pd.Series(data=y_labels)
@@ -568,60 +567,60 @@ class Train_POPANE:
 #         return data_x, data_y
 
 
-# class Train_Multi_Dataset:
+class Train_Multi_Dataset:
     
-#     def train_across_datasets(models, dataset_a_x, dataset_a_y, dataset_b_x, dataset_b_y, test_size=0.80, by_subject=True, save_metrics=True, target_names=["A", "B"], get_shap_values=False):
-#         """
-#         test_size: Proportion of dataset_b to hold out for model testing.
-#         """
-#         out = {}
-#         x_train_a, y_train_a, x_test_a, y_test_a, test_subjects = train_test_split(dataset_a_x, dataset_a_y, test_size=0.0, by_subject=by_subject)
-#         x_train_b, y_train_b, x_test_b, y_test_b, test_subjects = train_test_split(dataset_b_x, dataset_b_y, test_size=test_size, by_subject=by_subject)
-#         # print(f"x_train: {x_train.shape}")
-#         # print(f"y_train: {y_train.shape}")
-#         x_train = pd.concat([x_train_a, x_train_b])
-#         y_train = pd.concat([y_train_a, y_train_b])
-#         x_test = x_test_b
-#         y_test = y_test_b.loc[:, "label"]
+    def train_across_datasets(models, dataset_a_x, dataset_a_y, dataset_b_x, dataset_b_y, test_size=0.80, by_subject=True, save_metrics=True, target_names=["A", "B"], get_shap_values=False):
+        """
+        test_size: Proportion of dataset_b to hold out for model testing.
+        """
+        out = {}
+        x_train_a, y_train_a, x_test_a, y_test_a, test_subjects = train_test_split(dataset_a_x, dataset_a_y, test_size=0.0, by_subject=by_subject)
+        x_train_b, y_train_b, x_test_b, y_test_b, test_subjects = train_test_split(dataset_b_x, dataset_b_y, test_size=test_size, by_subject=by_subject)
+        # print(f"x_train: {x_train.shape}")
+        # print(f"y_train: {y_train.shape}")
+        x_train = pd.concat([x_train_a, x_train_b])
+        y_train = pd.concat([y_train_a, y_train_b])
+        x_test = x_test_b
+        y_test = y_test_b.loc[:, "label"]
         
-#         # print("Training data: ")
-#         # print(y_train.loc[:, "label"].value_counts())
-#         # print("Testing data: ")
-#         # print(y_test.loc[:].value_counts())
+        # print("Training data: ")
+        # print(y_train.loc[:, "label"].value_counts())
+        # print("Testing data: ")
+        # print(y_test.loc[:].value_counts())
 
-#         for model_name in models.keys():
-#             model = models[model_name]
-#             model = model.fit(x_train, y_train.loc[:, "label"])
-#             y_pred = model.predict(x_test)
-#             acc = accuracy_score(y_test, y_pred)
-#             if save_metrics:
-#                 precision = precision_score(y_test, y_pred, zero_division=1)
-#                 recall = recall_score(y_test, y_pred, zero_division=1)
-#                 f1 = f1_score(y_test, y_pred, zero_division=1)
-#                 try:
-#                     auc = roc_auc_score(y_test, y_pred)
-#                 except Exception as e:
-#                     print("Only one class present in y_true. ROC AUC score is not defined in that case. Setting AUC score to -1.")
-#                     auc = -1
-#                 report = {
-#                     "precision": precision,
-#                     "recall": recall,
-#                     "f1": f1,
-#                     "auc": auc,
-#                     "actual vs pred": [y_test, y_pred]
-#                 }
-#             else:
-#                 report = None
-#             if get_shap_values and acc > 0.65:
-#                 try: 
-#                     explainer = shap.Explainer(model)
-#                 except Exception as e:
-#                     explainer = shap.Explainer(model.predict, x_train)
-#                 shap_values = explainer(x_test)
-#             else:
-#                 shap_values = None
-#             out[model_name] = (acc, report, shap_values)
-#         return out
+        for model_name in models.keys():
+            model = models[model_name]
+            model = model.fit(x_train, y_train.loc[:, "label"])
+            y_pred = model.predict(x_test)
+            acc = accuracy_score(y_test, y_pred)
+            if save_metrics:
+                precision = precision_score(y_test, y_pred, zero_division=1)
+                recall = recall_score(y_test, y_pred, zero_division=1)
+                f1 = f1_score(y_test, y_pred, zero_division=1)
+                try:
+                    auc = roc_auc_score(y_test, y_pred)
+                except Exception as e:
+                    print("Only one class present in y_true. ROC AUC score is not defined in that case. Setting AUC score to -1.")
+                    auc = -1
+                report = {
+                    "precision": precision,
+                    "recall": recall,
+                    "f1": f1,
+                    "auc": auc,
+                    "actual vs pred": [y_test, y_pred]
+                }
+            else:
+                report = None
+            if get_shap_values and acc > 0.65:
+                try: 
+                    explainer = shap.Explainer(model)
+                except Exception as e:
+                    explainer = shap.Explainer(model.predict, x_train)
+                shap_values = explainer(x_test)
+            else:
+                shap_values = None
+            out[model_name] = (acc, report, shap_values)
+        return out
 
 
 

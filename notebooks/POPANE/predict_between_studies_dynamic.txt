@@ -1,0 +1,42 @@
+POPANE Study1 --------------------------------------------------
+POPANE Study2 --------------------------------------------------
+SVM accuracy over 10 rounds: 0.3930817610062894
+LogReg accuracy over 10 rounds: 0.4025157232704403
+XGB accuracy over 10 rounds: 0.4968553459119497
+
+
+POPANE Study1 --------------------------------------------------
+POPANE Study3 --------------------------------------------------
+SVM accuracy over 10 rounds: 0.5205811138014528
+LogReg accuracy over 10 rounds: 0.4818401937046005
+XGB accuracy over 10 rounds: 0.5084745762711865
+
+
+POPANE Study1 --------------------------------------------------
+POPANE Study5 --------------------------------------------------
+SVM accuracy over 10 rounds: 0.5324232081911263
+LogReg accuracy over 10 rounds: 0.5255972696245734
+XGB accuracy over 10 rounds: 0.5153583617747441
+
+
+POPANE Study2 --------------------------------------------------
+POPANE Study3 --------------------------------------------------
+SVM accuracy over 10 rounds: 0.5230024213075061
+LogReg accuracy over 10 rounds: 0.5254237288135595
+XGB accuracy over 10 rounds: 0.5205811138014528
+
+
+POPANE Study2 --------------------------------------------------
+POPANE Study5 --------------------------------------------------
+SVM accuracy over 10 rounds: 0.5307167235494881
+LogReg accuracy over 10 rounds: 0.5290102389078497
+XGB accuracy over 10 rounds: 0.4846416382252559
+
+
+POPANE Study3 --------------------------------------------------
+POPANE Study5 --------------------------------------------------
+SVM accuracy over 10 rounds: 0.5324232081911263
+LogReg accuracy over 10 rounds: 0.46587030716723554
+XGB accuracy over 10 rounds: 0.5153583617747441
+
+

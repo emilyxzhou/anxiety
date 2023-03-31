@@ -1,0 +1,150 @@
+APD PHASES 0 --------------------------------------------------
+POPANE Study1 --------------------------------------------------
+SVM accuracy over 10 rounds: 0.595430089885853
+LogReg accuracy over 10 rounds: 0.6356131759668032
+XGB accuracy over 10 rounds: 0.5583899760039243
+
+
+APD PHASES 0 --------------------------------------------------
+POPANE Study2 --------------------------------------------------
+SVM accuracy over 10 rounds: 0.6106038222395024
+LogReg accuracy over 10 rounds: 0.6539393335821615
+Model evaluation metrics for LogReg:
+Precision: 0.6737708784211363
+Recall: 0.9307557288736922
+F1-score: 0.7802756111064112
+AUC score: 0.524764227628684
+XGB accuracy over 10 rounds: 0.5711849681809639
+
+
+APD PHASES 0 --------------------------------------------------
+POPANE Study3 --------------------------------------------------
+SVM accuracy over 10 rounds: 0.567153175294205
+LogReg accuracy over 10 rounds: 0.5295763519547025
+XGB accuracy over 10 rounds: 0.5138214559111904
+
+
+APD PHASES 0 --------------------------------------------------
+POPANE Study5 --------------------------------------------------
+SVM accuracy over 10 rounds: 0.6095932483944551
+LogReg accuracy over 10 rounds: 0.5895523977804067
+XGB accuracy over 10 rounds: 0.5878543317238141
+
+
+APD PHASES 1 --------------------------------------------------
+POPANE Study1 --------------------------------------------------
+SVM accuracy over 10 rounds: 0.6200485390234525
+LogReg accuracy over 10 rounds: 0.6297563437139562
+XGB accuracy over 10 rounds: 0.5608821457927322
+
+
+APD PHASES 1 --------------------------------------------------
+POPANE Study2 --------------------------------------------------
+SVM accuracy over 10 rounds: 0.621222413171383
+LogReg accuracy over 10 rounds: 0.6405204788543493
+XGB accuracy over 10 rounds: 0.5695364109769934
+
+
+APD PHASES 1 --------------------------------------------------
+POPANE Study3 --------------------------------------------------
+SVM accuracy over 10 rounds: 0.5583264253477018
+LogReg accuracy over 10 rounds: 0.5324970065395598
+XGB accuracy over 10 rounds: 0.5148798010500139
+
+
+APD PHASES 1 --------------------------------------------------
+POPANE Study5 --------------------------------------------------
+SVM accuracy over 10 rounds: 0.6081930093124123
+LogReg accuracy over 10 rounds: 0.5889923095146976
+XGB accuracy over 10 rounds: 0.5953898091957793
+
+
+APD PHASES 2 --------------------------------------------------
+POPANE Study1 --------------------------------------------------
+SVM accuracy over 10 rounds: 0.6087300806056026
+LogReg accuracy over 10 rounds: 0.6080104386244016
+XGB accuracy over 10 rounds: 0.5689146995850403
+
+
+APD PHASES 2 --------------------------------------------------
+POPANE Study2 --------------------------------------------------
+SVM accuracy over 10 rounds: 0.6082654413974303
+LogReg accuracy over 10 rounds: 0.634215310202358
+XGB accuracy over 10 rounds: 0.5996683358751151
+
+
+APD PHASES 2 --------------------------------------------------
+POPANE Study3 --------------------------------------------------
+SVM accuracy over 10 rounds: 0.5673635954583438
+LogReg accuracy over 10 rounds: 0.522568109399118
+XGB accuracy over 10 rounds: 0.5225516192791375
+
+
+APD PHASES 2 --------------------------------------------------
+POPANE Study5 --------------------------------------------------
+SVM accuracy over 10 rounds: 0.6095252751905657
+LogReg accuracy over 10 rounds: 0.5864651859555002
+XGB accuracy over 10 rounds: 0.5909459890168052
+
+
+APD PHASES 3 --------------------------------------------------
+POPANE Study1 --------------------------------------------------
+SVM accuracy over 10 rounds: 0.5978237502960727
+LogReg accuracy over 10 rounds: 0.6368982095950682
+XGB accuracy over 10 rounds: 0.5437435223613714
+
+
+APD PHASES 3 --------------------------------------------------
+POPANE Study2 --------------------------------------------------
+SVM accuracy over 10 rounds: 0.6061532570828035
+LogReg accuracy over 10 rounds: 0.6497164066526573
+XGB accuracy over 10 rounds: 0.59025074932041
+
+
+APD PHASES 3 --------------------------------------------------
+POPANE Study3 --------------------------------------------------
+SVM accuracy over 10 rounds: 0.5683037215189943
+LogReg accuracy over 10 rounds: 0.5146965091645943
+XGB accuracy over 10 rounds: 0.5328508234068432
+
+
+APD PHASES 3 --------------------------------------------------
+POPANE Study5 --------------------------------------------------
+SVM accuracy over 10 rounds: 0.6085825451497093
+LogReg accuracy over 10 rounds: 0.5831656734641808
+XGB accuracy over 10 rounds: 0.6004692653946384
+
+
+APD PHASES 4 --------------------------------------------------
+POPANE Study1 --------------------------------------------------
+SVM accuracy over 10 rounds: 0.6063682438342715
+LogReg accuracy over 10 rounds: 0.6347317607033474
+XGB accuracy over 10 rounds: 0.5644862510153263
+
+
+APD PHASES 4 --------------------------------------------------
+POPANE Study2 --------------------------------------------------
+SVM accuracy over 10 rounds: 0.6116613948576755
+LogReg accuracy over 10 rounds: 0.6532864110692879
+Model evaluation metrics for LogReg:
+Precision: 0.6838039915369145
+Recall: 0.9032054851191026
+F1-score: 0.7731327767376335
+AUC score: 0.5373244545834854
+XGB accuracy over 10 rounds: 0.5892911682359355
+
+
+APD PHASES 4 --------------------------------------------------
+POPANE Study3 --------------------------------------------------
+SVM accuracy over 10 rounds: 0.5644055927086538
+LogReg accuracy over 10 rounds: 0.5239165009392142
+XGB accuracy over 10 rounds: 0.531427401448695
+
+
+APD PHASES 4 --------------------------------------------------
+POPANE Study5 --------------------------------------------------
+SVM accuracy over 10 rounds: 0.6181379072217433
+LogReg accuracy over 10 rounds: 0.5859198396607097
+XGB accuracy over 10 rounds: 0.6006488502852427
+
+
