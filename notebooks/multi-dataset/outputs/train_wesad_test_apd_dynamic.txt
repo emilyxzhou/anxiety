@@ -1,0 +1,395 @@
+WESAD PHASES 0 --------------------------------------------------
+APD PHASES 0 --------------------------------------------------
+0    297
+1    232
+Name: label, dtype: int64
+SVM accuracy over 10 rounds: 0.5422222222222224
+KNN accuracy over 10 rounds: 0.5422222222222224
+DT accuracy over 10 rounds: 0.5422222222222224
+LogReg accuracy over 10 rounds: 0.5444444444444444
+XGB accuracy over 10 rounds: 0.5422222222222224
+
+
+WESAD PHASES 0 --------------------------------------------------
+APD PHASES 1 --------------------------------------------------
+0    244
+1    183
+Name: label, dtype: int64
+SVM accuracy over 10 rounds: 0.42857142857142855
+KNN accuracy over 10 rounds: 0.42857142857142855
+DT accuracy over 10 rounds: 0.42771428571428577
+LogReg accuracy over 10 rounds: 0.4314285714285714
+XGB accuracy over 10 rounds: 0.42857142857142855
+
+
+WESAD PHASES 0 --------------------------------------------------
+APD PHASES 2 --------------------------------------------------
+0    179
+1    146
+Name: label, dtype: int64
+SVM accuracy over 10 rounds: 0.5199999999999999
+KNN accuracy over 10 rounds: 0.5199999999999999
+DT accuracy over 10 rounds: 0.5199999999999999
+LogReg accuracy over 10 rounds: 0.5199999999999999
+XGB accuracy over 10 rounds: 0.5199999999999999
+
+
+WESAD PHASES 0 --------------------------------------------------
+APD PHASES 3 --------------------------------------------------
+0    123
+1     49
+Name: label, dtype: int64
+SVM accuracy over 10 rounds: 0.7699999999999999
+Report:
+Precision: 1.0
+Recall: 0.0
+F1-score: 0.0
+AUC score: 0.5
+KNN accuracy over 10 rounds: 0.7699999999999999
+Report:
+Precision: 1.0
+Recall: 0.0
+F1-score: 0.0
+AUC score: 0.5
+DT accuracy over 10 rounds: 0.601
+LogReg accuracy over 10 rounds: 0.7699999999999999
+Report:
+Precision: 1.0
+Recall: 0.0
+F1-score: 0.0
+AUC score: 0.5
+XGB accuracy over 10 rounds: 0.7699999999999999
+Report:
+Precision: 0.5
+Recall: 0.04347826086956521
+F1-score: 0.07999999999999999
+AUC score: 0.515245623941276
+
+
+WESAD PHASES 0 --------------------------------------------------
+APD PHASES 4 --------------------------------------------------
+0    123
+1     49
+Name: label, dtype: int64
+SVM accuracy over 10 rounds: 0.7699999999999999
+Report:
+Precision: 1.0
+Recall: 0.0
+F1-score: 0.0
+AUC score: 0.5
+KNN accuracy over 10 rounds: 0.7699999999999999
+Report:
+Precision: 1.0
+Recall: 0.0
+F1-score: 0.0
+AUC score: 0.5
+DT accuracy over 10 rounds: 0.619
+LogReg accuracy over 10 rounds: 0.7300000000000001
+Report:
+Precision: 0.16666666666666669
+Recall: 0.04347826086956521
+F1-score: 0.06896551724137931
+AUC score: 0.4892715979672501
+XGB accuracy over 10 rounds: 0.75
+Report:
+Precision: 0.25
+Recall: 0.04347826086956521
+F1-score: 0.07407407407407408
+AUC score: 0.5022586109542633
+
+
+WESAD PHASES 1 --------------------------------------------------
+APD PHASES 0 --------------------------------------------------
+0    287
+1    228
+Name: label, dtype: int64
+SVM accuracy over 10 rounds: 0.5422222222222224
+KNN accuracy over 10 rounds: 0.5422222222222224
+DT accuracy over 10 rounds: 0.5495555555555556
+LogReg accuracy over 10 rounds: 0.5422222222222224
+XGB accuracy over 10 rounds: 0.5533333333333335
+
+
+WESAD PHASES 1 --------------------------------------------------
+APD PHASES 1 --------------------------------------------------
+0    234
+1    179
+Name: label, dtype: int64
+SVM accuracy over 10 rounds: 0.42857142857142855
+KNN accuracy over 10 rounds: 0.42857142857142855
+DT accuracy over 10 rounds: 0.4314285714285714
+LogReg accuracy over 10 rounds: 0.42857142857142855
+XGB accuracy over 10 rounds: 0.42857142857142855
+
+
+WESAD PHASES 1 --------------------------------------------------
+APD PHASES 2 --------------------------------------------------
+0    169
+1    142
+Name: label, dtype: int64
+SVM accuracy over 10 rounds: 0.5199999999999999
+KNN accuracy over 10 rounds: 0.5199999999999999
+DT accuracy over 10 rounds: 0.5048
+LogReg accuracy over 10 rounds: 0.5199999999999999
+XGB accuracy over 10 rounds: 0.492
+
+
+WESAD PHASES 1 --------------------------------------------------
+APD PHASES 3 --------------------------------------------------
+0    113
+1     45
+Name: label, dtype: int64
+SVM accuracy over 10 rounds: 0.7699999999999999
+Report:
+Precision: 1.0
+Recall: 0.0
+F1-score: 0.0
+AUC score: 0.5
+KNN accuracy over 10 rounds: 0.7699999999999999
+Report:
+Precision: 1.0
+Recall: 0.0
+F1-score: 0.0
+AUC score: 0.5
+DT accuracy over 10 rounds: 0.633
+LogReg accuracy over 10 rounds: 0.74
+Report:
+Precision: 0.0
+Recall: 0.0
+F1-score: 0.0
+AUC score: 0.4805194805194805
+XGB accuracy over 10 rounds: 0.37
+
+
+WESAD PHASES 1 --------------------------------------------------
+APD PHASES 4 --------------------------------------------------
+0    113
+1     45
+Name: label, dtype: int64
+SVM accuracy over 10 rounds: 0.7699999999999999
+Report:
+Precision: 1.0
+Recall: 0.0
+F1-score: 0.0
+AUC score: 0.5
+KNN accuracy over 10 rounds: 0.7699999999999999
+Report:
+Precision: 1.0
+Recall: 0.0
+F1-score: 0.0
+AUC score: 0.5
+DT accuracy over 10 rounds: 0.6599999999999999
+Report:
+Precision: 0.24776785714285712
+Recall: 0.2608695652173913
+F1-score: 0.24471744471744472
+AUC score: 0.5200451722190853
+LogReg accuracy over 10 rounds: 0.6100000000000001
+XGB accuracy over 10 rounds: 0.6500000000000001
+Report:
+Precision: 0.29999999999999993
+Recall: 0.391304347826087
+F1-score: 0.33962264150943394
+AUC score: 0.5592885375494071
+
+
+WESAD PHASES 2 --------------------------------------------------
+APD PHASES 0 --------------------------------------------------
+0    276
+1    225
+Name: label, dtype: int64
+SVM accuracy over 10 rounds: 0.5422222222222224
+KNN accuracy over 10 rounds: 0.5422222222222224
+DT accuracy over 10 rounds: 0.5917777777777778
+LogReg accuracy over 10 rounds: 0.5533333333333335
+XGB accuracy over 10 rounds: 0.58
+
+
+WESAD PHASES 2 --------------------------------------------------
+APD PHASES 1 --------------------------------------------------
+0    223
+1    176
+Name: label, dtype: int64
+SVM accuracy over 10 rounds: 0.42857142857142855
+KNN accuracy over 10 rounds: 0.42857142857142855
+DT accuracy over 10 rounds: 0.42857142857142855
+LogReg accuracy over 10 rounds: 0.43714285714285717
+XGB accuracy over 10 rounds: 0.4228571428571429
+
+
+WESAD PHASES 2 --------------------------------------------------
+APD PHASES 2 --------------------------------------------------
+0    158
+1    139
+Name: label, dtype: int64
+SVM accuracy over 10 rounds: 0.5199999999999999
+KNN accuracy over 10 rounds: 0.5199999999999999
+DT accuracy over 10 rounds: 0.5216
+LogReg accuracy over 10 rounds: 0.5199999999999999
+XGB accuracy over 10 rounds: 0.5199999999999999
+
+
+WESAD PHASES 2 --------------------------------------------------
+APD PHASES 3 --------------------------------------------------
+0    102
+1     42
+Name: label, dtype: int64
+SVM accuracy over 10 rounds: 0.7699999999999999
+Report:
+Precision: 1.0
+Recall: 0.0
+F1-score: 0.0
+AUC score: 0.5
+KNN accuracy over 10 rounds: 0.7699999999999999
+Report:
+Precision: 1.0
+Recall: 0.0
+F1-score: 0.0
+AUC score: 0.5
+DT accuracy over 10 rounds: 0.384
+LogReg accuracy over 10 rounds: 0.7699999999999999
+Report:
+Precision: 1.0
+Recall: 0.0
+F1-score: 0.0
+AUC score: 0.5
+XGB accuracy over 10 rounds: 0.36
+
+
+WESAD PHASES 2 --------------------------------------------------
+APD PHASES 4 --------------------------------------------------
+0    102
+1     42
+Name: label, dtype: int64
+SVM accuracy over 10 rounds: 0.7699999999999999
+Report:
+Precision: 1.0
+Recall: 0.0
+F1-score: 0.0
+AUC score: 0.5
+KNN accuracy over 10 rounds: 0.7699999999999999
+Report:
+Precision: 1.0
+Recall: 0.0
+F1-score: 0.0
+AUC score: 0.5
+DT accuracy over 10 rounds: 0.617
+LogReg accuracy over 10 rounds: 0.7
+Report:
+Precision: 0.18181818181818182
+Recall: 0.08695652173913042
+F1-score: 0.1176470588235294
+AUC score: 0.4850367024280067
+XGB accuracy over 10 rounds: 0.66
+Report:
+Precision: 0.13333333333333333
+Recall: 0.08695652173913042
+F1-score: 0.10526315789473686
+AUC score: 0.45906267645398086
+
+
+WESAD PHASES 3 --------------------------------------------------
+APD PHASES 0 --------------------------------------------------
+0    264
+1    209
+Name: label, dtype: int64
+SVM accuracy over 10 rounds: 0.5422222222222224
+KNN accuracy over 10 rounds: 0.5422222222222224
+DT accuracy over 10 rounds: 0.5515555555555556
+LogReg accuracy over 10 rounds: 0.5488888888888888
+XGB accuracy over 10 rounds: 0.5422222222222224
+
+
+WESAD PHASES 3 --------------------------------------------------
+APD PHASES 1 --------------------------------------------------
+0    211
+1    160
+Name: label, dtype: int64
+SVM accuracy over 10 rounds: 0.42857142857142855
+KNN accuracy over 10 rounds: 0.42857142857142855
+DT accuracy over 10 rounds: 0.42857142857142855
+LogReg accuracy over 10 rounds: 0.42857142857142855
+XGB accuracy over 10 rounds: 0.42857142857142855
+
+
+WESAD PHASES 3 --------------------------------------------------
+APD PHASES 2 --------------------------------------------------
+0    146
+1    123
+Name: label, dtype: int64
+SVM accuracy over 10 rounds: 0.5199999999999999
+KNN accuracy over 10 rounds: 0.5199999999999999
+DT accuracy over 10 rounds: 0.514
+LogReg accuracy over 10 rounds: 0.5199999999999999
+XGB accuracy over 10 rounds: 0.516
+
+
+WESAD PHASES 3 --------------------------------------------------
+APD PHASES 3 --------------------------------------------------
+0    90
+1    26
+Name: label, dtype: int64
+SVM accuracy over 10 rounds: 0.7699999999999999
+Report:
+Precision: 1.0
+Recall: 0.0
+F1-score: 0.0
+AUC score: 0.5
+KNN accuracy over 10 rounds: 0.7699999999999999
+Report:
+Precision: 1.0
+Recall: 0.0
+F1-score: 0.0
+AUC score: 0.5
+DT accuracy over 10 rounds: 0.765
+Report:
+Precision: 0.5
+Recall: 0.0
+F1-score: 0.0
+AUC score: 0.4967532467532467
+LogReg accuracy over 10 rounds: 0.66
+Report:
+Precision: 0.21052631578947367
+Recall: 0.17391304347826084
+F1-score: 0.1904761904761905
+AUC score: 0.4895539243365331
+XGB accuracy over 10 rounds: 0.7699999999999999
+Report:
+Precision: 1.0
+Recall: 0.0
+F1-score: 0.0
+AUC score: 0.5
+
+
+WESAD PHASES 3 --------------------------------------------------
+APD PHASES 4 --------------------------------------------------
+0    90
+1    26
+Name: label, dtype: int64
+SVM accuracy over 10 rounds: 0.7699999999999999
+Report:
+Precision: 1.0
+Recall: 0.0
+F1-score: 0.0
+AUC score: 0.5
+KNN accuracy over 10 rounds: 0.7699999999999999
+Report:
+Precision: 1.0
+Recall: 0.0
+F1-score: 0.0
+AUC score: 0.5
+DT accuracy over 10 rounds: 0.742
+Report:
+Precision: 0.18
+Recall: 0.03913043478260869
+F1-score: 0.06428571428571428
+AUC score: 0.49553924336533034
+LogReg accuracy over 10 rounds: 0.6100000000000001
+XGB accuracy over 10 rounds: 0.76
+Report:
+Precision: 0.0
+Recall: 0.0
+F1-score: 0.0
+AUC score: 0.49350649350649356
+
+
