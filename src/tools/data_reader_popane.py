@@ -4,19 +4,40 @@ import os
 import pandas as pd
 
 
+class Paths:
+    ROOT_DIR = "C:\\Users\\zhoux\\Desktop\\Projects\\anxiety"
+    DATA_DIR = os.path.join(ROOT_DIR, "data")
+    POPANE = os.path.join(DATA_DIR, "POPANE")
+    METRICS = os.path.join(DATA_DIR, "metrics", "POPANE")
+    STUDY1 = os.path.join(POPANE, "Study1")
+    STUDY2 = os.path.join(POPANE, "Study2")
+    STUDY3 = os.path.join(POPANE, "Study3")
+    STUDY4 = os.path.join(POPANE, "Study4")
+    STUDY5 = os.path.join(POPANE, "Study5")
+    STUDY6 = os.path.join(POPANE, "Study6")
+    STUDY7 = os.path.join(POPANE, "Study7")
+    
+
 class Study1:
     BASELINE = "Baseline"
     POSITIVE_EMOTION_HIGH_APPROACH = "Positive_Emotion_High_Approach"
     THREAT = "Threat"
     NEUTRAL = "Neutral8"
     ALL = [BASELINE, POSITIVE_EMOTION_HIGH_APPROACH, THREAT, NEUTRAL]
+    positive_emotion_subjects = sorted(set([int(f.split("_")[1][1:]) for f in glob.glob(os.path.join(Paths.STUDY1, f"*Positive*"))]))
 
 
 class Study2:
     BASELINE = "Baseline"
+    POSITIVE_EMOTION_HIGH_APPROACH = "Positive_Emotion_High_Approach"
     POSITIVE_EMOTION_LOW_APPROACH = "Positive_Emotion_Low_Approach"
+    NEUTRAL = "Neutral8"
+    THREAT = "Threat"
     ANGER = "Anger4"
-    ALL = [BASELINE, POSITIVE_EMOTION_LOW_APPROACH, ANGER]
+    ALL = [BASELINE, POSITIVE_EMOTION_HIGH_APPROACH, POSITIVE_EMOTION_LOW_APPROACH, NEUTRAL, THREAT, ANGER]
+    positive_emotion_subjects = sorted(set([int(f.split("_")[1][1:]) for f in glob.glob(os.path.join(Paths.STUDY2, f"*Positive*"))]))
+    neutral_subjects = sorted(set([int(f.split("_")[1][1:]) for f in glob.glob(os.path.join(Paths.STUDY2, f"*Neutral*"))]))
+    threat_subjects = sorted(set([int(f.split("_")[1][1:]) for f in glob.glob(os.path.join(Paths.STUDY2, f"*Threat*"))]))
 
 
 class Study3:
@@ -34,6 +55,7 @@ class Study4:
 
 
 class Study5:
+    BASELINE = "Baseline"
     ANGER1 = "Anger1"
     ANGER2 = "Anger2"
     ANGER3 = "Anger3"
@@ -44,6 +66,9 @@ class Study5:
     AMUSEMENT3 = "Amusement3"
     AMUSEMENT4 = "Amusement4"
     ALL = [ANGER1, ANGER2, ANGER3, NEUTRAL1, NEUTRAL6, NEUTRAL7, AMUSEMENT2, AMUSEMENT3, AMUSEMENT4]
+    anger_subjects = sorted(set([int(f.split("_")[1][1:]) for f in glob.glob(os.path.join(Paths.STUDY5, f"*Anger*"))]))
+    neutral_subjects = sorted(set([int(f.split("_")[1][1:]) for f in glob.glob(os.path.join(Paths.STUDY5, f"*Neutral*"))]))
+    amusement_subjects = sorted(set([int(f.split("_")[1][1:]) for f in glob.glob(os.path.join(Paths.STUDY5, f"*Amusement*"))]))
 
 
 class Study6:
@@ -89,7 +114,6 @@ HIGH_AROUSAL = [
     Study1.POSITIVE_EMOTION_HIGH_APPROACH,
     Study1.THREAT,
     Study3.GRATITUDE,
-    Study4.FEAR,
     Study5.ANGER1,
     Study5.ANGER2,
     Study5.ANGER3,
@@ -112,20 +136,6 @@ class Signals:
     EDA = "EDA"
     TEMP = "temp"
     RESP = "respiration"
-
-
-class Paths:
-    ROOT_DIR = "C:\\Users\\zhoux\\Desktop\\Projects\\anxiety"
-    DATA_DIR = os.path.join(ROOT_DIR, "data")
-    POPANE = os.path.join(DATA_DIR, "POPANE")
-    METRICS = os.path.join(DATA_DIR, "metrics", "POPANE")
-    STUDY1 = os.path.join(POPANE, "Study1")
-    STUDY2 = os.path.join(POPANE, "Study2")
-    STUDY3 = os.path.join(POPANE, "Study3")
-    STUDY4 = os.path.join(POPANE, "Study4")
-    STUDY5 = os.path.join(POPANE, "Study5")
-    STUDY6 = os.path.join(POPANE, "Study6")
-    STUDY7 = os.path.join(POPANE, "Study7")
 
 
 def get_subjects(study_num):
@@ -165,5 +175,8 @@ def get_affect_labels(study, phases, threshold="fixed"):
 
 
 if __name__ == "__main__":
-    data = get_data_for_subject(5, 285, Study5.ANGER2, Signals.ECG)
-    print(data.head())
+    print(Study1.positive_emotion_subjects)
+    print(Study2.positive_emotion_subjects)
+    print(Study2.threat_subjects)
+    print(Study5.anger_subjects)
+    print(Study5.amusement_subjects)

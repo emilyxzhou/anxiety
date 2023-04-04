@@ -197,8 +197,8 @@ class Train_APD:
         data_y = pd.concat([ha_rankings, la_rankings], axis=0).reset_index(drop=True)
 
         for phase in phases:
-            if verbose: print(f"Generating features for phase {phase} " + "-"*30)
             phase_id = phases.index(phase)
+            if verbose: print(f"Generating features for phase {phase}, ID {phase_id} " + "-"*30)
             ha_features = []
             la_features = []
 
