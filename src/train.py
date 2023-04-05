@@ -134,7 +134,7 @@ def train_predict(models, x, y, test_size=0.15, by_subject=True, save_metrics=Tr
 
 class Train_APD:
     
-    def get_ratings(threshold="fixed"):
+    def get_ratings(threshold="dynamic"):
         SUDS_labels = [
             "Participant",
             "Baseline_SUDS",
@@ -181,7 +181,7 @@ class Train_APD:
         return ha_rankings, la_rankings
 
 
-    def get_apd_data_ranking(metrics, phases, verbose=False, anxiety_label_type=None, threshold="fixed"):
+    def get_apd_data_ranking(metrics, phases, verbose=False, anxiety_label_type=None, threshold="dynamic"):
         """
         anxiety_label_type: can be None, "Trait", "Anxiety", "Depression", "Gender", "Random"
             - Adds an extra feature vector 
@@ -306,7 +306,7 @@ class Train_WESAD:
 
         return stai_scores, dim_scores_arousal, dim_scores_valence
 
-    def get_wesad_data(metrics, phases, verbose=False, label_type="stai", normalize=True, threshold="fixed"):
+    def get_wesad_data(metrics, phases, verbose=False, label_type="stai", normalize=True, threshold="dynamic"):
         """
         label_type: "stai", "arousal", "valence", "all"
             label_type == "all": classification between stress and non-stress phases
@@ -415,7 +415,7 @@ class Train_WESAD:
     
 class Train_POPANE:
 
-    def get_popane_data(study, metrics, phases, verbose=False, normalize=True, label_type="affect", threshold="fixed"):
+    def get_popane_data(study, metrics, phases, verbose=False, normalize=True, label_type="affect", threshold="dynamic"):
         metrics_folder = os.path.join(dr_p.Paths.METRICS, study)
         columns = metrics.copy()
         columns.insert(0, "subject")
@@ -427,8 +427,8 @@ class Train_POPANE:
         data_y = []
 
         for phase in phases:
-            if verbose: print(f"Generating features for phase {phase} " + "-"*30)
             phase_id = phases.index(phase)
+            if verbose: print(f"Generating features for phase {phase}, ID {phase_id} " + "-"*30)
             features = []
 
             for i in range(len(metrics)):

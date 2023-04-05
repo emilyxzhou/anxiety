@@ -280,8 +280,8 @@ def get_lf_rr(ecg, fs=FS_DICT[dr.DataTypes.ECG], window_size=55):
         segment = ecg
         freq, amp = calculate_fft_1d(segment, fs)
         
-        low = 0.15
-        high = 0.4
+        low = 0.04
+        high = 0.15
         freq[freq < low] = 0
         freq[freq > high] = 0
         amp = np.multiply(freq, amp)

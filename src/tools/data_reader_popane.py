@@ -21,10 +21,11 @@ class Paths:
 class Study1:
     BASELINE = "Baseline"
     POSITIVE_EMOTION_HIGH_APPROACH = "Positive_Emotion_High_Approach"
+    POSITIVE_EMOTION_LOW_APPROACH = "Positive_Emotion_Low_Approach"
     THREAT = "Threat"
     NEUTRAL = "Neutral8"
-    ALL = [BASELINE, POSITIVE_EMOTION_HIGH_APPROACH, THREAT, NEUTRAL]
-    positive_emotion_subjects = sorted(set([int(f.split("_")[1][1:]) for f in glob.glob(os.path.join(Paths.STUDY1, f"*Positive*"))]))
+    ALL = [BASELINE, POSITIVE_EMOTION_HIGH_APPROACH, POSITIVE_EMOTION_LOW_APPROACH, THREAT, NEUTRAL]
+    positive_emotion_subjects = sorted(set([float(f.split("_")[1][1:]) for f in glob.glob(os.path.join(Paths.STUDY1, f"*Positive*"))]))
 
 
 class Study2:
@@ -35,9 +36,9 @@ class Study2:
     THREAT = "Threat"
     ANGER = "Anger4"
     ALL = [BASELINE, POSITIVE_EMOTION_HIGH_APPROACH, POSITIVE_EMOTION_LOW_APPROACH, NEUTRAL, THREAT, ANGER]
-    positive_emotion_subjects = sorted(set([int(f.split("_")[1][1:]) for f in glob.glob(os.path.join(Paths.STUDY2, f"*Positive*"))]))
-    neutral_subjects = sorted(set([int(f.split("_")[1][1:]) for f in glob.glob(os.path.join(Paths.STUDY2, f"*Neutral*"))]))
-    threat_subjects = sorted(set([int(f.split("_")[1][1:]) for f in glob.glob(os.path.join(Paths.STUDY2, f"*Threat*"))]))
+    positive_emotion_subjects = sorted(set([float(f.split("_")[1][1:]) for f in glob.glob(os.path.join(Paths.STUDY2, f"*Positive*"))]))
+    neutral_subjects = sorted(set([float(f.split("_")[1][1:]) for f in glob.glob(os.path.join(Paths.STUDY2, f"*Neutral*"))]))
+    threat_subjects = sorted(set([float(f.split("_")[1][1:]) for f in glob.glob(os.path.join(Paths.STUDY2, f"*Threat*"))]))
 
 
 class Study3:
@@ -66,9 +67,9 @@ class Study5:
     AMUSEMENT3 = "Amusement3"
     AMUSEMENT4 = "Amusement4"
     ALL = [ANGER1, ANGER2, ANGER3, NEUTRAL1, NEUTRAL6, NEUTRAL7, AMUSEMENT2, AMUSEMENT3, AMUSEMENT4]
-    anger_subjects = sorted(set([int(f.split("_")[1][1:]) for f in glob.glob(os.path.join(Paths.STUDY5, f"*Anger*"))]))
-    neutral_subjects = sorted(set([int(f.split("_")[1][1:]) for f in glob.glob(os.path.join(Paths.STUDY5, f"*Neutral*"))]))
-    amusement_subjects = sorted(set([int(f.split("_")[1][1:]) for f in glob.glob(os.path.join(Paths.STUDY5, f"*Amusement*"))]))
+    anger_subjects = sorted(set([float(f.split("_")[1][1:]) for f in glob.glob(os.path.join(Paths.STUDY5, f"*Anger*"))]))
+    neutral_subjects = sorted(set([float(f.split("_")[1][1:]) for f in glob.glob(os.path.join(Paths.STUDY5, f"*Neutral*"))]))
+    amusement_subjects = sorted(set([float(f.split("_")[1][1:]) for f in glob.glob(os.path.join(Paths.STUDY5, f"*Amusement*"))]))
 
 
 class Study6:
@@ -175,8 +176,9 @@ def get_affect_labels(study, phases, threshold="fixed"):
 
 
 if __name__ == "__main__":
+    print(len(Study1.positive_emotion_subjects))
     print(Study1.positive_emotion_subjects)
-    print(Study2.positive_emotion_subjects)
-    print(Study2.threat_subjects)
-    print(Study5.anger_subjects)
-    print(Study5.amusement_subjects)
+    # print(Study2.positive_emotion_subjects)
+    # print(Study2.threat_subjects)
+    # print(Study5.anger_subjects)
+    # print(Study5.amusement_subjects)
