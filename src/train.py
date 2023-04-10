@@ -90,7 +90,7 @@ def train_test_split(x, y, test_size=0.15, by_subject=True):
     return x_train, y_train, x_test, y_test, indices
 
 
-def train_predict(models, x, y, test_size=0.15, by_subject=True, save_metrics=True, get_shap_values=False):
+def train_predict(models, x, y, test_size=0.15, by_subject=True, save_metrics=True, get_shap_values=False, print_preds=False):
     """
     models: dictionary of {"name": model}
     """
@@ -106,6 +106,10 @@ def train_predict(models, x, y, test_size=0.15, by_subject=True, save_metrics=Tr
         model = models[model_name]
         model.fit(x_train, y_train.loc[:, "label"])
         y_pred = model.predict(x_test)
+        
+        if (len(np.unique(y_pred))) == 1:
+            print(f"Only one value in predictions: {np.unique(y_pred)[0]}")
+
         acc = accuracy_score(y_test, y_pred)
         if save_metrics:
             precision = precision_score(y_test, y_pred, zero_division=0)
@@ -120,7 +124,9 @@ def train_predict(models, x, y, test_size=0.15, by_subject=True, save_metrics=Tr
             }
         else:
             report = None
-        if get_shap_values and acc > 0.65:
+        if print_preds and acc > 0.5:
+            print(y_pred)
+        if get_shap_values and acc > 0.5:
             try: 
                 explainer = shap.Explainer(model)
             except Exception as e:
@@ -569,7 +575,7 @@ class Train_POPANE:
 
 class Train_Multi_Dataset:
     
-    def train_across_datasets(models, dataset_a_x, dataset_a_y, dataset_b_x, dataset_b_y, test_size=0.80, by_subject=True, save_metrics=True, target_names=["A", "B"], get_shap_values=False):
+    def train_across_datasets(models, dataset_a_x, dataset_a_y, dataset_b_x, dataset_b_y, test_size=0.80, by_subject=True, save_metrics=True, target_names=["1", "0"], get_shap_values=False):
         """
         test_size: Proportion of dataset_b to hold out for model testing.
         """
@@ -592,6 +598,10 @@ class Train_Multi_Dataset:
             model = models[model_name]
             model = model.fit(x_train, y_train.loc[:, "label"])
             y_pred = model.predict(x_test)
+
+            if (len(np.unique(y_pred))) == 1:
+                print(f"Only one value in predictions: {np.unique(y_pred)[0]}")
+
             acc = accuracy_score(y_test, y_pred)
             if save_metrics:
                 precision = precision_score(y_test, y_pred, zero_division=1)
