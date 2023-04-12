@@ -187,7 +187,7 @@ class Train_APD:
         return ha_rankings, la_rankings
 
 
-    def get_apd_data_ranking(metrics, phases, verbose=False, anxiety_label_type=None, threshold="dynamic"):
+    def get_apd_data_ranking(metrics, phases, verbose=False, anxiety_label_type=None, threshold="dynamic", normalize=False):
         """
         anxiety_label_type: can be None, "Trait", "Anxiety", "Depression", "Gender", "Random"
             - Adds an extra feature vector 
@@ -273,6 +273,12 @@ class Train_APD:
             data_x.append(x)
         
         data_x = pd.concat(data_x).reset_index(drop=True)
+
+        if normalize:
+            for metric in metrics:
+                data_col = data_x[metric]
+                data_col = (data_col - data_col.min())/(data_col.max() - data_col.min())
+                data_x[metric] = data_col
         # data_x.sort_values(by=["phaseId", "subject"], inplace=True)
 
         # print(data_x.head())
