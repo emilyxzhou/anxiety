@@ -187,7 +187,7 @@ class Train_APD:
         return ha_rankings, la_rankings
 
 
-    def get_apd_data_ranking(metrics, phases, verbose=False, anxiety_label_type=None, threshold="dynamic", normalize=False):
+    def get_apd_data_ranking(metrics, phases, verbose=False, anxiety_label_type=None, threshold="dynamic", normalize=False, binary_labels=True):
         """
         anxiety_label_type: can be None, "Trait", "Anxiety", "Depression", "Gender", "Random"
             - Adds an extra feature vector 
@@ -318,7 +318,7 @@ class Train_WESAD:
 
         return stai_scores, dim_scores_arousal, dim_scores_valence
 
-    def get_wesad_data(metrics, phases, verbose=False, label_type="stai", normalize=True, threshold="dynamic"):
+    def get_wesad_data(metrics, phases, verbose=False, label_type="stai", normalize=True, threshold="dynamic", binary_labels=True):
         """
         label_type: "stai", "arousal", "valence", "all"
             label_type == "all": classification between stress and non-stress phases
@@ -398,14 +398,19 @@ class Train_WESAD:
 
             y_labels = []
             for i in range(scores.shape[0]):
-                if threshold != "fixed":
-                    label_mean = scores.iloc[i, 1:].mean()
-                labels = [scores.iloc[i, 0]]  # subject ID
-                for j in range(1, scores.shape[1]):
-                    if scores.iloc[i, j] < label_mean:
-                        labels.append(0)
-                    else:
-                        labels.append(1)
+                if binary_labels:
+                    if threshold != "fixed":
+                        label_mean = scores.iloc[i, 1:].mean()
+                    labels = [scores.iloc[i, 0]]  # subject ID
+                    for j in range(1, scores.shape[1]):
+                        if scores.iloc[i, j] < label_mean:
+                            labels.append(0)
+                        else:
+                            labels.append(1)
+                else:
+                    labels = [scores.iloc[i, 0]]  # subject ID
+                    for j in range(1, scores.shape[1]):
+                        labels.append(scores.iloc[i, j])
                 y_labels.append(labels)
             y_labels = pd.DataFrame(data=y_labels, columns=columns)
 
@@ -427,7 +432,7 @@ class Train_WESAD:
     
 class Train_POPANE:
 
-    def get_popane_data(study, metrics, phases, verbose=False, normalize=True, label_type="affect", threshold="dynamic"):
+    def get_popane_data(study, metrics, phases, verbose=False, normalize=True, label_type="affect", threshold="dynamic", binary_labels=True):
         metrics_folder = os.path.join(dr_p.Paths.METRICS, study)
         columns = metrics.copy()
         columns.insert(0, "subject")
@@ -487,7 +492,7 @@ class Train_POPANE:
                     y_labels.append(1)
         elif label_type == "valence":
             for i in range(data_x.shape[0]):
-                if phases[data_x.loc[i, "phaseId"]] in dr_p.HIGH_AROUSAL:
+                if phases[data_x.loc[i, "phaseId"]] in dr_p.HIGH_VALENCE:
                     y_labels.append(0)
                 else:
                     y_labels.append(1)
@@ -497,17 +502,21 @@ class Train_POPANE:
                 subject = data_x.iloc[i, :].loc["subject"]
                 row = self_report_df.loc[self_report_df["subject"] == subject, :].iloc[:, 1:].replace(-1, np.NaN)
                 phase = phases[data_x.loc[i, "phaseId"]]
-                if threshold == "fixed":
-                    mean_report = 5
-                else:
-                    mean_report = np.nanmean(row)
-                try:
-                    if row.loc[:, phase].iloc[0] < mean_report:
-                        y_labels.append(0)
+                if binary_labels:
+                    if threshold == "fixed":
+                        mean_report = 5
                     else:
-                        y_labels.append(1)
-                except Exception as e:
-                    continue
+                        mean_report = np.nanmean(row)
+                    try:
+                        if row.loc[:, phase].iloc[0] < mean_report:
+                            y_labels.append(0)
+                        else:
+                            y_labels.append(1)
+                    except Exception as e:
+                        continue
+                else:
+                    print(row.loc[:, phase].iloc[0])
+                    y_labels.append(row.loc[:, phase].iloc[0])
 
         y_labels = pd.Series(data=y_labels)
         data_y = pd.DataFrame({"subject": subjects, "label": y_labels})

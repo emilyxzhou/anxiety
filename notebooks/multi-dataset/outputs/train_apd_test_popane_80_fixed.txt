@@ -1,210 +1,548 @@
 APD PHASES 0 --------------------------------------------------
 POPANE Study1 --------------------------------------------------
-1    581
-0    245
+y_a:
+1    253
+0     71
 Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.5985318146866591
-LogReg accuracy over 10 rounds: 0.6401179834678971
-XGB accuracy over 10 rounds: 0.554211120722799
-
-
-APD PHASES 0 --------------------------------------------------
-POPANE Study2 --------------------------------------------------
-1    559
-0    227
+y_b:
+1    276
+0    138
 Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.6188550605149159
-LogReg accuracy over 10 rounds: 0.6448613915091185
-XGB accuracy over 10 rounds: 0.5850328715599582
-
-
-APD PHASES 0 --------------------------------------------------
-POPANE Study3 --------------------------------------------------
-1    560
-0    316
-Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.5655783382266637
-LogReg accuracy over 10 rounds: 0.5480208628122749
-XGB accuracy over 10 rounds: 0.5337839148702426
-
-
-APD PHASES 0 --------------------------------------------------
-POPANE Study5 --------------------------------------------------
-1    699
-0    349
-Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.6076431923462727
-LogReg accuracy over 10 rounds: 0.588429305425177
-XGB accuracy over 10 rounds: 0.582467298764536
-
-
-APD PHASES 1 --------------------------------------------------
-POPANE Study1 --------------------------------------------------
-1    503
-0    221
-Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.5979178681276431
-LogReg accuracy over 10 rounds: 0.6273800941945405
-XGB accuracy over 10 rounds: 0.5545967896962708
-
-
-APD PHASES 1 --------------------------------------------------
-POPANE Study2 --------------------------------------------------
-1    481
-0    203
-Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.6191371857022487
-LogReg accuracy over 10 rounds: 0.640306259925077
-XGB accuracy over 10 rounds: 0.5742770352063249
-
-
-APD PHASES 1 --------------------------------------------------
-POPANE Study3 --------------------------------------------------
-1    482
-0    292
-Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.5467137161011302
-LogReg accuracy over 10 rounds: 0.5242553608890306
-XGB accuracy over 10 rounds: 0.5293968166777834
-
-
-APD PHASES 1 --------------------------------------------------
-POPANE Study5 --------------------------------------------------
-1    621
-0    325
-Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.6137795454959634
-LogReg accuracy over 10 rounds: 0.5819856760155269
-XGB accuracy over 10 rounds: 0.5958586189929473
-
-
-APD PHASES 2 --------------------------------------------------
-POPANE Study1 --------------------------------------------------
-1    426
-0    196
-Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.6029130871415503
-LogReg accuracy over 10 rounds: 0.6233176646250116
-XGB accuracy over 10 rounds: 0.5489477936204908
-
-
-APD PHASES 2 --------------------------------------------------
-POPANE Study2 --------------------------------------------------
-1    404
-0    178
-Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.6239265482421532
-LogReg accuracy over 10 rounds: 0.645175717543561
-XGB accuracy over 10 rounds: 0.5833768744496336
-
-
-APD PHASES 2 --------------------------------------------------
-POPANE Study3 --------------------------------------------------
-1    405
-0    267
-Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.5571394233244205
-LogReg accuracy over 10 rounds: 0.5419740254174914
-XGB accuracy over 10 rounds: 0.5122401853037579
-
-
-APD PHASES 2 --------------------------------------------------
-POPANE Study5 --------------------------------------------------
-1    544
-0    300
-Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.6053683049951706
-LogReg accuracy over 10 rounds: 0.5927847028593297
-XGB accuracy over 10 rounds: 0.5793345543345543
-
-
-APD PHASES 3 --------------------------------------------------
-POPANE Study1 --------------------------------------------------
-1    309
-0    160
-Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.5840405132641291
-LogReg accuracy over 10 rounds: 0.6203693788198172
-XGB accuracy over 10 rounds: 0.5460498283153694
-
-
-APD PHASES 3 --------------------------------------------------
-POPANE Study2 --------------------------------------------------
-1    287
-0    142
-Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.6098245347667429
-LogReg accuracy over 10 rounds: 0.6512488299446504
+Only one value in predictions: 1
+SVM accuracy over 10 rounds: 0.6430186848854041
+Model evaluation metrics for SVM:
+Precision: 0.7008809179612088
+Recall: 0.8255030457706193
+F1-score: 0.7574671292112949
+AUC score: 0.5440872293828256
+LogReg accuracy over 10 rounds: 0.6749592806023267
 Model evaluation metrics for LogReg:
-Precision: 0.6738031762623022
-Recall: 0.9272713175595249
-F1-score: 0.7746284548602835
-AUC score: 0.5305253154391304
-XGB accuracy over 10 rounds: 0.5605798503882014
+Precision: 0.68318508752984
+Recall: 0.9703279630105979
+F1-score: 0.8014628861185169
+AUC score: 0.5145452972296356
+XGB accuracy over 10 rounds: 0.5807118440554586
+
+
+APD PHASES 0 --------------------------------------------------
+POPANE Study2 --------------------------------------------------
+y_a:
+1    253
+0     71
+Name: label, dtype: int64
+y_b:
+1    352
+0    184
+Name: label, dtype: int64
+SVM accuracy over 10 rounds: 0.6349746723247832
+Model evaluation metrics for SVM:
+Precision: 0.6906223410658411
+Recall: 0.8192345713511513
+F1-score: 0.7488452146430744
+AUC score: 0.544572909866256
+LogReg accuracy over 10 rounds: 0.6407950027042019
+Model evaluation metrics for LogReg:
+Precision: 0.6769395875446955
+Recall: 0.8846969060431495
+F1-score: 0.7657169918490057
+AUC score: 0.5215983590095596
+XGB accuracy over 10 rounds: 0.5753502341389015
+
+
+APD PHASES 0 --------------------------------------------------
+POPANE Study3 --------------------------------------------------
+y_a:
+1    253
+0     71
+Name: label, dtype: int64
+y_b:
+1    213
+0    204
+Name: label, dtype: int64
+SVM accuracy over 10 rounds: 0.5555449489337771
+LogReg accuracy over 10 rounds: 0.5345613074333265
+XGB accuracy over 10 rounds: 0.5245915133483431
+
+
+APD PHASES 0 --------------------------------------------------
+POPANE Study5 --------------------------------------------------
+y_a:
+1    253
+0     71
+Name: label, dtype: int64
+y_b:
+1    352
+0    237
+Name: label, dtype: int64
+SVM accuracy over 10 rounds: 0.611090153627467
+Model evaluation metrics for SVM:
+Precision: 0.6360249912410219
+Recall: 0.8156428667375442
+F1-score: 0.714125065072643
+AUC score: 0.5627409379967251
+LogReg accuracy over 10 rounds: 0.5923190822444553
+XGB accuracy over 10 rounds: 0.5863521221730176
+
+
+APD PHASES 1 --------------------------------------------------
+POPANE Study1 --------------------------------------------------
+y_a:
+1    196
+0     56
+Name: label, dtype: int64
+y_b:
+1    276
+0    138
+Name: label, dtype: int64
+SVM accuracy over 10 rounds: 0.6378255842059183
+Model evaluation metrics for SVM:
+Precision: 0.697823330995577
+Recall: 0.8217501122350532
+F1-score: 0.7543104009719352
+AUC score: 0.5369990867103904
+LogReg accuracy over 10 rounds: 0.6693292435113254
+Model evaluation metrics for LogReg:
+Precision: 0.684657506559184
+Recall: 0.9515663471371404
+F1-score: 0.795645592642628
+AUC score: 0.51492375019006
+XGB accuracy over 10 rounds: 0.5801872866056523
+
+
+APD PHASES 1 --------------------------------------------------
+POPANE Study2 --------------------------------------------------
+y_a:
+1    196
+0     56
+Name: label, dtype: int64
+y_b:
+1    352
+0    184
+Name: label, dtype: int64
+Only one value in predictions: 1
+SVM accuracy over 10 rounds: 0.6235990435357183
+Model evaluation metrics for SVM:
+Precision: 0.6864928247235407
+Recall: 0.8032180932118778
+F1-score: 0.7396795825298735
+AUC score: 0.5345733730061256
+LogReg accuracy over 10 rounds: 0.6427054131518505
+Model evaluation metrics for LogReg:
+Precision: 0.6817095059881211
+Recall: 0.8896350096698583
+F1-score: 0.7652083600922377
+AUC score: 0.5246901097493223
+XGB accuracy over 10 rounds: 0.5636983615409077
+
+
+APD PHASES 1 --------------------------------------------------
+POPANE Study3 --------------------------------------------------
+y_a:
+1    196
+0     56
+Name: label, dtype: int64
+y_b:
+1    213
+0    204
+Name: label, dtype: int64
+SVM accuracy over 10 rounds: 0.5564741641337386
+LogReg accuracy over 10 rounds: 0.523366491664364
+XGB accuracy over 10 rounds: 0.5340029474072027
+
+
+APD PHASES 1 --------------------------------------------------
+POPANE Study5 --------------------------------------------------
+y_a:
+1    196
+0     56
+Name: label, dtype: int64
+y_b:
+1    352
+0    237
+Name: label, dtype: int64
+SVM accuracy over 10 rounds: 0.6164375011389938
+Model evaluation metrics for SVM:
+Precision: 0.6362064678035655
+Recall: 0.8294554962698102
+F1-score: 0.7196030213356555
+AUC score: 0.567495981070637
+LogReg accuracy over 10 rounds: 0.5893285404479434
+XGB accuracy over 10 rounds: 0.6004255280374683
+Model evaluation metrics for XGB:
+Precision: 0.6439387330749609
+Recall: 0.7340583285286069
+F1-score: 0.6852873845748804
+AUC score: 0.570009306327937
+
+
+APD PHASES 2 --------------------------------------------------
+POPANE Study1 --------------------------------------------------
+y_a:
+1    140
+0     40
+Name: label, dtype: int64
+y_b:
+1    276
+0    138
+Name: label, dtype: int64
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+SVM accuracy over 10 rounds: 0.6410545195674973
+Model evaluation metrics for SVM:
+Precision: 0.6891388489904112
+Recall: 0.8454678783303994
+F1-score: 0.7590139984302237
+AUC score: 0.5366416835452175
+LogReg accuracy over 10 rounds: 0.6679968366844913
+Model evaluation metrics for LogReg:
+Precision: 0.6724436173483961
+Recall: 0.9841373770257485
+F1-score: 0.7987266549238543
+AUC score: 0.5063200645165867
+XGB accuracy over 10 rounds: 0.5950485225981103
+
+
+APD PHASES 2 --------------------------------------------------
+POPANE Study2 --------------------------------------------------
+y_a:
+1    140
+0     40
+Name: label, dtype: int64
+y_b:
+1    352
+0    184
+Name: label, dtype: int64
+SVM accuracy over 10 rounds: 0.628152074402311
+Model evaluation metrics for SVM:
+Precision: 0.6891881851985103
+Recall: 0.8052250432532475
+F1-score: 0.7418227794073714
+AUC score: 0.5423721586187384
+LogReg accuracy over 10 rounds: 0.6492403555992159
+Model evaluation metrics for LogReg:
+Precision: 0.673570335137702
+Recall: 0.9245079176554029
+F1-score: 0.777072412476594
+AUC score: 0.5168257662185715
+XGB accuracy over 10 rounds: 0.5777910354822511
+
+
+APD PHASES 2 --------------------------------------------------
+POPANE Study3 --------------------------------------------------
+y_a:
+1    140
+0     40
+Name: label, dtype: int64
+y_b:
+1    213
+0    204
+Name: label, dtype: int64
+SVM accuracy over 10 rounds: 0.5600011492439338
+LogReg accuracy over 10 rounds: 0.5205877506179621
+XGB accuracy over 10 rounds: 0.5372728051875703
+
+
+APD PHASES 2 --------------------------------------------------
+POPANE Study5 --------------------------------------------------
+y_a:
+1    140
+0     40
+Name: label, dtype: int64
+y_b:
+1    352
+0    237
+Name: label, dtype: int64
+SVM accuracy over 10 rounds: 0.618435400737719
+Model evaluation metrics for SVM:
+Precision: 0.6407841839165069
+Recall: 0.8222177784027773
+F1-score: 0.7197074244120392
+AUC score: 0.5705447063666135
+LogReg accuracy over 10 rounds: 0.5932531501172339
+XGB accuracy over 10 rounds: 0.5908981590372507
+
+
+APD PHASES 3 --------------------------------------------------
+POPANE Study1 --------------------------------------------------
+y_a:
+1    55
+0    17
+Name: label, dtype: int64
+y_b:
+1    276
+0    138
+Name: label, dtype: int64
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+SVM accuracy over 10 rounds: 0.6264952800712354
+Model evaluation metrics for SVM:
+Precision: 0.688127725900048
+Recall: 0.8136941713501618
+F1-score: 0.7451628223034975
+AUC score: 0.5291736041859306
+LogReg accuracy over 10 rounds: 0.6703483178984951
+Model evaluation metrics for LogReg:
+Precision: 0.6716289936501699
+Recall: 0.9968658128072431
+F1-score: 0.8024710733724068
+AUC score: 0.4994329064036215
+XGB accuracy over 10 rounds: 0.5906120970453722
+
+
+APD PHASES 3 --------------------------------------------------
+POPANE Study2 --------------------------------------------------
+y_a:
+1    55
+0    17
+Name: label, dtype: int64
+y_b:
+1    352
+0    184
+Name: label, dtype: int64
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+SVM accuracy over 10 rounds: 0.6253423045134726
+Model evaluation metrics for SVM:
+Precision: 0.683448169515235
+Recall: 0.8103328337950456
+F1-score: 0.7401223703597266
+AUC score: 0.5395411635120019
+LogReg accuracy over 10 rounds: 0.6582769035294183
+Model evaluation metrics for LogReg:
+Precision: 0.6619141233330811
+Recall: 0.9882781382722058
+F1-score: 0.7925371643978708
+AUC score: 0.5026786629505966
+XGB accuracy over 10 rounds: 0.5777890979566209
 
 
 APD PHASES 3 --------------------------------------------------
 POPANE Study3 --------------------------------------------------
-1    288
-0    231
+y_a:
+1    55
+0    17
 Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.5617317965187091
-LogReg accuracy over 10 rounds: 0.528980442539612
-XGB accuracy over 10 rounds: 0.5407922882114564
+y_b:
+1    213
+0    204
+Name: label, dtype: int64
+Only one value in predictions: 1
+SVM accuracy over 10 rounds: 0.5507813383933459
+LogReg accuracy over 10 rounds: 0.5195386495187229
+XGB accuracy over 10 rounds: 0.5252705467701932
 
 
 APD PHASES 3 --------------------------------------------------
 POPANE Study5 --------------------------------------------------
-1    427
-0    264
+y_a:
+1    55
+0    17
 Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.6227281506116057
-LogReg accuracy over 10 rounds: 0.579215804307897
-XGB accuracy over 10 rounds: 0.5980001035272551
+y_b:
+1    352
+0    237
+Name: label, dtype: int64
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+SVM accuracy over 10 rounds: 0.6047400360833197
+Model evaluation metrics for SVM:
+Precision: 0.6317551550862943
+Recall: 0.7984580315190117
+F1-score: 0.70473840819097
+AUC score: 0.5615706256591875
+LogReg accuracy over 10 rounds: 0.5848873763052866
+XGB accuracy over 10 rounds: 0.5846600331674958
 
 
 APD PHASES 4 --------------------------------------------------
 POPANE Study1 --------------------------------------------------
-1    309
-0    160
+y_a:
+1    55
+0    17
 Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.5990876851078497
-LogReg accuracy over 10 rounds: 0.6381894397380318
-XGB accuracy over 10 rounds: 0.571438198504554
+y_b:
+1    276
+0    138
+Name: label, dtype: int64
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+SVM accuracy over 10 rounds: 0.6256085944411491
+Model evaluation metrics for SVM:
+Precision: 0.7001806655357286
+Recall: 0.783795886811016
+F1-score: 0.7385560449935997
+AUC score: 0.5395109236218028
+LogReg accuracy over 10 rounds: 0.6727982387399284
+Model evaluation metrics for LogReg:
+Precision: 0.6789686183947697
+Recall: 0.9822451832363337
+F1-score: 0.8023790022490696
+AUC score: 0.5034389635768264
+XGB accuracy over 10 rounds: 0.5783954118338088
 
 
 APD PHASES 4 --------------------------------------------------
 POPANE Study2 --------------------------------------------------
-1    287
-0    142
+y_a:
+1    55
+0    17
 Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.6131512262663538
-LogReg accuracy over 10 rounds: 0.6576186883974825
+y_b:
+1    352
+0    184
+Name: label, dtype: int64
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+SVM accuracy over 10 rounds: 0.612387705290058
+Model evaluation metrics for SVM:
+Precision: 0.6822477865355888
+Recall: 0.7848289352125641
+F1-score: 0.7289182704991577
+AUC score: 0.5278284559057537
+LogReg accuracy over 10 rounds: 0.6563332998644956
 Model evaluation metrics for LogReg:
-Precision: 0.6701656811289445
-Recall: 0.9459259943735804
-F1-score: 0.783672994690966
-AUC score: 0.5274822805675872
-XGB accuracy over 10 rounds: 0.575346089801035
+Precision: 0.6673239202761326
+Recall: 0.9664404539975585
+F1-score: 0.7889927430019096
+AUC score: 0.5030034569797129
+XGB accuracy over 10 rounds: 0.5753475772702888
 
 
 APD PHASES 4 --------------------------------------------------
 POPANE Study3 --------------------------------------------------
-1    288
-0    231
+y_a:
+1    55
+0    17
 Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.5593959818758945
-LogReg accuracy over 10 rounds: 0.5309138131051097
-XGB accuracy over 10 rounds: 0.5303012716537175
+y_b:
+1    213
+0    204
+Name: label, dtype: int64
+SVM accuracy over 10 rounds: 0.579090232901379
+LogReg accuracy over 10 rounds: 0.5142544036495311
+XGB accuracy over 10 rounds: 0.5330313409673184
 
 
 APD PHASES 4 --------------------------------------------------
 POPANE Study5 --------------------------------------------------
-1    427
-0    264
+y_a:
+1    55
+0    17
 Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.6007663149454194
-LogReg accuracy over 10 rounds: 0.5841160497876915
-XGB accuracy over 10 rounds: 0.5941551400506624
+y_b:
+1    352
+0    237
+Name: label, dtype: int64
+Only one value in predictions: 1
+SVM accuracy over 10 rounds: 0.5950895704627047
+LogReg accuracy over 10 rounds: 0.589113042844386
+XGB accuracy over 10 rounds: 0.5872013558580722
+
+
+APD PHASES 5 --------------------------------------------------
+POPANE Study1 --------------------------------------------------
+y_a:
+1    113
+0     31
+Name: label, dtype: int64
+y_b:
+1    276
+0    138
+Name: label, dtype: int64
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+SVM accuracy over 10 rounds: 0.6354281142288196
+Model evaluation metrics for SVM:
+Precision: 0.6991468625515104
+Recall: 0.8113913458848356
+F1-score: 0.7500559336237785
+AUC score: 0.5415390240988531
+LogReg accuracy over 10 rounds: 0.6700365527182469
+Model evaluation metrics for LogReg:
+Precision: 0.6807545577536563
+Recall: 0.9677327913562713
+F1-score: 0.7983691287151997
+AUC score: 0.5105351925675208
+XGB accuracy over 10 rounds: 0.572080710621715
+
+
+APD PHASES 5 --------------------------------------------------
+POPANE Study2 --------------------------------------------------
+y_a:
+1    113
+0     31
+Name: label, dtype: int64
+y_b:
+1    352
+0    184
+Name: label, dtype: int64
+Only one value in predictions: 1
+SVM accuracy over 10 rounds: 0.6280383198086537
+Model evaluation metrics for SVM:
+Precision: 0.6830941782740138
+Recall: 0.8256765895483212
+F1-score: 0.746905924545069
+AUC score: 0.530745153486797
+LogReg accuracy over 10 rounds: 0.6549591991514034
+Model evaluation metrics for LogReg:
+Precision: 0.6697984212459229
+Recall: 0.9527292377805262
+F1-score: 0.785846931102227
+AUC score: 0.5078155022190456
+XGB accuracy over 10 rounds: 0.5777894680322453
+
+
+APD PHASES 5 --------------------------------------------------
+POPANE Study3 --------------------------------------------------
+y_a:
+1    113
+0     31
+Name: label, dtype: int64
+y_b:
+1    213
+0    204
+Name: label, dtype: int64
+SVM accuracy over 10 rounds: 0.551066712636424
+LogReg accuracy over 10 rounds: 0.5240987965774235
+XGB accuracy over 10 rounds: 0.539252187250516
+
+
+APD PHASES 5 --------------------------------------------------
+POPANE Study5 --------------------------------------------------
+y_a:
+1    113
+0     31
+Name: label, dtype: int64
+y_b:
+1    352
+0    237
+Name: label, dtype: int64
+SVM accuracy over 10 rounds: 0.6121892854331723
+Model evaluation metrics for SVM:
+Precision: 0.6395056251360137
+Recall: 0.8009794092089807
+F1-score: 0.7107277398597314
+AUC score: 0.5679408276229893
+LogReg accuracy over 10 rounds: 0.5851180404578308
+XGB accuracy over 10 rounds: 0.5951362003791346
 
 
