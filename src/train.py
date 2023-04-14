@@ -275,14 +275,16 @@ class Train_APD:
         data_x = pd.concat(data_x).reset_index(drop=True)
 
         if normalize:
+            # normalize columns
             for metric in metrics:
                 data_col = data_x[metric]
                 data_col = (data_col - data_col.min())/(data_col.max() - data_col.min())
                 data_x[metric] = data_col
-        # data_x.sort_values(by=["phaseId", "subject"], inplace=True)
-
-        # print(data_x.head())
-        # print(data_y.head())
+            # normalize rows
+            # for i in range(data_x.shape[0]):
+            #     data_row = data_x.loc[data_x.index[i], metrics]
+            #     data_row = (data_row - data_row.min())/(data_row.max() - data_row.min())
+            #     data_x.loc[data_x.index[i], metrics] = data_row
 
         subjects = data_x.loc[:, "subject"]
         phase_col = data_x.loc[:, "phaseId"]
