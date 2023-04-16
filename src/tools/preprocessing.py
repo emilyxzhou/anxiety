@@ -20,6 +20,11 @@ import tools.data_reader_apd as dr
 from cvxEDA import cvxEDA
 from scipy.fft import fft, fftfreq
 
+import biosppy
+
+import pyhrv
+import pyhrv.time_domain as td
+
 
 FS_DICT = {
     dr.DataTypes.ANKLE_L: 50.0,
@@ -182,18 +187,17 @@ def moving_average(x, w):
     return np.convolve(x, np.ones(w), "valid") / w
 
 
-def clean_ecg(ecg_signal):
+def clean_ecg(ecg_signal, fs):
     if ecg_signal.size <= 1:
         print("ECG signal has size 0, returning zero DataFrame")
         return pd.DataFrame([0.0])
-    fs = FS_DICT[dr.DataTypes.ECG]
     ecg_signal = hp.filter_signal(ecg_signal, cutoff=50.0, sample_rate=fs, filtertype="lowpass")
-    ecg_signal = hp.remove_baseline_wander(ecg_signal, fs)
+    # ecg_signal = hp.remove_baseline_wander(ecg_signal, fs)
     ecg_signal = hp.scale_data(ecg_signal)
     # print(f"Size of scaled ECG signal: {ecg_signal.shape}")
-    ecg_signal = hp.enhance_ecg_peaks(
-        ecg_signal, fs, aggregation='median', iterations=5
-    )
+    # ecg_signal = hp.enhance_ecg_peaks(
+    #     ecg_signal, fs, aggregation='median', iterations=5
+    # )
     # print(f"Size of enhanced ECG signal: {ecg_signal.shape}")
     ecg_signal = pd.DataFrame(ecg_signal)
     
@@ -203,9 +207,9 @@ def clean_ecg(ecg_signal):
     # print(f"Median: {ecg_signal.median().iloc[0]}")
     # print(f"Mean: {ecg_signal.mean().iloc[0]}")
     
-    sos = ss.butter(N=2, Wn=0.667, btype="highpass", fs=fs, output="sos")
+    # sos = ss.butter(N=2, Wn=0.667, btype="highpass", fs=fs, output="sos")
     # ecg_signal = ss.sosfilt(sos, ecg_signal)
-    # filtered = moving_average(filtered, 8)
+    # ecg_signal = moving_average(ecg_signal, 8)
     # ecg_signal = np.reshape(ecg_signal, (ecg_signal.size, 1))
     # ecg_signal = clean_RR(ecg_signal)
     # ecg_signal = pd.DataFrame(ecg_signal.flatten())
@@ -308,6 +312,60 @@ def get_lf_rr(ecg, fs=FS_DICT[dr.DataTypes.ECG], window_size=55):
 
             start += int(5*fs)
     return np.asarray(out)
+
+
+def get_ecg_metrics_pyhrv(ecg_signal, fs=FS_DICT[dr.DataTypes.ECG], window_size=55):
+    n = ecg_signal.size
+    if n == 0:
+        print("ECG signal has length 0, returning None")
+        return None
+    
+    metrics_dict = {
+        "rmssd": [],
+        # "ibi": [],
+        "sdnn": []
+    }
+
+    start = 0
+    window_size = int(window_size*fs)
+    stop = start + window_size
+    out = []
+    if stop > n:
+        segment = ecg_signal
+        t, filtered_signal, rpeaks = biosppy.signals.ecg.ecg(signal=segment, sampling_rate=fs, show=False)[:3]
+        rmssd = td.rmssd(rpeaks=t[rpeaks])["rmssd"]
+        # ibi = td.ibi(rpeaks=rr_ints)
+        sdnn = td.sdnn(rpeaks=t[rpeaks])["sdnn"]
+
+        metrics_dict["rmssd"].append(rmssd)
+        # metrics_dict["ibi"].append(ibi)
+        metrics_dict["sdnn"].append(sdnn)
+    else:
+        while stop < n:
+            stop = start + window_size
+            try:
+                segment = ecg_signal.iloc[start:stop]
+            except AttributeError:
+                segment = ecg_signal[start:stop]
+            try:
+                t, filtered_signal, rpeaks = biosppy.signals.ecg.ecg(signal=segment, sampling_rate=fs, show=False)[:3]
+                rmssd = td.rmssd(rpeaks=t[rpeaks])["rmssd"]
+                # ibi = td.ibi(rpeaks=rr_ints)
+                sdnn = td.sdnn(rpeaks=t[rpeaks])["sdnn"]
+            except Exception as e:
+                print(e)
+                rmssd = np.nan
+                # ibi = np.nan
+                sdnn = np.nan
+
+            metrics_dict["rmssd"].append(rmssd)
+            # metrics_dict["ibi"].append(ibi)
+            metrics_dict["sdnn"].append(sdnn)
+
+            start += int(5*fs)
+    
+    return metrics_dict
+
 
 
 def get_SC_metrics(eda, fs=FS_DICT[dr.DataTypes.EDA]):
