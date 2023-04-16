@@ -10,6 +10,7 @@ import shap
 import scipy.signal as ss
 
 import tools.data_reader_apd as dr_a
+import tools.data_reader_ascertain as dr_asc
 import tools.data_reader_popane as dr_p
 # import tools.data_reader_sfi as dr_s
 import tools.data_reader_wesad as dr_w
@@ -136,6 +137,97 @@ def train_predict(models, x, y, test_size=0.15, by_subject=True, save_metrics=Tr
             shap_values = None
         out[model_name] = (acc, report, shap_values)
     return out
+
+
+class Train_ASCERTAIN:
+
+    def get_ascertain_data(metrics, verbose=False, label_type="Arousal", threshold="dynamic", normalize=False, binary_labels=True):
+        metrics_folder = dr_asc.Paths.METRICS
+        
+        columns = metrics.copy()
+        columns.insert(0, "subject")
+        
+        data_x = []
+        data_y = []
+
+        for clip in dr_asc.CLIPS:
+            if verbose: print(f"Generating features for clip {clip} " + "-"*30)
+            phase_id = dr_asc.CLIPS.index(clip)
+            features = []
+
+            for i in range(len(metrics)):
+                metric = metrics[i]
+                if verbose: print(f"Generating features for metric {metric}")
+                file = os.path.join(metrics_folder, f"{metric}_Clip{clip}.csv")
+                arr = pd.read_csv(file, index_col=[0])
+
+                if i == 0:  # subject IDs
+                    ids = arr.iloc[:, 0].tolist()
+                    # ids = arr[:, 0]
+                    ids = pd.DataFrame(data=ids, columns=["subject"])
+                    features.append(ids)
+                arr = np.nanmean(arr.iloc[:, 1:], axis=1)
+                arr = np.reshape(arr, (arr.size, 1))
+                arr = pd.DataFrame(data=arr, columns=[f"{metric}"])
+                features.append(arr)
+
+            x = pd.concat(features, axis=1)
+            phase = pd.DataFrame(data=[phase_id for _ in range(x.shape[0])])
+            x.insert(1, "phaseId", phase)
+            
+            data_x.append(x)
+        
+        data_x = pd.concat(data_x).reset_index(drop=True)
+
+        subjects = data_x.loc[:, "subject"]
+        phase_col = data_x.loc[:, "phaseId"]
+
+        if label_type == dr_asc.SelfReports.AROUSAL:
+            scores = dr_asc.get_self_reports(label_type)
+            if threshold == "fixed":
+                label_mean = 50
+        elif label_type == dr_asc.SelfReports.VALENCE:
+            scores = dr_asc.get_self_reports(label_type)
+            if threshold == "fixed":
+                label_mean = 50
+        else:
+            raise ValueError(f"Invalid label type: {label_type}")
+
+        columns = scores.columns
+        
+        y_labels = []
+        for i in range(scores.shape[0]):
+            if binary_labels:
+                if threshold != "fixed":
+                    label_mean = scores.iloc[i, 1:].mean()
+                labels = [scores.iloc[i, 0]]  # subject ID
+                for j in range(1, scores.shape[1]):
+                    if scores.iloc[i, j] < label_mean:
+                        labels.append(0)
+                    else:
+                        labels.append(1)
+            else:
+                labels = [scores.iloc[i, 0]]  # subject ID
+                for j in range(1, scores.shape[1]):
+                    labels.append(scores.iloc[i, j])
+            y_labels.append(labels)
+        y_labels = pd.DataFrame(data=y_labels, columns=columns)
+
+        for i in range(data_x.shape[0]):
+            s = subjects.iloc[i]
+            p = int(phase_col.iloc[i])
+            label = y_labels.loc[y_labels["subject"] == s].iloc[0, p+1]
+            data_y.append(label)
+
+        data_y = pd.DataFrame({"subject": subjects, "label": data_y})
+
+        if normalize:
+            for metric in metrics:
+                data_col = data_x[metric]
+                data_col = (data_col - data_col.min())/(data_col.max() - data_col.min())
+                data_x[metric] = data_col
+
+        return data_x, data_y
 
 
 class Train_APD:
