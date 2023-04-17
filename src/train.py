@@ -1,3 +1,4 @@
+import datetime
 import glob
 import importlib
 import matplotlib.pyplot as plt
@@ -72,6 +73,7 @@ class Metrics:
 
 
 def train_test_split(x, y, test_size=0.15, by_subject=True):
+    random.seed(datetime.datetime.now().timestamp())
     if by_subject:
         subjects = list(x.loc[:, "subject"].unique())
         indices = random.sample(subjects, int(len(subjects)*test_size))
@@ -103,14 +105,18 @@ def train_predict(models, x, y, test_size=0.15, by_subject=True, save_metrics=Tr
     # print(f"x_train: {x_train.shape}")
     # print(f"y_train: {y_train.shape}")
     y_test = y_test.loc[:, "label"]
+
+    print(f"y_train:\n{y_train.loc[:, 'label'].value_counts()}")
+    print(f"y_test:\n{y_test.value_counts()}")
+
     for model_name in models.keys():
         model = models[model_name]
         model.fit(x_train, y_train.loc[:, "label"])
         y_pred = model.predict(x_test)
-        
-        if (len(np.unique(y_pred))) == 1:
-            print(f"Only one value in predictions: {np.unique(y_pred)[0]}")
 
+        unique, counts = np.unique(y_pred, return_counts=True)
+        print(f"Model {model_name}, Predictions: {unique}, {counts}")
+        
         acc = accuracy_score(y_test, y_pred)
         if save_metrics:
             precision = precision_score(y_test, y_pred, zero_division=0)
@@ -705,8 +711,7 @@ class Train_Multi_Dataset:
         x_test = x_test_b
         y_test = y_test_b.loc[:, "label"]
 
-        print(f"y_train_a:\n{y_train_a.loc[:, 'label'].value_counts()}")
-        print(f"y_train_b:\n{y_train_b.loc[:, 'label'].value_counts()}")
+        print(f"y_train:\n{y_train.loc[:, 'label'].value_counts()}")
         print(f"y_test:\n{y_test.value_counts()}")
 
         for model_name in models.keys():
@@ -715,7 +720,7 @@ class Train_Multi_Dataset:
             y_pred = model.predict(x_test)
 
             unique, counts = np.unique(y_pred, return_counts=True)
-            print(f"Predictions: {unique}, {counts}")
+            print(f"Model {model_name}, Predictions: {unique}, {counts}")
 
             acc = accuracy_score(y_test, y_pred)
             if save_metrics:
