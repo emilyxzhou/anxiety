@@ -199,7 +199,14 @@ class Train_ASCERTAIN:
         for i in range(scores.shape[0]):
             if binary_labels:
                 if threshold != "fixed":
-                    label_mean = scores.iloc[i, 1:].mean()
+                    s = scores.iloc[i, 0]
+                    label_means = dr_asc.get_mean_self_reports(label_type)
+                    label_mean = label_means[label_means["subject"] == s].loc[:, "mean"].iloc[0]
+                else:
+                    if label_type == dr_asc.SelfReports.AROUSAL:
+                        label_mean = 3
+                    if label_type == dr_asc.SelfReports.VALENCE:
+                        label_mean = 0
                 labels = [scores.iloc[i, 0]]  # subject ID
                 for j in range(1, scores.shape[1]):
                     if scores.iloc[i, j] < label_mean:
@@ -697,19 +704,18 @@ class Train_Multi_Dataset:
         y_train = pd.concat([y_train_a, y_train_b])
         x_test = x_test_b
         y_test = y_test_b.loc[:, "label"]
-        
-        # print("Training data: ")
-        # print(y_train.loc[:, "label"].value_counts())
-        # print("Testing data: ")
-        # print(y_test.loc[:].value_counts())
+
+        print(f"y_train_a:\n{y_train_a.loc[:, 'label'].value_counts()}")
+        print(f"y_train_b:\n{y_train_b.loc[:, 'label'].value_counts()}")
+        print(f"y_test:\n{y_test.value_counts()}")
 
         for model_name in models.keys():
             model = models[model_name]
             model = model.fit(x_train, y_train.loc[:, "label"])
             y_pred = model.predict(x_test)
 
-            if (len(np.unique(y_pred))) == 1:
-                print(f"Only one value in predictions: {np.unique(y_pred)[0]}")
+            unique, counts = np.unique(y_pred, return_counts=True)
+            print(f"Predictions: {unique}, {counts}")
 
             acc = accuracy_score(y_test, y_pred)
             if save_metrics:

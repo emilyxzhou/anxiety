@@ -5,12 +5,12 @@ y_a:
 1    26
 Name: label, dtype: int64
 y_b:
-0    253
-1    206
+0    177
+1    147
 Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.5442443563524405
-LogReg accuracy over 10 rounds: 0.527229284353792
-XGB accuracy over 10 rounds: 0.5918019408926035
+SVM accuracy over 10 rounds: 0.4730098386977889
+LogReg accuracy over 10 rounds: 0.5303707412929916
+XGB accuracy over 10 rounds: 0.5865739215195371
 
 
 WESAD PHASES 0 --------------------------------------------------
@@ -20,12 +20,15 @@ y_a:
 1    26
 Name: label, dtype: int64
 y_b:
-0    200
-1    157
+0    141
+1    111
 Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.549481005057705
-LogReg accuracy over 10 rounds: 0.5060573568794734
-XGB accuracy over 10 rounds: 0.5053596753933258
+Only one value in predictions: 0
+Only one value in predictions: 0
+Only one value in predictions: 0
+SVM accuracy over 10 rounds: 0.4820526702899467
+LogReg accuracy over 10 rounds: 0.49799028712840715
+XGB accuracy over 10 rounds: 0.4508919532136936
 
 
 WESAD PHASES 0 --------------------------------------------------
@@ -35,14 +38,13 @@ y_a:
 1    26
 Name: label, dtype: int64
 y_b:
-0    135
-1    120
+0    94
+1    86
 Name: label, dtype: int64
 Only one value in predictions: 0
-Only one value in predictions: 0
-SVM accuracy over 10 rounds: 0.5080276131903299
-LogReg accuracy over 10 rounds: 0.4944998999974999
-XGB accuracy over 10 rounds: 0.48891201030025744
+SVM accuracy over 10 rounds: 0.5146343266372081
+LogReg accuracy over 10 rounds: 0.4452772342913457
+XGB accuracy over 10 rounds: 0.42821797642452497
 
 
 WESAD PHASES 0 --------------------------------------------------
@@ -52,8 +54,8 @@ y_a:
 1    26
 Name: label, dtype: int64
 y_b:
-0    79
-1    23
+0    57
+1    15
 Name: label, dtype: int64
 Only one value in predictions: 0
 Only one value in predictions: 0
@@ -67,24 +69,36 @@ Only one value in predictions: 0
 Only one value in predictions: 0
 Only one value in predictions: 0
 Only one value in predictions: 0
-SVM accuracy over 10 rounds: 0.771487341772152
+Only one value in predictions: 0
+Only one value in predictions: 0
+Only one value in predictions: 0
+Only one value in predictions: 0
+Only one value in predictions: 0
+Only one value in predictions: 0
+Only one value in predictions: 0
+Only one value in predictions: 0
+Only one value in predictions: 0
+Only one value in predictions: 0
+Only one value in predictions: 0
+Only one value in predictions: 0
+SVM accuracy over 10 rounds: 0.7152527543060277
 Report:
 Precision: 1.0
 Recall: 0.0
 F1-score: 0.0
 AUC score: 0.5
-LogReg accuracy over 10 rounds: 0.7196993670886076
+LogReg accuracy over 10 rounds: 0.7028137299157838
 Report:
-Precision: 0.25
-Recall: 0.08222222222222222
-F1-score: 0.058823529411764705
-AUC score: 0.4978839877427621
-XGB accuracy over 10 rounds: 0.6868037974683544
+Precision: 0.72
+Recall: 0.01111111111111111
+F1-score: 0.014285714285714285
+AUC score: 0.49571313805462863
+XGB accuracy over 10 rounds: 0.69787470552554
 Report:
-Precision: 0.18091630591630592
-Recall: 0.11287581699346405
-F1-score: 0.09834545065129774
-AUC score: 0.48854607683951723
+Precision: 0.7
+Recall: 0.0
+F1-score: 0.0
+AUC score: 0.4884872080088988
 
 
 WESAD PHASES 0 --------------------------------------------------
@@ -94,8 +108,8 @@ y_a:
 1    26
 Name: label, dtype: int64
 y_b:
-0    79
-1    23
+0    57
+1    15
 Name: label, dtype: int64
 Only one value in predictions: 0
 Only one value in predictions: 0
@@ -109,24 +123,48 @@ Only one value in predictions: 0
 Only one value in predictions: 0
 Only one value in predictions: 0
 Only one value in predictions: 0
-SVM accuracy over 10 rounds: 0.7657911392405062
+Only one value in predictions: 0
+SVM accuracy over 10 rounds: 0.7178851168683841
 Report:
 Precision: 1.0
 Recall: 0.0
 F1-score: 0.0
 AUC score: 0.5
-LogReg accuracy over 10 rounds: 0.7606803797468354
+LogReg accuracy over 10 rounds: 0.7204521230329513
 Report:
-Precision: 0.5182234432234433
-Recall: 0.12493507051943582
-F1-score: 0.17476456876456875
-AUC score: 0.5403094526467374
-XGB accuracy over 10 rounds: 0.7015031645569619
+Precision: 0.7452380952380953
+Recall: 0.14036130536130537
+F1-score: 0.20150149558044292
+AUC score: 0.5455159117842941
+XGB accuracy over 10 rounds: 0.646370959821045
 Report:
-Precision: 0.17917207792207793
-Recall: 0.08800008599931201
-F1-score: 0.10882599272072954
-AUC score: 0.4892134862571348
+Precision: 0.20977272727272728
+Recall: 0.07678321678321678
+F1-score: 0.07643107769423559
+AUC score: 0.4777190980081446
+
+
+WESAD PHASES 0 --------------------------------------------------
+APD PHASES 5 --------------------------------------------------
+y_a:
+0    44
+1    26
+Name: label, dtype: int64
+y_b:
+1    75
+0    69
+Name: label, dtype: int64
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+SVM accuracy over 10 rounds: 0.3700467848761303
+LogReg accuracy over 10 rounds: 0.372410936547244
+XGB accuracy over 10 rounds: 0.4055325766325046
 
 
 WESAD PHASES 1 --------------------------------------------------
@@ -136,12 +174,12 @@ y_a:
 1    22
 Name: label, dtype: int64
 y_b:
-0    253
-1    206
+0    177
+1    147
 Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.5307058829353049
-LogReg accuracy over 10 rounds: 0.5621491025228951
-XGB accuracy over 10 rounds: 0.5833328736955974
+SVM accuracy over 10 rounds: 0.4355172660858533
+LogReg accuracy over 10 rounds: 0.5649777797490421
+XGB accuracy over 10 rounds: 0.5920439475808635
 
 
 WESAD PHASES 1 --------------------------------------------------
@@ -151,13 +189,17 @@ y_a:
 1    22
 Name: label, dtype: int64
 y_b:
-0    200
-1    157
+0    141
+1    111
 Name: label, dtype: int64
 Only one value in predictions: 0
-SVM accuracy over 10 rounds: 0.5112507630381582
-LogReg accuracy over 10 rounds: 0.49727867793503194
-XGB accuracy over 10 rounds: 0.5023093725685277
+Only one value in predictions: 0
+Only one value in predictions: 0
+Only one value in predictions: 0
+Only one value in predictions: 0
+SVM accuracy over 10 rounds: 0.49380452064416336
+LogReg accuracy over 10 rounds: 0.4967050728596504
+XGB accuracy over 10 rounds: 0.44903444307342744
 
 
 WESAD PHASES 1 --------------------------------------------------
@@ -167,13 +209,12 @@ y_a:
 1    22
 Name: label, dtype: int64
 y_b:
-0    135
-1    120
+0    94
+1    86
 Name: label, dtype: int64
-Only one value in predictions: 0
-SVM accuracy over 10 rounds: 0.5077438185954649
-LogReg accuracy over 10 rounds: 0.49476876921923046
-XGB accuracy over 10 rounds: 0.4872837195929898
+SVM accuracy over 10 rounds: 0.4592402256999981
+LogReg accuracy over 10 rounds: 0.453951841179187
+XGB accuracy over 10 rounds: 0.4217176657415599
 
 
 WESAD PHASES 1 --------------------------------------------------
@@ -183,8 +224,8 @@ y_a:
 1    22
 Name: label, dtype: int64
 y_b:
-0    79
-1    23
+0    57
+1    15
 Name: label, dtype: int64
 Only one value in predictions: 0
 Only one value in predictions: 0
@@ -202,24 +243,26 @@ Only one value in predictions: 0
 Only one value in predictions: 0
 Only one value in predictions: 0
 Only one value in predictions: 0
-SVM accuracy over 10 rounds: 0.7664082278481013
+Only one value in predictions: 0
+Only one value in predictions: 0
+SVM accuracy over 10 rounds: 0.7483183426518649
 Report:
 Precision: 1.0
 Recall: 0.0
 F1-score: 0.0
 AUC score: 0.5
-LogReg accuracy over 10 rounds: 0.7296993670886076
+LogReg accuracy over 10 rounds: 0.6888584123382762
 Report:
-Precision: 0.5615151515151515
-Recall: 0.03214932126696833
-F1-score: 0.03510257858083945
-AUC score: 0.48938695657101655
-XGB accuracy over 10 rounds: 0.6730379746835443
+Precision: 0.4428571428571429
+Recall: 0.03777777777777778
+F1-score: 0.039649321266968324
+AUC score: 0.47549765799062405
+XGB accuracy over 10 rounds: 0.7186118088755639
 Report:
-Precision: 0.26331585081585085
-Recall: 0.16797306236934717
-F1-score: 0.1569922807737434
-AUC score: 0.5016087427523259
+Precision: 0.4
+Recall: 0.0
+F1-score: 0.0
+AUC score: 0.4807819931491658
 
 
 WESAD PHASES 1 --------------------------------------------------
@@ -229,8 +272,8 @@ y_a:
 1    22
 Name: label, dtype: int64
 y_b:
-0    79
-1    23
+0    57
+1    15
 Name: label, dtype: int64
 Only one value in predictions: 0
 Only one value in predictions: 0
@@ -244,24 +287,50 @@ Only one value in predictions: 0
 Only one value in predictions: 0
 Only one value in predictions: 0
 Only one value in predictions: 0
-SVM accuracy over 10 rounds: 0.7657120253164559
+Only one value in predictions: 0
+Only one value in predictions: 0
+Only one value in predictions: 0
+SVM accuracy over 10 rounds: 0.713832042090916
 Report:
 Precision: 1.0
 Recall: 0.0
 F1-score: 0.0
 AUC score: 0.5
-LogReg accuracy over 10 rounds: 0.7544936708860759
+LogReg accuracy over 10 rounds: 0.6938652983083827
 Report:
-Precision: 0.5808333333333333
-Recall: 0.12992260061919503
-F1-score: 0.18225952843063645
-AUC score: 0.5382633726258323
-XGB accuracy over 10 rounds: 0.6862341772151899
+Precision: 0.5008333333333332
+Recall: 0.0932983682983683
+F1-score: 0.12520639834881322
+AUC score: 0.5131388758112896
+XGB accuracy over 10 rounds: 0.6913016216749387
 Report:
-Precision: 0.3003407170371095
-Recall: 0.1930908152734778
-F1-score: 0.20125027731909775
-AUC score: 0.5165484835546313
+Precision: 0.35
+Recall: 0.043939393939393945
+F1-score: 0.06617826617826619
+AUC score: 0.49731150275331315
+
+
+WESAD PHASES 1 --------------------------------------------------
+APD PHASES 5 --------------------------------------------------
+y_a:
+0    34
+1    22
+Name: label, dtype: int64
+y_b:
+1    75
+0    69
+Name: label, dtype: int64
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+SVM accuracy over 10 rounds: 0.35379076301158735
+LogReg accuracy over 10 rounds: 0.3789740000878984
+XGB accuracy over 10 rounds: 0.39604150502949
 
 
 WESAD PHASES 2 --------------------------------------------------
@@ -271,13 +340,12 @@ y_a:
 1    19
 Name: label, dtype: int64
 y_b:
-0    253
-1    206
+0    177
+1    147
 Name: label, dtype: int64
-Only one value in predictions: 0
-SVM accuracy over 10 rounds: 0.536040296353855
-LogReg accuracy over 10 rounds: 0.5404786237823055
-XGB accuracy over 10 rounds: 0.572204354556613
+SVM accuracy over 10 rounds: 0.5074976361905092
+LogReg accuracy over 10 rounds: 0.5978869446697355
+XGB accuracy over 10 rounds: 0.5774517161984724
 
 
 WESAD PHASES 2 --------------------------------------------------
@@ -287,12 +355,14 @@ y_a:
 1    19
 Name: label, dtype: int64
 y_b:
-0    200
-1    157
+0    141
+1    111
 Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.48922281529615025
-LogReg accuracy over 10 rounds: 0.5011035687578969
-XGB accuracy over 10 rounds: 0.5049729525135651
+Only one value in predictions: 0
+Only one value in predictions: 0
+SVM accuracy over 10 rounds: 0.49767588127226936
+LogReg accuracy over 10 rounds: 0.49850236020518235
+XGB accuracy over 10 rounds: 0.47456029060715854
 
 
 WESAD PHASES 2 --------------------------------------------------
@@ -302,17 +372,12 @@ y_a:
 1    19
 Name: label, dtype: int64
 y_b:
-0    135
-1    120
+0    94
+1    86
 Name: label, dtype: int64
-Only one value in predictions: 0
-Only one value in predictions: 0
-Only one value in predictions: 0
-Only one value in predictions: 0
-Only one value in predictions: 0
-SVM accuracy over 10 rounds: 0.5090152003800095
-LogReg accuracy over 10 rounds: 0.5050049751243781
-XGB accuracy over 10 rounds: 0.4859371109277732
+SVM accuracy over 10 rounds: 0.4862232292216122
+LogReg accuracy over 10 rounds: 0.439537859528384
+XGB accuracy over 10 rounds: 0.39030850175536136
 
 
 WESAD PHASES 2 --------------------------------------------------
@@ -322,8 +387,8 @@ y_a:
 1    19
 Name: label, dtype: int64
 y_b:
-0    79
-1    23
+0    57
+1    15
 Name: label, dtype: int64
 Only one value in predictions: 0
 Only one value in predictions: 0
@@ -340,24 +405,27 @@ Only one value in predictions: 0
 Only one value in predictions: 0
 Only one value in predictions: 0
 Only one value in predictions: 0
-SVM accuracy over 10 rounds: 0.7730221518987341
+Only one value in predictions: 0
+Only one value in predictions: 0
+Only one value in predictions: 0
+SVM accuracy over 10 rounds: 0.7201357991601893
 Report:
 Precision: 1.0
 Recall: 0.0
 F1-score: 0.0
 AUC score: 0.5
-LogReg accuracy over 10 rounds: 0.7467088607594936
+LogReg accuracy over 10 rounds: 0.7073213168944876
 Report:
-Precision: 0.5208333333333333
-Recall: 0.02777777777777778
-F1-score: 0.02380952380952381
-AUC score: 0.4929075067361689
-XGB accuracy over 10 rounds: 0.7086234177215189
+Precision: 0.6
+Recall: 0.007692307692307693
+F1-score: 0.014285714285714287
+AUC score: 0.49383873819913865
+XGB accuracy over 10 rounds: 0.6954254891450014
 Report:
-Precision: 0.3267235396182765
-Recall: 0.15812607499140008
-F1-score: 0.18840500150984021
-AUC score: 0.5149507428334318
+Precision: 0.38333333333333336
+Recall: 0.0202020202020202
+F1-score: 0.03205128205128205
+AUC score: 0.4897117033462973
 
 
 WESAD PHASES 2 --------------------------------------------------
@@ -367,8 +435,8 @@ y_a:
 1    19
 Name: label, dtype: int64
 y_b:
-0    79
-1    23
+0    57
+1    15
 Name: label, dtype: int64
 Only one value in predictions: 0
 Only one value in predictions: 0
@@ -384,23 +452,50 @@ Only one value in predictions: 0
 Only one value in predictions: 0
 Only one value in predictions: 0
 Only one value in predictions: 0
-SVM accuracy over 10 rounds: 0.7598101265822785
+Only one value in predictions: 0
+Only one value in predictions: 0
+Only one value in predictions: 0
+SVM accuracy over 10 rounds: 0.7213141376427641
 Report:
 Precision: 1.0
 Recall: 0.0
 F1-score: 0.0
 AUC score: 0.5
-LogReg accuracy over 10 rounds: 0.7306803797468355
+LogReg accuracy over 10 rounds: 0.7188310334266689
 Report:
-Precision: 0.6147727272727272
-Recall: 0.09825396825396826
-F1-score: 0.12794031555650748
-AUC score: 0.5146006983890875
-XGB accuracy over 10 rounds: 0.6876898734177216
+Precision: 0.8416666666666666
+Recall: 0.07523310023310023
+F1-score: 0.11101486748545572
+AUC score: 0.5223784548784549
+XGB accuracy over 10 rounds: 0.6759591813025703
 Report:
-Precision: 0.2590909090909091
-Recall: 0.057549019607843144
-F1-score: 0.08017255490081576
-AUC score: 0.47333868523352784
+Precision: 0.37142857142857144
+Recall: 0.09658119658119657
+F1-score: 0.11010210803689065
+AUC score: 0.5024292061500071
+
+
+WESAD PHASES 2 --------------------------------------------------
+APD PHASES 5 --------------------------------------------------
+y_a:
+0    23
+1    19
+Name: label, dtype: int64
+y_b:
+1    75
+0    69
+Name: label, dtype: int64
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+SVM accuracy over 10 rounds: 0.3549902687185149
+LogReg accuracy over 10 rounds: 0.3712946781421457
+XGB accuracy over 10 rounds: 0.420359905839911
 
 

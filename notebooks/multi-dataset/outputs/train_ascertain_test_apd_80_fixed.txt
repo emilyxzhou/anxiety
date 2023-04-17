@@ -1,0 +1,272 @@
+APD PHASES 0 --------------------------------------------------
+y_a:
+1    1319
+0     228
+Name: label, dtype: int64
+y_b:
+1    253
+0     71
+Name: label, dtype: int64
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+SVM accuracy over 10 rounds: 0.7775629460664749
+	Report:
+	Precision: 0.77777151085032
+	Recall: 0.9992753623188406
+	F1-score: 0.8745738734918092
+	AUC score: 0.5024551414768805
+LogReg accuracy over 10 rounds: 0.7770008692543982
+	Report:
+	Precision: 0.7770008692543982
+	Recall: 1.0
+	F1-score: 0.8743772334571533
+	AUC score: 0.5
+XGB accuracy over 10 rounds: 0.9518536606850146
+	Report:
+	Precision: 0.9532748232324669
+	Recall: 0.9864819174596213
+	F1-score: 0.9694995887757892
+	AUC score: 0.9097091353861547
+
+
+APD PHASES 1 --------------------------------------------------
+y_a:
+1    1319
+0     228
+Name: label, dtype: int64
+y_b:
+1    196
+0     56
+Name: label, dtype: int64
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+SVM accuracy over 10 rounds: 0.78228426595016
+	Report:
+	Precision: 0.7822338992784825
+	Recall: 0.9990909090909093
+	F1-score: 0.8774014563945356
+	AUC score: 0.5061329582773548
+LogReg accuracy over 10 rounds: 0.7794061275545691
+	Report:
+	Precision: 0.7799826641038127
+	Recall: 0.9990909090909093
+	F1-score: 0.8759827913207389
+	AUC score: 0.4995454545454546
+XGB accuracy over 10 rounds: 0.9370130380959323
+	Report:
+	Precision: 0.9546254860245685
+	Recall: 0.9651762666113564
+	F1-score: 0.9598402842417174
+	AUC score: 0.901348016379648
+
+
+APD PHASES 2 --------------------------------------------------
+y_a:
+1    1319
+0     228
+Name: label, dtype: int64
+y_b:
+1    140
+0     40
+Name: label, dtype: int64
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+SVM accuracy over 10 rounds: 0.8011054674697423
+	Report:
+	Precision: 0.8021954763406145
+	Recall: 0.9962638686215921
+	F1-score: 0.8886850026133818
+	AUC score: 0.5157075020179428
+LogReg accuracy over 10 rounds: 0.7970923458563688
+	Report:
+	Precision: 0.7970923458563688
+	Recall: 1.0
+	F1-score: 0.88705581147227
+	AUC score: 0.5
+XGB accuracy over 10 rounds: 0.934969965435352
+	Report:
+	Precision: 0.942169307526111
+	Recall: 0.9787888846228612
+	F1-score: 0.9600032798635599
+	AUC score: 0.8713255959531105
+
+
+APD PHASES 3 --------------------------------------------------
+y_a:
+1    1319
+0     228
+Name: label, dtype: int64
+y_b:
+1    55
+0    17
+Name: label, dtype: int64
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+SVM accuracy over 10 rounds: 0.8132054926320086
+	Report:
+	Precision: 0.8132054926320086
+	Recall: 1.0
+	F1-score: 0.8966077130213769
+	AUC score: 0.5
+LogReg accuracy over 10 rounds: 0.7742381300744736
+	Report:
+	Precision: 0.8086088952584461
+	Recall: 0.9510387348719392
+	F1-score: 0.8722712089229401
+	AUC score: 0.4855193674359696
+XGB accuracy over 10 rounds: 0.9364373545434536
+	Report:
+	Precision: 0.9509354519692396
+	Recall: 0.9718995833759895
+	F1-score: 0.9611185504275834
+	AUC score: 0.881485505973709
+
+
+APD PHASES 4 --------------------------------------------------
+y_a:
+1    1319
+0     228
+Name: label, dtype: int64
+y_b:
+1    55
+0    17
+Name: label, dtype: int64
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+SVM accuracy over 10 rounds: 0.8078784393900673
+	Report:
+	Precision: 0.8078784393900673
+	Recall: 1.0
+	F1-score: 0.8934918858384109
+	AUC score: 0.5
+LogReg accuracy over 10 rounds: 0.8078784393900673
+	Report:
+	Precision: 0.8078784393900673
+	Recall: 1.0
+	F1-score: 0.8934918858384109
+	AUC score: 0.5
+XGB accuracy over 10 rounds: 0.9317586676889003
+	Report:
+	Precision: 0.9448640648830402
+	Recall: 0.9729441473559122
+	F1-score: 0.9583290229802527
+	AUC score: 0.8705395339954164
+
+
+APD PHASES 5 --------------------------------------------------
+y_a:
+1    1319
+0     228
+Name: label, dtype: int64
+y_b:
+1    113
+0     31
+Name: label, dtype: int64
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+SVM accuracy over 10 rounds: 0.7568312424463788
+	Report:
+	Precision: 0.7568312424463788
+	Recall: 1.0
+	F1-score: 0.8615141384822371
+	AUC score: 0.5
+LogReg accuracy over 10 rounds: 0.7568312424463788
+	Report:
+	Precision: 0.7568312424463788
+	Recall: 1.0
+	F1-score: 0.8615141384822371
+	AUC score: 0.5
+XGB accuracy over 10 rounds: 0.87543055036152
+	Report:
+	Precision: 0.8663564925449416
+	Recall: 0.9902044993778298
+	F1-score: 0.9235030379853388
+	AUC score: 0.7576356665644373
+
+

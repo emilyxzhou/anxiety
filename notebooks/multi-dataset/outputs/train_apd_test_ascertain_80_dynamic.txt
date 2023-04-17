@@ -1,0 +1,84 @@
+APD PHASES 0 --------------------------------------------------
+y_a:
+0    177
+1    147
+Name: label, dtype: int64
+y_b:
+1    905
+0    642
+Name: label, dtype: int64
+SVM accuracy over 10 rounds: 0.5406671029343297
+LogReg accuracy over 10 rounds: 0.532398065209813
+XGB accuracy over 10 rounds: 0.5239991634068527
+
+
+APD PHASES 1 --------------------------------------------------
+y_a:
+0    141
+1    111
+Name: label, dtype: int64
+y_b:
+1    905
+0    642
+Name: label, dtype: int64
+SVM accuracy over 10 rounds: 0.5390219163934133
+LogReg accuracy over 10 rounds: 0.5360458862657442
+XGB accuracy over 10 rounds: 0.5237978258688625
+
+
+APD PHASES 2 --------------------------------------------------
+y_a:
+0    94
+1    86
+Name: label, dtype: int64
+y_b:
+1    905
+0    642
+Name: label, dtype: int64
+SVM accuracy over 10 rounds: 0.53606906196261
+LogReg accuracy over 10 rounds: 0.5337635865457375
+XGB accuracy over 10 rounds: 0.5215136273871382
+
+
+APD PHASES 3 --------------------------------------------------
+y_a:
+0    57
+1    15
+Name: label, dtype: int64
+y_b:
+1    905
+0    642
+Name: label, dtype: int64
+SVM accuracy over 10 rounds: 0.5387035442015498
+LogReg accuracy over 10 rounds: 0.5345620949893624
+XGB accuracy over 10 rounds: 0.5145115308046478
+
+
+APD PHASES 4 --------------------------------------------------
+y_a:
+0    57
+1    15
+Name: label, dtype: int64
+y_b:
+1    905
+0    642
+Name: label, dtype: int64
+SVM accuracy over 10 rounds: 0.533401500085476
+LogReg accuracy over 10 rounds: 0.5271215416005905
+XGB accuracy over 10 rounds: 0.5155547350427366
+
+
+APD PHASES 5 --------------------------------------------------
+y_a:
+1    75
+0    69
+Name: label, dtype: int64
+y_b:
+1    905
+0    642
+Name: label, dtype: int64
+SVM accuracy over 10 rounds: 0.5360601219765833
+LogReg accuracy over 10 rounds: 0.5368550982355866
+XGB accuracy over 10 rounds: 0.5227844600942338
+
+

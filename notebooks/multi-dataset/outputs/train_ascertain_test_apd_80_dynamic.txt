@@ -1,0 +1,172 @@
+APD PHASES 0 --------------------------------------------------
+y_a:
+1    905
+0    642
+Name: label, dtype: int64
+y_b:
+0    177
+1    147
+Name: label, dtype: int64
+SVM accuracy over 10 rounds: 0.42283479887456954
+LogReg accuracy over 10 rounds: 0.49714090597952937
+XGB accuracy over 10 rounds: 0.5655228738769014
+
+
+APD PHASES 1 --------------------------------------------------
+y_a:
+1    905
+0    642
+Name: label, dtype: int64
+y_b:
+0    141
+1    111
+Name: label, dtype: int64
+Only one value in predictions: 0
+Only one value in predictions: 0
+Only one value in predictions: 0
+Only one value in predictions: 0
+Only one value in predictions: 0
+Only one value in predictions: 1
+Only one value in predictions: 0
+Only one value in predictions: 0
+Only one value in predictions: 0
+Only one value in predictions: 0
+Only one value in predictions: 0
+SVM accuracy over 10 rounds: 0.5030953988625608
+LogReg accuracy over 10 rounds: 0.5032835162658238
+XGB accuracy over 10 rounds: 0.45290390610509484
+
+
+APD PHASES 2 --------------------------------------------------
+y_a:
+1    905
+0    642
+Name: label, dtype: int64
+y_b:
+0    94
+1    86
+Name: label, dtype: int64
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+SVM accuracy over 10 rounds: 0.4504571657211204
+LogReg accuracy over 10 rounds: 0.45156874651231044
+XGB accuracy over 10 rounds: 0.4242232097527521
+
+
+APD PHASES 3 --------------------------------------------------
+y_a:
+1    905
+0    642
+Name: label, dtype: int64
+y_b:
+0    57
+1    15
+Name: label, dtype: int64
+Only one value in predictions: 0
+Only one value in predictions: 0
+Only one value in predictions: 0
+Only one value in predictions: 0
+Only one value in predictions: 0
+Only one value in predictions: 0
+Only one value in predictions: 0
+Only one value in predictions: 0
+Only one value in predictions: 0
+Only one value in predictions: 0
+Only one value in predictions: 0
+Only one value in predictions: 0
+Only one value in predictions: 0
+Only one value in predictions: 0
+SVM accuracy over 10 rounds: 0.2782645050713087
+LogReg accuracy over 10 rounds: 0.729187050647256
+	Report:
+	Precision: 1.0
+	Recall: 0.0
+	F1-score: 0.0
+	AUC score: 0.5
+XGB accuracy over 10 rounds: 0.6944000832287098
+	Report:
+	Precision: 0.425
+	Recall: 0.014285714285714285
+	F1-score: 0.01818181818181818
+	AUC score: 0.4818443773504953
+
+
+APD PHASES 4 --------------------------------------------------
+y_a:
+1    905
+0    642
+Name: label, dtype: int64
+y_b:
+0    57
+1    15
+Name: label, dtype: int64
+Only one value in predictions: 1
+Only one value in predictions: 0
+Only one value in predictions: 1
+Only one value in predictions: 0
+Only one value in predictions: 1
+Only one value in predictions: 0
+Only one value in predictions: 1
+Only one value in predictions: 0
+Only one value in predictions: 0
+Only one value in predictions: 1
+Only one value in predictions: 0
+Only one value in predictions: 1
+Only one value in predictions: 0
+Only one value in predictions: 1
+Only one value in predictions: 0
+Only one value in predictions: 1
+Only one value in predictions: 0
+Only one value in predictions: 0
+Only one value in predictions: 1
+Only one value in predictions: 0
+Only one value in predictions: 1
+Only one value in predictions: 0
+SVM accuracy over 10 rounds: 0.267314362741192
+LogReg accuracy over 10 rounds: 0.732685637258808
+	Report:
+	Precision: 1.0
+	Recall: 0.0
+	F1-score: 0.0
+	AUC score: 0.5
+XGB accuracy over 10 rounds: 0.7199829345561054
+	Report:
+	Precision: 0.51
+	Recall: 0.12699494949494952
+	F1-score: 0.16886446886446885
+	AUC score: 0.5348706771151849
+
+
+APD PHASES 5 --------------------------------------------------
+y_a:
+1    905
+0    642
+Name: label, dtype: int64
+y_b:
+1    75
+0    69
+Name: label, dtype: int64
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+Only one value in predictions: 1
+SVM accuracy over 10 rounds: 0.3541216954153045
+LogReg accuracy over 10 rounds: 0.35025213057012994
+XGB accuracy over 10 rounds: 0.38944443711347076
+
+
