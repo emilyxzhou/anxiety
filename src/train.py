@@ -17,6 +17,7 @@ import tools.data_reader_popane as dr_p
 import tools.data_reader_wesad as dr_w
 import tools.preprocessing as preprocessing
 
+from imblearn.over_sampling import RandomOverSampler
 from scipy.fft import fft, fftfreq, fftshift
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix, precision_score, f1_score, \
     recall_score, roc_auc_score
@@ -74,6 +75,8 @@ class Metrics:
 
 def train_test_split(x, y, test_size=0.15, by_subject=True):
     random.seed(datetime.datetime.now().timestamp())
+    oversample = RandomOverSampler(sampling_strategy=0.333)
+    x, y = oversample.fit_resample(x, y)
     if by_subject:
         subjects = list(x.loc[:, "subject"].unique())
         indices = random.sample(subjects, int(len(subjects)*test_size))
