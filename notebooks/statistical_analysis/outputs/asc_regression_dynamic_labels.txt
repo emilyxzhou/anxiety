@@ -1,0 +1,44 @@
+Top R2 values for any combination of 1 metrics:
+[0.5045423704916818, ['sdnn']]
+[0.5041654900064454, ['rmssd']]
+[0.5037855903092499, ['mean_SCL']]
+[0.5030281853423252, ['hf_rr']]
+[0.5029894908099388, ['lf_rr']]
+Top R2 values for any combination of 2 metrics:
+[0.5061632329518273, ['sdnn', 'mean_SCL']]
+[0.5058635722819752, ['rmssd', 'mean_SCL']]
+[0.5050177248164075, ['rmssd', 'sdnn']]
+[0.5048657135680434, ['ibi', 'sdnn']]
+[0.5047082578898012, ['sdnn', 'SCR_rate']]
+Top R2 values for any combination of 3 metrics:
+[0.5071054065371896, ['ibi', 'sdnn', 'mean_SCL']]
+[0.5070285188647919, ['rmssd', 'ibi', 'mean_SCL']]
+[0.506496221235696, ['sdnn', 'lf_rr', 'mean_SCL']]
+[0.5063904757776414, ['bpm', 'sdnn', 'mean_SCL']]
+[0.5062976718825443, ['rmssd', 'sdnn', 'mean_SCL']]
+Top R2 values for any combination of 4 metrics:
+[0.5075754674476189, ['ibi', 'sdnn', 'lf_rr', 'mean_SCL']]
+[0.5074883344856558, ['rmssd', 'ibi', 'lf_rr', 'mean_SCL']]
+[0.5073032879990822, ['ibi', 'sdnn', 'mean_SCL', 'SCR_rate']]
+[0.5072404877595134, ['rmssd', 'ibi', 'mean_SCL', 'SCR_rate']]
+[0.5071844094219033, ['ibi', 'sdnn', 'hf_rr', 'mean_SCL']]
+Top R2 values for any combination of 5 metrics:
+[0.5077615673538207, ['ibi', 'sdnn', 'lf_rr', 'mean_SCL', 'SCR_rate']]
+[0.5076888016783382, ['rmssd', 'ibi', 'lf_rr', 'mean_SCL', 'SCR_rate']]
+[0.5076301359021159, ['ibi', 'sdnn', 'hf_rr', 'lf_rr', 'mean_SCL']]
+[0.5076010958578405, ['bpm', 'ibi', 'sdnn', 'lf_rr', 'mean_SCL']]
+[0.5075765124383269, ['rmssd', 'ibi', 'sdnn', 'lf_rr', 'mean_SCL']]
+Top R2 values for any combination of 6 metrics:
+[0.5078286141746331, ['ibi', 'sdnn', 'hf_rr', 'lf_rr', 'mean_SCL', 'SCR_rate']]
+[0.5077873993142004, ['bpm', 'ibi', 'sdnn', 'lf_rr', 'mean_SCL', 'SCR_rate']]
+[0.5077642698697875, ['rmssd', 'ibi', 'sdnn', 'lf_rr', 'mean_SCL', 'SCR_rate']]
+[0.5077566115111449, ['rmssd', 'ibi', 'hf_rr', 'lf_rr', 'mean_SCL', 'SCR_rate']]
+[0.5077065543542092, ['bpm', 'rmssd', 'ibi', 'lf_rr', 'mean_SCL', 'SCR_rate']]
+Top R2 values for any combination of 7 metrics:
+[0.5078488338942998, ['bpm', 'ibi', 'sdnn', 'hf_rr', 'lf_rr', 'mean_SCL', 'SCR_rate']]
+[0.5078313495564002, ['rmssd', 'ibi', 'sdnn', 'hf_rr', 'lf_rr', 'mean_SCL', 'SCR_rate']]
+[0.5077888488343678, ['bpm', 'rmssd', 'ibi', 'sdnn', 'lf_rr', 'mean_SCL', 'SCR_rate']]
+[0.5077697461865819, ['bpm', 'rmssd', 'ibi', 'hf_rr', 'lf_rr', 'mean_SCL', 'SCR_rate']]
+[0.5076510823925926, ['bpm', 'rmssd', 'ibi', 'sdnn', 'hf_rr', 'lf_rr', 'mean_SCL']]
+Top R2 values for any combination of 8 metrics:
+[0.5078504315593917, ['bpm', 'rmssd', 'ibi', 'sdnn', 'hf_rr', 'lf_rr', 'mean_SCL', 'SCR_rate']]
