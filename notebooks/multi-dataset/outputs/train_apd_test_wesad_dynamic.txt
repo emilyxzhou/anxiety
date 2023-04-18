@@ -1,279 +1,444 @@
 APD PHASES 0 --------------------------------------------------
 WESAD PHASES 0 --------------------------------------------------
-0    297
-1    232
+y_a:
+0    177
+1    147
 Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.6285714285714284
-KNN accuracy over 10 rounds: 0.37142857142857144
-DT accuracy over 10 rounds: 0.5914285714285714
-LogReg accuracy over 10 rounds: 0.4142857142857143
-Bayes accuracy over 10 rounds: 0.5
-XGB accuracy over 10 rounds: 0.5999999999999999
-
-
-APD PHASES 0 --------------------------------------------------
-WESAD PHASES 1 --------------------------------------------------
-0    287
-1    228
-Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.607142857142857
-KNN accuracy over 10 rounds: 0.39285714285714285
-DT accuracy over 10 rounds: 0.6232142857142857
-LogReg accuracy over 10 rounds: 0.625
-Bayes accuracy over 10 rounds: 0.6785714285714286
-Model evaluation metrics for Bayes:
-Precision: 0.642857142857143
-Recall: 0.40909090909090906
-F1-score: 0.5000000000000001
-AUC score: 0.6310160427807486
-XGB accuracy over 10 rounds: 0.5892857142857143
-
-
-APD PHASES 0 --------------------------------------------------
-WESAD PHASES 2 --------------------------------------------------
-0    276
-1    225
-Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.5476190476190477
-KNN accuracy over 10 rounds: 0.4523809523809524
-DT accuracy over 10 rounds: 0.5619047619047619
-LogReg accuracy over 10 rounds: 0.47619047619047616
-Bayes accuracy over 10 rounds: 0.619047619047619
-XGB accuracy over 10 rounds: 0.5952380952380951
-
-
-APD PHASES 0 --------------------------------------------------
-WESAD PHASES 3 --------------------------------------------------
-0    264
-1    209
-Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.7857142857142857
-Model evaluation metrics for SVM:
-Precision: 1.0
-Recall: 0.0
-F1-score: 0.0
-AUC score: 0.5
-KNN accuracy over 10 rounds: 0.21428571428571427
-DT accuracy over 10 rounds: 0.7785714285714286
-Model evaluation metrics for DT:
-Precision: 0.5499999999999999
-Recall: 0.33333333333333337
-F1-score: 0.4
-AUC score: 0.6166666666666666
-LogReg accuracy over 10 rounds: 0.5
-Bayes accuracy over 10 rounds: 0.2857142857142857
-XGB accuracy over 10 rounds: 0.642857142857143
-
-
-APD PHASES 1 --------------------------------------------------
-WESAD PHASES 0 --------------------------------------------------
-0    244
-1    183
-Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.6285714285714284
-KNN accuracy over 10 rounds: 0.6285714285714284
-DT accuracy over 10 rounds: 0.43285714285714283
-LogReg accuracy over 10 rounds: 0.4142857142857143
-Bayes accuracy over 10 rounds: 0.6142857142857142
-XGB accuracy over 10 rounds: 0.5714285714285714
-
-
-APD PHASES 1 --------------------------------------------------
-WESAD PHASES 1 --------------------------------------------------
-0    234
-1    179
-Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.607142857142857
-KNN accuracy over 10 rounds: 0.607142857142857
-DT accuracy over 10 rounds: 0.42321428571428565
-LogReg accuracy over 10 rounds: 0.3392857142857143
-Bayes accuracy over 10 rounds: 0.5892857142857143
-XGB accuracy over 10 rounds: 0.5357142857142857
-
-
-APD PHASES 1 --------------------------------------------------
-WESAD PHASES 2 --------------------------------------------------
-0    223
-1    176
-Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.5476190476190477
-KNN accuracy over 10 rounds: 0.5476190476190477
-DT accuracy over 10 rounds: 0.45714285714285713
-LogReg accuracy over 10 rounds: 0.5476190476190477
-Bayes accuracy over 10 rounds: 0.5714285714285714
-XGB accuracy over 10 rounds: 0.5476190476190477
-
-
-APD PHASES 1 --------------------------------------------------
-WESAD PHASES 3 --------------------------------------------------
-0    211
-1    160
-Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.7857142857142857
-Model evaluation metrics for SVM:
-Precision: 1.0
-Recall: 0.0
-F1-score: 0.0
-AUC score: 0.5
-KNN accuracy over 10 rounds: 0.7857142857142857
-Model evaluation metrics for KNN:
-Precision: 1.0
-Recall: 0.0
-F1-score: 0.0
-AUC score: 0.5
-DT accuracy over 10 rounds: 0.5214285714285714
-LogReg accuracy over 10 rounds: 0.2857142857142857
-Bayes accuracy over 10 rounds: 0.7857142857142857
-Model evaluation metrics for Bayes:
-Precision: 0.5
-Recall: 0.33333333333333337
-F1-score: 0.4
-AUC score: 0.6212121212121211
-XGB accuracy over 10 rounds: 0.642857142857143
-
-
-APD PHASES 2 --------------------------------------------------
-WESAD PHASES 0 --------------------------------------------------
-0    179
-1    146
-Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.6285714285714284
-KNN accuracy over 10 rounds: 0.6285714285714284
-DT accuracy over 10 rounds: 0.47857142857142854
-LogReg accuracy over 10 rounds: 0.37142857142857144
-Bayes accuracy over 10 rounds: 0.6285714285714284
-XGB accuracy over 10 rounds: 0.5428571428571428
-
-
-APD PHASES 2 --------------------------------------------------
-WESAD PHASES 1 --------------------------------------------------
-0    169
-1    142
-Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.607142857142857
-KNN accuracy over 10 rounds: 0.607142857142857
-DT accuracy over 10 rounds: 0.4267857142857142
-LogReg accuracy over 10 rounds: 0.39285714285714285
-Bayes accuracy over 10 rounds: 0.607142857142857
-XGB accuracy over 10 rounds: 0.35714285714285715
-
-
-APD PHASES 2 --------------------------------------------------
-WESAD PHASES 2 --------------------------------------------------
-0    158
-1    139
-Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.5476190476190477
-KNN accuracy over 10 rounds: 0.5476190476190477
-DT accuracy over 10 rounds: 0.5166666666666666
-LogReg accuracy over 10 rounds: 0.4523809523809524
-Bayes accuracy over 10 rounds: 0.5476190476190477
-XGB accuracy over 10 rounds: 0.42857142857142855
-
-
-APD PHASES 2 --------------------------------------------------
-WESAD PHASES 3 --------------------------------------------------
-0    146
-1    123
-Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.7857142857142857
-Model evaluation metrics for SVM:
-Precision: 1.0
-Recall: 0.0
-F1-score: 0.0
-AUC score: 0.5
-KNN accuracy over 10 rounds: 0.7857142857142857
-Model evaluation metrics for KNN:
-Precision: 1.0
-Recall: 0.0
-F1-score: 0.0
-AUC score: 0.5
-DT accuracy over 10 rounds: 0.43571428571428567
-LogReg accuracy over 10 rounds: 0.21428571428571427
-Bayes accuracy over 10 rounds: 0.7857142857142857
-Model evaluation metrics for Bayes:
-Precision: 1.0
-Recall: 0.0
-F1-score: 0.0
-AUC score: 0.5
-XGB accuracy over 10 rounds: 0.5
-
-
-APD PHASES 3 --------------------------------------------------
-WESAD PHASES 0 --------------------------------------------------
-0    123
-1     49
-Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.6285714285714284
-KNN accuracy over 10 rounds: 0.6285714285714284
-DT accuracy over 10 rounds: 0.6257142857142857
-LogReg accuracy over 10 rounds: 0.6285714285714284
-Bayes accuracy over 10 rounds: 0.6285714285714284
-XGB accuracy over 10 rounds: 0.6285714285714284
-
-
-APD PHASES 3 --------------------------------------------------
-WESAD PHASES 1 --------------------------------------------------
-0    113
-1     45
-Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.607142857142857
-KNN accuracy over 10 rounds: 0.607142857142857
-DT accuracy over 10 rounds: 0.6232142857142857
-LogReg accuracy over 10 rounds: 0.607142857142857
-Bayes accuracy over 10 rounds: 0.607142857142857
-XGB accuracy over 10 rounds: 0.5892857142857143
-
-
-APD PHASES 3 --------------------------------------------------
-WESAD PHASES 2 --------------------------------------------------
-0    102
-1     42
-Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.5476190476190477
-KNN accuracy over 10 rounds: 0.5476190476190477
-DT accuracy over 10 rounds: 0.5571428571428572
-LogReg accuracy over 10 rounds: 0.5476190476190477
-Bayes accuracy over 10 rounds: 0.5476190476190477
-XGB accuracy over 10 rounds: 0.5476190476190477
-
-
-APD PHASES 3 --------------------------------------------------
-WESAD PHASES 3 --------------------------------------------------
-0    90
+y_b:
+0    44
 1    26
 Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.7857142857142857
+y_train:
+0    177
+1    147
+Name: label, dtype: int64
+y_test:
+0    44
+1    26
+Name: label, dtype: int64
+Model SVM, Predictions: [0], [70]
+Model LogReg, Predictions: [0], [70]
+Model XGB, Predictions: [0], [70]
+SVM accuracy over 1 rounds: 0.6285714285714286
 Model evaluation metrics for SVM:
 Precision: 1.0
 Recall: 0.0
 F1-score: 0.0
 AUC score: 0.5
-KNN accuracy over 10 rounds: 0.7857142857142857
-Model evaluation metrics for KNN:
-Precision: 1.0
-Recall: 0.0
-F1-score: 0.0
-AUC score: 0.5
-DT accuracy over 10 rounds: 0.7142857142857143
-Model evaluation metrics for DT:
-Precision: 0.39999999999999997
-Recall: 0.8
-F1-score: 0.5199999999999999
-AUC score: 0.7454545454545455
-LogReg accuracy over 10 rounds: 0.7857142857142857
+LogReg accuracy over 1 rounds: 0.6285714285714286
 Model evaluation metrics for LogReg:
 Precision: 1.0
 Recall: 0.0
 F1-score: 0.0
 AUC score: 0.5
-Bayes accuracy over 10 rounds: 0.7857142857142857
-Model evaluation metrics for Bayes:
+XGB accuracy over 1 rounds: 0.6285714285714286
+Model evaluation metrics for XGB:
 Precision: 1.0
 Recall: 0.0
 F1-score: 0.0
 AUC score: 0.5
-XGB accuracy over 10 rounds: 0.7857142857142857
+
+
+APD PHASES 0 --------------------------------------------------
+WESAD PHASES 1 --------------------------------------------------
+y_a:
+0    177
+1    147
+Name: label, dtype: int64
+y_b:
+0    34
+1    22
+Name: label, dtype: int64
+y_train:
+0    177
+1    147
+Name: label, dtype: int64
+y_test:
+0    34
+1    22
+Name: label, dtype: int64
+Model SVM, Predictions: [0], [56]
+Model LogReg, Predictions: [0], [56]
+Model XGB, Predictions: [0], [56]
+SVM accuracy over 1 rounds: 0.6071428571428571
+Model evaluation metrics for SVM:
+Precision: 1.0
+Recall: 0.0
+F1-score: 0.0
+AUC score: 0.5
+LogReg accuracy over 1 rounds: 0.6071428571428571
+Model evaluation metrics for LogReg:
+Precision: 1.0
+Recall: 0.0
+F1-score: 0.0
+AUC score: 0.5
+XGB accuracy over 1 rounds: 0.6071428571428571
+Model evaluation metrics for XGB:
+Precision: 1.0
+Recall: 0.0
+F1-score: 0.0
+AUC score: 0.5
+
+
+APD PHASES 0 --------------------------------------------------
+WESAD PHASES 2 --------------------------------------------------
+y_a:
+0    177
+1    147
+Name: label, dtype: int64
+y_b:
+0    23
+1    19
+Name: label, dtype: int64
+y_train:
+0    177
+1    147
+Name: label, dtype: int64
+y_test:
+0    23
+1    19
+Name: label, dtype: int64
+Model SVM, Predictions: [0], [42]
+Model LogReg, Predictions: [0], [42]
+Model XGB, Predictions: [0], [42]
+SVM accuracy over 1 rounds: 0.5476190476190477
+LogReg accuracy over 1 rounds: 0.5476190476190477
+XGB accuracy over 1 rounds: 0.5476190476190477
+
+
+APD PHASES 1 --------------------------------------------------
+WESAD PHASES 0 --------------------------------------------------
+y_a:
+0    141
+1    111
+Name: label, dtype: int64
+y_b:
+0    44
+1    26
+Name: label, dtype: int64
+y_train:
+0    141
+1    111
+Name: label, dtype: int64
+y_test:
+0    44
+1    26
+Name: label, dtype: int64
+Model SVM, Predictions: [0], [70]
+Model LogReg, Predictions: [0 1], [56 14]
+Model XGB, Predictions: [0 1], [41 29]
+SVM accuracy over 1 rounds: 0.6285714285714286
+Model evaluation metrics for SVM:
+Precision: 1.0
+Recall: 0.0
+F1-score: 0.0
+AUC score: 0.5
+LogReg accuracy over 1 rounds: 0.6
+XGB accuracy over 1 rounds: 0.5
+
+
+APD PHASES 1 --------------------------------------------------
+WESAD PHASES 1 --------------------------------------------------
+y_a:
+0    141
+1    111
+Name: label, dtype: int64
+y_b:
+0    34
+1    22
+Name: label, dtype: int64
+y_train:
+0    141
+1    111
+Name: label, dtype: int64
+y_test:
+0    34
+1    22
+Name: label, dtype: int64
+Model SVM, Predictions: [0], [56]
+Model LogReg, Predictions: [0 1], [45 11]
+Model XGB, Predictions: [0 1], [32 24]
+SVM accuracy over 1 rounds: 0.6071428571428571
+Model evaluation metrics for SVM:
+Precision: 1.0
+Recall: 0.0
+F1-score: 0.0
+AUC score: 0.5
+LogReg accuracy over 1 rounds: 0.5178571428571429
+XGB accuracy over 1 rounds: 0.42857142857142855
+
+
+APD PHASES 1 --------------------------------------------------
+WESAD PHASES 2 --------------------------------------------------
+y_a:
+0    141
+1    111
+Name: label, dtype: int64
+y_b:
+0    23
+1    19
+Name: label, dtype: int64
+y_train:
+0    141
+1    111
+Name: label, dtype: int64
+y_test:
+0    23
+1    19
+Name: label, dtype: int64
+Model SVM, Predictions: [0], [42]
+Model LogReg, Predictions: [0 1], [33  9]
+Model XGB, Predictions: [0 1], [25 17]
+SVM accuracy over 1 rounds: 0.5476190476190477
+LogReg accuracy over 1 rounds: 0.6190476190476191
+Model evaluation metrics for LogReg:
+Precision: 0.6666666666666666
+Recall: 0.3157894736842105
+F1-score: 0.42857142857142855
+AUC score: 0.5926773455377575
+XGB accuracy over 1 rounds: 0.47619047619047616
+
+
+APD PHASES 2 --------------------------------------------------
+WESAD PHASES 0 --------------------------------------------------
+y_a:
+0    94
+1    86
+Name: label, dtype: int64
+y_b:
+0    44
+1    26
+Name: label, dtype: int64
+y_train:
+0    94
+1    86
+Name: label, dtype: int64
+y_test:
+0    44
+1    26
+Name: label, dtype: int64
+Model SVM, Predictions: [0], [70]
+Model LogReg, Predictions: [0], [70]
+Model XGB, Predictions: [0 1], [16 54]
+SVM accuracy over 1 rounds: 0.6285714285714286
+Model evaluation metrics for SVM:
+Precision: 1.0
+Recall: 0.0
+F1-score: 0.0
+AUC score: 0.5
+LogReg accuracy over 1 rounds: 0.6285714285714286
+Model evaluation metrics for LogReg:
+Precision: 1.0
+Recall: 0.0
+F1-score: 0.0
+AUC score: 0.5
+XGB accuracy over 1 rounds: 0.34285714285714286
+
+
+APD PHASES 2 --------------------------------------------------
+WESAD PHASES 1 --------------------------------------------------
+y_a:
+0    94
+1    86
+Name: label, dtype: int64
+y_b:
+0    34
+1    22
+Name: label, dtype: int64
+y_train:
+0    94
+1    86
+Name: label, dtype: int64
+y_test:
+0    34
+1    22
+Name: label, dtype: int64
+Model SVM, Predictions: [0], [56]
+Model LogReg, Predictions: [0], [56]
+Model XGB, Predictions: [0 1], [12 44]
+SVM accuracy over 1 rounds: 0.6071428571428571
+Model evaluation metrics for SVM:
+Precision: 1.0
+Recall: 0.0
+F1-score: 0.0
+AUC score: 0.5
+LogReg accuracy over 1 rounds: 0.6071428571428571
+Model evaluation metrics for LogReg:
+Precision: 1.0
+Recall: 0.0
+F1-score: 0.0
+AUC score: 0.5
+XGB accuracy over 1 rounds: 0.42857142857142855
+
+
+APD PHASES 2 --------------------------------------------------
+WESAD PHASES 2 --------------------------------------------------
+y_a:
+0    94
+1    86
+Name: label, dtype: int64
+y_b:
+0    23
+1    19
+Name: label, dtype: int64
+y_train:
+0    94
+1    86
+Name: label, dtype: int64
+y_test:
+0    23
+1    19
+Name: label, dtype: int64
+Model SVM, Predictions: [0], [42]
+Model LogReg, Predictions: [0], [42]
+Model XGB, Predictions: [0 1], [10 32]
+SVM accuracy over 1 rounds: 0.5476190476190477
+LogReg accuracy over 1 rounds: 0.5476190476190477
+XGB accuracy over 1 rounds: 0.40476190476190477
+
+
+APD PHASES 3 --------------------------------------------------
+WESAD PHASES 0 --------------------------------------------------
+y_a:
+0    57
+1    15
+Name: label, dtype: int64
+y_b:
+0    44
+1    26
+Name: label, dtype: int64
+y_train:
+0    57
+1    15
+Name: label, dtype: int64
+y_test:
+0    44
+1    26
+Name: label, dtype: int64
+Model SVM, Predictions: [0], [70]
+Model LogReg, Predictions: [0], [70]
+Model XGB, Predictions: [0], [70]
+SVM accuracy over 1 rounds: 0.6285714285714286
+Model evaluation metrics for SVM:
+Precision: 1.0
+Recall: 0.0
+F1-score: 0.0
+AUC score: 0.5
+LogReg accuracy over 1 rounds: 0.6285714285714286
+Model evaluation metrics for LogReg:
+Precision: 1.0
+Recall: 0.0
+F1-score: 0.0
+AUC score: 0.5
+XGB accuracy over 1 rounds: 0.6285714285714286
+Model evaluation metrics for XGB:
+Precision: 1.0
+Recall: 0.0
+F1-score: 0.0
+AUC score: 0.5
+
+
+APD PHASES 3 --------------------------------------------------
+WESAD PHASES 1 --------------------------------------------------
+y_a:
+0    57
+1    15
+Name: label, dtype: int64
+y_b:
+0    34
+1    22
+Name: label, dtype: int64
+y_train:
+0    57
+1    15
+Name: label, dtype: int64
+y_test:
+0    34
+1    22
+Name: label, dtype: int64
+Model SVM, Predictions: [0], [56]
+Model LogReg, Predictions: [0], [56]
+Model XGB, Predictions: [0], [56]
+SVM accuracy over 1 rounds: 0.6071428571428571
+Model evaluation metrics for SVM:
+Precision: 1.0
+Recall: 0.0
+F1-score: 0.0
+AUC score: 0.5
+LogReg accuracy over 1 rounds: 0.6071428571428571
+Model evaluation metrics for LogReg:
+Precision: 1.0
+Recall: 0.0
+F1-score: 0.0
+AUC score: 0.5
+XGB accuracy over 1 rounds: 0.6071428571428571
+Model evaluation metrics for XGB:
+Precision: 1.0
+Recall: 0.0
+F1-score: 0.0
+AUC score: 0.5
+
+
+APD PHASES 3 --------------------------------------------------
+WESAD PHASES 2 --------------------------------------------------
+y_a:
+0    57
+1    15
+Name: label, dtype: int64
+y_b:
+0    23
+1    19
+Name: label, dtype: int64
+y_train:
+0    57
+1    15
+Name: label, dtype: int64
+y_test:
+0    23
+1    19
+Name: label, dtype: int64
+Model SVM, Predictions: [0], [42]
+Model LogReg, Predictions: [0], [42]
+Model XGB, Predictions: [0], [42]
+SVM accuracy over 1 rounds: 0.5476190476190477
+LogReg accuracy over 1 rounds: 0.5476190476190477
+XGB accuracy over 1 rounds: 0.5476190476190477
+
+
+APD PHASES 4 --------------------------------------------------
+WESAD PHASES 0 --------------------------------------------------
+y_a:
+0    57
+1    15
+Name: label, dtype: int64
+y_b:
+0    44
+1    26
+Name: label, dtype: int64
+y_train:
+0    57
+1    15
+Name: label, dtype: int64
+y_test:
+0    44
+1    26
+Name: label, dtype: int64
+Model SVM, Predictions: [0], [70]
+Model LogReg, Predictions: [0], [70]
+Model XGB, Predictions: [0], [70]
+SVM accuracy over 1 rounds: 0.6285714285714286
+Model evaluation metrics for SVM:
+Precision: 1.0
+Recall: 0.0
+F1-score: 0.0
+AUC score: 0.5
+LogReg accuracy over 1 rounds: 0.6285714285714286
+Model evaluation metrics for LogReg:
+Precision: 1.0
+Recall: 0.0
+F1-score: 0.0
+AUC score: 0.5
+XGB accuracy over 1 rounds: 0.6285714285714286
 Model evaluation metrics for XGB:
 Precision: 1.0
 Recall: 0.0
@@ -282,79 +447,147 @@ AUC score: 0.5
 
 
 APD PHASES 4 --------------------------------------------------
-WESAD PHASES 0 --------------------------------------------------
-0    123
-1     49
-Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.6285714285714284
-KNN accuracy over 10 rounds: 0.6285714285714284
-DT accuracy over 10 rounds: 0.5642857142857143
-LogReg accuracy over 10 rounds: 0.6285714285714284
-Bayes accuracy over 10 rounds: 0.6285714285714284
-XGB accuracy over 10 rounds: 0.6285714285714284
-
-
-APD PHASES 4 --------------------------------------------------
 WESAD PHASES 1 --------------------------------------------------
-0    113
-1     45
+y_a:
+0    57
+1    15
 Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.607142857142857
-KNN accuracy over 10 rounds: 0.607142857142857
-DT accuracy over 10 rounds: 0.5392857142857143
-LogReg accuracy over 10 rounds: 0.607142857142857
-Bayes accuracy over 10 rounds: 0.607142857142857
-XGB accuracy over 10 rounds: 0.607142857142857
-
-
-APD PHASES 4 --------------------------------------------------
-WESAD PHASES 2 --------------------------------------------------
-0    102
-1     42
+y_b:
+0    34
+1    22
 Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.5476190476190477
-KNN accuracy over 10 rounds: 0.5476190476190477
-DT accuracy over 10 rounds: 0.5666666666666667
-LogReg accuracy over 10 rounds: 0.5476190476190477
-Bayes accuracy over 10 rounds: 0.5476190476190477
-XGB accuracy over 10 rounds: 0.5476190476190477
-
-
-APD PHASES 4 --------------------------------------------------
-WESAD PHASES 3 --------------------------------------------------
-0    90
-1    26
+y_train:
+0    57
+1    15
 Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.7857142857142857
+y_test:
+0    34
+1    22
+Name: label, dtype: int64
+Model SVM, Predictions: [0], [56]
+Model LogReg, Predictions: [0], [56]
+Model XGB, Predictions: [0], [56]
+SVM accuracy over 1 rounds: 0.6071428571428571
 Model evaluation metrics for SVM:
 Precision: 1.0
 Recall: 0.0
 F1-score: 0.0
 AUC score: 0.5
-KNN accuracy over 10 rounds: 0.7857142857142857
-Model evaluation metrics for KNN:
-Precision: 1.0
-Recall: 0.0
-F1-score: 0.0
-AUC score: 0.5
-DT accuracy over 10 rounds: 0.5142857142857142
-LogReg accuracy over 10 rounds: 0.7857142857142857
+LogReg accuracy over 1 rounds: 0.6071428571428571
 Model evaluation metrics for LogReg:
 Precision: 1.0
 Recall: 0.0
 F1-score: 0.0
 AUC score: 0.5
-Bayes accuracy over 10 rounds: 0.7857142857142857
-Model evaluation metrics for Bayes:
-Precision: 1.0
-Recall: 0.0
-F1-score: 0.0
-AUC score: 0.5
-XGB accuracy over 10 rounds: 0.7857142857142857
+XGB accuracy over 1 rounds: 0.6071428571428571
 Model evaluation metrics for XGB:
 Precision: 1.0
 Recall: 0.0
 F1-score: 0.0
 AUC score: 0.5
+
+
+APD PHASES 4 --------------------------------------------------
+WESAD PHASES 2 --------------------------------------------------
+y_a:
+0    57
+1    15
+Name: label, dtype: int64
+y_b:
+0    23
+1    19
+Name: label, dtype: int64
+y_train:
+0    57
+1    15
+Name: label, dtype: int64
+y_test:
+0    23
+1    19
+Name: label, dtype: int64
+Model SVM, Predictions: [0], [42]
+Model LogReg, Predictions: [0], [42]
+Model XGB, Predictions: [0], [42]
+SVM accuracy over 1 rounds: 0.5476190476190477
+LogReg accuracy over 1 rounds: 0.5476190476190477
+XGB accuracy over 1 rounds: 0.5476190476190477
+
+
+APD PHASES 5 --------------------------------------------------
+WESAD PHASES 0 --------------------------------------------------
+y_a:
+1    75
+0    69
+Name: label, dtype: int64
+y_b:
+0    44
+1    26
+Name: label, dtype: int64
+y_train:
+1    75
+0    69
+Name: label, dtype: int64
+y_test:
+0    44
+1    26
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [70]
+Model LogReg, Predictions: [1], [70]
+Model XGB, Predictions: [0 1], [ 3 67]
+SVM accuracy over 1 rounds: 0.37142857142857144
+LogReg accuracy over 1 rounds: 0.37142857142857144
+XGB accuracy over 1 rounds: 0.38571428571428573
+
+
+APD PHASES 5 --------------------------------------------------
+WESAD PHASES 1 --------------------------------------------------
+y_a:
+1    75
+0    69
+Name: label, dtype: int64
+y_b:
+0    34
+1    22
+Name: label, dtype: int64
+y_train:
+1    75
+0    69
+Name: label, dtype: int64
+y_test:
+0    34
+1    22
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [56]
+Model LogReg, Predictions: [1], [56]
+Model XGB, Predictions: [0 1], [ 3 53]
+SVM accuracy over 1 rounds: 0.39285714285714285
+LogReg accuracy over 1 rounds: 0.39285714285714285
+XGB accuracy over 1 rounds: 0.44642857142857145
+
+
+APD PHASES 5 --------------------------------------------------
+WESAD PHASES 2 --------------------------------------------------
+y_a:
+1    75
+0    69
+Name: label, dtype: int64
+y_b:
+0    23
+1    19
+Name: label, dtype: int64
+y_train:
+1    75
+0    69
+Name: label, dtype: int64
+y_test:
+0    23
+1    19
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [42]
+Model LogReg, Predictions: [1], [42]
+Model XGB, Predictions: [0 1], [ 1 41]
+SVM accuracy over 1 rounds: 0.4523809523809524
+LogReg accuracy over 1 rounds: 0.4523809523809524
+XGB accuracy over 1 rounds: 0.42857142857142855
 
 

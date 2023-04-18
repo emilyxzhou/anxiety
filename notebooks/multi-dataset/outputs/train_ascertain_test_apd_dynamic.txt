@@ -1,0 +1,142 @@
+APD PHASES 0 --------------------------------------------------
+y_train:
+1    905
+0    642
+Name: label, dtype: int64
+y_test:
+0    177
+1    147
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [324]
+Model LogReg, Predictions: [1], [324]
+Model XGB, Predictions: [0 1], [273  51]
+SVM accuracy over 1 rounds: 0.4537037037037037
+LogReg accuracy over 1 rounds: 0.4537037037037037
+XGB accuracy over 1 rounds: 0.5061728395061729
+	Report:
+	Precision: 0.37254901960784315
+	Recall: 0.1292517006802721
+	F1-score: 0.1919191919191919
+	AUC score: 0.47423037011414737
+
+
+APD PHASES 1 --------------------------------------------------
+y_train:
+1    905
+0    642
+Name: label, dtype: int64
+y_test:
+0    141
+1    111
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [252]
+Model LogReg, Predictions: [1], [252]
+Model XGB, Predictions: [0 1], [212  40]
+SVM accuracy over 1 rounds: 0.44047619047619047
+LogReg accuracy over 1 rounds: 0.44047619047619047
+XGB accuracy over 1 rounds: 0.503968253968254
+	Report:
+	Precision: 0.325
+	Recall: 0.11711711711711711
+	F1-score: 0.17218543046357618
+	AUC score: 0.4628138777074947
+
+
+APD PHASES 2 --------------------------------------------------
+y_train:
+1    905
+0    642
+Name: label, dtype: int64
+y_test:
+0    94
+1    86
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [180]
+Model LogReg, Predictions: [1], [180]
+Model XGB, Predictions: [0 1], [143  37]
+SVM accuracy over 1 rounds: 0.4777777777777778
+LogReg accuracy over 1 rounds: 0.4777777777777778
+XGB accuracy over 1 rounds: 0.5166666666666667
+	Report:
+	Precision: 0.4864864864864865
+	Recall: 0.20930232558139536
+	F1-score: 0.2926829268292683
+	AUC score: 0.5035873330034636
+
+
+APD PHASES 3 --------------------------------------------------
+y_train:
+1    905
+0    642
+Name: label, dtype: int64
+y_test:
+0    57
+1    15
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [72]
+Model LogReg, Predictions: [0 1], [ 2 70]
+Model XGB, Predictions: [0 1], [68  4]
+SVM accuracy over 1 rounds: 0.20833333333333334
+LogReg accuracy over 1 rounds: 0.2361111111111111
+XGB accuracy over 1 rounds: 0.7916666666666666
+	Report:
+	Precision: 0.5
+	Recall: 0.13333333333333333
+	F1-score: 0.2105263157894737
+	AUC score: 0.5491228070175439
+
+
+APD PHASES 4 --------------------------------------------------
+y_train:
+1    905
+0    642
+Name: label, dtype: int64
+y_test:
+0    57
+1    15
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [72]
+Model LogReg, Predictions: [0 1], [ 1 71]
+Model XGB, Predictions: [0 1], [64  8]
+SVM accuracy over 1 rounds: 0.20833333333333334
+LogReg accuracy over 1 rounds: 0.2222222222222222
+XGB accuracy over 1 rounds: 0.6805555555555556
+	Report:
+	Precision: 0.0
+	Recall: 0.0
+	F1-score: 0.0
+	AUC score: 0.4298245614035088
+
+
+APD PHASES 5 --------------------------------------------------
+y_train:
+1    905
+0    642
+Name: label, dtype: int64
+y_test:
+1    75
+0    69
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [144]
+Model LogReg, Predictions: [1], [144]
+Model XGB, Predictions: [0 1], [127  17]
+SVM accuracy over 1 rounds: 0.5208333333333334
+	Report:
+	Precision: 0.5208333333333334
+	Recall: 1.0
+	F1-score: 0.684931506849315
+	AUC score: 0.5
+LogReg accuracy over 1 rounds: 0.5208333333333334
+	Report:
+	Precision: 0.5208333333333334
+	Recall: 1.0
+	F1-score: 0.684931506849315
+	AUC score: 0.5
+XGB accuracy over 1 rounds: 0.5555555555555556
+	Report:
+	Precision: 0.8235294117647058
+	Recall: 0.18666666666666668
+	F1-score: 0.3043478260869565
+	AUC score: 0.5715942028985508
+
+

@@ -1,500 +1,3360 @@
 POPANE Study1 --------------------------------------------------
 APD PHASES 0 --------------------------------------------------
-1    581
-0    245
+y_a:
+1    248
+0    118
 Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.7581387633602292
+y_b:
+1    356
+0    112
+Name: label, dtype: int64
+y_train:
+1    306
+0    159
+Name: label, dtype: int64
+y_test:
+1    298
+0     71
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [369]
+Model LogReg, Predictions: [0 1], [ 18 351]
+Model XGB, Predictions: [0 1], [109 260]
+y_train:
+1    338
+0    127
+Name: label, dtype: int64
+y_test:
+1    266
+0    103
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [369]
+Model LogReg, Predictions: [1], [369]
+Model XGB, Predictions: [0 1], [ 66 303]
+y_train:
+1    329
+0    136
+Name: label, dtype: int64
+y_test:
+1    275
+0     94
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [369]
+Model LogReg, Predictions: [0 1], [  8 361]
+Model XGB, Predictions: [0 1], [125 244]
+y_train:
+1    333
+0    132
+Name: label, dtype: int64
+y_test:
+1    271
+0     98
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [369]
+Model LogReg, Predictions: [0 1], [ 16 353]
+Model XGB, Predictions: [0 1], [ 48 321]
+y_train:
+1    313
+0    152
+Name: label, dtype: int64
+y_test:
+1    291
+0     78
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [369]
+Model LogReg, Predictions: [0 1], [ 88 281]
+Model XGB, Predictions: [0 1], [ 78 291]
+y_train:
+1    340
+0    125
+Name: label, dtype: int64
+y_test:
+1    264
+0    105
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [369]
+Model LogReg, Predictions: [1], [369]
+Model XGB, Predictions: [0 1], [ 43 326]
+y_train:
+1    340
+0    125
+Name: label, dtype: int64
+y_test:
+1    264
+0    105
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [369]
+Model LogReg, Predictions: [1], [369]
+Model XGB, Predictions: [0 1], [ 33 336]
+y_train:
+1    299
+0    166
+Name: label, dtype: int64
+y_test:
+1    305
+0     64
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [369]
+Model LogReg, Predictions: [0 1], [131 238]
+Model XGB, Predictions: [0 1], [187 182]
+y_train:
+1    306
+0    159
+Name: label, dtype: int64
+y_test:
+1    298
+0     71
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [369]
+Model LogReg, Predictions: [0 1], [227 142]
+Model XGB, Predictions: [0 1], [112 257]
+y_train:
+1    331
+0    134
+Name: label, dtype: int64
+y_test:
+1    273
+0     96
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [369]
+Model LogReg, Predictions: [1], [369]
+Model XGB, Predictions: [0 1], [ 56 313]
+SVM accuracy over 10 rounds: 0.7601626016260162
 Model evaluation metrics for SVM:
-Precision: 0.7578385365520036
-Recall: 0.9992700729927007
-F1-score: 0.8619260903624198
-AUC score: 0.5059872374101635
-LogReg accuracy over 10 rounds: 0.7550824126163851
+Precision: 0.7601626016260162
+Recall: 1.0
+F1-score: 0.8631390416869105
+AUC score: 0.5
+LogReg accuracy over 10 rounds: 0.6707317073170731
 Model evaluation metrics for LogReg:
-Precision: 0.7555060538779762
-Recall: 0.9992700341005968
-F1-score: 0.8604227373515071
-AUC score: 0.4996350170502984
-XGB accuracy over 10 rounds: 0.9233757721719448
+Precision: 0.7551288669036802
+Recall: 0.8622927807423981
+F1-score: 0.787542311732132
+AUC score: 0.48725127171972976
+XGB accuracy over 10 rounds: 0.8233062330623306
 Model evaluation metrics for XGB:
-Precision: 0.9486648212178356
-Recall: 0.9510809854580948
-F1-score: 0.9494934996402602
-AUC score: 0.8945118059620173
+Precision: 0.8911345952284033
+Recall: 0.8938857444201973
+F1-score: 0.8826300550398761
+AUC score: 0.771675171718143
 
 
 POPANE Study1 --------------------------------------------------
 APD PHASES 1 --------------------------------------------------
-1    503
-0    221
+y_a:
+1    248
+0    118
 Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.764869690845549
+y_b:
+1    276
+0     88
+Name: label, dtype: int64
+y_train:
+1    300
+0    143
+Name: label, dtype: int64
+y_test:
+1    224
+0     63
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [287]
+Model LogReg, Predictions: [0 1], [ 38 249]
+Model XGB, Predictions: [0 1], [ 82 205]
+y_train:
+1    294
+0    149
+Name: label, dtype: int64
+y_test:
+1    230
+0     57
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [287]
+Model LogReg, Predictions: [0 1], [100 187]
+Model XGB, Predictions: [0 1], [ 69 218]
+y_train:
+1    314
+0    129
+Name: label, dtype: int64
+y_test:
+1    210
+0     77
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [287]
+Model LogReg, Predictions: [1], [287]
+Model XGB, Predictions: [0 1], [ 69 218]
+y_train:
+1    313
+0    130
+Name: label, dtype: int64
+y_test:
+1    211
+0     76
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [287]
+Model LogReg, Predictions: [1], [287]
+Model XGB, Predictions: [0 1], [ 59 228]
+y_train:
+1    318
+0    125
+Name: label, dtype: int64
+y_test:
+1    206
+0     81
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [287]
+Model LogReg, Predictions: [1], [287]
+Model XGB, Predictions: [0 1], [  6 281]
+y_train:
+1    306
+0    137
+Name: label, dtype: int64
+y_test:
+1    218
+0     69
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [287]
+Model LogReg, Predictions: [0 1], [ 11 276]
+Model XGB, Predictions: [0 1], [ 86 201]
+y_train:
+1    308
+0    135
+Name: label, dtype: int64
+y_test:
+1    216
+0     71
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [287]
+Model LogReg, Predictions: [1], [287]
+Model XGB, Predictions: [0 1], [ 58 229]
+y_train:
+1    301
+0    142
+Name: label, dtype: int64
+y_test:
+1    223
+0     64
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [287]
+Model LogReg, Predictions: [0 1], [ 16 271]
+Model XGB, Predictions: [0 1], [115 172]
+y_train:
+1    308
+0    135
+Name: label, dtype: int64
+y_test:
+1    216
+0     71
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [287]
+Model LogReg, Predictions: [0 1], [ 11 276]
+Model XGB, Predictions: [0 1], [ 66 221]
+y_train:
+1    319
+0    124
+Name: label, dtype: int64
+y_test:
+1    205
+0     82
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [287]
+Model LogReg, Predictions: [0 1], [ 21 266]
+Model XGB, Predictions: [0 1], [  2 285]
+SVM accuracy over 10 rounds: 0.7522648083623693
 Model evaluation metrics for SVM:
-Precision: 0.7639228863793304
-Recall: 0.999537037037037
-F1-score: 0.865905926894596
-AUC score: 0.5113060562173433
-LogReg accuracy over 10 rounds: 0.7584128473005907
+Precision: 0.7522648083623693
+Recall: 1.0
+F1-score: 0.8583523966885224
+AUC score: 0.5
+LogReg accuracy over 10 rounds: 0.702439024390244
 Model evaluation metrics for LogReg:
-Precision: 0.7595115103457106
-Recall: 0.9981284423115774
-F1-score: 0.8625574840947934
-AUC score: 0.4990642211557887
-XGB accuracy over 10 rounds: 0.9145314893599004
+Precision: 0.7456899041064163
+Recall: 0.9240295210890981
+F1-score: 0.8211122348795208
+AUC score: 0.48404358876992754
+XGB accuracy over 10 rounds: 0.8484320557491289
 Model evaluation metrics for XGB:
-Precision: 0.9440286250082419
-Recall: 0.9458748425976526
-F1-score: 0.9440719600665222
-AUC score: 0.8831292083332501
+Precision: 0.8945115164009895
+Recall: 0.9237076410510671
+F1-score: 0.9026462600882134
+AUC score: 0.7885040260738689
 
 
 POPANE Study1 --------------------------------------------------
 APD PHASES 2 --------------------------------------------------
-1    426
+y_a:
+1    248
+0    118
+Name: label, dtype: int64
+y_b:
+1    197
+0     63
+Name: label, dtype: int64
+y_train:
+1    303
+0    118
+Name: label, dtype: int64
+y_test:
+1    142
+0     63
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [205]
+Model LogReg, Predictions: [1], [205]
+Model XGB, Predictions: [1], [205]
+y_train:
+1    295
+0    126
+Name: label, dtype: int64
+y_test:
+1    150
+0     55
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [205]
+Model LogReg, Predictions: [1], [205]
+Model XGB, Predictions: [0 1], [ 23 182]
+y_train:
+1    291
+0    130
+Name: label, dtype: int64
+y_test:
+1    154
+0     51
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [205]
+Model LogReg, Predictions: [1], [205]
+Model XGB, Predictions: [0 1], [ 28 177]
+y_train:
+1    295
+0    126
+Name: label, dtype: int64
+y_test:
+1    150
+0     55
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [205]
+Model LogReg, Predictions: [1], [205]
+Model XGB, Predictions: [0 1], [ 22 183]
+y_train:
+1    288
+0    133
+Name: label, dtype: int64
+y_test:
+1    157
+0     48
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [205]
+Model LogReg, Predictions: [1], [205]
+Model XGB, Predictions: [0 1], [ 40 165]
+y_train:
+1    296
+0    125
+Name: label, dtype: int64
+y_test:
+1    149
+0     56
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [205]
+Model LogReg, Predictions: [1], [205]
+Model XGB, Predictions: [0 1], [ 37 168]
+y_train:
+1    286
+0    135
+Name: label, dtype: int64
+y_test:
+1    159
+0     46
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [205]
+Model LogReg, Predictions: [1], [205]
+Model XGB, Predictions: [0 1], [ 39 166]
+y_train:
+1    291
+0    130
+Name: label, dtype: int64
+y_test:
+1    154
+0     51
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [205]
+Model LogReg, Predictions: [1], [205]
+Model XGB, Predictions: [0 1], [ 51 154]
+y_train:
+1    284
+0    137
+Name: label, dtype: int64
+y_test:
+1    161
+0     44
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [205]
+Model LogReg, Predictions: [0 1], [ 18 187]
+Model XGB, Predictions: [0 1], [ 18 187]
+y_train:
+1    294
+0    127
+Name: label, dtype: int64
+y_test:
+1    151
+0     54
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [205]
+Model LogReg, Predictions: [1], [205]
+Model XGB, Predictions: [0 1], [ 42 163]
+SVM accuracy over 10 rounds: 0.7448780487804878
+Model evaluation metrics for SVM:
+Precision: 0.7448780487804878
+Recall: 1.0
+F1-score: 0.8535395712085532
+AUC score: 0.5
+LogReg accuracy over 10 rounds: 0.7360975609756097
+Model evaluation metrics for LogReg:
+Precision: 0.7428120516499283
+Recall: 0.9888198757763975
+F1-score: 0.8477453371780275
+AUC score: 0.49440993788819876
+XGB accuracy over 10 rounds: 0.8434146341463414
+Model evaluation metrics for XGB:
+Precision: 0.8493813988711274
+Recall: 0.9681815545053011
+F1-score: 0.9027570527197589
+AUC score: 0.7305330997899218
+
+
+POPANE Study1 --------------------------------------------------
+APD PHASES 3 --------------------------------------------------
+y_a:
+1    248
+0    118
+Name: label, dtype: int64
+y_b:
+1    77
+0    27
+Name: label, dtype: int64
+y_train:
+1    260
+0    128
+Name: label, dtype: int64
+y_test:
+1    65
+0    17
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [0 1], [47 35]
+Model XGB, Predictions: [0 1], [25 57]
+y_train:
+1    264
+0    124
+Name: label, dtype: int64
+y_test:
+1    61
+0    21
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [0 1], [15 67]
+Model XGB, Predictions: [0 1], [18 64]
+y_train:
+1    262
+0    126
+Name: label, dtype: int64
+y_test:
+1    63
+0    19
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [0 1], [14 68]
+Model XGB, Predictions: [0 1], [20 62]
+y_train:
+1    266
+0    122
+Name: label, dtype: int64
+y_test:
+1    59
+0    23
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [1], [82]
+Model XGB, Predictions: [0 1], [ 6 76]
+y_train:
+1    268
+0    120
+Name: label, dtype: int64
+y_test:
+1    57
+0    25
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [1], [82]
+Model XGB, Predictions: [0 1], [ 2 80]
+y_train:
+1    262
+0    126
+Name: label, dtype: int64
+y_test:
+1    63
+0    19
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [0 1], [ 7 75]
+Model XGB, Predictions: [0 1], [23 59]
+y_train:
+1    258
+0    130
+Name: label, dtype: int64
+y_test:
+1    67
+0    15
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [0 1], [27 55]
+Model XGB, Predictions: [0 1], [35 47]
+y_train:
+1    266
+0    122
+Name: label, dtype: int64
+y_test:
+1    59
+0    23
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [0 1], [13 69]
+Model XGB, Predictions: [0 1], [ 9 73]
+y_train:
+1    265
+0    123
+Name: label, dtype: int64
+y_test:
+1    60
+0    22
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [0 1], [14 68]
+Model XGB, Predictions: [0 1], [11 71]
+y_train:
+1    266
+0    122
+Name: label, dtype: int64
+y_test:
+1    59
+0    23
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [1], [82]
+Model XGB, Predictions: [0 1], [ 6 76]
+SVM accuracy over 10 rounds: 0.7475609756097561
+Model evaluation metrics for SVM:
+Precision: 0.7475609756097561
+Recall: 1.0
+F1-score: 0.855061309348625
+AUC score: 0.5
+LogReg accuracy over 10 rounds: 0.6268292682926829
+Model evaluation metrics for LogReg:
+Precision: 0.7284263000008138
+Recall: 0.814055184345522
+F1-score: 0.7562647497401273
+AUC score: 0.4592902297012486
+XGB accuracy over 10 rounds: 0.7682926829268293
+Model evaluation metrics for XGB:
+Precision: 0.8307891054320393
+Recall: 0.8912275317347959
+F1-score: 0.8514976691511211
+AUC score: 0.6736297358085261
+
+
+POPANE Study1 --------------------------------------------------
+APD PHASES 4 --------------------------------------------------
+y_a:
+1    248
+0    118
+Name: label, dtype: int64
+y_b:
+1    77
+0    27
+Name: label, dtype: int64
+y_train:
+1    259
+0    129
+Name: label, dtype: int64
+y_test:
+1    66
+0    16
+Name: label, dtype: int64
+Model SVM, Predictions: [0 1], [ 1 81]
+Model LogReg, Predictions: [0 1], [28 54]
+Model XGB, Predictions: [0 1], [31 51]
+y_train:
+1    262
+0    126
+Name: label, dtype: int64
+y_test:
+1    63
+0    19
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [1], [82]
+Model XGB, Predictions: [0 1], [12 70]
+y_train:
+1    265
+0    123
+Name: label, dtype: int64
+y_test:
+1    60
+0    22
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [0 1], [10 72]
+Model XGB, Predictions: [0 1], [ 7 75]
+y_train:
+1    266
+0    122
+Name: label, dtype: int64
+y_test:
+1    59
+0    23
+Name: label, dtype: int64
+Model SVM, Predictions: [0 1], [ 1 81]
+Model LogReg, Predictions: [1], [82]
+Model XGB, Predictions: [0 1], [10 72]
+y_train:
+1    264
+0    124
+Name: label, dtype: int64
+y_test:
+1    61
+0    21
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [0 1], [ 4 78]
+Model XGB, Predictions: [0 1], [21 61]
+y_train:
+1    264
+0    124
+Name: label, dtype: int64
+y_test:
+1    61
+0    21
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [0 1], [ 1 81]
+Model XGB, Predictions: [0 1], [15 67]
+y_train:
+1    264
+0    124
+Name: label, dtype: int64
+y_test:
+1    61
+0    21
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [0 1], [ 5 77]
+Model XGB, Predictions: [0 1], [18 64]
+y_train:
+1    264
+0    124
+Name: label, dtype: int64
+y_test:
+1    61
+0    21
+Name: label, dtype: int64
+Model SVM, Predictions: [0 1], [ 1 81]
+Model LogReg, Predictions: [1], [82]
+Model XGB, Predictions: [0 1], [18 64]
+y_train:
+1    262
+0    126
+Name: label, dtype: int64
+y_test:
+1    63
+0    19
+Name: label, dtype: int64
+Model SVM, Predictions: [0 1], [ 1 81]
+Model LogReg, Predictions: [1], [82]
+Model XGB, Predictions: [0 1], [26 56]
+y_train:
+1    260
+0    128
+Name: label, dtype: int64
+y_test:
+1    65
+0    17
+Name: label, dtype: int64
+Model SVM, Predictions: [0 1], [ 1 81]
+Model LogReg, Predictions: [0 1], [12 70]
+Model XGB, Predictions: [0 1], [24 58]
+SVM accuracy over 10 rounds: 0.7621951219512195
+Model evaluation metrics for SVM:
+Precision: 0.7608250526949714
+Recall: 1.0
+F1-score: 0.8638858714229336
+AUC score: 0.5132526208423873
+LogReg accuracy over 10 rounds: 0.7097560975609756
+Model evaluation metrics for LogReg:
+Precision: 0.7512228512228513
+Recall: 0.9236913905766364
+F1-score: 0.8246485603641229
+AUC score: 0.49042826467971123
+XGB accuracy over 10 rounds: 0.8365853658536586
+Model evaluation metrics for XGB:
+Precision: 0.8861467008720894
+Recall: 0.9090540261504418
+F1-score: 0.8931065669992527
+AUC score: 0.7692527587926883
+
+
+POPANE Study1 --------------------------------------------------
+APD PHASES 5 --------------------------------------------------
+y_a:
+1    248
+0    118
+Name: label, dtype: int64
+y_b:
+1    159
+0     49
+Name: label, dtype: int64
+y_train:
+1    281
+0    129
+Name: label, dtype: int64
+y_test:
+1    126
+0     38
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [164]
+Model LogReg, Predictions: [0 1], [ 10 154]
+Model XGB, Predictions: [0 1], [ 57 107]
+y_train:
+1    277
+0    133
+Name: label, dtype: int64
+y_test:
+1    130
+0     34
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [164]
+Model LogReg, Predictions: [0 1], [ 48 116]
+Model XGB, Predictions: [0 1], [ 24 140]
+y_train:
+1    281
+0    129
+Name: label, dtype: int64
+y_test:
+1    126
+0     38
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [164]
+Model LogReg, Predictions: [1], [164]
+Model XGB, Predictions: [0 1], [  8 156]
+y_train:
+1    284
+0    126
+Name: label, dtype: int64
+y_test:
+1    123
+0     41
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [164]
+Model LogReg, Predictions: [0 1], [  6 158]
+Model XGB, Predictions: [0 1], [ 47 117]
+y_train:
+1    289
+0    121
+Name: label, dtype: int64
+y_test:
+1    118
+0     46
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [164]
+Model LogReg, Predictions: [0 1], [  5 159]
+Model XGB, Predictions: [0 1], [  7 157]
+y_train:
+1    278
+0    132
+Name: label, dtype: int64
+y_test:
+1    129
+0     35
+Name: label, dtype: int64
+Model SVM, Predictions: [0 1], [  1 163]
+Model LogReg, Predictions: [1], [164]
+Model XGB, Predictions: [0 1], [ 19 145]
+y_train:
+1    284
+0    126
+Name: label, dtype: int64
+y_test:
+1    123
+0     41
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [164]
+Model LogReg, Predictions: [1], [164]
+Model XGB, Predictions: [0 1], [ 37 127]
+y_train:
+1    284
+0    126
+Name: label, dtype: int64
+y_test:
+1    123
+0     41
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [164]
+Model LogReg, Predictions: [1], [164]
+Model XGB, Predictions: [0 1], [ 33 131]
+y_train:
+1    280
+0    130
+Name: label, dtype: int64
+y_test:
+1    127
+0     37
+Name: label, dtype: int64
+Model SVM, Predictions: [0 1], [  1 163]
+Model LogReg, Predictions: [1], [164]
+Model XGB, Predictions: [0 1], [ 47 117]
+y_train:
+1    283
+0    127
+Name: label, dtype: int64
+y_test:
+1    124
+0     40
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [164]
+Model LogReg, Predictions: [1], [164]
+Model XGB, Predictions: [0 1], [ 19 145]
+SVM accuracy over 10 rounds: 0.7628048780487805
+Model evaluation metrics for SVM:
+Precision: 0.7625430196019752
+Recall: 1.0
+F1-score: 0.8651127603944287
+AUC score: 0.5027799227799228
+LogReg accuracy over 10 rounds: 0.7292682926829268
+Model evaluation metrics for LogReg:
+Precision: 0.7565672828884102
+Recall: 0.9521789243781804
+F1-score: 0.8406664087102532
+AUC score: 0.4878541680714431
+XGB accuracy over 10 rounds: 0.8347560975609756
+Model evaluation metrics for XGB:
+Precision: 0.8722443315797997
+Recall: 0.9290351476142511
+F1-score: 0.8960077576404277
+AUC score: 0.7341058750930751
+
+
+POPANE Study2 --------------------------------------------------
+APD PHASES 0 --------------------------------------------------
+y_a:
+1    316
+0    172
+Name: label, dtype: int64
+y_b:
+1    356
+0    112
+Name: label, dtype: int64
+y_train:
+1    399
+0    188
+Name: label, dtype: int64
+y_test:
+1    273
+0     96
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [369]
+Model LogReg, Predictions: [1], [369]
+Model XGB, Predictions: [0 1], [ 70 299]
+y_train:
+1    388
+0    199
+Name: label, dtype: int64
+y_test:
+1    284
+0     85
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [369]
+Model LogReg, Predictions: [0 1], [ 49 320]
+Model XGB, Predictions: [0 1], [ 42 327]
+y_train:
+1    394
+0    193
+Name: label, dtype: int64
+y_test:
+1    278
+0     91
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [369]
+Model LogReg, Predictions: [0 1], [  7 362]
+Model XGB, Predictions: [0 1], [ 53 316]
+y_train:
+1    376
+0    211
+Name: label, dtype: int64
+y_test:
+1    296
+0     73
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [369]
+Model LogReg, Predictions: [0 1], [ 31 338]
+Model XGB, Predictions: [0 1], [134 235]
+y_train:
+1    387
+0    200
+Name: label, dtype: int64
+y_test:
+1    285
+0     84
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [369]
+Model LogReg, Predictions: [0 1], [ 49 320]
+Model XGB, Predictions: [0 1], [ 88 281]
+y_train:
+1    387
+0    200
+Name: label, dtype: int64
+y_test:
+1    285
+0     84
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [369]
+Model LogReg, Predictions: [0 1], [  5 364]
+Model XGB, Predictions: [0 1], [ 82 287]
+y_train:
+1    399
+0    188
+Name: label, dtype: int64
+y_test:
+1    273
+0     96
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [369]
+Model LogReg, Predictions: [1], [369]
+Model XGB, Predictions: [0 1], [ 64 305]
+y_train:
+1    408
+0    179
+Name: label, dtype: int64
+y_test:
+1    264
+0    105
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [369]
+Model LogReg, Predictions: [1], [369]
+Model XGB, Predictions: [0 1], [ 10 359]
+y_train:
+1    383
+0    204
+Name: label, dtype: int64
+y_test:
+1    289
+0     80
+Name: label, dtype: int64
+Model SVM, Predictions: [0 1], [  1 368]
+Model LogReg, Predictions: [1], [369]
+Model XGB, Predictions: [0 1], [100 269]
+y_train:
+1    406
+0    181
+Name: label, dtype: int64
+y_test:
+1    266
+0    103
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [369]
+Model LogReg, Predictions: [1], [369]
+Model XGB, Predictions: [0 1], [ 32 337]
+SVM accuracy over 10 rounds: 0.756639566395664
+Model evaluation metrics for SVM:
+Precision: 0.7568516554730765
+Recall: 0.9996539792387542
+F1-score: 0.8612092633295345
+AUC score: 0.4998269896193771
+LogReg accuracy over 10 rounds: 0.7252032520325203
+Model evaluation metrics for LogReg:
+Precision: 0.7509710076148581
+Recall: 0.9550462321225502
+F1-score: 0.8394638244481815
+AUC score: 0.4845183757035937
+XGB accuracy over 10 rounds: 0.8520325203252032
+Model evaluation metrics for XGB:
+Precision: 0.881090065517388
+Recall: 0.9436289841645611
+F1-score: 0.9065910348692932
+AUC score: 0.7703792409316295
+
+
+POPANE Study2 --------------------------------------------------
+APD PHASES 1 --------------------------------------------------
+y_a:
+1    316
+0    172
+Name: label, dtype: int64
+y_b:
+1    276
+0     88
+Name: label, dtype: int64
+y_train:
+1    376
+0    189
+Name: label, dtype: int64
+y_test:
+1    216
+0     71
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [287]
+Model LogReg, Predictions: [0 1], [  9 278]
+Model XGB, Predictions: [0 1], [ 83 204]
+y_train:
+1    369
 0    196
 Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.7552911894579543
-Model evaluation metrics for SVM:
-Precision: 0.7560752238315409
-Recall: 0.998026146039391
-F1-score: 0.8602856098165944
-AUC score: 0.5022073942264391
-LogReg accuracy over 10 rounds: 0.748283701770762
-Model evaluation metrics for LogReg:
-Precision: 0.7541078775949379
-Recall: 0.9896103896103895
-F1-score: 0.8556539284585061
-AUC score: 0.49697910784867305
-XGB accuracy over 10 rounds: 0.9051323368480253
-Model evaluation metrics for XGB:
-Precision: 0.9262940365214153
-Recall: 0.9539564906853
-F1-score: 0.938562805660702
-AUC score: 0.8582443283874801
-
-
-POPANE Study1 --------------------------------------------------
-APD PHASES 3 --------------------------------------------------
-1    309
-0    160
+y_test:
+1    223
+0     64
 Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.7537816455696202
+Model SVM, Predictions: [1], [287]
+Model LogReg, Predictions: [0 1], [  1 286]
+Model XGB, Predictions: [0 1], [ 78 209]
+y_train:
+1    360
+0    205
+Name: label, dtype: int64
+y_test:
+1    232
+0     55
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [287]
+Model LogReg, Predictions: [0 1], [ 13 274]
+Model XGB, Predictions: [0 1], [ 76 211]
+y_train:
+1    386
+0    179
+Name: label, dtype: int64
+y_test:
+1    206
+0     81
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [287]
+Model LogReg, Predictions: [1], [287]
+Model XGB, Predictions: [0 1], [ 24 263]
+y_train:
+1    379
+0    186
+Name: label, dtype: int64
+y_test:
+1    213
+0     74
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [287]
+Model LogReg, Predictions: [1], [287]
+Model XGB, Predictions: [0 1], [ 61 226]
+y_train:
+1    371
+0    194
+Name: label, dtype: int64
+y_test:
+1    221
+0     66
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [287]
+Model LogReg, Predictions: [1], [287]
+Model XGB, Predictions: [0 1], [ 48 239]
+y_train:
+1    380
+0    185
+Name: label, dtype: int64
+y_test:
+1    212
+0     75
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [287]
+Model LogReg, Predictions: [1], [287]
+Model XGB, Predictions: [0 1], [ 17 270]
+y_train:
+1    380
+0    185
+Name: label, dtype: int64
+y_test:
+1    212
+0     75
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [287]
+Model LogReg, Predictions: [0 1], [ 53 234]
+Model XGB, Predictions: [0 1], [ 62 225]
+y_train:
+1    376
+0    189
+Name: label, dtype: int64
+y_test:
+1    216
+0     71
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [287]
+Model LogReg, Predictions: [0 1], [  9 278]
+Model XGB, Predictions: [0 1], [ 77 210]
+y_train:
+1    367
+0    198
+Name: label, dtype: int64
+y_test:
+1    225
+0     62
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [287]
+Model LogReg, Predictions: [0 1], [105 182]
+Model XGB, Predictions: [0 1], [ 52 235]
+SVM accuracy over 10 rounds: 0.7581881533101045
 Model evaluation metrics for SVM:
-Precision: 0.7537816455696202
+Precision: 0.7581881533101045
 Recall: 1.0
-F1-score: 0.8593847689790681
+F1-score: 0.8622314200764445
 AUC score: 0.5
-LogReg accuracy over 10 rounds: 0.6808544303797468
+LogReg accuracy over 10 rounds: 0.70801393728223
 Model evaluation metrics for LogReg:
-Precision: 0.7408779534249176
-Recall: 0.8903734879239347
-F1-score: 0.8054950494069496
-AUC score: 0.470057744993959
-XGB accuracy over 10 rounds: 0.8529905063291139
+Precision: 0.7489866291225347
+Recall: 0.924316395165176
+F1-score: 0.823376011266142
+AUC score: 0.4799429923728349
+XGB accuracy over 10 rounds: 0.873170731707317
 Model evaluation metrics for XGB:
-Precision: 0.8859569492955204
-Recall: 0.9323243789372773
-F1-score: 0.9057142906384701
-AUC score: 0.7825272534888381
-
-
-POPANE Study1 --------------------------------------------------
-APD PHASES 4 --------------------------------------------------
-1    309
-0    160
-Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.7669866385372714
-Model evaluation metrics for SVM:
-Precision: 0.766094071189008
-Recall: 1.0
-F1-score: 0.8674943701317369
-AUC score: 0.5077903091060986
-LogReg accuracy over 10 rounds: 0.6938822472261291
-Model evaluation metrics for LogReg:
-Precision: 0.7485430528122963
-Recall: 0.9009864491288543
-F1-score: 0.813310098521393
-AUC score: 0.4675357082245578
-XGB accuracy over 10 rounds: 0.8766107985622753
-Model evaluation metrics for XGB:
-Precision: 0.9162416378504978
-Recall: 0.9261227557344558
-F1-score: 0.9195405461641961
-AUC score: 0.8247161274863739
-
-
-POPANE Study2 --------------------------------------------------
-APD PHASES 0 --------------------------------------------------
-1    559
-0    227
-Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.7555517233292253
-Model evaluation metrics for SVM:
-Precision: 0.755788849454114
-Recall: 0.9985071849471506
-F1-score: 0.8603014235096305
-AUC score: 0.5044554905910466
-LogReg accuracy over 10 rounds: 0.7536072573793003
-Model evaluation metrics for LogReg:
-Precision: 0.7540367311300732
-Recall: 0.9992778277475786
-F1-score: 0.8594475999776849
-AUC score: 0.4996389138737893
-XGB accuracy over 10 rounds: 0.9181422225101754
-Model evaluation metrics for XGB:
-Precision: 0.9327618091602993
-Recall: 0.9624375044696223
-F1-score: 0.9468343132487786
-AUC score: 0.8741532250592368
-
-
-POPANE Study2 --------------------------------------------------
-APD PHASES 1 --------------------------------------------------
-1    481
-0    203
-Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.7464528981305174
-Model evaluation metrics for SVM:
-Precision: 0.7461062116693828
-Recall: 0.9995283018867924
-F1-score: 0.8543567254653407
-AUC score: 0.5047037422591887
-LogReg accuracy over 10 rounds: 0.7439541508797325
-Model evaluation metrics for LogReg:
-Precision: 0.7442261913119029
-Recall: 0.9995283018867924
-F1-score: 0.853128685266776
-AUC score: 0.4997641509433962
-XGB accuracy over 10 rounds: 0.8959768755505788
-Model evaluation metrics for XGB:
-Precision: 0.9055663240311747
-Recall: 0.9631836331029134
-F1-score: 0.9324629554510597
-AUC score: 0.8345825782459384
+Precision: 0.9017574050703077
+Recall: 0.9436979521056171
+F1-score: 0.9193780724768438
+AUC score: 0.8073311064456995
 
 
 POPANE Study2 --------------------------------------------------
 APD PHASES 2 --------------------------------------------------
-1    404
+y_a:
+1    316
+0    172
+Name: label, dtype: int64
+y_b:
+1    197
+0     63
+Name: label, dtype: int64
+y_train:
+1    361
+0    182
+Name: label, dtype: int64
+y_test:
+1    152
+0     53
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [205]
+Model LogReg, Predictions: [1], [205]
+Model XGB, Predictions: [0 1], [ 36 169]
+y_train:
+1    352
+0    191
+Name: label, dtype: int64
+y_test:
+1    161
+0     44
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [205]
+Model LogReg, Predictions: [0 1], [  1 204]
+Model XGB, Predictions: [0 1], [ 74 131]
+y_train:
+1    364
+0    179
+Name: label, dtype: int64
+y_test:
+1    149
+0     56
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [205]
+Model LogReg, Predictions: [1], [205]
+Model XGB, Predictions: [0 1], [ 18 187]
+y_train:
+1    361
+0    182
+Name: label, dtype: int64
+y_test:
+1    152
+0     53
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [205]
+Model LogReg, Predictions: [1], [205]
+Model XGB, Predictions: [0 1], [ 23 182]
+y_train:
+1    351
+0    192
+Name: label, dtype: int64
+y_test:
+1    162
+0     43
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [205]
+Model LogReg, Predictions: [1], [205]
+Model XGB, Predictions: [0 1], [ 22 183]
+y_train:
+1    371
+0    172
+Name: label, dtype: int64
+y_test:
+1    142
+0     63
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [205]
+Model LogReg, Predictions: [1], [205]
+Model XGB, Predictions: [1], [205]
+y_train:
+1    351
+0    192
+Name: label, dtype: int64
+y_test:
+1    162
+0     43
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [205]
+Model LogReg, Predictions: [0 1], [ 80 125]
+Model XGB, Predictions: [0 1], [ 45 160]
+y_train:
+1    348
+0    195
+Name: label, dtype: int64
+y_test:
+1    165
+0     40
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [205]
+Model LogReg, Predictions: [0 1], [ 62 143]
+Model XGB, Predictions: [0 1], [ 57 148]
+y_train:
+1    361
+0    182
+Name: label, dtype: int64
+y_test:
+1    152
+0     53
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [205]
+Model LogReg, Predictions: [1], [205]
+Model XGB, Predictions: [0 1], [ 45 160]
+y_train:
+1    367
+0    176
+Name: label, dtype: int64
+y_test:
+1    146
+0     59
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [205]
+Model LogReg, Predictions: [1], [205]
+Model XGB, Predictions: [0 1], [ 17 188]
+SVM accuracy over 10 rounds: 0.7526829268292683
+Model evaluation metrics for SVM:
+Precision: 0.7526829268292683
+Recall: 1.0
+F1-score: 0.8584123281876227
+AUC score: 0.5
+LogReg accuracy over 10 rounds: 0.697560975609756
+Model evaluation metrics for LogReg:
+Precision: 0.7421899944149585
+Recall: 0.9216235508989132
+F1-score: 0.8148742194397591
+AUC score: 0.47868968242620086
+XGB accuracy over 10 rounds: 0.791219512195122
+Model evaluation metrics for XGB:
+Precision: 0.8339564490154106
+Recall: 0.9187042596562675
+F1-score: 0.8686001734742603
+AUC score: 0.6792320843980729
+
+
+POPANE Study2 --------------------------------------------------
+APD PHASES 3 --------------------------------------------------
+y_a:
+1    316
+0    172
+Name: label, dtype: int64
+y_b:
+1    77
+0    27
+Name: label, dtype: int64
+y_train:
+1    332
 0    178
 Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.7623796398127776
-Model evaluation metrics for SVM:
-Precision: 0.7627841442435701
-Recall: 0.9986883976950203
-F1-score: 0.8649019981677494
-AUC score: 0.5024701034646762
-LogReg accuracy over 10 rounds: 0.7568770526193849
-Model evaluation metrics for LogReg:
-Precision: 0.7606982082221585
-Recall: 0.9934894622560657
-F1-score: 0.8615809959640828
-AUC score: 0.49674473112803286
-XGB accuracy over 10 rounds: 0.8989648473885115
-Model evaluation metrics for XGB:
-Precision: 0.9295510369782967
-Recall: 0.940498996937966
-F1-score: 0.9342767638156937
-AUC score: 0.8551662128013955
-
-
-POPANE Study2 --------------------------------------------------
-APD PHASES 3 --------------------------------------------------
-1    287
-0    142
+y_test:
+1    61
+0    21
 Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.7540981012658229
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [1], [82]
+Model XGB, Predictions: [0 1], [19 63]
+y_train:
+1    332
+0    178
+Name: label, dtype: int64
+y_test:
+1    61
+0    21
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [0 1], [22 60]
+Model XGB, Predictions: [0 1], [22 60]
+y_train:
+1    332
+0    178
+Name: label, dtype: int64
+y_test:
+1    61
+0    21
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [1], [82]
+Model XGB, Predictions: [0 1], [ 5 77]
+y_train:
+1    330
+0    180
+Name: label, dtype: int64
+y_test:
+1    63
+0    19
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [0 1], [ 8 74]
+Model XGB, Predictions: [0 1], [ 8 74]
+y_train:
+1    334
+0    176
+Name: label, dtype: int64
+y_test:
+1    59
+0    23
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [0 1], [25 57]
+Model XGB, Predictions: [0 1], [ 4 78]
+y_train:
+1    332
+0    178
+Name: label, dtype: int64
+y_test:
+1    61
+0    21
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [0 1], [ 5 77]
+Model XGB, Predictions: [0 1], [12 70]
+y_train:
+1    332
+0    178
+Name: label, dtype: int64
+y_test:
+1    61
+0    21
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [1], [82]
+Model XGB, Predictions: [0 1], [23 59]
+y_train:
+1    331
+0    179
+Name: label, dtype: int64
+y_test:
+1    62
+0    20
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [0 1], [ 1 81]
+Model XGB, Predictions: [0 1], [14 68]
+y_train:
+1    332
+0    178
+Name: label, dtype: int64
+y_test:
+1    61
+0    21
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [1], [82]
+Model XGB, Predictions: [0 1], [ 9 73]
+y_train:
+1    335
+0    175
+Name: label, dtype: int64
+y_test:
+1    58
+0    24
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [1], [82]
+Model XGB, Predictions: [0 1], [ 5 77]
+SVM accuracy over 10 rounds: 0.7414634146341463
 Model evaluation metrics for SVM:
-Precision: 0.7540981012658229
+Precision: 0.7414634146341463
 Recall: 1.0
-F1-score: 0.8597036928167003
+F1-score: 0.8514408608429151
 AUC score: 0.5
-LogReg accuracy over 10 rounds: 0.680996835443038
+LogReg accuracy over 10 rounds: 0.6841463414634147
 Model evaluation metrics for LogReg:
-Precision: 0.737513841860439
-Recall: 0.8940834796120974
-F1-score: 0.8054640271935396
-AUC score: 0.46318725064196203
-XGB accuracy over 10 rounds: 0.8359018987341772
+Precision: 0.7274073079186472
+Recall: 0.910806772433658
+F1-score: 0.8058919348750114
+AUC score: 0.47103485619612506
+XGB accuracy over 10 rounds: 0.7987804878048781
 Model evaluation metrics for XGB:
-Precision: 0.8882063891310201
-Recall: 0.9010393773611035
-F1-score: 0.8903258261816271
-AUC score: 0.7735568381495899
+Precision: 0.8225271053371683
+Recall: 0.9390789401703168
+F1-score: 0.8743816177172622
+AUC score: 0.6716687062189711
 
 
 POPANE Study2 --------------------------------------------------
 APD PHASES 4 --------------------------------------------------
-1    287
-0    142
+y_a:
+1    316
+0    172
 Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.751629746835443
+y_b:
+1    77
+0    27
+Name: label, dtype: int64
+y_train:
+1    331
+0    179
+Name: label, dtype: int64
+y_test:
+1    62
+0    20
+Name: label, dtype: int64
+Model SVM, Predictions: [0 1], [ 1 81]
+Model LogReg, Predictions: [1], [82]
+Model XGB, Predictions: [0 1], [16 66]
+y_train:
+1    334
+0    176
+Name: label, dtype: int64
+y_test:
+1    59
+0    23
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [1], [82]
+Model XGB, Predictions: [0 1], [ 3 79]
+y_train:
+1    328
+0    182
+Name: label, dtype: int64
+y_test:
+1    65
+0    17
+Name: label, dtype: int64
+Model SVM, Predictions: [0 1], [ 1 81]
+Model LogReg, Predictions: [0 1], [43 39]
+Model XGB, Predictions: [0 1], [32 50]
+y_train:
+1    336
+0    174
+Name: label, dtype: int64
+y_test:
+1    57
+0    25
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [1], [82]
+Model XGB, Predictions: [0 1], [ 6 76]
+y_train:
+1    330
+0    180
+Name: label, dtype: int64
+y_test:
+1    63
+0    19
+Name: label, dtype: int64
+Model SVM, Predictions: [0 1], [ 1 81]
+Model LogReg, Predictions: [0 1], [14 68]
+Model XGB, Predictions: [0 1], [19 63]
+y_train:
+1    336
+0    174
+Name: label, dtype: int64
+y_test:
+1    57
+0    25
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [1], [82]
+Model XGB, Predictions: [0 1], [ 1 81]
+y_train:
+1    334
+0    176
+Name: label, dtype: int64
+y_test:
+1    59
+0    23
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [0 1], [24 58]
+Model XGB, Predictions: [0 1], [10 72]
+y_train:
+1    334
+0    176
+Name: label, dtype: int64
+y_test:
+1    59
+0    23
+Name: label, dtype: int64
+Model SVM, Predictions: [0 1], [ 1 81]
+Model LogReg, Predictions: [1], [82]
+Model XGB, Predictions: [0 1], [13 69]
+y_train:
+1    338
+0    172
+Name: label, dtype: int64
+y_test:
+1    55
+0    27
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [1], [82]
+Model XGB, Predictions: [1], [82]
+y_train:
+1    336
+0    174
+Name: label, dtype: int64
+y_test:
+1    57
+0    25
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [1], [82]
+Model XGB, Predictions: [0 1], [ 3 79]
+SVM accuracy over 10 rounds: 0.7280487804878049
 Model evaluation metrics for SVM:
-Precision: 0.7507047224926972
+Precision: 0.7269196025293587
 Recall: 1.0
-F1-score: 0.857502480637401
-AUC score: 0.5073934837092732
-LogReg accuracy over 10 rounds: 0.725253164556962
+F1-score: 0.8412511196847803
+AUC score: 0.5102466684614348
+LogReg accuracy over 10 rounds: 0.648780487804878
 Model evaluation metrics for LogReg:
-Precision: 0.7460149925230145
-Recall: 0.9597627054769363
-F1-score: 0.8392191010625808
-AUC score: 0.4951695732898466
-XGB accuracy over 10 rounds: 0.8596044303797468
+Precision: 0.7046164121338514
+Recall: 0.8867900084849237
+F1-score: 0.7743823870545189
+AUC score: 0.47034344952446483
+XGB accuracy over 10 rounds: 0.7609756097560976
 Model evaluation metrics for XGB:
-Precision: 0.8900997770367309
-Recall: 0.9347259296164644
-F1-score: 0.9094730343391795
-AUC score: 0.7908630027819543
+Precision: 0.7902354973732363
+Recall: 0.9419888989412171
+F1-score: 0.8515986153164554
+AUC score: 0.6389040604545901
+
+
+POPANE Study2 --------------------------------------------------
+APD PHASES 5 --------------------------------------------------
+y_a:
+1    316
+0    172
+Name: label, dtype: int64
+y_b:
+1    159
+0     49
+Name: label, dtype: int64
+y_train:
+1    351
+0    181
+Name: label, dtype: int64
+y_test:
+1    124
+0     40
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [164]
+Model LogReg, Predictions: [1], [164]
+Model XGB, Predictions: [0 1], [  7 157]
+y_train:
+1    351
+0    181
+Name: label, dtype: int64
+y_test:
+1    124
+0     40
+Name: label, dtype: int64
+Model SVM, Predictions: [0 1], [  1 163]
+Model LogReg, Predictions: [1], [164]
+Model XGB, Predictions: [0 1], [ 35 129]
+y_train:
+1    348
+0    184
+Name: label, dtype: int64
+y_test:
+1    127
+0     37
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [164]
+Model LogReg, Predictions: [0 1], [ 10 154]
+Model XGB, Predictions: [0 1], [ 28 136]
+y_train:
+1    351
+0    181
+Name: label, dtype: int64
+y_test:
+1    124
+0     40
+Name: label, dtype: int64
+Model SVM, Predictions: [0 1], [  1 163]
+Model LogReg, Predictions: [1], [164]
+Model XGB, Predictions: [0 1], [ 28 136]
+y_train:
+1    355
+0    177
+Name: label, dtype: int64
+y_test:
+1    120
+0     44
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [164]
+Model LogReg, Predictions: [1], [164]
+Model XGB, Predictions: [0 1], [ 16 148]
+y_train:
+1    352
+0    180
+Name: label, dtype: int64
+y_test:
+1    123
+0     41
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [164]
+Model LogReg, Predictions: [1], [164]
+Model XGB, Predictions: [0 1], [ 29 135]
+y_train:
+1    351
+0    181
+Name: label, dtype: int64
+y_test:
+1    124
+0     40
+Name: label, dtype: int64
+Model SVM, Predictions: [0 1], [  1 163]
+Model LogReg, Predictions: [1], [164]
+Model XGB, Predictions: [0 1], [ 15 149]
+y_train:
+1    343
+0    189
+Name: label, dtype: int64
+y_test:
+1    132
+0     32
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [164]
+Model LogReg, Predictions: [0 1], [80 84]
+Model XGB, Predictions: [0 1], [ 24 140]
+y_train:
+1    357
+0    175
+Name: label, dtype: int64
+y_test:
+1    118
+0     46
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [164]
+Model LogReg, Predictions: [1], [164]
+Model XGB, Predictions: [0 1], [  2 162]
+y_train:
+1    360
+0    172
+Name: label, dtype: int64
+y_test:
+1    115
+0     49
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [164]
+Model LogReg, Predictions: [1], [164]
+Model XGB, Predictions: [1], [164]
+SVM accuracy over 10 rounds: 0.7524390243902439
+Model evaluation metrics for SVM:
+Precision: 0.7520013467005836
+Recall: 1.0
+F1-score: 0.8581655203612311
+AUC score: 0.5037499999999999
+LogReg accuracy over 10 rounds: 0.7103658536585366
+Model evaluation metrics for LogReg:
+Precision: 0.7448474289937704
+Recall: 0.940610832736817
+F1-score: 0.8233242722718981
+AUC score: 0.4890554163684085
+XGB accuracy over 10 rounds: 0.8079268292682926
+Model evaluation metrics for XGB:
+Precision: 0.8189517190698046
+Recall: 0.9639316598773625
+F1-score: 0.8831214986083253
+AUC score: 0.661528653511314
 
 
 POPANE Study3 --------------------------------------------------
 APD PHASES 0 --------------------------------------------------
-1    560
-0    316
+y_a:
+1    199
+0    176
 Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.7636901496820311
+y_b:
+1    356
+0    112
+Name: label, dtype: int64
+y_train:
+1    275
+0    199
+Name: label, dtype: int64
+y_test:
+1    280
+0     89
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [369]
+Model LogReg, Predictions: [0 1], [ 54 315]
+Model XGB, Predictions: [0 1], [ 94 275]
+y_train:
+1    270
+0    204
+Name: label, dtype: int64
+y_test:
+1    285
+0     84
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [369]
+Model LogReg, Predictions: [0 1], [  2 367]
+Model XGB, Predictions: [0 1], [ 46 323]
+y_train:
+1    280
+0    194
+Name: label, dtype: int64
+y_test:
+1    275
+0     94
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [369]
+Model LogReg, Predictions: [0 1], [  3 366]
+Model XGB, Predictions: [0 1], [ 51 318]
+y_train:
+1    280
+0    194
+Name: label, dtype: int64
+y_test:
+1    275
+0     94
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [369]
+Model LogReg, Predictions: [0 1], [ 16 353]
+Model XGB, Predictions: [0 1], [124 245]
+y_train:
+1    248
+0    226
+Name: label, dtype: int64
+y_test:
+1    307
+0     62
+Name: label, dtype: int64
+Model SVM, Predictions: [0 1], [  2 367]
+Model LogReg, Predictions: [0 1], [179 190]
+Model XGB, Predictions: [0 1], [ 71 298]
+y_train:
+1    268
+0    206
+Name: label, dtype: int64
+y_test:
+1    287
+0     82
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [369]
+Model LogReg, Predictions: [0 1], [170 199]
+Model XGB, Predictions: [0 1], [ 93 276]
+y_train:
+1    264
+0    210
+Name: label, dtype: int64
+y_test:
+1    291
+0     78
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [369]
+Model LogReg, Predictions: [0 1], [ 97 272]
+Model XGB, Predictions: [0 1], [ 97 272]
+y_train:
+1    266
+0    208
+Name: label, dtype: int64
+y_test:
+1    289
+0     80
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [369]
+Model LogReg, Predictions: [0 1], [169 200]
+Model XGB, Predictions: [0 1], [107 262]
+y_train:
+1    282
+0    192
+Name: label, dtype: int64
+y_test:
+1    273
+0     96
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [369]
+Model LogReg, Predictions: [0 1], [  5 364]
+Model XGB, Predictions: [0 1], [ 72 297]
+y_train:
+1    298
+0    176
+Name: label, dtype: int64
+y_test:
+1    257
+0    112
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [369]
+Model LogReg, Predictions: [0 1], [  4 365]
+Model XGB, Predictions: [1], [369]
+SVM accuracy over 10 rounds: 0.7639566395663957
 Model evaluation metrics for SVM:
-Precision: 0.7633579102887311
-Recall: 0.9989088899491707
-F1-score: 0.8653419816268864
-AUC score: 0.5082882816213162
-LogReg accuracy over 10 rounds: 0.7606299429556428
+Precision: 0.7641375541820814
+Recall: 0.9996742671009772
+F1-score: 0.8657303170643103
+AUC score: 0.5006435851633919
+LogReg accuracy over 10 rounds: 0.6628726287262874
 Model evaluation metrics for LogReg:
-Precision: 0.7626972369220716
-Recall: 0.9949452483306892
-F1-score: 0.8633699764134178
-AUC score: 0.5064746049907635
-XGB accuracy over 10 rounds: 0.9244711572002029
+Precision: 0.7721617426931335
+Recall: 0.8164778931118875
+F1-score: 0.7768313460251327
+AUC score: 0.5142608336026783
+XGB accuracy over 10 rounds: 0.8791327913279133
 Model evaluation metrics for XGB:
-Precision: 0.9595075975925816
-Recall: 0.9407304971659164
-F1-score: 0.9498260193667972
-AUC score: 0.9068393801758665
+Precision: 0.9140814011815502
+Recall: 0.9419171274284425
+F1-score: 0.9235725031849004
+AUC score: 0.8257337558024007
 
 
 POPANE Study3 --------------------------------------------------
 APD PHASES 1 --------------------------------------------------
-1    482
-0    292
+y_a:
+1    199
+0    176
 Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.7585684653069331
+y_b:
+1    276
+0     88
+Name: label, dtype: int64
+y_train:
+1    245
+0    207
+Name: label, dtype: int64
+y_test:
+1    230
+0     57
+Name: label, dtype: int64
+Model SVM, Predictions: [0 1], [  1 286]
+Model LogReg, Predictions: [0 1], [ 54 233]
+Model XGB, Predictions: [0 1], [ 44 243]
+y_train:
+1    264
+0    188
+Name: label, dtype: int64
+y_test:
+1    211
+0     76
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [287]
+Model LogReg, Predictions: [0 1], [ 17 270]
+Model XGB, Predictions: [0 1], [ 27 260]
+y_train:
+1    245
+0    207
+Name: label, dtype: int64
+y_test:
+1    230
+0     57
+Name: label, dtype: int64
+Model SVM, Predictions: [0 1], [  1 286]
+Model LogReg, Predictions: [0 1], [153 134]
+Model XGB, Predictions: [0 1], [ 69 218]
+y_train:
+1    263
+0    189
+Name: label, dtype: int64
+y_test:
+1    212
+0     75
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [287]
+Model LogReg, Predictions: [1], [287]
+Model XGB, Predictions: [0 1], [ 16 271]
+y_train:
+1    250
+0    202
+Name: label, dtype: int64
+y_test:
+1    225
+0     62
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [287]
+Model LogReg, Predictions: [0 1], [  5 282]
+Model XGB, Predictions: [0 1], [ 83 204]
+y_train:
+1    249
+0    203
+Name: label, dtype: int64
+y_test:
+1    226
+0     61
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [287]
+Model LogReg, Predictions: [0 1], [151 136]
+Model XGB, Predictions: [0 1], [ 78 209]
+y_train:
+1    252
+0    200
+Name: label, dtype: int64
+y_test:
+1    223
+0     64
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [287]
+Model LogReg, Predictions: [0 1], [ 23 264]
+Model XGB, Predictions: [0 1], [ 57 230]
+y_train:
+1    264
+0    188
+Name: label, dtype: int64
+y_test:
+1    211
+0     76
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [287]
+Model LogReg, Predictions: [1], [287]
+Model XGB, Predictions: [0 1], [ 15 272]
+y_train:
+1    262
+0    190
+Name: label, dtype: int64
+y_test:
+1    213
+0     74
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [287]
+Model LogReg, Predictions: [1], [287]
+Model XGB, Predictions: [0 1], [ 99 188]
+y_train:
+1    249
+0    203
+Name: label, dtype: int64
+y_test:
+1    226
+0     61
+Name: label, dtype: int64
+Model SVM, Predictions: [0 1], [  1 286]
+Model LogReg, Predictions: [0 1], [  2 285]
+Model XGB, Predictions: [0 1], [ 63 224]
+SVM accuracy over 10 rounds: 0.7700348432055749
 Model evaluation metrics for SVM:
-Precision: 0.7582498529416203
-Recall: 0.9990654205607477
-F1-score: 0.8621335525779074
-AUC score: 0.5068401009573298
-LogReg accuracy over 10 rounds: 0.7535657771957645
+Precision: 0.769825296654565
+Recall: 1.0
+F1-score: 0.8696744423552859
+AUC score: 0.5025740580960598
+LogReg accuracy over 10 rounds: 0.686411149825784
 Model evaluation metrics for LogReg:
-Precision: 0.7553686007067729
-Recall: 0.9967289719626169
-F1-score: 0.8593781065435596
-AUC score: 0.4991107546380248
-XGB accuracy over 10 rounds: 0.9131241132417218
+Precision: 0.7723989157687046
+Recall: 0.8586764593690441
+F1-score: 0.7967843224274065
+AUC score: 0.4999161257898038
+XGB accuracy over 10 rounds: 0.8592334494773519
 Model evaluation metrics for XGB:
-Precision: 0.924065841374917
-Recall: 0.965973764429833
-F1-score: 0.9440483611665968
-AUC score: 0.8577204357743853
+Precision: 0.8972216551928704
+Recall: 0.9343902392503457
+F1-score: 0.9112364289487724
+AUC score: 0.7837899994497844
 
 
 POPANE Study3 --------------------------------------------------
 APD PHASES 2 --------------------------------------------------
-1    405
-0    267
+y_a:
+1    199
+0    176
 Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.756625609575883
+y_b:
+1    197
+0     63
+Name: label, dtype: int64
+y_train:
+1    245
+0    185
+Name: label, dtype: int64
+y_test:
+1    151
+0     54
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [205]
+Model LogReg, Predictions: [1], [205]
+Model XGB, Predictions: [0 1], [ 38 167]
+y_train:
+1    251
+0    179
+Name: label, dtype: int64
+y_test:
+1    145
+0     60
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [205]
+Model LogReg, Predictions: [1], [205]
+Model XGB, Predictions: [0 1], [  8 197]
+y_train:
+1    233
+0    197
+Name: label, dtype: int64
+y_test:
+1    163
+0     42
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [205]
+Model LogReg, Predictions: [0 1], [ 13 192]
+Model XGB, Predictions: [0 1], [ 67 138]
+y_train:
+1    239
+0    191
+Name: label, dtype: int64
+y_test:
+1    157
+0     48
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [205]
+Model LogReg, Predictions: [1], [205]
+Model XGB, Predictions: [0 1], [ 50 155]
+y_train:
+1    244
+0    186
+Name: label, dtype: int64
+y_test:
+1    152
+0     53
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [205]
+Model LogReg, Predictions: [1], [205]
+Model XGB, Predictions: [0 1], [ 30 175]
+y_train:
+1    242
+0    188
+Name: label, dtype: int64
+y_test:
+1    154
+0     51
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [205]
+Model LogReg, Predictions: [1], [205]
+Model XGB, Predictions: [0 1], [ 24 181]
+y_train:
+1    244
+0    186
+Name: label, dtype: int64
+y_test:
+1    152
+0     53
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [205]
+Model LogReg, Predictions: [1], [205]
+Model XGB, Predictions: [0 1], [ 18 187]
+y_train:
+1    234
+0    196
+Name: label, dtype: int64
+y_test:
+1    162
+0     43
+Name: label, dtype: int64
+Model SVM, Predictions: [0 1], [  1 204]
+Model LogReg, Predictions: [0 1], [ 27 178]
+Model XGB, Predictions: [0 1], [ 79 126]
+y_train:
+1    234
+0    196
+Name: label, dtype: int64
+y_test:
+1    162
+0     43
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [205]
+Model LogReg, Predictions: [0 1], [ 64 141]
+Model XGB, Predictions: [0 1], [ 54 151]
+y_train:
+1    254
+0    176
+Name: label, dtype: int64
+y_test:
+1    142
+0     63
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [205]
+Model LogReg, Predictions: [1], [205]
+Model XGB, Predictions: [1], [205]
+SVM accuracy over 10 rounds: 0.7517073170731707
 Model evaluation metrics for SVM:
-Precision: 0.7569325252436985
-Recall: 0.9980172567554229
-F1-score: 0.8608707955424109
-AUC score: 0.5062683257349152
-LogReg accuracy over 10 rounds: 0.754625609575883
-Model evaluation metrics for LogReg:
-Precision: 0.754625609575883
+Precision: 0.7516068866571018
 Recall: 1.0
-F1-score: 0.860123511407625
-AUC score: 0.5
-XGB accuracy over 10 rounds: 0.8783425200729029
+F1-score: 0.8577702359743336
+AUC score: 0.5011627906976744
+LogReg accuracy over 10 rounds: 0.7229268292682927
+Model evaluation metrics for LogReg:
+Precision: 0.7531469918407647
+Recall: 0.9500492312353253
+F1-score: 0.8360184428751832
+AUC score: 0.5017688016641743
+XGB accuracy over 10 rounds: 0.8048780487804879
 Model evaluation metrics for XGB:
-Precision: 0.8961923301780393
-Recall: 0.9517971887047629
-F1-score: 0.922261982215483
-AUC score: 0.8034865230341367
+Precision: 0.8521665855518583
+Recall: 0.9190285035297399
+F1-score: 0.8765700390752096
+AUC score: 0.7138568657301577
 
 
 POPANE Study3 --------------------------------------------------
 APD PHASES 3 --------------------------------------------------
-1    288
-0    231
+y_a:
+1    199
+0    176
 Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.7585523128613846
+y_b:
+1    77
+0    27
+Name: label, dtype: int64
+y_train:
+1    211
+0    186
+Name: label, dtype: int64
+y_test:
+1    65
+0    17
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [0 1], [52 30]
+Model XGB, Predictions: [0 1], [23 59]
+y_train:
+1    214
+0    183
+Name: label, dtype: int64
+y_test:
+1    62
+0    20
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [0 1], [ 3 79]
+Model XGB, Predictions: [0 1], [ 6 76]
+y_train:
+1    214
+0    183
+Name: label, dtype: int64
+y_test:
+1    62
+0    20
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [0 1], [ 2 80]
+Model XGB, Predictions: [0 1], [ 8 74]
+y_train:
+1    214
+0    183
+Name: label, dtype: int64
+y_test:
+1    62
+0    20
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [0 1], [ 2 80]
+Model XGB, Predictions: [0 1], [12 70]
+y_train:
+1    220
+0    177
+Name: label, dtype: int64
+y_test:
+1    56
+0    26
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [0 1], [ 2 80]
+Model XGB, Predictions: [0 1], [ 2 80]
+y_train:
+1    215
+0    182
+Name: label, dtype: int64
+y_test:
+1    61
+0    21
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [0 1], [11 71]
+Model XGB, Predictions: [0 1], [13 69]
+y_train:
+1    215
+0    182
+Name: label, dtype: int64
+y_test:
+1    61
+0    21
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [0 1], [ 2 80]
+Model XGB, Predictions: [0 1], [11 71]
+y_train:
+1    219
+0    178
+Name: label, dtype: int64
+y_test:
+1    57
+0    25
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [1], [82]
+Model XGB, Predictions: [0 1], [ 2 80]
+y_train:
+1    213
+0    184
+Name: label, dtype: int64
+y_test:
+1    63
+0    19
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [0 1], [25 57]
+Model XGB, Predictions: [0 1], [24 58]
+y_train:
+1    215
+0    182
+Name: label, dtype: int64
+y_test:
+1    61
+0    21
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [1], [82]
+Model XGB, Predictions: [0 1], [22 60]
+SVM accuracy over 10 rounds: 0.7439024390243902
 Model evaluation metrics for SVM:
-Precision: 0.7577636078954645
+Precision: 0.7439024390243902
 Recall: 1.0
-F1-score: 0.8619121242945635
-AUC score: 0.5086977554179567
-LogReg accuracy over 10 rounds: 0.6930618065322707
+F1-score: 0.8527831239302508
+AUC score: 0.5
+LogReg accuracy over 10 rounds: 0.6768292682926829
 Model evaluation metrics for LogReg:
-Precision: 0.7515476352445647
-Recall: 0.8969192755901052
-F1-score: 0.8100095957347075
-AUC score: 0.4927514334606872
-XGB accuracy over 10 rounds: 0.8225609470229724
+Precision: 0.7431181144895731
+Recall: 0.8787581978512703
+F1-score: 0.7899399988592293
+AUC score: 0.499486352353322
+XGB accuracy over 10 rounds: 0.7914634146341463
 Model evaluation metrics for XGB:
-Precision: 0.8771666023809506
-Recall: 0.9027576398767756
-F1-score: 0.8856637587672449
-AUC score: 0.7525648048378603
+Precision: 0.8245733820433389
+Recall: 0.9324060998269855
+F1-score: 0.8704328346023222
+AUC score: 0.6720549590982193
 
 
 POPANE Study3 --------------------------------------------------
 APD PHASES 4 --------------------------------------------------
-1    288
-0    231
+y_a:
+1    199
+0    176
 Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.7515981012658227
+y_b:
+1    77
+0    27
+Name: label, dtype: int64
+y_train:
+1    217
+0    180
+Name: label, dtype: int64
+y_test:
+1    59
+0    23
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [0 1], [ 5 77]
+Model XGB, Predictions: [0 1], [14 68]
+y_train:
+1    219
+0    178
+Name: label, dtype: int64
+y_test:
+1    57
+0    25
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [0 1], [ 6 76]
+Model XGB, Predictions: [0 1], [ 5 77]
+y_train:
+1    211
+0    186
+Name: label, dtype: int64
+y_test:
+1    65
+0    17
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [0 1], [11 71]
+Model XGB, Predictions: [0 1], [24 58]
+y_train:
+1    214
+0    183
+Name: label, dtype: int64
+y_test:
+1    62
+0    20
+Name: label, dtype: int64
+Model SVM, Predictions: [0 1], [ 1 81]
+Model LogReg, Predictions: [0 1], [13 69]
+Model XGB, Predictions: [0 1], [21 61]
+y_train:
+1    209
+0    188
+Name: label, dtype: int64
+y_test:
+1    67
+0    15
+Name: label, dtype: int64
+Model SVM, Predictions: [0 1], [ 1 81]
+Model LogReg, Predictions: [0 1], [31 51]
+Model XGB, Predictions: [0 1], [30 52]
+y_train:
+1    217
+0    180
+Name: label, dtype: int64
+y_test:
+1    59
+0    23
+Name: label, dtype: int64
+Model SVM, Predictions: [0 1], [ 1 81]
+Model LogReg, Predictions: [0 1], [ 4 78]
+Model XGB, Predictions: [0 1], [18 64]
+y_train:
+1    219
+0    178
+Name: label, dtype: int64
+y_test:
+1    57
+0    25
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [0 1], [38 44]
+Model XGB, Predictions: [0 1], [ 1 81]
+y_train:
+1    219
+0    178
+Name: label, dtype: int64
+y_test:
+1    57
+0    25
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [0 1], [ 6 76]
+Model XGB, Predictions: [0 1], [ 6 76]
+y_train:
+1    213
+0    184
+Name: label, dtype: int64
+y_test:
+1    63
+0    19
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [0 1], [15 67]
+Model XGB, Predictions: [0 1], [19 63]
+y_train:
+1    215
+0    182
+Name: label, dtype: int64
+y_test:
+1    61
+0    21
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [0 1], [15 67]
+Model XGB, Predictions: [0 1], [ 7 75]
+SVM accuracy over 10 rounds: 0.7439024390243902
 Model evaluation metrics for SVM:
-Precision: 0.7510860921778643
+Precision: 0.7430743751881963
 Recall: 1.0
-F1-score: 0.857545679905274
-AUC score: 0.5059649122807017
-LogReg accuracy over 10 rounds: 0.7199208860759494
+F1-score: 0.8519172614580619
+AUC score: 0.5080072463768116
+LogReg accuracy over 10 rounds: 0.7085365853658536
 Model evaluation metrics for LogReg:
-Precision: 0.7634166660478658
-Recall: 0.9120717490570497
-F1-score: 0.8268913793353203
-AUC score: 0.5359162573036444
-XGB accuracy over 10 rounds: 0.7489556962025317
+Precision: 0.771806532732966
+Recall: 0.861971650095789
+F1-score: 0.8071388189523875
+AUC score: 0.5739327095225082
+XGB accuracy over 10 rounds: 0.7951219512195122
 Model evaluation metrics for XGB:
-Precision: 0.810717782593318
-Recall: 0.8768545022084678
-F1-score: 0.8374858248516528
-AUC score: 0.6322838623292663
+Precision: 0.8371194651844593
+Recall: 0.9206947744292526
+F1-score: 0.869504262898373
+AUC score: 0.7059142743813924
+
+
+POPANE Study3 --------------------------------------------------
+APD PHASES 5 --------------------------------------------------
+y_a:
+1    199
+0    176
+Name: label, dtype: int64
+y_b:
+1    159
+0     49
+Name: label, dtype: int64
+y_train:
+1    227
+0    192
+Name: label, dtype: int64
+y_test:
+1    131
+0     33
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [164]
+Model LogReg, Predictions: [0 1], [  5 159]
+Model XGB, Predictions: [0 1], [ 60 104]
+y_train:
+1    239
+0    180
+Name: label, dtype: int64
+y_test:
+1    119
+0     45
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [164]
+Model LogReg, Predictions: [0 1], [  7 157]
+Model XGB, Predictions: [0 1], [  8 156]
+y_train:
+1    228
+0    191
+Name: label, dtype: int64
+y_test:
+1    130
+0     34
+Name: label, dtype: int64
+Model SVM, Predictions: [0 1], [  2 162]
+Model LogReg, Predictions: [0 1], [ 24 140]
+Model XGB, Predictions: [0 1], [ 47 117]
+y_train:
+1    235
+0    184
+Name: label, dtype: int64
+y_test:
+1    123
+0     41
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [164]
+Model LogReg, Predictions: [0 1], [  4 160]
+Model XGB, Predictions: [0 1], [ 27 137]
+y_train:
+1    233
+0    186
+Name: label, dtype: int64
+y_test:
+1    125
+0     39
+Name: label, dtype: int64
+Model SVM, Predictions: [0 1], [  1 163]
+Model LogReg, Predictions: [0 1], [ 10 154]
+Model XGB, Predictions: [0 1], [ 20 144]
+y_train:
+1    235
+0    184
+Name: label, dtype: int64
+y_test:
+1    123
+0     41
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [164]
+Model LogReg, Predictions: [0 1], [  6 158]
+Model XGB, Predictions: [0 1], [ 36 128]
+y_train:
+1    227
+0    192
+Name: label, dtype: int64
+y_test:
+1    131
+0     33
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [164]
+Model LogReg, Predictions: [0 1], [ 50 114]
+Model XGB, Predictions: [0 1], [ 24 140]
+y_train:
+1    235
+0    184
+Name: label, dtype: int64
+y_test:
+1    123
+0     41
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [164]
+Model LogReg, Predictions: [0 1], [  6 158]
+Model XGB, Predictions: [0 1], [ 34 130]
+y_train:
+1    224
+0    195
+Name: label, dtype: int64
+y_test:
+1    134
+0     30
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [164]
+Model LogReg, Predictions: [0 1], [ 34 130]
+Model XGB, Predictions: [0 1], [ 30 134]
+y_train:
+1    237
+0    182
+Name: label, dtype: int64
+y_test:
+1    121
+0     43
+Name: label, dtype: int64
+Model SVM, Predictions: [0 1], [  1 163]
+Model LogReg, Predictions: [0 1], [  6 158]
+Model XGB, Predictions: [0 1], [ 20 144]
+SVM accuracy over 10 rounds: 0.7695121951219513
+Model evaluation metrics for SVM:
+Precision: 0.7695742652723051
+Recall: 0.9992307692307693
+F1-score: 0.8691747891670449
+AUC score: 0.5035308148304044
+LogReg accuracy over 10 rounds: 0.7414634146341463
+Model evaluation metrics for LogReg:
+Precision: 0.782154785720306
+Recall: 0.9247181339690448
+F1-score: 0.8437964558561216
+AUC score: 0.5380782491144016
+XGB accuracy over 10 rounds: 0.8451219512195122
+Model evaluation metrics for XGB:
+Precision: 0.8838585847150574
+Recall: 0.9296212071398402
+F1-score: 0.9021425280005172
+AUC score: 0.7605160648476011
 
 
 POPANE Study5 --------------------------------------------------
 APD PHASES 0 --------------------------------------------------
-1    699
-0    349
+y_a:
+1    327
+0    214
 Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.7602209229152146
+y_b:
+1    356
+0    112
+Name: label, dtype: int64
+y_train:
+1    407
+0    233
+Name: label, dtype: int64
+y_test:
+1    276
+0     93
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [369]
+Model LogReg, Predictions: [0 1], [  2 367]
+Model XGB, Predictions: [0 1], [ 61 308]
+y_train:
+1    387
+0    253
+Name: label, dtype: int64
+y_test:
+1    296
+0     73
+Name: label, dtype: int64
+Model SVM, Predictions: [0 1], [  1 368]
+Model LogReg, Predictions: [0 1], [ 72 297]
+Model XGB, Predictions: [0 1], [ 56 313]
+y_train:
+1    394
+0    246
+Name: label, dtype: int64
+y_test:
+1    289
+0     80
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [369]
+Model LogReg, Predictions: [0 1], [ 34 335]
+Model XGB, Predictions: [0 1], [100 269]
+y_train:
+1    403
+0    237
+Name: label, dtype: int64
+y_test:
+1    280
+0     89
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [369]
+Model LogReg, Predictions: [0 1], [101 268]
+Model XGB, Predictions: [0 1], [ 66 303]
+y_train:
+1    378
+0    262
+Name: label, dtype: int64
+y_test:
+1    305
+0     64
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [369]
+Model LogReg, Predictions: [0 1], [109 260]
+Model XGB, Predictions: [0 1], [ 80 289]
+y_train:
+1    410
+0    230
+Name: label, dtype: int64
+y_test:
+1    273
+0     96
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [369]
+Model LogReg, Predictions: [1], [369]
+Model XGB, Predictions: [0 1], [ 66 303]
+y_train:
+1    399
+0    241
+Name: label, dtype: int64
+y_test:
+1    284
+0     85
+Name: label, dtype: int64
+Model SVM, Predictions: [0 1], [  1 368]
+Model LogReg, Predictions: [1], [369]
+Model XGB, Predictions: [0 1], [110 259]
+y_train:
+1    403
+0    237
+Name: label, dtype: int64
+y_test:
+1    280
+0     89
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [369]
+Model LogReg, Predictions: [1], [369]
+Model XGB, Predictions: [0 1], [ 83 286]
+y_train:
+1    410
+0    230
+Name: label, dtype: int64
+y_test:
+1    273
+0     96
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [369]
+Model LogReg, Predictions: [0 1], [ 10 359]
+Model XGB, Predictions: [0 1], [ 79 290]
+y_train:
+1    410
+0    230
+Name: label, dtype: int64
+y_test:
+1    273
+0     96
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [369]
+Model LogReg, Predictions: [0 1], [ 58 311]
+Model XGB, Predictions: [0 1], [ 99 270]
+SVM accuracy over 10 rounds: 0.7666666666666668
 Model evaluation metrics for SVM:
-Precision: 0.7597816743808048
-Recall: 0.9992727176557707
-F1-score: 0.8632038630044127
-AUC score: 0.5070736057037346
-LogReg accuracy over 10 rounds: 0.7568852554589327
+Precision: 0.7668220513726877
+Recall: 0.9996478873239436
+F1-score: 0.867607610571341
+AUC score: 0.5005088751688211
+LogReg accuracy over 10 rounds: 0.6848238482384823
 Model evaluation metrics for LogReg:
-Precision: 0.757099226607841
-Recall: 0.9996376811594203
-F1-score: 0.8616066945537824
-AUC score: 0.49981884057971016
-XGB accuracy over 10 rounds: 0.9171916728609875
+Precision: 0.752240464919048
+Recall: 0.881142551723937
+F1-score: 0.8070003429056543
+AUC score: 0.4666443016050327
+XGB accuracy over 10 rounds: 0.8772357723577237
 Model evaluation metrics for XGB:
-Precision: 0.9494951249705785
-Recall: 0.9413425654494031
-F1-score: 0.9451267438039149
-AUC score: 0.8919714161491077
+Precision: 0.9128596352395819
+Recall: 0.9305117282424282
+F1-score: 0.9204734367090482
+AUC score: 0.8221567325199943
 
 
 POPANE Study5 --------------------------------------------------
 APD PHASES 1 --------------------------------------------------
-1    621
-0    325
+y_a:
+1    327
+0    214
 Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.7586854545423798
+y_b:
+1    276
+0     88
+Name: label, dtype: int64
+y_train:
+1    391
+0    227
+Name: label, dtype: int64
+y_test:
+1    212
+0     75
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [287]
+Model LogReg, Predictions: [0 1], [  7 280]
+Model XGB, Predictions: [0 1], [ 52 235]
+y_train:
+1    400
+0    218
+Name: label, dtype: int64
+y_test:
+1    203
+0     84
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [287]
+Model LogReg, Predictions: [0 1], [  1 286]
+Model XGB, Predictions: [0 1], [  4 283]
+y_train:
+1    383
+0    235
+Name: label, dtype: int64
+y_test:
+1    220
+0     67
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [287]
+Model LogReg, Predictions: [0 1], [  9 278]
+Model XGB, Predictions: [0 1], [ 90 197]
+y_train:
+1    379
+0    239
+Name: label, dtype: int64
+y_test:
+1    224
+0     63
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [287]
+Model LogReg, Predictions: [0 1], [ 33 254]
+Model XGB, Predictions: [0 1], [ 50 237]
+y_train:
+1    384
+0    234
+Name: label, dtype: int64
+y_test:
+1    219
+0     68
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [287]
+Model LogReg, Predictions: [1], [287]
+Model XGB, Predictions: [0 1], [ 74 213]
+y_train:
+1    386
+0    232
+Name: label, dtype: int64
+y_test:
+1    217
+0     70
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [287]
+Model LogReg, Predictions: [0 1], [  3 284]
+Model XGB, Predictions: [0 1], [ 70 217]
+y_train:
+1    381
+0    237
+Name: label, dtype: int64
+y_test:
+1    222
+0     65
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [287]
+Model LogReg, Predictions: [0 1], [ 21 266]
+Model XGB, Predictions: [0 1], [ 70 217]
+y_train:
+1    392
+0    226
+Name: label, dtype: int64
+y_test:
+1    211
+0     76
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [287]
+Model LogReg, Predictions: [1], [287]
+Model XGB, Predictions: [0 1], [ 75 212]
+y_train:
+1    386
+0    232
+Name: label, dtype: int64
+y_test:
+1    217
+0     70
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [287]
+Model LogReg, Predictions: [0 1], [ 24 263]
+Model XGB, Predictions: [0 1], [ 30 257]
+y_train:
+1    374
+0    244
+Name: label, dtype: int64
+y_test:
+1    229
+0     58
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [287]
+Model LogReg, Predictions: [0 1], [ 39 248]
+Model XGB, Predictions: [0 1], [ 47 240]
+SVM accuracy over 10 rounds: 0.7574912891986063
 Model evaluation metrics for SVM:
-Precision: 0.7581903473876973
-Recall: 0.9995283018867924
-F1-score: 0.8622444104013767
-AUC score: 0.5064256923715618
-LogReg accuracy over 10 rounds: 0.750811551490231
+Precision: 0.7574912891986063
+Recall: 1.0
+F1-score: 0.8617953207411201
+AUC score: 0.5
+LogReg accuracy over 10 rounds: 0.7174216027874564
 Model evaluation metrics for LogReg:
-Precision: 0.7552291597845114
-Recall: 0.9920487827843865
-F1-score: 0.857466484426412
-AUC score: 0.4984053437731456
-XGB accuracy over 10 rounds: 0.9101621225937728
+Precision: 0.7498455840379655
+Recall: 0.9434808739110707
+F1-score: 0.8343461194725206
+AUC score: 0.47987234719089383
+XGB accuracy over 10 rounds: 0.8501742160278745
 Model evaluation metrics for XGB:
-Precision: 0.9310678147045875
-Recall: 0.9540772992404607
-F1-score: 0.9416114488208361
-AUC score: 0.8655750641860568
+Precision: 0.8847493406588578
+Recall: 0.9322748078543442
+F1-score: 0.9048798327227402
+AUC score: 0.7706670922352139
 
 
 POPANE Study5 --------------------------------------------------
 APD PHASES 2 --------------------------------------------------
-1    544
-0    300
+y_a:
+1    327
+0    214
 Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.7639235534106174
+y_b:
+1    197
+0     63
+Name: label, dtype: int64
+y_train:
+1    366
+0    230
+Name: label, dtype: int64
+y_test:
+1    158
+0     47
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [205]
+Model LogReg, Predictions: [1], [205]
+Model XGB, Predictions: [0 1], [ 30 175]
+y_train:
+1    368
+0    228
+Name: label, dtype: int64
+y_test:
+1    156
+0     49
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [205]
+Model LogReg, Predictions: [0 1], [ 12 193]
+Model XGB, Predictions: [0 1], [ 48 157]
+y_train:
+1    373
+0    223
+Name: label, dtype: int64
+y_test:
+1    151
+0     54
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [205]
+Model LogReg, Predictions: [1], [205]
+Model XGB, Predictions: [0 1], [ 32 173]
+y_train:
+1    372
+0    224
+Name: label, dtype: int64
+y_test:
+1    152
+0     53
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [205]
+Model LogReg, Predictions: [1], [205]
+Model XGB, Predictions: [0 1], [ 31 174]
+y_train:
+1    368
+0    228
+Name: label, dtype: int64
+y_test:
+1    156
+0     49
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [205]
+Model LogReg, Predictions: [0 1], [  7 198]
+Model XGB, Predictions: [0 1], [ 57 148]
+y_train:
+1    377
+0    219
+Name: label, dtype: int64
+y_test:
+1    147
+0     58
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [205]
+Model LogReg, Predictions: [1], [205]
+Model XGB, Predictions: [0 1], [ 15 190]
+y_train:
+1    367
+0    229
+Name: label, dtype: int64
+y_test:
+1    157
+0     48
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [205]
+Model LogReg, Predictions: [0 1], [  3 202]
+Model XGB, Predictions: [0 1], [ 44 161]
+y_train:
+1    377
+0    219
+Name: label, dtype: int64
+y_test:
+1    147
+0     58
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [205]
+Model LogReg, Predictions: [1], [205]
+Model XGB, Predictions: [0 1], [ 16 189]
+y_train:
+1    372
+0    224
+Name: label, dtype: int64
+y_test:
+1    152
+0     53
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [205]
+Model LogReg, Predictions: [1], [205]
+Model XGB, Predictions: [0 1], [ 30 175]
+y_train:
+1    370
+0    226
+Name: label, dtype: int64
+y_test:
+1    154
+0     51
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [205]
+Model LogReg, Predictions: [0 1], [  4 201]
+Model XGB, Predictions: [0 1], [ 56 149]
+SVM accuracy over 10 rounds: 0.7463414634146341
 Model evaluation metrics for SVM:
-Precision: 0.7634998019558097
-Recall: 0.9993548387096775
-F1-score: 0.8655996680800166
-AUC score: 0.5071341320528128
-LogReg accuracy over 10 rounds: 0.7428503905666949
+Precision: 0.7463414634146341
+Recall: 1.0
+F1-score: 0.8546247690202835
+AUC score: 0.5
+LogReg accuracy over 10 rounds: 0.7336585365853658
 Model evaluation metrics for LogReg:
-Precision: 0.7570177191791774
-Recall: 0.9751007800277918
-F1-score: 0.8520884200753077
-AUC score: 0.4896337233472293
-XGB accuracy over 10 rounds: 0.8992372754863427
+Precision: 0.7431674380405177
+Recall: 0.9833122821976324
+F1-score: 0.8462405751183228
+AUC score: 0.4916561410988162
+XGB accuracy over 10 rounds: 0.8492682926829268
 Model evaluation metrics for XGB:
-Precision: 0.9279514318444211
-Recall: 0.9427002188618745
-F1-score: 0.93464266206592
-AUC score: 0.8515025424842062
+Precision: 0.8660421383011231
+Recall: 0.9521799331080724
+F1-score: 0.9046737592743888
+AUC score: 0.7559456317225524
 
 
 POPANE Study5 --------------------------------------------------
 APD PHASES 3 --------------------------------------------------
-1    427
-0    264
+y_a:
+1    327
+0    214
 Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.7470503203625567
+y_b:
+1    77
+0    27
+Name: label, dtype: int64
+y_train:
+1    345
+0    218
+Name: label, dtype: int64
+y_test:
+1    59
+0    23
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [1], [82]
+Model XGB, Predictions: [0 1], [ 5 77]
+y_train:
+1    343
+0    220
+Name: label, dtype: int64
+y_test:
+1    61
+0    21
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [0 1], [ 3 79]
+Model XGB, Predictions: [0 1], [14 68]
+y_train:
+1    339
+0    224
+Name: label, dtype: int64
+y_test:
+1    65
+0    17
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [0 1], [22 60]
+Model XGB, Predictions: [0 1], [28 54]
+y_train:
+1    343
+0    220
+Name: label, dtype: int64
+y_test:
+1    61
+0    21
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [0 1], [17 65]
+Model XGB, Predictions: [0 1], [13 69]
+y_train:
+1    341
+0    222
+Name: label, dtype: int64
+y_test:
+1    63
+0    19
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [0 1], [11 71]
+Model XGB, Predictions: [0 1], [21 61]
+y_train:
+1    341
+0    222
+Name: label, dtype: int64
+y_test:
+1    63
+0    19
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [0 1], [ 3 79]
+Model XGB, Predictions: [0 1], [34 48]
+y_train:
+1    337
+0    226
+Name: label, dtype: int64
+y_test:
+1    67
+0    15
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [0 1], [13 69]
+Model XGB, Predictions: [0 1], [33 49]
+y_train:
+1    345
+0    218
+Name: label, dtype: int64
+y_test:
+1    59
+0    23
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [1], [82]
+Model XGB, Predictions: [0 1], [13 69]
+y_train:
+1    339
+0    224
+Name: label, dtype: int64
+y_test:
+1    65
+0    17
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [0 1], [21 61]
+Model XGB, Predictions: [0 1], [17 65]
+y_train:
+1    343
+0    220
+Name: label, dtype: int64
+y_test:
+1    61
+0    21
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [0 1], [ 5 77]
+Model XGB, Predictions: [0 1], [ 7 75]
+SVM accuracy over 10 rounds: 0.7609756097560976
 Model evaluation metrics for SVM:
-Precision: 0.7470503203625567
+Precision: 0.7609756097560976
 Recall: 1.0
-F1-score: 0.8549531051041439
+F1-score: 0.8639166801225144
 AUC score: 0.5
-LogReg accuracy over 10 rounds: 0.6844641740897014
+LogReg accuracy over 10 rounds: 0.671951219512195
 Model evaluation metrics for LogReg:
-Precision: 0.7409767014821406
-Recall: 0.8958075624994362
-F1-score: 0.8063656596986067
-AUC score: 0.4865551808047554
-XGB accuracy over 10 rounds: 0.7808497421472105
+Precision: 0.7461330555636858
+Recall: 0.8684139382353232
+F1-score: 0.7985265192144299
+AUC score: 0.4652124239311659
+XGB accuracy over 10 rounds: 0.7646341463414634
 Model evaluation metrics for XGB:
-Precision: 0.8298670896608608
-Recall: 0.8985418977797315
-F1-score: 0.8593176702363309
-AUC score: 0.6779939847549294
+Precision: 0.8502386951273759
+Recall: 0.8575709512612383
+F1-score: 0.8460649147137849
+AUC score: 0.679939703912321
 
 
 POPANE Study5 --------------------------------------------------
 APD PHASES 4 --------------------------------------------------
-1    427
-0    264
+y_a:
+1    327
+0    214
 Name: label, dtype: int64
-SVM accuracy over 10 rounds: 0.7489961322081575
+y_b:
+1    77
+0    27
+Name: label, dtype: int64
+y_train:
+1    343
+0    220
+Name: label, dtype: int64
+y_test:
+1    61
+0    21
+Name: label, dtype: int64
+Model SVM, Predictions: [0 1], [ 1 81]
+Model LogReg, Predictions: [0 1], [ 2 80]
+Model XGB, Predictions: [0 1], [ 8 74]
+y_train:
+1    343
+0    220
+Name: label, dtype: int64
+y_test:
+1    61
+0    21
+Name: label, dtype: int64
+Model SVM, Predictions: [0 1], [ 1 81]
+Model LogReg, Predictions: [0 1], [ 3 79]
+Model XGB, Predictions: [0 1], [21 61]
+y_train:
+1    343
+0    220
+Name: label, dtype: int64
+y_test:
+1    61
+0    21
+Name: label, dtype: int64
+Model SVM, Predictions: [0 1], [ 1 81]
+Model LogReg, Predictions: [0 1], [18 64]
+Model XGB, Predictions: [0 1], [20 62]
+y_train:
+1    340
+0    223
+Name: label, dtype: int64
+y_test:
+1    64
+0    18
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [0 1], [ 7 75]
+Model XGB, Predictions: [0 1], [18 64]
+y_train:
+1    344
+0    219
+Name: label, dtype: int64
+y_test:
+1    60
+0    22
+Name: label, dtype: int64
+Model SVM, Predictions: [0 1], [ 1 81]
+Model LogReg, Predictions: [1], [82]
+Model XGB, Predictions: [0 1], [ 6 76]
+y_train:
+1    348
+0    215
+Name: label, dtype: int64
+y_test:
+1    56
+0    26
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [1], [82]
+Model XGB, Predictions: [1], [82]
+y_train:
+1    345
+0    218
+Name: label, dtype: int64
+y_test:
+1    59
+0    23
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [0 1], [ 3 79]
+Model XGB, Predictions: [0 1], [14 68]
+y_train:
+1    341
+0    222
+Name: label, dtype: int64
+y_test:
+1    63
+0    19
+Name: label, dtype: int64
+Model SVM, Predictions: [0 1], [ 1 81]
+Model LogReg, Predictions: [0 1], [41 41]
+Model XGB, Predictions: [0 1], [30 52]
+y_train:
+1    341
+0    222
+Name: label, dtype: int64
+y_test:
+1    63
+0    19
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [82]
+Model LogReg, Predictions: [1], [82]
+Model XGB, Predictions: [0 1], [19 63]
+y_train:
+1    347
+0    216
+Name: label, dtype: int64
+y_test:
+1    57
+0    25
+Name: label, dtype: int64
+Model SVM, Predictions: [0 1], [ 1 81]
+Model LogReg, Predictions: [1], [82]
+Model XGB, Predictions: [0 1], [ 4 78]
+SVM accuracy over 10 rounds: 0.7451219512195122
 Model evaluation metrics for SVM:
-Precision: 0.7483709293519422
+Precision: 0.7432700993676603
 Recall: 1.0
-F1-score: 0.8559759296939815
-AUC score: 0.5048809523809524
-LogReg accuracy over 10 rounds: 0.6679301453352086
+F1-score: 0.8523767056572534
+AUC score: 0.5140471633629528
+LogReg accuracy over 10 rounds: 0.676829268292683
 Model evaluation metrics for LogReg:
-Precision: 0.7317573732442948
-Recall: 0.8762927411114168
-F1-score: 0.7939960042889587
-AUC score: 0.46841484477155104
-XGB accuracy over 10 rounds: 0.8169546022816065
+Precision: 0.7261880145621077
+Recall: 0.9005320729523631
+F1-score: 0.7962305757846767
+AUC score: 0.4805310105054577
+XGB accuracy over 10 rounds: 0.7597560975609756
 Model evaluation metrics for XGB:
-Precision: 0.8640557945822239
-Recall: 0.9022924057532155
-F1-score: 0.8798544491327472
-AUC score: 0.7390511926237027
+Precision: 0.8070654183506294
+Recall: 0.9019343867100371
+F1-score: 0.8462278715722821
+AUC score: 0.643301606462887
+
+
+POPANE Study5 --------------------------------------------------
+APD PHASES 5 --------------------------------------------------
+y_a:
+1    327
+0    214
+Name: label, dtype: int64
+y_b:
+1    159
+0     49
+Name: label, dtype: int64
+y_train:
+1    357
+0    228
+Name: label, dtype: int64
+y_test:
+1    129
+0     35
+Name: label, dtype: int64
+Model SVM, Predictions: [0 1], [  1 163]
+Model LogReg, Predictions: [0 1], [  3 161]
+Model XGB, Predictions: [0 1], [ 25 139]
+y_train:
+1    359
+0    226
+Name: label, dtype: int64
+y_test:
+1    127
+0     37
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [164]
+Model LogReg, Predictions: [0 1], [  5 159]
+Model XGB, Predictions: [0 1], [ 34 130]
+y_train:
+1    363
+0    222
+Name: label, dtype: int64
+y_test:
+1    123
+0     41
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [164]
+Model LogReg, Predictions: [1], [164]
+Model XGB, Predictions: [0 1], [ 38 126]
+y_train:
+1    355
+0    230
+Name: label, dtype: int64
+y_test:
+1    131
+0     33
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [164]
+Model LogReg, Predictions: [0 1], [ 34 130]
+Model XGB, Predictions: [0 1], [ 35 129]
+y_train:
+1    363
+0    222
+Name: label, dtype: int64
+y_test:
+1    123
+0     41
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [164]
+Model LogReg, Predictions: [1], [164]
+Model XGB, Predictions: [0 1], [ 10 154]
+y_train:
+1    356
+0    229
+Name: label, dtype: int64
+y_test:
+1    130
+0     34
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [164]
+Model LogReg, Predictions: [0 1], [ 17 147]
+Model XGB, Predictions: [0 1], [ 37 127]
+y_train:
+1    359
+0    226
+Name: label, dtype: int64
+y_test:
+1    127
+0     37
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [164]
+Model LogReg, Predictions: [0 1], [ 24 140]
+Model XGB, Predictions: [0 1], [ 13 151]
+y_train:
+1    359
+0    226
+Name: label, dtype: int64
+y_test:
+1    127
+0     37
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [164]
+Model LogReg, Predictions: [0 1], [  1 163]
+Model XGB, Predictions: [0 1], [ 16 148]
+y_train:
+1    367
+0    218
+Name: label, dtype: int64
+y_test:
+1    119
+0     45
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [164]
+Model LogReg, Predictions: [1], [164]
+Model XGB, Predictions: [0 1], [ 18 146]
+y_train:
+1    364
+0    221
+Name: label, dtype: int64
+y_test:
+1    122
+0     42
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [164]
+Model LogReg, Predictions: [1], [164]
+Model XGB, Predictions: [0 1], [ 15 149]
+SVM accuracy over 10 rounds: 0.7676829268292684
+Model evaluation metrics for SVM:
+Precision: 0.76755573844082
+Recall: 1.0
+F1-score: 0.8683029646309335
+AUC score: 0.5014285714285714
+LogReg accuracy over 10 rounds: 0.724390243902439
+Model evaluation metrics for LogReg:
+Precision: 0.7595196040286859
+Recall: 0.9404368896492643
+F1-score: 0.8383338181679723
+AUC score: 0.4803331049392924
+XGB accuracy over 10 rounds: 0.8469512195121951
+Model evaluation metrics for XGB:
+Precision: 0.8637677088325384
+Recall: 0.9564645041655447
+F1-score: 0.9058333236537848
+AUC score: 0.7287727923435422
 
 
