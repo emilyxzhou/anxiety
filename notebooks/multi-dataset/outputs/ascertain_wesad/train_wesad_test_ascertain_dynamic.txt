@@ -1,0 +1,75 @@
+WESAD PHASES 0 --------------------------------------------------
+y_a:
+0    44
+1    26
+Name: label, dtype: int64
+y_b:
+1    905
+0    642
+Name: label, dtype: int64
+y_train:
+0    44
+1    26
+Name: label, dtype: int64
+y_test:
+1    905
+0    642
+Name: label, dtype: int64
+Model SVM, Predictions: [0], [1547]
+Model LogReg, Predictions: [0 1], [1531   16]
+Model XGB, Predictions: [0 1], [1481   66]
+SVM accuracy over 1 rounds: 0.41499676793794443
+LogReg accuracy over 1 rounds: 0.41499676793794443
+XGB accuracy over 1 rounds: 0.4188752424046542
+
+
+WESAD PHASES 1 --------------------------------------------------
+y_a:
+0    34
+1    22
+Name: label, dtype: int64
+y_b:
+1    905
+0    642
+Name: label, dtype: int64
+y_train:
+0    34
+1    22
+Name: label, dtype: int64
+y_test:
+1    905
+0    642
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [1547]
+Model LogReg, Predictions: [0 1], [  87 1460]
+Model XGB, Predictions: [0 1], [678 869]
+SVM accuracy over 1 rounds: 0.5850032320620556
+LogReg accuracy over 1 rounds: 0.5895281189398837
+XGB accuracy over 1 rounds: 0.5087265675500969
+
+
+WESAD PHASES 2 --------------------------------------------------
+y_a:
+0    23
+1    19
+Name: label, dtype: int64
+y_b:
+1    905
+0    642
+Name: label, dtype: int64
+y_train:
+0    23
+1    19
+Name: label, dtype: int64
+y_test:
+1    905
+0    642
+Name: label, dtype: int64
+Model SVM, Predictions: [0], [1547]
+Model LogReg, Predictions: [0], [1547]
+Model XGB, Predictions: [0 1], [1465   82]
+SVM accuracy over 1 rounds: 0.41499676793794443
+LogReg accuracy over 1 rounds: 0.41499676793794443
+XGB accuracy over 1 rounds: 0.41111829347123463
+
+

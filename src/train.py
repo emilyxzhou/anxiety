@@ -13,7 +13,7 @@ import scipy.signal as ss
 import tools.data_reader_apd as dr_a
 import tools.data_reader_ascertain as dr_asc
 import tools.data_reader_popane as dr_p
-# import tools.data_reader_sfi as dr_s
+import tools.data_reader_sfi as dr_s
 import tools.data_reader_wesad as dr_w
 import tools.preprocessing as preprocessing
 
@@ -73,15 +73,7 @@ class Metrics:
     WRIST = [MEAN_WRIST_ACT_L, MEAN_WRIST_ACT_R, PEAK_WRIST_ACC_L, PEAK_WRIST_ACC_R]
 
 
-def train_test_split(x, y, test_size=0.15, by_subject=True):
-    _, counts = np.unique(y["label"], return_counts=True)
-    neg = counts[0]
-    pos = counts[1]
-    if neg / pos < 0.4:
-        random.seed(datetime.datetime.now().timestamp())
-        oversample = RandomOverSampler(sampling_strategy=0.333)
-        x, y = oversample.fit_resample(x, y["label"])
-        y = pd.concat([x["subject"], y], axis=1)
+def train_test_split(x, y, test_size=0.15, by_subject=True, is_resample=False):        
     if by_subject:
         subjects = list(x.loc[:, "subject"].unique())
         indices = random.sample(subjects, int(len(subjects)*test_size))
@@ -98,18 +90,43 @@ def train_test_split(x, y, test_size=0.15, by_subject=True):
         x_test = x[x.index.isin(indices)]
         y_test = y[y.index.isin(indices)]
 
+    if is_resample:
+        x_train, y_train = resample(x_train, y_train)
+        x_test, y_test = resample(x_test, y_test)
+
     return x_train, y_train, x_test, y_test, indices
 
 
-def train_predict(models, x, y, test_size=0.15, by_subject=True, save_metrics=True, get_shap_values=False, print_preds=False):
+def resample(x, y):
+    if not x.empty and not y.empty:
+        _, counts = np.unique(y["label"], return_counts=True)
+        if counts.shape[0] > 1:
+            neg = counts[0]
+            pos = counts[1]
+            if neg / pos < 0.333:
+                print(f"Ratio of negative to positive labels ({neg/pos}) is under 33%, oversampling negative class.")
+                random.seed(datetime.datetime.now().timestamp())
+                oversample = RandomOverSampler(sampling_strategy=0.333)
+                x, y = oversample.fit_resample(x, y["label"])
+                y = pd.concat([x["subject"], y], axis=1)
+            elif pos / neg < 0.333:
+                print(f"Ratio of positive to negative labels ({pos/neg}) is under 33%, oversampling positive class.")
+                random.seed(datetime.datetime.now().timestamp())
+                oversample = RandomOverSampler(sampling_strategy=0.333)
+                x, y = oversample.fit_resample(x, y["label"])
+                y = pd.concat([x["subject"], y], axis=1)
+    return x, y
+
+
+def train_predict(models, x, y, test_size=0.15, by_subject=True, save_metrics=True, get_shap_values=False, print_preds=False, is_resample=False):
     """
     models: dictionary of {"name": model}
     """
     out = {}
-    x_train, y_train, x_test, y_test, test_subjects = train_test_split(x, y, test_size, by_subject)
+    x_train, y_train, x_test, y_test, test_subjects = train_test_split(x, y, test_size, by_subject, is_resample=is_resample)
     while y_test.loc[:, "label"].nunique() == 1:
         print("Only one label in test data, rerunning train_test_split")
-        x_train, y_train, x_test, y_test, test_subjects = train_test_split(x, y, test_size, by_subject)
+        x_train, y_train, x_test, y_test, test_subjects = train_test_split(x, y, test_size, by_subject, is_resample=is_resample)
     # print(f"x_train: {x_train.shape}")
     # print(f"y_train: {y_train.shape}")
     y_test = y_test.loc[:, "label"]
@@ -645,73 +662,73 @@ class Train_POPANE:
         return data_x, data_y
 
 
-# class Train_SFI:
+class Train_SFI:
 
-#     def get_sfi_data(metrics, phases, verbose=False, normalize=True):
-#         metrics_folder = dr_s.Paths.METRICS
-#         columns = metrics.copy()
-#         columns.insert(0, "subject")
+    def get_sfi_data(metrics, phases, verbose=False, normalize=True):
+        metrics_folder = dr_s.Paths.METRICS
+        columns = metrics.copy()
+        columns.insert(0, "subject")
         
-#         data_x = []
-#         data_y = []
+        data_x = []
+        data_y = []
 
-#         features = []
-#         for i in range(len(metrics)):
-#             metric = metrics[i]
-#             if verbose: print(f"Generating features for metric {metric}")
-#             file = os.path.join(metrics_folder, f"{metric}.csv")
-#             arr = pd.read_csv(file, index_col=[0])
+        features = []
+        for i in range(len(metrics)):
+            metric = metrics[i]
+            if verbose: print(f"Generating features for metric {metric}")
+            file = os.path.join(metrics_folder, f"{metric}.csv")
+            arr = pd.read_csv(file, index_col=[0])
 
-#             if i == 0:  # subject IDs
-#                 # ids = arr.iloc[:, 0]
-#                 ids = arr.iloc[:, 0]
-#                 ids = pd.DataFrame(data=ids, columns=["subject"])
-#                 features.append(ids)
-#             col_mean = np.nanmean(arr, axis=0)
-#             idx = np.where(np.isnan(arr))
-#             if idx[0].size > 0 and idx[1].size > 0:
-#                 arr.iloc[idx] = np.take(col_mean, idx[1])
-#             arr = np.nan_to_num(arr)
-#             arr = np.mean(arr[:, 1:], axis=1)
-#             arr = np.reshape(arr, (arr.size, 1))
-#             arr = pd.DataFrame(data=arr, columns=[f"{metric}"])
-#             features.append(arr)
+            if i == 0:  # subject IDs
+                # ids = arr.iloc[:, 0]
+                ids = arr.iloc[:, 0]
+                ids = pd.DataFrame(data=ids, columns=["subject"])
+                features.append(ids)
+            col_mean = np.nanmean(arr, axis=0)
+            idx = np.where(np.isnan(arr))
+            if idx[0].size > 0 and idx[1].size > 0:
+                arr.iloc[idx] = np.take(col_mean, idx[1])
+            arr = np.nan_to_num(arr)
+            arr = np.mean(arr[:, 1:], axis=1)
+            arr = np.reshape(arr, (arr.size, 1))
+            arr = pd.DataFrame(data=arr, columns=[f"{metric}"])
+            features.append(arr)
 
-#         x = pd.concat(features, axis=1)
+        x = pd.concat(features, axis=1)
             
-#         data_x.append(x)
+        data_x.append(x)
         
-#         data_x = pd.concat(data_x).reset_index(drop=True)
+        data_x = pd.concat(data_x).reset_index(drop=True)
 
-#         subjects = data_x.loc[:, "subject"]
+        subjects = data_x.loc[:, "subject"]
 
-#         y_labels = []
-#         for phase in phases:
-#             if phase == "BIOFEEDBACK-REST":
-#                 y_labels.append(0)
-#             else:
-#                 y_labels.append(1)
-#         y_labels = pd.Series(data=y_labels)
+        y_labels = []
+        for phase in phases:
+            if phase == "BIOFEEDBACK-REST":
+                y_labels.append(0)
+            else:
+                y_labels.append(1)
+        y_labels = pd.Series(data=y_labels)
 
-#         data_y = pd.DataFrame({"subject": subjects, "label": y_labels})
+        data_y = pd.DataFrame({"subject": subjects, "label": y_labels})
 
-#         for metric in metrics:
-#             data_col = data_x[metric]
-#             data_col = (data_col - data_col.min())/(data_col.max() - data_col.min())
-#             data_x[metric] = data_col
+        for metric in metrics:
+            data_col = data_x[metric]
+            data_col = (data_col - data_col.min())/(data_col.max() - data_col.min())
+            data_x[metric] = data_col
 
-#         return data_x, data_y
+        return data_x, data_y
 
 
 class Train_Multi_Dataset:
     
-    def train_across_datasets(models, dataset_a_x, dataset_a_y, dataset_b_x, dataset_b_y, test_size=0.80, by_subject=True, save_metrics=True, target_names=["1", "0"], get_shap_values=False):
+    def train_across_datasets(models, dataset_a_x, dataset_a_y, dataset_b_x, dataset_b_y, test_size=0.80, by_subject=True, save_metrics=True, target_names=["1", "0"], get_shap_values=False, is_resample=False):
         """
         test_size: Proportion of dataset_b to hold out for model testing.
         """
         out = {}
-        x_train_a, y_train_a, x_test_a, y_test_a, test_subjects = train_test_split(dataset_a_x, dataset_a_y, test_size=0.0, by_subject=by_subject)
-        x_train_b, y_train_b, x_test_b, y_test_b, test_subjects = train_test_split(dataset_b_x, dataset_b_y, test_size=test_size, by_subject=by_subject)
+        x_train_a, y_train_a, x_test_a, y_test_a, test_subjects = train_test_split(dataset_a_x, dataset_a_y, test_size=0.0, by_subject=by_subject, is_resample=is_resample)
+        x_train_b, y_train_b, x_test_b, y_test_b, test_subjects = train_test_split(dataset_b_x, dataset_b_y, test_size=test_size, by_subject=by_subject, is_resample=is_resample)
         # print(f"x_train: {x_train.shape}")
         # print(f"y_train: {y_train.shape}")
         x_train = pd.concat([x_train_a, x_train_b])
