@@ -74,9 +74,14 @@ class Metrics:
 
 
 def train_test_split(x, y, test_size=0.15, by_subject=True):
-    random.seed(datetime.datetime.now().timestamp())
-    oversample = RandomOverSampler(sampling_strategy=0.333)
-    x, y = oversample.fit_resample(x, y)
+    _, counts = np.unique(y["label"], return_counts=True)
+    neg = counts[0]
+    pos = counts[1]
+    if neg / pos < 0.4:
+        random.seed(datetime.datetime.now().timestamp())
+        oversample = RandomOverSampler(sampling_strategy=0.333)
+        x, y = oversample.fit_resample(x, y["label"])
+        y = pd.concat([x["subject"], y], axis=1)
     if by_subject:
         subjects = list(x.loc[:, "subject"].unique())
         indices = random.sample(subjects, int(len(subjects)*test_size))
