@@ -9,72 +9,6 @@ y_b:
 0     71
 Name: label, dtype: int64
 y_train:
-1    75
-0    67
-Name: label, dtype: int64
-y_test:
-1    193
-0     59
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [252]
-Model LogReg, Predictions: [1], [252]
-Model XGB, Predictions: [0 1], [ 32 220]
-y_train:
-0    73
-1    69
-Name: label, dtype: int64
-y_test:
-1    199
-0     53
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [252]
-Model LogReg, Predictions: [0 1], [ 26 226]
-Model XGB, Predictions: [0 1], [ 72 180]
-y_train:
-0    76
-1    66
-Name: label, dtype: int64
-y_test:
-1    202
-0     50
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [252]
-Model LogReg, Predictions: [1], [252]
-Model XGB, Predictions: [0 1], [ 23 229]
-y_train:
-0    82
-1    60
-Name: label, dtype: int64
-y_test:
-1    208
-0     44
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [252]
-Model LogReg, Predictions: [0 1], [ 21 231]
-Model XGB, Predictions: [0 1], [ 63 189]
-y_train:
-0    80
-1    62
-Name: label, dtype: int64
-y_test:
-1    206
-0     46
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [252]
-Model LogReg, Predictions: [0 1], [ 22 230]
-Model XGB, Predictions: [0 1], [ 89 163]
-y_train:
-0    73
-1    69
-Name: label, dtype: int64
-y_test:
-1    199
-0     53
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [252]
-Model LogReg, Predictions: [0 1], [ 49 203]
-Model XGB, Predictions: [0 1], [117 135]
-y_train:
 1    80
 0    62
 Name: label, dtype: int64
@@ -83,19 +17,52 @@ y_test:
 0     64
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [252]
-Model LogReg, Predictions: [0 1], [ 10 242]
-Model XGB, Predictions: [0 1], [ 38 214]
+Model LogReg, Predictions: [1], [252]
+Model XGB, Predictions: [0 1], [ 15 237]
 y_train:
-0    85
-1    57
+1    87
+0    55
 Name: label, dtype: int64
 y_test:
-1    211
-0     41
+1    181
+0     71
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [252]
+Model LogReg, Predictions: [1], [252]
+Model XGB, Predictions: [1], [252]
+y_train:
+1    73
+0    69
+Name: label, dtype: int64
+y_test:
+1    195
+0     57
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [252]
+Model LogReg, Predictions: [0 1], [  3 249]
+Model XGB, Predictions: [0 1], [ 12 240]
+y_train:
+0    78
+1    64
+Name: label, dtype: int64
+y_test:
+1    204
+0     48
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [252]
+Model LogReg, Predictions: [0 1], [ 26 226]
+Model XGB, Predictions: [0 1], [ 17 235]
+y_train:
+0    89
+1    53
+Name: label, dtype: int64
+y_test:
+1    215
+0     37
 Name: label, dtype: int64
 Model SVM, Predictions: [0], [252]
-Model LogReg, Predictions: [0 1], [  4 248]
-Model XGB, Predictions: [0 1], [ 85 167]
+Model LogReg, Predictions: [0 1], [ 67 185]
+Model XGB, Predictions: [0 1], [ 54 198]
 y_train:
 0    73
 1    69
@@ -105,37 +72,70 @@ y_test:
 0     53
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [252]
-Model LogReg, Predictions: [0 1], [ 35 217]
+Model LogReg, Predictions: [1], [252]
 Model XGB, Predictions: [0 1], [ 72 180]
 y_train:
-0    80
-1    62
+0    73
+1    69
 Name: label, dtype: int64
 y_test:
-1    206
-0     46
+1    199
+0     53
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [252]
-Model LogReg, Predictions: [0 1], [ 30 222]
-Model XGB, Predictions: [0 1], [ 62 190]
-SVM accuracy over 10 rounds: 0.7305555555555555
+Model LogReg, Predictions: [0 1], [ 77 175]
+Model XGB, Predictions: [0 1], [ 72 180]
+y_train:
+0    89
+1    53
+Name: label, dtype: int64
+y_test:
+1    215
+0     37
+Name: label, dtype: int64
+Model SVM, Predictions: [0], [252]
+Model LogReg, Predictions: [0 1], [ 97 155]
+Model XGB, Predictions: [0 1], [ 42 210]
+y_train:
+1    73
+0    69
+Name: label, dtype: int64
+y_test:
+1    195
+0     57
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [252]
+Model LogReg, Predictions: [0 1], [ 24 228]
+Model XGB, Predictions: [0 1], [ 35 217]
+y_train:
+0    71
+1    71
+Name: label, dtype: int64
+y_test:
+1    197
+0     55
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [252]
+Model LogReg, Predictions: [0 1], [ 21 231]
+Model XGB, Predictions: [0 1], [ 71 181]
+SVM accuracy over 10 rounds: 0.6476190476190476
 Report:
-Precision: 0.8142857142857144
-Recall: 0.9
-F1-score: 0.7962753600798511
-AUC score: 0.5
-LogReg accuracy over 10 rounds: 0.7539682539682541
+	Precision: 0.8182539682539682
+	Recall: 0.8
+	F1-score: 0.6972748761734832
+	AUC score: 0.5
+LogReg accuracy over 10 rounds: 0.698015873015873
 Report:
-Precision: 0.7990988481699336
-Recall: 0.923476574939466
-F1-score: 0.8555559971928298
-AUC score: 0.5053308747654881
-XGB accuracy over 10 rounds: 0.8595238095238095
+	Precision: 0.7818631329627339
+	Recall: 0.8688206669115062
+	F1-score: 0.814819325761866
+	AUC score: 0.4814457782171164
+XGB accuracy over 10 rounds: 0.8730158730158731
 Report:
-Precision: 0.9508769234331675
-Recall: 0.8776209628903914
-F1-score: 0.9068221378455126
-AUC score: 0.8434559798320607
+	Precision: 0.9030939933489781
+	Recall: 0.9559971306885707
+	F1-score: 0.9235399446914819
+	AUC score: 0.785919192310965
 
 
 WESAD PHASES 0 --------------------------------------------------
@@ -149,133 +149,133 @@ y_b:
 0     56
 Name: label, dtype: int64
 y_train:
-1    64
-0    62
+0    76
+1    50
 Name: label, dtype: int64
 y_test:
-1    147
-0     49
+1    161
+0     35
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [196]
-Model LogReg, Predictions: [0 1], [ 40 156]
-Model XGB, Predictions: [0 1], [ 38 158]
+Model LogReg, Predictions: [0 1], [ 78 118]
+Model XGB, Predictions: [0 1], [ 42 154]
 y_train:
-0    75
-1    51
+1    65
+0    61
 Name: label, dtype: int64
 y_test:
-1    160
-0     36
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [196]
-Model LogReg, Predictions: [0 1], [ 39 157]
-Model XGB, Predictions: [0 1], [ 48 148]
-y_train:
-0    68
-1    58
-Name: label, dtype: int64
-y_test:
-1    153
-0     43
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [196]
-Model LogReg, Predictions: [0 1], [ 17 179]
-Model XGB, Predictions: [0 1], [ 37 159]
-y_train:
-1    66
-0    60
-Name: label, dtype: int64
-y_test:
-1    145
-0     51
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [196]
-Model LogReg, Predictions: [0 1], [  2 194]
-Model XGB, Predictions: [0 1], [ 21 175]
-y_train:
-1    66
-0    60
-Name: label, dtype: int64
-y_test:
-1    145
-0     51
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [196]
-Model LogReg, Predictions: [0 1], [ 69 127]
-Model XGB, Predictions: [0 1], [ 26 170]
-y_train:
-0    80
-1    46
-Name: label, dtype: int64
-y_test:
-1    165
-0     31
-Name: label, dtype: int64
-Model SVM, Predictions: [0], [196]
-Model LogReg, Predictions: [0 1], [ 60 136]
-Model XGB, Predictions: [0 1], [ 32 164]
-y_train:
-0    68
-1    58
-Name: label, dtype: int64
-y_test:
-1    153
-0     43
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [196]
-Model LogReg, Predictions: [0 1], [ 54 142]
-Model XGB, Predictions: [0 1], [ 30 166]
-y_train:
-1    64
-0    62
-Name: label, dtype: int64
-y_test:
-1    147
-0     49
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [196]
-Model LogReg, Predictions: [0 1], [ 72 124]
-Model XGB, Predictions: [0 1], [ 46 150]
-y_train:
-0    67
-1    59
-Name: label, dtype: int64
-y_test:
-1    152
-0     44
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [196]
-Model LogReg, Predictions: [0 1], [ 34 162]
-Model XGB, Predictions: [0 1], [ 32 164]
-y_train:
-0    67
-1    59
-Name: label, dtype: int64
-y_test:
-1    152
-0     44
+1    146
+0     50
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [196]
 Model LogReg, Predictions: [1], [196]
+Model XGB, Predictions: [0 1], [ 30 166]
+y_train:
+0    78
+1    48
+Name: label, dtype: int64
+y_test:
+1    163
+0     33
+Name: label, dtype: int64
+Model SVM, Predictions: [0], [196]
+Model LogReg, Predictions: [0 1], [ 43 153]
+Model XGB, Predictions: [0 1], [ 31 165]
+y_train:
+1    71
+0    55
+Name: label, dtype: int64
+y_test:
+1    140
+0     56
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [196]
+Model LogReg, Predictions: [1], [196]
+Model XGB, Predictions: [1], [196]
+y_train:
+1    64
+0    62
+Name: label, dtype: int64
+y_test:
+1    147
+0     49
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [196]
+Model LogReg, Predictions: [1], [196]
+Model XGB, Predictions: [0 1], [ 35 161]
+y_train:
+0    66
+1    60
+Name: label, dtype: int64
+y_test:
+1    151
+0     45
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [196]
+Model LogReg, Predictions: [0 1], [ 21 175]
+Model XGB, Predictions: [0 1], [ 20 176]
+y_train:
+0    73
+1    53
+Name: label, dtype: int64
+y_test:
+1    158
+0     38
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [196]
+Model LogReg, Predictions: [0 1], [ 46 150]
 Model XGB, Predictions: [0 1], [ 34 162]
-SVM accuracy over 10 rounds: 0.7066326530612244
+y_train:
+1    65
+0    61
+Name: label, dtype: int64
+y_test:
+1    146
+0     50
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [196]
+Model LogReg, Predictions: [0 1], [ 12 184]
+Model XGB, Predictions: [0 1], [ 22 174]
+y_train:
+0    66
+1    60
+Name: label, dtype: int64
+y_test:
+1    151
+0     45
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [196]
+Model LogReg, Predictions: [0 1], [ 12 184]
+Model XGB, Predictions: [0 1], [ 23 173]
+y_train:
+0    76
+1    50
+Name: label, dtype: int64
+y_test:
+1    161
+0     35
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [196]
+Model LogReg, Predictions: [0 1], [  1 195]
+Model XGB, Predictions: [0 1], [ 49 147]
+SVM accuracy over 10 rounds: 0.7112244897959183
 Report:
-Precision: 0.7908163265306122
-Recall: 0.9
-F1-score: 0.7814749982848717
-AUC score: 0.5
-LogReg accuracy over 10 rounds: 0.6224489795918368
+	Precision: 0.7943877551020407
+	Recall: 0.9
+	F1-score: 0.7835289471280256
+	AUC score: 0.5
+LogReg accuracy over 10 rounds: 0.6954081632653061
 Report:
-Precision: 0.7443668643735224
-Recall: 0.7745546140141146
-F1-score: 0.7540463157913637
-AUC score: 0.4374457853647784
-XGB accuracy over 10 rounds: 0.8760204081632652
+	Precision: 0.766900740183835
+	Recall: 0.8819470897431214
+	F1-score: 0.8134646337568332
+	AUC score: 0.47482476382804284
+XGB accuracy over 10 rounds: 0.8683673469387756
 Report:
-Precision: 0.8972191980820728
-Recall: 0.9517795808170927
-F1-score: 0.9224983973114347
-AUC score: 0.7948128334942478
+	Precision: 0.8842736411426231
+	Recall: 0.9653380748653422
+	F1-score: 0.9199602825425158
+	AUC score: 0.7704923402785302
 
 
 WESAD PHASES 0 --------------------------------------------------
@@ -289,16 +289,38 @@ y_b:
 0     40
 Name: label, dtype: int64
 y_train:
-0    69
-1    41
+0    62
+1    48
 Name: label, dtype: int64
 y_test:
-1    114
-0     26
+1    107
+0     33
 Name: label, dtype: int64
-Model SVM, Predictions: [0], [140]
-Model LogReg, Predictions: [0 1], [74 66]
-Model XGB, Predictions: [0 1], [ 30 110]
+Model SVM, Predictions: [1], [140]
+Model LogReg, Predictions: [1], [140]
+Model XGB, Predictions: [0 1], [  7 133]
+y_train:
+0    62
+1    48
+Name: label, dtype: int64
+y_test:
+1    107
+0     33
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [140]
+Model LogReg, Predictions: [1], [140]
+Model XGB, Predictions: [0 1], [ 16 124]
+y_train:
+0    60
+1    50
+Name: label, dtype: int64
+y_test:
+1    105
+0     35
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [140]
+Model LogReg, Predictions: [1], [140]
+Model XGB, Predictions: [0 1], [ 24 116]
 y_train:
 0    66
 1    44
@@ -309,113 +331,91 @@ y_test:
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [140]
 Model LogReg, Predictions: [1], [140]
-Model XGB, Predictions: [0 1], [ 24 116]
+Model XGB, Predictions: [0 1], [ 19 121]
 y_train:
-0    57
-1    53
+0    64
+1    46
 Name: label, dtype: int64
 y_test:
-1    102
-0     38
+1    109
+0     31
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [140]
-Model LogReg, Predictions: [1], [140]
-Model XGB, Predictions: [0 1], [  4 136]
+Model LogReg, Predictions: [0 1], [  8 132]
+Model XGB, Predictions: [0 1], [ 30 110]
 y_train:
-0    65
-1    45
+0    64
+1    46
 Name: label, dtype: int64
 y_test:
-1    110
-0     30
+1    109
+0     31
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [140]
-Model LogReg, Predictions: [1], [140]
-Model XGB, Predictions: [0 1], [ 25 115]
+Model LogReg, Predictions: [0 1], [ 21 119]
+Model XGB, Predictions: [0 1], [ 22 118]
 y_train:
-0    65
-1    45
+0    70
+1    40
 Name: label, dtype: int64
 y_test:
-1    110
-0     30
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [140]
-Model LogReg, Predictions: [1], [140]
-Model XGB, Predictions: [0 1], [ 25 115]
-y_train:
-0    57
-1    53
-Name: label, dtype: int64
-y_test:
-1    102
-0     38
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [140]
-Model LogReg, Predictions: [1], [140]
-Model XGB, Predictions: [0 1], [  4 136]
-y_train:
-0    71
-1    39
-Name: label, dtype: int64
-y_test:
-1    116
-0     24
+1    115
+0     25
 Name: label, dtype: int64
 Model SVM, Predictions: [0], [140]
-Model LogReg, Predictions: [0 1], [50 90]
-Model XGB, Predictions: [0 1], [  6 134]
+Model LogReg, Predictions: [0 1], [57 83]
+Model XGB, Predictions: [0 1], [ 35 105]
 y_train:
-0    65
-1    45
+0    60
+1    50
 Name: label, dtype: int64
 y_test:
-1    110
-0     30
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [140]
-Model LogReg, Predictions: [0 1], [ 17 123]
-Model XGB, Predictions: [0 1], [ 40 100]
-y_train:
-0    57
-1    53
-Name: label, dtype: int64
-y_test:
-1    102
-0     38
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [140]
-Model LogReg, Predictions: [0 1], [ 10 130]
-Model XGB, Predictions: [0 1], [  8 132]
-y_train:
-0    55
-1    55
-Name: label, dtype: int64
-y_test:
-1    100
-0     40
+1    105
+0     35
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [140]
 Model LogReg, Predictions: [1], [140]
-Model XGB, Predictions: [1], [140]
-SVM accuracy over 10 rounds: 0.6407142857142858
+Model XGB, Predictions: [0 1], [ 25 115]
+y_train:
+0    64
+1    46
+Name: label, dtype: int64
+y_test:
+1    109
+0     31
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [140]
+Model LogReg, Predictions: [0 1], [ 12 128]
+Model XGB, Predictions: [0 1], [ 24 116]
+y_train:
+0    62
+1    48
+Name: label, dtype: int64
+y_test:
+1    107
+0     33
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [140]
+Model LogReg, Predictions: [1], [140]
+Model XGB, Predictions: [0 1], [ 15 125]
+SVM accuracy over 10 rounds: 0.71
 Report:
-Precision: 0.8049999999999999
-Recall: 0.8
-F1-score: 0.6886721104562467
-AUC score: 0.5
-LogReg accuracy over 10 rounds: 0.7042857142857143
+	Precision: 0.792142857142857
+	Recall: 0.9
+	F1-score: 0.7824444173177332
+	AUC score: 0.5
+LogReg accuracy over 10 rounds: 0.7271428571428571
 Report:
-Precision: 0.7711532505434945
-Recall: 0.8932151880715988
-F1-score: 0.8144813156660111
-AUC score: 0.503436204022304
-XGB accuracy over 10 rounds: 0.835
+	Precision: 0.7727387404852412
+	Recall: 0.9268767451136817
+	F1-score: 0.8369288869093555
+	AUC score: 0.49427708223426026
+XGB accuracy over 10 rounds: 0.8792857142857142
 Report:
-Precision: 0.8525911852090783
-Recall: 0.966438715664722
-F1-score: 0.9012711294435316
-AUC score: 0.7032208702340549
+	Precision: 0.8899356485393071
+	Recall: 0.9680369072372026
+	F1-score: 0.9258595205070987
+	AUC score: 0.778365322915415
 
 
 WESAD PHASES 0 --------------------------------------------------
@@ -429,26 +429,37 @@ y_b:
 0    17
 Name: label, dtype: int64
 y_train:
-0    56
-1    30
+0    57
+1    29
 Name: label, dtype: int64
 y_test:
-1    40
-0    16
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [56]
-Model LogReg, Predictions: [1], [56]
-Model XGB, Predictions: [0 1], [ 3 53]
-y_train:
-0    61
-1    25
-Name: label, dtype: int64
-y_test:
-1    45
-0    11
+1    41
+0    15
 Name: label, dtype: int64
 Model SVM, Predictions: [0], [56]
-Model LogReg, Predictions: [0 1], [ 8 48]
+Model LogReg, Predictions: [0 1], [ 9 47]
+Model XGB, Predictions: [0 1], [16 40]
+y_train:
+0    57
+1    29
+Name: label, dtype: int64
+y_test:
+1    41
+0    15
+Name: label, dtype: int64
+Model SVM, Predictions: [0], [56]
+Model LogReg, Predictions: [0 1], [ 4 52]
+Model XGB, Predictions: [0 1], [ 8 48]
+y_train:
+0    59
+1    27
+Name: label, dtype: int64
+y_test:
+1    43
+0    13
+Name: label, dtype: int64
+Model SVM, Predictions: [0], [56]
+Model LogReg, Predictions: [0 1], [ 5 51]
 Model XGB, Predictions: [0 1], [14 42]
 y_train:
 0    61
@@ -459,143 +470,19 @@ y_test:
 0    11
 Name: label, dtype: int64
 Model SVM, Predictions: [0], [56]
-Model LogReg, Predictions: [0 1], [27 29]
-Model XGB, Predictions: [0 1], [19 37]
+Model LogReg, Predictions: [0 1], [19 37]
+Model XGB, Predictions: [0 1], [14 42]
 y_train:
-0    64
-1    22
+0    65
+1    21
 Name: label, dtype: int64
 y_test:
-1    48
-0     8
+1    49
+0     7
 Name: label, dtype: int64
 Model SVM, Predictions: [0], [56]
-Model LogReg, Predictions: [0 1], [31 25]
-Model XGB, Predictions: [0 1], [21 35]
-y_train:
-0    61
-1    25
-Name: label, dtype: int64
-y_test:
-1    45
-0    11
-Name: label, dtype: int64
-Model SVM, Predictions: [0], [56]
-Model LogReg, Predictions: [0 1], [31 25]
-Model XGB, Predictions: [0 1], [20 36]
-y_train:
-0    59
-1    27
-Name: label, dtype: int64
-y_test:
-1    43
-0    13
-Name: label, dtype: int64
-Model SVM, Predictions: [0], [56]
-Model LogReg, Predictions: [0 1], [ 8 48]
-Model XGB, Predictions: [0 1], [10 46]
-y_train:
-0    59
-1    27
-Name: label, dtype: int64
-y_test:
-1    43
-0    13
-Name: label, dtype: int64
-Model SVM, Predictions: [0], [56]
-Model LogReg, Predictions: [1], [56]
-Model XGB, Predictions: [0 1], [10 46]
-y_train:
-0    57
-1    29
-Name: label, dtype: int64
-y_test:
-1    41
-0    15
-Name: label, dtype: int64
-Model SVM, Predictions: [0], [56]
-Model LogReg, Predictions: [0 1], [ 2 54]
-Model XGB, Predictions: [0 1], [ 7 49]
-y_train:
-0    56
-1    30
-Name: label, dtype: int64
-y_test:
-1    40
-0    16
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [56]
-Model LogReg, Predictions: [1], [56]
-Model XGB, Predictions: [0 1], [ 3 53]
-y_train:
-0    59
-1    27
-Name: label, dtype: int64
-y_test:
-1    43
-0    13
-Name: label, dtype: int64
-Model SVM, Predictions: [0], [56]
-Model LogReg, Predictions: [0 1], [21 35]
-Model XGB, Predictions: [0 1], [10 46]
-SVM accuracy over 10 rounds: 0.31250000000000006
-LogReg accuracy over 10 rounds: 0.6160714285714286
-Report:
-Precision: 0.7609533388067871
-Recall: 0.7608002457931555
-F1-score: 0.7375813038659282
-AUC score: 0.4756361368825918
-XGB accuracy over 10 rounds: 0.8464285714285715
-Report:
-Precision: 0.9037863900631977
-Recall: 0.9168342314237096
-F1-score: 0.9016608075304982
-AUC score: 0.7964678150125539
-
-
-WESAD PHASES 0 --------------------------------------------------
-APD PHASES 4 --------------------------------------------------
-y_a:
-0    55
-1    15
-Name: label, dtype: int64
-y_b:
-1    55
-0    17
-Name: label, dtype: int64
-y_train:
-0    62
-1    24
-Name: label, dtype: int64
-y_test:
-1    46
-0    10
-Name: label, dtype: int64
-Model SVM, Predictions: [0], [56]
-Model LogReg, Predictions: [0 1], [ 5 51]
-Model XGB, Predictions: [0 1], [12 44]
-y_train:
-0    57
-1    29
-Name: label, dtype: int64
-y_test:
-1    41
-0    15
-Name: label, dtype: int64
-Model SVM, Predictions: [0], [56]
-Model LogReg, Predictions: [0 1], [ 3 53]
-Model XGB, Predictions: [0 1], [ 6 50]
-y_train:
-0    58
-1    28
-Name: label, dtype: int64
-y_test:
-1    42
-0    14
-Name: label, dtype: int64
-Model SVM, Predictions: [0], [56]
-Model LogReg, Predictions: [0 1], [ 7 49]
-Model XGB, Predictions: [0 1], [ 2 54]
+Model LogReg, Predictions: [0 1], [42 14]
+Model XGB, Predictions: [0 1], [35 21]
 y_train:
 0    57
 1    29
@@ -616,41 +503,8 @@ y_test:
 0    14
 Name: label, dtype: int64
 Model SVM, Predictions: [0], [56]
-Model LogReg, Predictions: [0 1], [10 46]
-Model XGB, Predictions: [0 1], [19 37]
-y_train:
-0    57
-1    29
-Name: label, dtype: int64
-y_test:
-1    41
-0    15
-Name: label, dtype: int64
-Model SVM, Predictions: [0], [56]
 Model LogReg, Predictions: [1], [56]
-Model XGB, Predictions: [0 1], [16 40]
-y_train:
-0    60
-1    26
-Name: label, dtype: int64
-y_test:
-1    44
-0    12
-Name: label, dtype: int64
-Model SVM, Predictions: [0], [56]
-Model LogReg, Predictions: [0 1], [11 45]
 Model XGB, Predictions: [0 1], [10 46]
-y_train:
-0    58
-1    28
-Name: label, dtype: int64
-y_test:
-1    42
-0    14
-Name: label, dtype: int64
-Model SVM, Predictions: [0], [56]
-Model LogReg, Predictions: [0 1], [ 2 54]
-Model XGB, Predictions: [0 1], [ 6 50]
 y_train:
 0    59
 1    27
@@ -660,7 +514,7 @@ y_test:
 0    13
 Name: label, dtype: int64
 Model SVM, Predictions: [0], [56]
-Model LogReg, Predictions: [0 1], [11 45]
+Model LogReg, Predictions: [0 1], [ 4 52]
 Model XGB, Predictions: [0 1], [16 40]
 y_train:
 0    57
@@ -671,25 +525,36 @@ y_test:
 0    15
 Name: label, dtype: int64
 Model SVM, Predictions: [0], [56]
-Model LogReg, Predictions: [0 1], [ 6 50]
-Model XGB, Predictions: [0 1], [13 43]
-SVM accuracy over 10 rounds: 0.2446428571428571
-LogReg accuracy over 10 rounds: 0.6928571428571428
+Model LogReg, Predictions: [0 1], [14 42]
+Model XGB, Predictions: [0 1], [ 7 49]
+y_train:
+0    59
+1    27
+Name: label, dtype: int64
+y_test:
+1    43
+0    13
+Name: label, dtype: int64
+Model SVM, Predictions: [0], [56]
+Model LogReg, Predictions: [0 1], [ 2 54]
+Model XGB, Predictions: [0 1], [15 41]
+SVM accuracy over 10 rounds: 0.23392857142857143
+LogReg accuracy over 10 rounds: 0.6428571428571429
 Report:
-Precision: 0.7489341168971462
-Recall: 0.8949582003239307
-F1-score: 0.8133723930507394
-AUC score: 0.48445712213998726
-XGB accuracy over 10 rounds: 0.875
+	Precision: 0.7550962973522424
+	Recall: 0.814448830392433
+	F1-score: 0.7592270451503733
+	AUC score: 0.48023473820653956
+XGB accuracy over 10 rounds: 0.8660714285714285
 Report:
-Precision: 0.9058877162001531
-Recall: 0.9412223349250155
-F1-score: 0.9199098496725272
-AUC score: 0.8084683103196507
+	Precision: 0.941919381179342
+	Recall: 0.8956373065391784
+	F1-score: 0.9055116716977109
+	AUC score: 0.8558772613281972
 
 
 WESAD PHASES 0 --------------------------------------------------
-APD PHASES 5 --------------------------------------------------
+APD PHASES 4 --------------------------------------------------
 y_a:
 0    55
 1    15
@@ -708,41 +573,8 @@ y_test:
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [112]
 Model LogReg, Predictions: [1], [112]
-Model XGB, Predictions: [0 1], [25 87]
-y_train:
-0    61
-1    41
-Name: label, dtype: int64
-y_test:
-1    87
-0    25
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [112]
-Model LogReg, Predictions: [0 1], [  4 108]
-Model XGB, Predictions: [0 1], [14 98]
-y_train:
-0    63
-1    39
-Name: label, dtype: int64
-y_test:
-1    89
-0    23
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [112]
-Model LogReg, Predictions: [0 1], [26 86]
 Model XGB, Predictions: [0 1], [24 88]
 y_train:
-0    64
-1    38
-Name: label, dtype: int64
-y_test:
-1    90
-0    22
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [112]
-Model LogReg, Predictions: [0 1], [29 83]
-Model XGB, Predictions: [0 1], [17 95]
-y_train:
 0    63
 1    39
 Name: label, dtype: int64
@@ -751,30 +583,8 @@ y_test:
 0    23
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [112]
-Model LogReg, Predictions: [0 1], [38 74]
-Model XGB, Predictions: [0 1], [16 96]
-y_train:
-0    59
-1    43
-Name: label, dtype: int64
-y_test:
-1    85
-0    27
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [112]
-Model LogReg, Predictions: [1], [112]
-Model XGB, Predictions: [0 1], [36 76]
-y_train:
-0    60
-1    42
-Name: label, dtype: int64
-y_test:
-1    86
-0    26
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [112]
-Model LogReg, Predictions: [0 1], [  3 109]
-Model XGB, Predictions: [0 1], [  5 107]
+Model LogReg, Predictions: [0 1], [57 55]
+Model XGB, Predictions: [0 1], [32 80]
 y_train:
 0    67
 1    35
@@ -784,48 +594,103 @@ y_test:
 0    19
 Name: label, dtype: int64
 Model SVM, Predictions: [0], [112]
-Model LogReg, Predictions: [0 1], [  7 105]
-Model XGB, Predictions: [0 1], [44 68]
+Model LogReg, Predictions: [0 1], [47 65]
+Model XGB, Predictions: [0 1], [40 72]
 y_train:
-0    59
-1    43
+0    62
+1    40
 Name: label, dtype: int64
 y_test:
-1    85
-0    27
+1    88
+0    24
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [112]
+Model LogReg, Predictions: [0 1], [  3 109]
+Model XGB, Predictions: [0 1], [28 84]
+y_train:
+0    70
+1    32
+Name: label, dtype: int64
+y_test:
+1    96
+0    16
+Name: label, dtype: int64
+Model SVM, Predictions: [0], [112]
 Model LogReg, Predictions: [0 1], [23 89]
-Model XGB, Predictions: [0 1], [35 77]
+Model XGB, Predictions: [0 1], [24 88]
 y_train:
-0    59
-1    43
+0    63
+1    39
 Name: label, dtype: int64
 y_test:
-1    85
-0    27
+1    89
+0    23
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [112]
-Model LogReg, Predictions: [0 1], [ 10 102]
-Model XGB, Predictions: [0 1], [36 76]
-SVM accuracy over 10 rounds: 0.7169642857142856
+Model LogReg, Predictions: [0 1], [13 99]
+Model XGB, Predictions: [0 1], [32 80]
+y_train:
+0    62
+1    40
+Name: label, dtype: int64
+y_test:
+1    88
+0    24
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [112]
+Model LogReg, Predictions: [0 1], [16 96]
+Model XGB, Predictions: [0 1], [26 86]
+y_train:
+0    58
+1    44
+Name: label, dtype: int64
+y_test:
+1    84
+0    28
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [112]
+Model LogReg, Predictions: [0 1], [49 63]
+Model XGB, Predictions: [0 1], [ 11 101]
+y_train:
+0    63
+1    39
+Name: label, dtype: int64
+y_test:
+1    89
+0    23
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [112]
+Model LogReg, Predictions: [0 1], [22 90]
+Model XGB, Predictions: [0 1], [24 88]
+y_train:
+0    62
+1    40
+Name: label, dtype: int64
+y_test:
+1    88
+0    24
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [112]
+Model LogReg, Predictions: [0 1], [  1 111]
+Model XGB, Predictions: [0 1], [32 80]
+SVM accuracy over 10 rounds: 0.6589285714285713
 Report:
-Precision: 0.7999999999999999
-Recall: 0.9
-F1-score: 0.7874124602810852
-AUC score: 0.5
-LogReg accuracy over 10 rounds: 0.6812500000000001
+	Precision: 0.8276785714285714
+	Recall: 0.8
+	F1-score: 0.7033859275053305
+	AUC score: 0.5
+LogReg accuracy over 10 rounds: 0.6723214285714285
 Report:
-Precision: 0.7635177696696882
-Recall: 0.8561086914806699
-F1-score: 0.8028890928453805
-AUC score: 0.45605366001196046
-XGB accuracy over 10 rounds: 0.8758928571428571
+	Precision: 0.7944906262151262
+	Recall: 0.7924361917078934
+	F1-score: 0.7824010625796424
+	AUC score: 0.5026451689715231
+XGB accuracy over 10 rounds: 0.8919642857142855
 Report:
-Precision: 0.9337140936765345
-Recall: 0.9165704189641544
-F1-score: 0.9206351833297488
-AUC score: 0.8243373529907423
+	Precision: 0.9594490013785432
+	Recall: 0.9078537144865523
+	F1-score: 0.9304662436240653
+	AUC score: 0.8803502526884108
 
 
 WESAD PHASES 1 --------------------------------------------------
@@ -839,6 +704,94 @@ y_b:
 0     71
 Name: label, dtype: int64
 y_train:
+1    86
+0    42
+Name: label, dtype: int64
+y_test:
+1    181
+0     71
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [252]
+Model LogReg, Predictions: [1], [252]
+Model XGB, Predictions: [1], [252]
+y_train:
+1    70
+0    58
+Name: label, dtype: int64
+y_test:
+1    197
+0     55
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [252]
+Model LogReg, Predictions: [0 1], [ 12 240]
+Model XGB, Predictions: [0 1], [ 59 193]
+y_train:
+1    86
+0    42
+Name: label, dtype: int64
+y_test:
+1    181
+0     71
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [252]
+Model LogReg, Predictions: [1], [252]
+Model XGB, Predictions: [1], [252]
+y_train:
+0    79
+1    49
+Name: label, dtype: int64
+y_test:
+1    218
+0     34
+Name: label, dtype: int64
+Model SVM, Predictions: [0 1], [251   1]
+Model LogReg, Predictions: [0 1], [148 104]
+Model XGB, Predictions: [0 1], [ 42 210]
+y_train:
+1    72
+0    56
+Name: label, dtype: int64
+y_test:
+1    195
+0     57
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [252]
+Model LogReg, Predictions: [0 1], [  1 251]
+Model XGB, Predictions: [0 1], [ 42 210]
+y_train:
+1    74
+0    54
+Name: label, dtype: int64
+y_test:
+1    193
+0     59
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [252]
+Model LogReg, Predictions: [1], [252]
+Model XGB, Predictions: [0 1], [  6 246]
+y_train:
+1    72
+0    56
+Name: label, dtype: int64
+y_test:
+1    195
+0     57
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [252]
+Model LogReg, Predictions: [1], [252]
+Model XGB, Predictions: [0 1], [124 128]
+y_train:
+0    67
+1    61
+Name: label, dtype: int64
+y_test:
+1    206
+0     46
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [252]
+Model LogReg, Predictions: [0 1], [ 10 242]
+Model XGB, Predictions: [0 1], [ 44 208]
+y_train:
 1    77
 0    51
 Name: label, dtype: int64
@@ -847,30 +800,8 @@ y_test:
 0     62
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [252]
-Model LogReg, Predictions: [0 1], [ 40 212]
-Model XGB, Predictions: [0 1], [ 38 214]
-y_train:
-1    79
-0    49
-Name: label, dtype: int64
-y_test:
-1    188
-0     64
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [252]
-Model LogReg, Predictions: [0 1], [ 16 236]
-Model XGB, Predictions: [0 1], [ 12 240]
-y_train:
-0    74
-1    54
-Name: label, dtype: int64
-y_test:
-1    213
-0     39
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [252]
-Model LogReg, Predictions: [0 1], [ 41 211]
-Model XGB, Predictions: [0 1], [ 50 202]
+Model LogReg, Predictions: [0 1], [ 28 224]
+Model XGB, Predictions: [0 1], [ 33 219]
 y_train:
 1    68
 0    60
@@ -880,92 +811,26 @@ y_test:
 0     53
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [252]
-Model LogReg, Predictions: [0 1], [104 148]
-Model XGB, Predictions: [0 1], [ 57 195]
-y_train:
-1    70
-0    58
-Name: label, dtype: int64
-y_test:
-1    197
-0     55
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [252]
-Model LogReg, Predictions: [1], [252]
-Model XGB, Predictions: [0 1], [ 67 185]
-y_train:
-1    79
-0    49
-Name: label, dtype: int64
-y_test:
-1    188
-0     64
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [252]
-Model LogReg, Predictions: [1], [252]
-Model XGB, Predictions: [0 1], [  4 248]
-y_train:
-1    70
-0    58
-Name: label, dtype: int64
-y_test:
-1    197
-0     55
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [252]
-Model LogReg, Predictions: [0 1], [ 45 207]
-Model XGB, Predictions: [0 1], [ 68 184]
-y_train:
-1    81
-0    47
-Name: label, dtype: int64
-y_test:
-1    186
-0     66
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [252]
-Model LogReg, Predictions: [0 1], [  5 247]
-Model XGB, Predictions: [0 1], [  9 243]
-y_train:
-0    74
-1    54
-Name: label, dtype: int64
-y_test:
-1    213
-0     39
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [252]
-Model LogReg, Predictions: [0 1], [107 145]
-Model XGB, Predictions: [0 1], [ 43 209]
-y_train:
-1    70
-0    58
-Name: label, dtype: int64
-y_test:
-1    197
-0     55
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [252]
-Model LogReg, Predictions: [0 1], [115 137]
-Model XGB, Predictions: [0 1], [ 25 227]
-SVM accuracy over 10 rounds: 0.7809523809523808
+Model LogReg, Predictions: [0 1], [ 79 173]
+Model XGB, Predictions: [0 1], [ 50 202]
+SVM accuracy over 10 rounds: 0.7031746031746032
 Report:
-Precision: 0.7809523809523808
-Recall: 1.0
-F1-score: 0.8765392622961959
-AUC score: 0.5
-LogReg accuracy over 10 rounds: 0.6670634920634921
+	Precision: 0.7892857142857144
+	Recall: 0.9004587155963304
+	F1-score: 0.7812850784414758
+	AUC score: 0.5002293577981651
+LogReg accuracy over 10 rounds: 0.7170634920634921
 Report:
-Precision: 0.7817190687939007
-Recall: 0.8109333871495071
-F1-score: 0.783681837794454
-AUC score: 0.501256520125764
-XGB accuracy over 10 rounds: 0.8551587301587302
+	Precision: 0.7877010221282724
+	Recall: 0.8978842137796386
+	F1-score: 0.8227047223912688
+	AUC score: 0.5238113067234579
+XGB accuracy over 10 rounds: 0.8337301587301587
 Report:
-Precision: 0.8812459198714369
-Recall: 0.9533932750559337
-F1-score: 0.9117486580041531
-AUC score: 0.7539132116568203
+	Precision: 0.8739295279775675
+	Recall: 0.9357973826005654
+	F1-score: 0.8949378760459465
+	AUC score: 0.735231721442728
 
 
 WESAD PHASES 1 --------------------------------------------------
@@ -987,63 +852,19 @@ y_test:
 0     52
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [196]
-Model LogReg, Predictions: [1], [196]
-Model XGB, Predictions: [0 1], [  9 187]
+Model LogReg, Predictions: [0 1], [  2 194]
+Model XGB, Predictions: [0 1], [  4 192]
 y_train:
-0    61
-1    51
+1    66
+0    46
 Name: label, dtype: int64
 y_test:
-1    159
-0     37
+1    144
+0     52
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [196]
-Model LogReg, Predictions: [0 1], [ 67 129]
-Model XGB, Predictions: [0 1], [ 24 172]
-y_train:
-0    63
-1    49
-Name: label, dtype: int64
-y_test:
-1    161
-0     35
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [196]
-Model LogReg, Predictions: [0 1], [ 31 165]
-Model XGB, Predictions: [0 1], [ 49 147]
-y_train:
-0    57
-1    55
-Name: label, dtype: int64
-y_test:
-1    155
-0     41
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [196]
-Model LogReg, Predictions: [0 1], [  7 189]
-Model XGB, Predictions: [0 1], [ 15 181]
-y_train:
-1    59
-0    53
-Name: label, dtype: int64
-y_test:
-1    151
-0     45
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [196]
-Model LogReg, Predictions: [1], [196]
-Model XGB, Predictions: [0 1], [ 29 167]
-y_train:
-1    59
-0    53
-Name: label, dtype: int64
-y_test:
-1    151
-0     45
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [196]
-Model LogReg, Predictions: [1], [196]
-Model XGB, Predictions: [0 1], [ 39 157]
+Model LogReg, Predictions: [0 1], [  2 194]
+Model XGB, Predictions: [0 1], [  4 192]
 y_train:
 1    63
 0    49
@@ -1053,19 +874,52 @@ y_test:
 0     49
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [196]
-Model LogReg, Predictions: [0 1], [ 24 172]
-Model XGB, Predictions: [0 1], [ 12 184]
+Model LogReg, Predictions: [0 1], [  3 193]
+Model XGB, Predictions: [0 1], [ 25 171]
 y_train:
-0    60
-1    52
+1    65
+0    47
 Name: label, dtype: int64
 y_test:
-1    158
-0     38
+1    145
+0     51
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [196]
-Model LogReg, Predictions: [0 1], [ 55 141]
-Model XGB, Predictions: [0 1], [  3 193]
+Model LogReg, Predictions: [0 1], [  1 195]
+Model XGB, Predictions: [0 1], [  4 192]
+y_train:
+1    63
+0    49
+Name: label, dtype: int64
+y_test:
+1    147
+0     49
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [196]
+Model LogReg, Predictions: [0 1], [ 23 173]
+Model XGB, Predictions: [0 1], [ 19 177]
+y_train:
+0    63
+1    49
+Name: label, dtype: int64
+y_test:
+1    161
+0     35
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [196]
+Model LogReg, Predictions: [0 1], [ 49 147]
+Model XGB, Predictions: [0 1], [ 43 153]
+y_train:
+0    61
+1    51
+Name: label, dtype: int64
+y_test:
+1    159
+0     37
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [196]
+Model LogReg, Predictions: [0 1], [ 30 166]
+Model XGB, Predictions: [0 1], [ 27 169]
 y_train:
 1    59
 0    53
@@ -1076,36 +930,47 @@ y_test:
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [196]
 Model LogReg, Predictions: [1], [196]
-Model XGB, Predictions: [0 1], [ 48 148]
+Model XGB, Predictions: [0 1], [ 21 175]
 y_train:
-0    69
-1    43
+1    59
+0    53
 Name: label, dtype: int64
 y_test:
-1    167
-0     29
+1    151
+0     45
 Name: label, dtype: int64
-Model SVM, Predictions: [0], [196]
-Model LogReg, Predictions: [0 1], [ 76 120]
-Model XGB, Predictions: [0 1], [ 16 180]
-SVM accuracy over 10 rounds: 0.7173469387755103
+Model SVM, Predictions: [1], [196]
+Model LogReg, Predictions: [0 1], [ 40 156]
+Model XGB, Predictions: [0 1], [ 31 165]
+y_train:
+1    57
+0    55
+Name: label, dtype: int64
+y_test:
+1    153
+0     43
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [196]
+Model LogReg, Predictions: [0 1], [  4 192]
+Model XGB, Predictions: [0 1], [  4 192]
+SVM accuracy over 10 rounds: 0.7663265306122449
 Report:
-Precision: 0.8025510204081634
-Recall: 0.9
-F1-score: 0.7888734371941373
-AUC score: 0.5
-LogReg accuracy over 10 rounds: 0.6836734693877551
+	Precision: 0.7663265306122449
+	Recall: 1.0
+	F1-score: 0.8674003512952781
+	AUC score: 0.5
+LogReg accuracy over 10 rounds: 0.7091836734693879
 Report:
-Precision: 0.7750286986980279
-Recall: 0.8546145196463127
-F1-score: 0.8039447459817264
-AUC score: 0.47112946344831574
-XGB accuracy over 10 rounds: 0.8653061224489795
+	Precision: 0.7594160039934991
+	Recall: 0.9140477588793466
+	F1-score: 0.8261135248598885
+	AUC score: 0.48308306264171375
+XGB accuracy over 10 rounds: 0.8224489795918368
 Report:
-Precision: 0.878508514485741
-Recall: 0.9704995732010051
-F1-score: 0.9196937264183449
-AUC score: 0.7282191207562446
+	Precision: 0.8293280528511922
+	Recall: 0.9767580765510825
+	F1-score: 0.8945166617891468
+	AUC score: 0.6603413833354044
 
 
 WESAD PHASES 1 --------------------------------------------------
@@ -1119,38 +984,16 @@ y_b:
 0     40
 Name: label, dtype: int64
 y_train:
-0    54
-1    42
+0    52
+1    44
 Name: label, dtype: int64
 y_test:
-1    112
-0     28
+1    110
+0     30
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [140]
-Model LogReg, Predictions: [1], [140]
-Model XGB, Predictions: [0 1], [  7 133]
-y_train:
-0    62
-1    34
-Name: label, dtype: int64
-y_test:
-1    120
-0     20
-Name: label, dtype: int64
-Model SVM, Predictions: [0], [140]
-Model LogReg, Predictions: [0 1], [65 75]
-Model XGB, Predictions: [0 1], [ 13 127]
-y_train:
-0    51
-1    45
-Name: label, dtype: int64
-y_test:
-1    109
-0     31
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [140]
-Model LogReg, Predictions: [0 1], [ 27 113]
-Model XGB, Predictions: [0 1], [ 11 129]
+Model LogReg, Predictions: [0 1], [ 37 103]
+Model XGB, Predictions: [0 1], [ 31 109]
 y_train:
 0    58
 1    38
@@ -1160,41 +1003,8 @@ y_test:
 0     24
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [140]
-Model LogReg, Predictions: [0 1], [ 23 117]
-Model XGB, Predictions: [0 1], [ 13 127]
-y_train:
-0    62
-1    34
-Name: label, dtype: int64
-y_test:
-1    120
-0     20
-Name: label, dtype: int64
-Model SVM, Predictions: [0], [140]
-Model LogReg, Predictions: [0 1], [75 65]
-Model XGB, Predictions: [0 1], [53 87]
-y_train:
-1    54
-0    42
-Name: label, dtype: int64
-y_test:
-1    100
-0     40
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [140]
-Model LogReg, Predictions: [1], [140]
-Model XGB, Predictions: [1], [140]
-y_train:
-1    54
-0    42
-Name: label, dtype: int64
-y_test:
-1    100
-0     40
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [140]
-Model LogReg, Predictions: [1], [140]
-Model XGB, Predictions: [1], [140]
+Model LogReg, Predictions: [0 1], [50 90]
+Model XGB, Predictions: [0 1], [ 19 121]
 y_train:
 0    52
 1    44
@@ -1204,48 +1014,103 @@ y_test:
 0     30
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [140]
-Model LogReg, Predictions: [0 1], [ 18 122]
-Model XGB, Predictions: [0 1], [  4 136]
+Model LogReg, Predictions: [0 1], [  8 132]
+Model XGB, Predictions: [0 1], [ 24 116]
 y_train:
-1    49
-0    47
+0    55
+1    41
 Name: label, dtype: int64
 y_test:
-1    105
-0     35
+1    113
+0     27
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [140]
-Model LogReg, Predictions: [0 1], [ 13 127]
+Model LogReg, Predictions: [0 1], [ 16 124]
+Model XGB, Predictions: [0 1], [ 33 107]
+y_train:
+0    51
+1    45
+Name: label, dtype: int64
+y_test:
+1    109
+0     31
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [140]
+Model LogReg, Predictions: [0 1], [  8 132]
+Model XGB, Predictions: [0 1], [ 18 122]
+y_train:
+0    52
+1    44
+Name: label, dtype: int64
+y_test:
+1    110
+0     30
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [140]
+Model LogReg, Predictions: [0 1], [ 22 118]
+Model XGB, Predictions: [0 1], [  5 135]
+y_train:
+0    52
+1    44
+Name: label, dtype: int64
+y_test:
+1    110
+0     30
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [140]
+Model LogReg, Predictions: [0 1], [  9 131]
+Model XGB, Predictions: [0 1], [ 28 112]
+y_train:
+0    52
+1    44
+Name: label, dtype: int64
+y_test:
+1    110
+0     30
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [140]
+Model LogReg, Predictions: [0 1], [  2 138]
+Model XGB, Predictions: [0 1], [ 35 105]
+y_train:
+0    51
+1    45
+Name: label, dtype: int64
+y_test:
+1    109
+0     31
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [140]
+Model LogReg, Predictions: [0 1], [  8 132]
 Model XGB, Predictions: [0 1], [ 21 119]
 y_train:
-0    52
-1    44
+0    57
+1    39
 Name: label, dtype: int64
 y_test:
-1    110
-0     30
+1    115
+0     25
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [140]
-Model LogReg, Predictions: [0 1], [ 13 127]
-Model XGB, Predictions: [0 1], [ 38 102]
-SVM accuracy over 10 rounds: 0.6442857142857142
+Model LogReg, Predictions: [0 1], [  9 131]
+Model XGB, Predictions: [0 1], [ 26 114]
+SVM accuracy over 10 rounds: 0.7942857142857143
 Report:
-Precision: 0.8157142857142858
-Recall: 0.8
-F1-score: 0.6954450420730541
-AUC score: 0.5
-LogReg accuracy over 10 rounds: 0.6614285714285715
+	Precision: 0.7942857142857143
+	Recall: 1.0
+	F1-score: 0.885249543278905
+	AUC score: 0.5
+LogReg accuracy over 10 rounds: 0.7107142857142856
 Report:
-Precision: 0.7752640517018256
-Recall: 0.8234916891607812
-F1-score: 0.7829350222413956
-AUC score: 0.4726079797570419
-XGB accuracy over 10 rounds: 0.8185714285714287
+	Precision: 0.7882040105599945
+	Recall: 0.872459912920716
+	F1-score: 0.8243496733382537
+	AUC score: 0.48405731607804026
+XGB accuracy over 10 rounds: 0.8985714285714286
 Report:
-Precision: 0.8514638870282856
-Recall: 0.9506338632631735
-F1-score: 0.8911019478990155
-AUC score: 0.6644279147345054
+	Precision: 0.9211891139886902
+	Recall: 0.9576928510067226
+	F1-score: 0.9377864694189201
+	AUC score: 0.8176352546550938
 
 
 WESAD PHASES 1 --------------------------------------------------
@@ -1259,16 +1124,16 @@ y_b:
 0    17
 Name: label, dtype: int64
 y_train:
-0    46
-1    26
+0    51
+1    21
 Name: label, dtype: int64
 y_test:
-1    43
-0    13
+1    48
+0     8
 Name: label, dtype: int64
-Model SVM, Predictions: [1], [56]
-Model LogReg, Predictions: [0 1], [ 3 53]
-Model XGB, Predictions: [0 1], [29 27]
+Model SVM, Predictions: [0], [56]
+Model LogReg, Predictions: [0 1], [32 24]
+Model XGB, Predictions: [0 1], [23 33]
 y_train:
 0    42
 1    30
@@ -1281,27 +1146,27 @@ Model SVM, Predictions: [1], [56]
 Model LogReg, Predictions: [1], [56]
 Model XGB, Predictions: [1], [56]
 y_train:
-0    46
-1    26
+0    44
+1    28
 Name: label, dtype: int64
 y_test:
-1    43
-0    13
+1    41
+0    15
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [56]
-Model LogReg, Predictions: [0 1], [40 16]
-Model XGB, Predictions: [0 1], [ 9 47]
+Model LogReg, Predictions: [1], [56]
+Model XGB, Predictions: [0 1], [ 6 50]
 y_train:
-0    48
-1    24
+0    42
+1    30
 Name: label, dtype: int64
 y_test:
-1    45
-0    11
+1    39
+0    17
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [56]
-Model LogReg, Predictions: [0 1], [38 18]
-Model XGB, Predictions: [0 1], [27 29]
+Model LogReg, Predictions: [1], [56]
+Model XGB, Predictions: [1], [56]
 y_train:
 0    44
 1    28
@@ -1312,40 +1177,29 @@ y_test:
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [56]
 Model LogReg, Predictions: [0 1], [ 2 54]
-Model XGB, Predictions: [0 1], [ 2 54]
+Model XGB, Predictions: [0 1], [ 3 53]
 y_train:
-0    47
-1    25
+0    50
+1    22
 Name: label, dtype: int64
 y_test:
-1    44
-0    12
+1    47
+0     9
 Name: label, dtype: int64
-Model SVM, Predictions: [1], [56]
-Model LogReg, Predictions: [0 1], [21 35]
-Model XGB, Predictions: [0 1], [ 9 47]
+Model SVM, Predictions: [0], [56]
+Model LogReg, Predictions: [0 1], [34 22]
+Model XGB, Predictions: [0 1], [19 37]
 y_train:
-0    44
-1    28
+0    49
+1    23
 Name: label, dtype: int64
 y_test:
-1    41
-0    15
+1    46
+0    10
 Name: label, dtype: int64
-Model SVM, Predictions: [1], [56]
-Model LogReg, Predictions: [1], [56]
+Model SVM, Predictions: [0], [56]
+Model LogReg, Predictions: [0 1], [25 31]
 Model XGB, Predictions: [0 1], [ 5 51]
-y_train:
-0    44
-1    28
-Name: label, dtype: int64
-y_test:
-1    41
-0    15
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [56]
-Model LogReg, Predictions: [1], [56]
-Model XGB, Predictions: [0 1], [ 6 50]
 y_train:
 0    48
 1    24
@@ -1355,110 +1209,8 @@ y_test:
 0    11
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [56]
-Model LogReg, Predictions: [0 1], [29 27]
-Model XGB, Predictions: [0 1], [ 5 51]
-y_train:
-0    46
-1    26
-Name: label, dtype: int64
-y_test:
-1    43
-0    13
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [56]
-Model LogReg, Predictions: [0 1], [35 21]
-Model XGB, Predictions: [0 1], [ 5 51]
-SVM accuracy over 10 rounds: 0.7589285714285714
-Report:
-Precision: 0.7589285714285714
-Recall: 1.0
-F1-score: 0.8625373929688139
-AUC score: 0.5
-LogReg accuracy over 10 rounds: 0.5625000000000001
-XGB accuracy over 10 rounds: 0.75
-Report:
-Precision: 0.8132064815328593
-Recall: 0.8833817757839313
-F1-score: 0.8339348702048323
-AUC score: 0.623042869243947
-
-
-WESAD PHASES 1 --------------------------------------------------
-APD PHASES 4 --------------------------------------------------
-y_a:
-0    42
-1    14
-Name: label, dtype: int64
-y_b:
-1    55
-0    17
-Name: label, dtype: int64
-y_train:
-0    45
-1    27
-Name: label, dtype: int64
-y_test:
-1    42
-0    14
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [56]
-Model LogReg, Predictions: [0 1], [ 8 48]
-Model XGB, Predictions: [0 1], [ 6 50]
-y_train:
-0    45
-1    27
-Name: label, dtype: int64
-y_test:
-1    42
-0    14
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [56]
-Model LogReg, Predictions: [0 1], [ 6 50]
-Model XGB, Predictions: [0 1], [ 5 51]
-y_train:
-0    42
-1    30
-Name: label, dtype: int64
-y_test:
-1    39
-0    17
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [56]
-Model LogReg, Predictions: [1], [56]
-Model XGB, Predictions: [1], [56]
-y_train:
-0    44
-1    28
-Name: label, dtype: int64
-y_test:
-1    41
-0    15
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [56]
-Model LogReg, Predictions: [1], [56]
-Model XGB, Predictions: [1], [56]
-y_train:
-0    44
-1    28
-Name: label, dtype: int64
-y_test:
-1    41
-0    15
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [56]
 Model LogReg, Predictions: [0 1], [ 4 52]
-Model XGB, Predictions: [0 1], [ 2 54]
-y_train:
-0    44
-1    28
-Name: label, dtype: int64
-y_test:
-1    41
-0    15
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [56]
-Model LogReg, Predictions: [1], [56]
-Model XGB, Predictions: [0 1], [ 6 50]
+Model XGB, Predictions: [0 1], [20 36]
 y_train:
 0    46
 1    26
@@ -1469,29 +1221,7 @@ y_test:
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [56]
 Model LogReg, Predictions: [0 1], [10 46]
-Model XGB, Predictions: [0 1], [ 9 47]
-y_train:
-0    48
-1    24
-Name: label, dtype: int64
-y_test:
-1    45
-0    11
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [56]
-Model LogReg, Predictions: [0 1], [ 3 53]
-Model XGB, Predictions: [0 1], [ 3 53]
-y_train:
-0    48
-1    24
-Name: label, dtype: int64
-y_test:
-1    45
-0    11
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [56]
-Model LogReg, Predictions: [0 1], [12 44]
-Model XGB, Predictions: [0 1], [ 6 50]
+Model XGB, Predictions: [0 1], [13 43]
 y_train:
 0    46
 1    26
@@ -1501,30 +1231,30 @@ y_test:
 0    13
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [56]
-Model LogReg, Predictions: [0 1], [ 9 47]
-Model XGB, Predictions: [0 1], [ 5 51]
-SVM accuracy over 10 rounds: 0.7535714285714286
+Model LogReg, Predictions: [0 1], [ 8 48]
+Model XGB, Predictions: [0 1], [ 4 52]
+SVM accuracy over 10 rounds: 0.5678571428571428
 Report:
-Precision: 0.7535714285714286
-Recall: 1.0
-F1-score: 0.8590972775286986
-AUC score: 0.5
-LogReg accuracy over 10 rounds: 0.7035714285714285
+	Precision: 0.8196428571428571
+	Recall: 0.7
+	F1-score: 0.5961289758927059
+	AUC score: 0.5
+LogReg accuracy over 10 rounds: 0.6517857142857142
 Report:
-Precision: 0.7536536505663538
-Recall: 0.9072196562497187
-F1-score: 0.8205899954823961
-AUC score: 0.5009491554641866
-XGB accuracy over 10 rounds: 0.775
+	Precision: 0.7874103329660833
+	Recall: 0.8030719574344486
+	F1-score: 0.766217398557476
+	AUC score: 0.5267059476371931
+XGB accuracy over 10 rounds: 0.7089285714285715
 Report:
-Precision: 0.7879336649598061
-Recall: 0.9644890113352961
-F1-score: 0.8658582772674712
-AUC score: 0.5879854314085737
+	Precision: 0.7970425825930562
+	Recall: 0.8599517237615849
+	F1-score: 0.8153282742832666
+	AUC score: 0.5626924508473816
 
 
 WESAD PHASES 1 --------------------------------------------------
-APD PHASES 5 --------------------------------------------------
+APD PHASES 4 --------------------------------------------------
 y_a:
 0    42
 1    14
@@ -1534,16 +1264,27 @@ y_b:
 0     31
 Name: label, dtype: int64
 y_train:
-0    55
-1    33
+0    53
+1    35
 Name: label, dtype: int64
 y_test:
-1    94
-0    18
+1    92
+0    20
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [112]
-Model LogReg, Predictions: [0 1], [23 89]
-Model XGB, Predictions: [0 1], [19 93]
+Model LogReg, Predictions: [0 1], [18 94]
+Model XGB, Predictions: [0 1], [ 11 101]
+y_train:
+1    45
+0    43
+Name: label, dtype: int64
+y_test:
+1    82
+0    30
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [112]
+Model LogReg, Predictions: [1], [112]
+Model XGB, Predictions: [1], [112]
 y_train:
 0    50
 1    38
@@ -1553,41 +1294,41 @@ y_test:
 0    23
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [112]
-Model LogReg, Predictions: [0 1], [21 91]
-Model XGB, Predictions: [0 1], [  1 111]
+Model LogReg, Predictions: [0 1], [  6 106]
+Model XGB, Predictions: [0 1], [14 98]
 y_train:
-0    46
-1    42
+0    50
+1    38
 Name: label, dtype: int64
 y_test:
-1    85
-0    27
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [112]
-Model LogReg, Predictions: [0 1], [  8 104]
-Model XGB, Predictions: [0 1], [  3 109]
-y_train:
-0    53
-1    35
-Name: label, dtype: int64
-y_test:
-1    92
-0    20
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [112]
-Model LogReg, Predictions: [0 1], [34 78]
-Model XGB, Predictions: [0 1], [18 94]
-y_train:
-0    46
-1    42
-Name: label, dtype: int64
-y_test:
-1    85
-0    27
+1    89
+0    23
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [112]
 Model LogReg, Predictions: [0 1], [39 73]
-Model XGB, Predictions: [0 1], [ 12 100]
+Model XGB, Predictions: [0 1], [  5 107]
+y_train:
+0    49
+1    39
+Name: label, dtype: int64
+y_test:
+1    88
+0    24
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [112]
+Model LogReg, Predictions: [0 1], [  2 110]
+Model XGB, Predictions: [0 1], [14 98]
+y_train:
+0    49
+1    39
+Name: label, dtype: int64
+y_test:
+1    88
+0    24
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [112]
+Model LogReg, Predictions: [0 1], [  1 111]
+Model XGB, Predictions: [0 1], [39 73]
 y_train:
 0    54
 1    34
@@ -1597,41 +1338,19 @@ y_test:
 0    19
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [112]
-Model LogReg, Predictions: [0 1], [30 82]
-Model XGB, Predictions: [0 1], [26 86]
+Model LogReg, Predictions: [0 1], [13 99]
+Model XGB, Predictions: [0 1], [18 94]
 y_train:
-0    53
-1    35
+0    49
+1    39
 Name: label, dtype: int64
 y_test:
-1    92
-0    20
+1    88
+0    24
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [112]
-Model LogReg, Predictions: [0 1], [  2 110]
-Model XGB, Predictions: [0 1], [27 85]
-y_train:
-0    46
-1    42
-Name: label, dtype: int64
-y_test:
-1    85
-0    27
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [112]
-Model LogReg, Predictions: [0 1], [15 97]
-Model XGB, Predictions: [0 1], [  3 109]
-y_train:
-0    53
-1    35
-Name: label, dtype: int64
-y_test:
-1    92
-0    20
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [112]
-Model LogReg, Predictions: [0 1], [ 11 101]
-Model XGB, Predictions: [0 1], [20 92]
+Model LogReg, Predictions: [0 1], [14 98]
+Model XGB, Predictions: [0 1], [ 11 101]
 y_train:
 0    50
 1    38
@@ -1641,26 +1360,37 @@ y_test:
 0    23
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [112]
-Model LogReg, Predictions: [0 1], [ 10 102]
-Model XGB, Predictions: [0 1], [19 93]
-SVM accuracy over 10 rounds: 0.7999999999999999
+Model LogReg, Predictions: [0 1], [13 99]
+Model XGB, Predictions: [0 1], [14 98]
+y_train:
+0    45
+1    43
+Name: label, dtype: int64
+y_test:
+1    84
+0    28
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [112]
+Model LogReg, Predictions: [0 1], [  5 107]
+Model XGB, Predictions: [0 1], [  4 108]
+SVM accuracy over 10 rounds: 0.7874999999999999
 Report:
-Precision: 0.7999999999999999
-Recall: 1.0
-F1-score: 0.888579755125182
-AUC score: 0.5
-LogReg accuracy over 10 rounds: 0.6776785714285715
+	Precision: 0.7874999999999999
+	Recall: 1.0
+	F1-score: 0.880849795728003
+	AUC score: 0.5
+LogReg accuracy over 10 rounds: 0.7258928571428571
 Report:
-Precision: 0.7863031970603861
-Recall: 0.8155877868252366
-F1-score: 0.7972104846019412
-AUC score: 0.4729767478918115
-XGB accuracy over 10 rounds: 0.8321428571428571
+	Precision: 0.7852914759579012
+	Recall: 0.8996101204844921
+	F1-score: 0.8349328934707216
+	AUC score: 0.495857555611103
+XGB accuracy over 10 rounds: 0.8232142857142858
 Report:
-Precision: 0.8707510195236721
-Recall: 0.9386894373478454
-F1-score: 0.9000260368722991
-AUC score: 0.6916135550159856
+	Precision: 0.8524002435701181
+	Recall: 0.9494187136437006
+	F1-score: 0.8946257672191464
+	AUC score: 0.6628928590556958
 
 
 WESAD PHASES 2 --------------------------------------------------
@@ -1674,49 +1404,16 @@ y_b:
 0     71
 Name: label, dtype: int64
 y_train:
-1    81
-0    33
+1    70
+0    44
 Name: label, dtype: int64
 y_test:
-1    186
-0     66
+1    197
+0     55
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [252]
-Model LogReg, Predictions: [0 1], [  2 250]
-Model XGB, Predictions: [0 1], [ 22 230]
-y_train:
-1    77
-0    37
-Name: label, dtype: int64
-y_test:
-1    190
-0     62
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [252]
-Model LogReg, Predictions: [0 1], [ 55 197]
-Model XGB, Predictions: [0 1], [ 57 195]
-y_train:
-1    77
-0    37
-Name: label, dtype: int64
-y_test:
-1    190
-0     62
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [252]
-Model LogReg, Predictions: [1], [252]
-Model XGB, Predictions: [0 1], [ 43 209]
-y_train:
-1    72
-0    42
-Name: label, dtype: int64
-y_test:
-1    195
-0     57
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [252]
-Model LogReg, Predictions: [0 1], [ 13 239]
-Model XGB, Predictions: [0 1], [ 33 219]
+Model LogReg, Predictions: [0 1], [ 57 195]
+Model XGB, Predictions: [0 1], [ 41 211]
 y_train:
 1    79
 0    35
@@ -1726,19 +1423,8 @@ y_test:
 0     64
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [252]
-Model LogReg, Predictions: [0 1], [  5 247]
-Model XGB, Predictions: [0 1], [  7 245]
-y_train:
-1    86
-0    28
-Name: label, dtype: int64
-y_test:
-1    181
-0     71
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [252]
 Model LogReg, Predictions: [1], [252]
-Model XGB, Predictions: [1], [252]
+Model XGB, Predictions: [0 1], [  9 243]
 y_train:
 1    68
 0    46
@@ -1748,30 +1434,63 @@ y_test:
 0     53
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [252]
+Model LogReg, Predictions: [1], [252]
+Model XGB, Predictions: [0 1], [ 36 216]
+y_train:
+1    61
+0    53
+Name: label, dtype: int64
+y_test:
+1    206
+0     46
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [252]
 Model LogReg, Predictions: [0 1], [  1 251]
+Model XGB, Predictions: [0 1], [ 37 215]
+y_train:
+1    70
+0    44
+Name: label, dtype: int64
+y_test:
+1    197
+0     55
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [252]
+Model LogReg, Predictions: [0 1], [ 43 209]
+Model XGB, Predictions: [0 1], [ 33 219]
+y_train:
+1    68
+0    46
+Name: label, dtype: int64
+y_test:
+1    199
+0     53
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [252]
+Model LogReg, Predictions: [0 1], [ 68 184]
 Model XGB, Predictions: [0 1], [ 72 180]
 y_train:
-1    74
-0    40
+1    59
+0    55
 Name: label, dtype: int64
 y_test:
-1    193
-0     59
+1    208
+0     44
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [252]
-Model LogReg, Predictions: [0 1], [  1 251]
-Model XGB, Predictions: [0 1], [ 12 240]
+Model LogReg, Predictions: [0 1], [ 70 182]
+Model XGB, Predictions: [0 1], [ 63 189]
 y_train:
-1    79
-0    35
+1    70
+0    44
 Name: label, dtype: int64
 y_test:
-1    188
-0     64
+1    197
+0     55
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [252]
-Model LogReg, Predictions: [1], [252]
-Model XGB, Predictions: [0 1], [ 11 241]
+Model LogReg, Predictions: [0 1], [  6 246]
+Model XGB, Predictions: [0 1], [ 25 227]
 y_train:
 1    77
 0    37
@@ -1781,26 +1500,37 @@ y_test:
 0     62
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [252]
-Model LogReg, Predictions: [0 1], [ 51 201]
+Model LogReg, Predictions: [0 1], [ 16 236]
 Model XGB, Predictions: [0 1], [ 30 222]
-SVM accuracy over 10 rounds: 0.753968253968254
+y_train:
+1    81
+0    33
+Name: label, dtype: int64
+y_test:
+1    186
+0     66
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [252]
+Model LogReg, Predictions: [0 1], [  3 249]
+Model XGB, Predictions: [0 1], [ 12 240]
+SVM accuracy over 10 rounds: 0.7805555555555556
 Report:
-Precision: 0.753968253968254
-Recall: 1.0
-F1-score: 0.8596001533673754
-AUC score: 0.5
-LogReg accuracy over 10 rounds: 0.7103174603174602
+	Precision: 0.7805555555555556
+	Recall: 1.0
+	F1-score: 0.8764983619052874
+	AUC score: 0.5
+LogReg accuracy over 10 rounds: 0.7067460317460317
 Report:
-Precision: 0.7425302496815929
-Recall: 0.9374859711503911
-F1-score: 0.8269945532282039
-AUC score: 0.47623180361553097
-XGB accuracy over 10 rounds: 0.8242063492063492
+	Precision: 0.7728338106991052
+	Recall: 0.8874010438468783
+	F1-score: 0.8217670414616733
+	AUC score: 0.4814192183213808
+XGB accuracy over 10 rounds: 0.8551587301587302
 Report:
-Precision: 0.833965428174434
-Recall: 0.9715244829711727
-F1-score: 0.8942049610830383
-AUC score: 0.6812719746096823
+	Precision: 0.8771033054647204
+	Recall: 0.9575458677353123
+	F1-score: 0.9124661613786362
+	AUC score: 0.7393067420816465
 
 
 WESAD PHASES 2 --------------------------------------------------
@@ -1814,27 +1544,49 @@ y_b:
 0     56
 Name: label, dtype: int64
 y_train:
-1    63
-0    35
+1    61
+0    37
 Name: label, dtype: int64
 y_test:
-1    147
-0     49
+1    149
+0     47
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [196]
-Model LogReg, Predictions: [1], [196]
-Model XGB, Predictions: [0 1], [ 41 155]
+Model LogReg, Predictions: [0 1], [ 16 180]
+Model XGB, Predictions: [0 1], [ 21 175]
 y_train:
-1    63
-0    35
+1    56
+0    42
 Name: label, dtype: int64
 y_test:
-1    147
-0     49
+1    154
+0     42
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [196]
+Model LogReg, Predictions: [0 1], [ 21 175]
+Model XGB, Predictions: [0 1], [ 49 147]
+y_train:
+1    70
+0    28
+Name: label, dtype: int64
+y_test:
+1    140
+0     56
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [196]
 Model LogReg, Predictions: [1], [196]
-Model XGB, Predictions: [0 1], [ 35 161]
+Model XGB, Predictions: [1], [196]
+y_train:
+0    51
+1    47
+Name: label, dtype: int64
+y_test:
+1    163
+0     33
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [196]
+Model LogReg, Predictions: [0 1], [ 83 113]
+Model XGB, Predictions: [0 1], [ 31 165]
 y_train:
 1    58
 0    40
@@ -1844,19 +1596,19 @@ y_test:
 0     44
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [196]
-Model LogReg, Predictions: [0 1], [ 58 138]
-Model XGB, Predictions: [0 1], [ 28 168]
+Model LogReg, Predictions: [0 1], [ 10 186]
+Model XGB, Predictions: [0 1], [ 27 169]
 y_train:
-0    49
-1    49
+0    53
+1    45
 Name: label, dtype: int64
 y_test:
-1    161
-0     35
+1    165
+0     31
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [196]
-Model LogReg, Predictions: [0 1], [ 59 137]
-Model XGB, Predictions: [0 1], [ 49 147]
+Model LogReg, Predictions: [0 1], [ 35 161]
+Model XGB, Predictions: [0 1], [ 27 169]
 y_train:
 1    63
 0    35
@@ -1866,81 +1618,59 @@ y_test:
 0     49
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [196]
-Model LogReg, Predictions: [1], [196]
-Model XGB, Predictions: [0 1], [ 34 162]
+Model LogReg, Predictions: [0 1], [ 90 106]
+Model XGB, Predictions: [0 1], [ 23 173]
 y_train:
-1    60
-0    38
+1    56
+0    42
 Name: label, dtype: int64
 y_test:
-1    150
-0     46
+1    154
+0     42
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [196]
-Model LogReg, Predictions: [1], [196]
-Model XGB, Predictions: [0 1], [ 13 183]
+Model LogReg, Predictions: [0 1], [  3 193]
+Model XGB, Predictions: [0 1], [ 56 140]
 y_train:
-1    64
-0    34
+1    61
+0    37
 Name: label, dtype: int64
 y_test:
-1    146
-0     50
+1    149
+0     47
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [196]
-Model LogReg, Predictions: [0 1], [  5 191]
-Model XGB, Predictions: [0 1], [ 22 174]
-y_train:
-1    59
-0    39
-Name: label, dtype: int64
-y_test:
-1    151
-0     45
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [196]
-Model LogReg, Predictions: [0 1], [ 25 171]
+Model LogReg, Predictions: [0 1], [  2 194]
 Model XGB, Predictions: [0 1], [ 11 185]
 y_train:
-1    57
-0    41
+0    55
+1    43
 Name: label, dtype: int64
 y_test:
-1    153
-0     43
+1    167
+0     29
 Name: label, dtype: int64
-Model SVM, Predictions: [1], [196]
-Model LogReg, Predictions: [1], [196]
-Model XGB, Predictions: [0 1], [ 28 168]
-y_train:
-1    57
-0    41
-Name: label, dtype: int64
-y_test:
-1    153
-0     43
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [196]
-Model LogReg, Predictions: [0 1], [ 21 175]
-Model XGB, Predictions: [0 1], [ 24 172]
-SVM accuracy over 10 rounds: 0.7688775510204082
+Model SVM, Predictions: [0], [196]
+Model LogReg, Predictions: [0 1], [120  76]
+Model XGB, Predictions: [0 1], [ 32 164]
+SVM accuracy over 10 rounds: 0.7153061224489796
 Report:
-Precision: 0.7688775510204082
-Recall: 1.0
-F1-score: 0.8691704431618094
-AUC score: 0.5
-LogReg accuracy over 10 rounds: 0.7117346938775511
+	Precision: 0.8005102040816325
+	Recall: 0.9
+	F1-score: 0.7873781059002737
+	AUC score: 0.5
+LogReg accuracy over 10 rounds: 0.6602040816326532
 Report:
-Precision: 0.7641139649386564
-Recall: 0.9095917932073292
-F1-score: 0.8256920328111432
-AUC score: 0.48939636977390516
-XGB accuracy over 10 rounds: 0.8561224489795919
+	Precision: 0.7863377029625187
+	Recall: 0.80290244474431
+	F1-score: 0.7740920300092811
+	AUC score: 0.49589015617435467
+XGB accuracy over 10 rounds: 0.8647959183673469
 Report:
-Precision: 0.8690559438117749
-Recall: 0.9624933370753753
-F1-score: 0.9118829871655594
-AUC score: 0.7379131062375646
+	Precision: 0.8867665236432603
+	Recall: 0.9606455657665821
+	F1-score: 0.9185931076134034
+	AUC score: 0.7621474709196259
 
 
 WESAD PHASES 2 --------------------------------------------------
@@ -1954,105 +1684,6 @@ y_b:
 0     40
 Name: label, dtype: int64
 y_train:
-1    49
-0    33
-Name: label, dtype: int64
-y_test:
-1    105
-0     35
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [140]
-Model LogReg, Predictions: [1], [140]
-Model XGB, Predictions: [0 1], [ 32 108]
-y_train:
-0    43
-1    39
-Name: label, dtype: int64
-y_test:
-1    115
-0     25
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [140]
-Model LogReg, Predictions: [0 1], [  4 136]
-Model XGB, Predictions: [0 1], [59 81]
-y_train:
-1    54
-0    28
-Name: label, dtype: int64
-y_test:
-1    100
-0     40
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [140]
-Model LogReg, Predictions: [1], [140]
-Model XGB, Predictions: [0 1], [  1 139]
-y_train:
-1    44
-0    38
-Name: label, dtype: int64
-y_test:
-1    110
-0     30
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [140]
-Model LogReg, Predictions: [0 1], [  2 138]
-Model XGB, Predictions: [0 1], [ 31 109]
-y_train:
-0    43
-1    39
-Name: label, dtype: int64
-y_test:
-1    115
-0     25
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [140]
-Model LogReg, Predictions: [0 1], [ 33 107]
-Model XGB, Predictions: [0 1], [60 80]
-y_train:
-1    45
-0    37
-Name: label, dtype: int64
-y_test:
-1    109
-0     31
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [140]
-Model LogReg, Predictions: [0 1], [  8 132]
-Model XGB, Predictions: [0 1], [ 30 110]
-y_train:
-1    49
-0    33
-Name: label, dtype: int64
-y_test:
-1    105
-0     35
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [140]
-Model LogReg, Predictions: [0 1], [  6 134]
-Model XGB, Predictions: [0 1], [ 27 113]
-y_train:
-1    50
-0    32
-Name: label, dtype: int64
-y_test:
-1    104
-0     36
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [140]
-Model LogReg, Predictions: [0 1], [  7 133]
-Model XGB, Predictions: [0 1], [ 11 129]
-y_train:
-1    47
-0    35
-Name: label, dtype: int64
-y_test:
-1    107
-0     33
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [140]
-Model LogReg, Predictions: [0 1], [ 17 123]
-Model XGB, Predictions: [0 1], [ 18 122]
-y_train:
 1    54
 0    28
 Name: label, dtype: int64
@@ -2063,24 +1694,123 @@ Name: label, dtype: int64
 Model SVM, Predictions: [1], [140]
 Model LogReg, Predictions: [1], [140]
 Model XGB, Predictions: [1], [140]
-SVM accuracy over 10 rounds: 0.7642857142857143
+y_train:
+1    49
+0    33
+Name: label, dtype: int64
+y_test:
+1    105
+0     35
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [140]
+Model LogReg, Predictions: [1], [140]
+Model XGB, Predictions: [0 1], [ 27 113]
+y_train:
+1    54
+0    28
+Name: label, dtype: int64
+y_test:
+1    100
+0     40
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [140]
+Model LogReg, Predictions: [1], [140]
+Model XGB, Predictions: [0 1], [  4 136]
+y_train:
+0    42
+1    40
+Name: label, dtype: int64
+y_test:
+1    114
+0     26
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [140]
+Model LogReg, Predictions: [0 1], [ 31 109]
+Model XGB, Predictions: [0 1], [ 27 113]
+y_train:
+1    49
+0    33
+Name: label, dtype: int64
+y_test:
+1    105
+0     35
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [140]
+Model LogReg, Predictions: [0 1], [  8 132]
+Model XGB, Predictions: [0 1], [ 29 111]
+y_train:
+1    44
+0    38
+Name: label, dtype: int64
+y_test:
+1    110
+0     30
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [140]
+Model LogReg, Predictions: [0 1], [ 25 115]
+Model XGB, Predictions: [0 1], [ 19 121]
+y_train:
+0    42
+1    40
+Name: label, dtype: int64
+y_test:
+1    114
+0     26
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [140]
+Model LogReg, Predictions: [0 1], [57 83]
+Model XGB, Predictions: [0 1], [ 22 118]
+y_train:
+0    43
+1    39
+Name: label, dtype: int64
+y_test:
+1    115
+0     25
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [140]
+Model LogReg, Predictions: [0 1], [ 33 107]
+Model XGB, Predictions: [0 1], [ 35 105]
+y_train:
+0    46
+1    36
+Name: label, dtype: int64
+y_test:
+1    118
+0     22
+Name: label, dtype: int64
+Model SVM, Predictions: [0], [140]
+Model LogReg, Predictions: [0 1], [59 81]
+Model XGB, Predictions: [0 1], [ 37 103]
+y_train:
+1    42
+0    40
+Name: label, dtype: int64
+y_test:
+1    112
+0     28
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [140]
+Model LogReg, Predictions: [0 1], [ 37 103]
+Model XGB, Predictions: [0 1], [ 20 120]
+SVM accuracy over 10 rounds: 0.7121428571428572
 Report:
-Precision: 0.7642857142857143
-Recall: 1.0
-F1-score: 0.8659231735139006
-AUC score: 0.5
-LogReg accuracy over 10 rounds: 0.7235714285714285
+	Precision: 0.7964285714285715
+	Recall: 0.9
+	F1-score: 0.7847077644706177
+	AUC score: 0.5
+LogReg accuracy over 10 rounds: 0.6421428571428571
 Report:
-Precision: 0.7596129329168375
-Recall: 0.9393010700217623
-F1-score: 0.8373961341232337
-AUC score: 0.48768263015587954
-XGB accuracy over 10 rounds: 0.8135714285714284
+	Precision: 0.7620277726214801
+	Recall: 0.805294273190513
+	F1-score: 0.7716648464938713
+	AUC score: 0.45773538168350153
+XGB accuracy over 10 rounds: 0.8535714285714286
 Report:
-Precision: 0.874283247805552
-Recall: 0.9110395226540302
-F1-score: 0.8811535932906944
-AUC score: 0.736295083674918
+	Precision: 0.8841699178752167
+	Recall: 0.9479008757406344
+	F1-score: 0.9104772650180044
+	AUC score: 0.7605188694387488
 
 
 WESAD PHASES 2 --------------------------------------------------
@@ -2094,16 +1824,16 @@ y_b:
 0    17
 Name: label, dtype: int64
 y_train:
-0    34
-1    24
+0    33
+1    25
 Name: label, dtype: int64
 y_test:
-1    45
-0    11
+1    44
+0    12
 Name: label, dtype: int64
-Model SVM, Predictions: [0], [56]
-Model LogReg, Predictions: [0 1], [11 45]
-Model XGB, Predictions: [0 1], [ 9 47]
+Model SVM, Predictions: [1], [56]
+Model LogReg, Predictions: [0 1], [19 37]
+Model XGB, Predictions: [0 1], [11 45]
 y_train:
 0    30
 1    28
@@ -2113,30 +1843,19 @@ y_test:
 0    15
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [56]
-Model LogReg, Predictions: [0 1], [22 34]
-Model XGB, Predictions: [0 1], [ 9 47]
-y_train:
-1    30
-0    28
-Name: label, dtype: int64
-y_test:
-1    39
-0    17
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [56]
 Model LogReg, Predictions: [1], [56]
 Model XGB, Predictions: [0 1], [ 2 54]
 y_train:
-0    31
-1    27
+0    35
+1    23
 Name: label, dtype: int64
 y_test:
-1    42
-0    14
+1    46
+0    10
 Name: label, dtype: int64
-Model SVM, Predictions: [1], [56]
-Model LogReg, Predictions: [0 1], [ 6 50]
-Model XGB, Predictions: [0 1], [ 5 51]
+Model SVM, Predictions: [0], [56]
+Model LogReg, Predictions: [0 1], [25 31]
+Model XGB, Predictions: [0 1], [14 42]
 y_train:
 0    32
 1    26
@@ -2146,7 +1865,40 @@ y_test:
 0    13
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [56]
-Model LogReg, Predictions: [0 1], [18 38]
+Model LogReg, Predictions: [0 1], [ 8 48]
+Model XGB, Predictions: [0 1], [ 1 55]
+y_train:
+0    30
+1    28
+Name: label, dtype: int64
+y_test:
+1    41
+0    15
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [56]
+Model LogReg, Predictions: [1], [56]
+Model XGB, Predictions: [0 1], [ 4 52]
+y_train:
+0    30
+1    28
+Name: label, dtype: int64
+y_test:
+1    41
+0    15
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [56]
+Model LogReg, Predictions: [1], [56]
+Model XGB, Predictions: [0 1], [15 41]
+y_train:
+0    36
+1    22
+Name: label, dtype: int64
+y_test:
+1    47
+0     9
+Name: label, dtype: int64
+Model SVM, Predictions: [0], [56]
+Model LogReg, Predictions: [0 1], [20 36]
 Model XGB, Predictions: [0 1], [ 5 51]
 y_train:
 0    34
@@ -2157,19 +1909,19 @@ y_test:
 0    11
 Name: label, dtype: int64
 Model SVM, Predictions: [0], [56]
-Model LogReg, Predictions: [0 1], [25 31]
-Model XGB, Predictions: [0 1], [16 40]
+Model LogReg, Predictions: [0 1], [ 9 47]
+Model XGB, Predictions: [0 1], [19 37]
 y_train:
-0    33
-1    25
+0    32
+1    26
 Name: label, dtype: int64
 y_test:
-1    44
-0    12
+1    43
+0    13
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [56]
-Model LogReg, Predictions: [0 1], [ 5 51]
-Model XGB, Predictions: [0 1], [13 43]
+Model LogReg, Predictions: [0 1], [ 2 54]
+Model XGB, Predictions: [0 1], [16 40]
 y_train:
 0    30
 1    28
@@ -2180,47 +1932,25 @@ y_test:
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [56]
 Model LogReg, Predictions: [0 1], [ 2 54]
-Model XGB, Predictions: [0 1], [13 43]
-y_train:
-0    32
-1    26
-Name: label, dtype: int64
-y_test:
-1    43
-0    13
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [56]
-Model LogReg, Predictions: [1], [56]
-Model XGB, Predictions: [0 1], [12 44]
-y_train:
-0    33
-1    25
-Name: label, dtype: int64
-y_test:
-1    44
-0    12
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [56]
-Model LogReg, Predictions: [1], [56]
-Model XGB, Predictions: [0 1], [ 8 48]
-SVM accuracy over 10 rounds: 0.6410714285714286
+Model XGB, Predictions: [0 1], [ 7 49]
+SVM accuracy over 10 rounds: 0.5785714285714285
 Report:
-Precision: 0.8017857142857144
-Recall: 0.8
-F1-score: 0.6866290875580078
-AUC score: 0.5
-LogReg accuracy over 10 rounds: 0.65
+	Precision: 0.825
+	Recall: 0.7
+	F1-score: 0.599881703634281
+	AUC score: 0.5
+LogReg accuracy over 10 rounds: 0.669642857142857
 Report:
-Precision: 0.7416288491627551
-Recall: 0.8239012808581725
-F1-score: 0.7716060374916209
-AUC score: 0.4645130779915238
-XGB accuracy over 10 rounds: 0.7946428571428571
+	Precision: 0.7663507051762027
+	Recall: 0.8427231606982899
+	F1-score: 0.7908530248944831
+	AUC score: 0.4875892415768061
+XGB accuracy over 10 rounds: 0.7785714285714286
 Report:
-Precision: 0.8376325549937187
-Recall: 0.9147037017938888
-F1-score: 0.8714815727347233
-AUC score: 0.671714889818807
+	Precision: 0.8367408262730051
+	Recall: 0.8973236334638275
+	F1-score: 0.8609413415674029
+	AUC score: 0.6466280171981142
 
 
 WESAD PHASES 2 --------------------------------------------------
@@ -2230,188 +1960,9 @@ y_a:
 1    14
 Name: label, dtype: int64
 y_b:
-1    55
-0    17
-Name: label, dtype: int64
-y_train:
-0    34
-1    24
-Name: label, dtype: int64
-y_test:
-1    45
-0    11
-Name: label, dtype: int64
-Model SVM, Predictions: [0], [56]
-Model LogReg, Predictions: [0 1], [ 6 50]
-Model XGB, Predictions: [0 1], [10 46]
-y_train:
-0    32
-1    26
-Name: label, dtype: int64
-y_test:
-1    43
-0    13
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [56]
-Model LogReg, Predictions: [0 1], [11 45]
-Model XGB, Predictions: [0 1], [15 41]
-y_train:
-0    32
-1    26
-Name: label, dtype: int64
-y_test:
-1    43
-0    13
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [56]
-Model LogReg, Predictions: [0 1], [12 44]
-Model XGB, Predictions: [0 1], [ 5 51]
-y_train:
-0    32
-1    26
-Name: label, dtype: int64
-y_test:
-1    43
-0    13
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [56]
-Model LogReg, Predictions: [0 1], [ 4 52]
-Model XGB, Predictions: [0 1], [ 9 47]
-y_train:
-0    35
-1    23
-Name: label, dtype: int64
-y_test:
-1    46
-0    10
-Name: label, dtype: int64
-Model SVM, Predictions: [0], [56]
-Model LogReg, Predictions: [0 1], [26 30]
-Model XGB, Predictions: [0 1], [ 8 48]
-y_train:
-0    34
-1    24
-Name: label, dtype: int64
-y_test:
-1    45
-0    11
-Name: label, dtype: int64
-Model SVM, Predictions: [0], [56]
-Model LogReg, Predictions: [0 1], [34 22]
-Model XGB, Predictions: [0 1], [15 41]
-y_train:
-0    32
-1    26
-Name: label, dtype: int64
-y_test:
-1    43
-0    13
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [56]
-Model LogReg, Predictions: [0 1], [ 6 50]
-Model XGB, Predictions: [0 1], [ 8 48]
-y_train:
-1    30
-0    28
-Name: label, dtype: int64
-y_test:
-1    39
-0    17
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [56]
-Model LogReg, Predictions: [1], [56]
-Model XGB, Predictions: [0 1], [ 2 54]
-y_train:
-0    30
-1    28
-Name: label, dtype: int64
-y_test:
-1    41
-0    15
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [56]
-Model LogReg, Predictions: [1], [56]
-Model XGB, Predictions: [0 1], [ 2 54]
-y_train:
-1    30
-0    28
-Name: label, dtype: int64
-y_test:
-1    39
-0    17
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [56]
-Model LogReg, Predictions: [1], [56]
-Model XGB, Predictions: [0 1], [ 9 47]
-SVM accuracy over 10 rounds: 0.5767857142857142
-LogReg accuracy over 10 rounds: 0.6499999999999999
-Report:
-Precision: 0.7554471639471638
-Recall: 0.8183754634310751
-F1-score: 0.768180627259124
-AUC score: 0.4879289904567964
-XGB accuracy over 10 rounds: 0.775
-Report:
-Precision: 0.8188989010112844
-Recall: 0.9130626636592257
-F1-score: 0.8599991423125173
-AUC score: 0.6327413962749715
-
-
-WESAD PHASES 2 --------------------------------------------------
-APD PHASES 5 --------------------------------------------------
-y_a:
-0    28
-1    14
-Name: label, dtype: int64
-y_b:
 1    113
 0     31
 Name: label, dtype: int64
-y_train:
-1    46
-0    28
-Name: label, dtype: int64
-y_test:
-1    81
-0    31
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [112]
-Model LogReg, Predictions: [1], [112]
-Model XGB, Predictions: [0 1], [  2 110]
-y_train:
-1    38
-0    36
-Name: label, dtype: int64
-y_test:
-1    89
-0    23
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [112]
-Model LogReg, Predictions: [0 1], [32 80]
-Model XGB, Predictions: [0 1], [13 99]
-y_train:
-1    46
-0    28
-Name: label, dtype: int64
-y_test:
-1    81
-0    31
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [112]
-Model LogReg, Predictions: [1], [112]
-Model XGB, Predictions: [0 1], [  8 104]
-y_train:
-1    39
-0    35
-Name: label, dtype: int64
-y_test:
-1    88
-0    24
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [112]
-Model LogReg, Predictions: [0 1], [  2 110]
-Model XGB, Predictions: [0 1], [ 11 101]
 y_train:
 0    39
 1    35
@@ -2421,7 +1972,7 @@ y_test:
 0    20
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [112]
-Model LogReg, Predictions: [0 1], [41 71]
+Model LogReg, Predictions: [0 1], [  4 108]
 Model XGB, Predictions: [0 1], [21 91]
 y_train:
 1    38
@@ -2432,41 +1983,19 @@ y_test:
 0    23
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [112]
-Model LogReg, Predictions: [0 1], [  2 110]
-Model XGB, Predictions: [0 1], [17 95]
+Model LogReg, Predictions: [0 1], [14 98]
+Model XGB, Predictions: [0 1], [32 80]
 y_train:
-0    38
-1    36
+1    43
+0    31
 Name: label, dtype: int64
 y_test:
-1    91
-0    21
+1    84
+0    28
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [112]
-Model LogReg, Predictions: [0 1], [15 97]
+Model LogReg, Predictions: [0 1], [  8 104]
 Model XGB, Predictions: [0 1], [ 11 101]
-y_train:
-1    41
-0    33
-Name: label, dtype: int64
-y_test:
-1    86
-0    26
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [112]
-Model LogReg, Predictions: [1], [112]
-Model XGB, Predictions: [0 1], [  5 107]
-y_train:
-0    47
-1    27
-Name: label, dtype: int64
-y_test:
-1    100
-0     12
-Name: label, dtype: int64
-Model SVM, Predictions: [0], [112]
-Model LogReg, Predictions: [0 1], [83 29]
-Model XGB, Predictions: [0 1], [28 84]
 y_train:
 1    39
 0    35
@@ -2477,24 +2006,90 @@ y_test:
 Name: label, dtype: int64
 Model SVM, Predictions: [1], [112]
 Model LogReg, Predictions: [0 1], [  1 111]
+Model XGB, Predictions: [0 1], [21 91]
+y_train:
+1    42
+0    32
+Name: label, dtype: int64
+y_test:
+1    85
+0    27
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [112]
+Model LogReg, Predictions: [1], [112]
+Model XGB, Predictions: [0 1], [ 12 100]
+y_train:
+0    40
+1    34
+Name: label, dtype: int64
+y_test:
+1    93
+0    19
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [112]
+Model LogReg, Predictions: [0 1], [ 10 102]
+Model XGB, Predictions: [0 1], [16 96]
+y_train:
+0    45
+1    29
+Name: label, dtype: int64
+y_test:
+1    98
+0    14
+Name: label, dtype: int64
+Model SVM, Predictions: [0], [112]
+Model LogReg, Predictions: [0 1], [59 53]
 Model XGB, Predictions: [0 1], [15 97]
-SVM accuracy over 10 rounds: 0.7116071428571428
+y_train:
+1    42
+0    32
+Name: label, dtype: int64
+y_test:
+1    85
+0    27
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [112]
+Model LogReg, Predictions: [1], [112]
+Model XGB, Predictions: [0 1], [24 88]
+y_train:
+1    41
+0    33
+Name: label, dtype: int64
+y_test:
+1    86
+0    26
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [112]
+Model LogReg, Predictions: [0 1], [  9 103]
+Model XGB, Predictions: [0 1], [13 99]
+y_train:
+1    40
+0    34
+Name: label, dtype: int64
+y_test:
+1    87
+0    25
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [112]
+Model LogReg, Predictions: [0 1], [  8 104]
+Model XGB, Predictions: [0 1], [14 98]
+SVM accuracy over 10 rounds: 0.7169642857142857
 Report:
-Precision: 0.8008928571428571
-Recall: 0.9
-F1-score: 0.7877100132429429
-AUC score: 0.5
-LogReg accuracy over 10 rounds: 0.68125
+	Precision: 0.8044642857142857
+	Recall: 0.9
+	F1-score: 0.7900939906787244
+	AUC score: 0.5
+LogReg accuracy over 10 rounds: 0.7089285714285714
 Report:
-Precision: 0.7959207876709993
-Recall: 0.8429757789840838
-F1-score: 0.789810577687821
-AUC score: 0.5051550737570523
-XGB accuracy over 10 rounds: 0.8089285714285713
+	Precision: 0.7812281405769763
+	Recall: 0.8894698722333608
+	F1-score: 0.8219563441489821
+	AUC score: 0.4728089526798274
+XGB accuracy over 10 rounds: 0.8321428571428571
 Report:
-Precision: 0.84485156829024
-Recall: 0.9397348969332094
-F1-score: 0.886051856202906
-AUC score: 0.6602563793113561
+	Precision: 0.8746771530947864
+	Recall: 0.9246538622482507
+	F1-score: 0.8972657914239603
+	AUC score: 0.7096553529777188
 
 

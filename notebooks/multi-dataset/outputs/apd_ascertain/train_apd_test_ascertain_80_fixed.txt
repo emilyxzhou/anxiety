@@ -1,1633 +1,805 @@
 APD PHASES 0 --------------------------------------------------
+Ratio of negative to positive labels (0.28063241106719367) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.11147540983606558) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.1913214990138067) is under 0.4, oversampling negative class.
 y_train:
-1    493
-0    134
-Name: label, dtype: int64
-y_test:
-1    1079
-0     165
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1244]
-Model LogReg, Predictions: [0 1], [   2 1242]
-Model XGB, Predictions: [0 1], [ 151 1093]
-y_train:
-1    506
-0    128
-Name: label, dtype: int64
-y_test:
-1    1066
-0     171
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1237]
-Model LogReg, Predictions: [0 1], [   1 1236]
-Model XGB, Predictions: [0 1], [  56 1181]
-y_train:
-1    554
-0    106
-Name: label, dtype: int64
-y_test:
-1    1018
-0     193
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1211]
-Model LogReg, Predictions: [0 1], [   8 1203]
-Model XGB, Predictions: [0 1], [  18 1193]
-y_train:
-1    517
-0    102
-Name: label, dtype: int64
-y_test:
-1    1055
-0     197
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1252]
-Model LogReg, Predictions: [1], [1252]
-Model XGB, Predictions: [0 1], [  20 1232]
-y_train:
-1    500
-0    131
-Name: label, dtype: int64
-y_test:
-1    1072
-0     168
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1240]
-Model LogReg, Predictions: [0 1], [  14 1226]
-Model XGB, Predictions: [0 1], [  72 1168]
-y_train:
-1    521
-0    151
-Name: label, dtype: int64
-y_test:
-1    1051
-0     148
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1199]
-Model LogReg, Predictions: [0 1], [  13 1186]
-Model XGB, Predictions: [0 1], [ 150 1049]
-y_train:
-1    556
-0    129
-Name: label, dtype: int64
-y_test:
-1    1016
-0     170
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1186]
-Model LogReg, Predictions: [1], [1186]
-Model XGB, Predictions: [0 1], [  20 1166]
-y_train:
-1    569
-0    121
-Name: label, dtype: int64
-y_test:
-1    1003
-0     178
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1181]
-Model LogReg, Predictions: [0 1], [  86 1095]
-Model XGB, Predictions: [0 1], [  84 1097]
-y_train:
-1    515
-0    114
-Name: label, dtype: int64
-y_test:
-1    1057
-0     185
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1242]
-Model LogReg, Predictions: [0 1], [   5 1237]
-Model XGB, Predictions: [0 1], [  56 1186]
-y_train:
-1    525
-0     97
-Name: label, dtype: int64
-y_test:
-1    1047
-0     202
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1249]
-Model LogReg, Predictions: [1], [1249]
-Model XGB, Predictions: [0 1], [   7 1242]
-SVM accuracy over 10 rounds: 0.8548743574020898
-Model evaluation metrics for SVM:
-	Precision: 0.8548743574020898
-	Recall: 1.0
-	F1-score: 0.9217146607855959
-	AUC score: 0.5
-LogReg accuracy over 10 rounds: 0.8511221894573591
-Model evaluation metrics for LogReg:
-	Precision: 0.8569390881936908
-	Recall: 0.9914783575730469
-	F1-score: 0.9191675761108227
-	AUC score: 0.5077372475605786
-XGB accuracy over 10 rounds: 0.8168581093440668
-Model evaluation metrics for XGB:
-	Precision: 0.8546710463168676
-	Recall: 0.9478689011423691
-	F1-score: 0.8981663008897041
-	AUC score: 0.49923235740586913
-
-
-APD PHASES 1 --------------------------------------------------
-y_train:
-1    443
-0     93
-Name: label, dtype: int64
-y_test:
-1    1072
-0     191
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1263]
-Model LogReg, Predictions: [0 1], [   3 1260]
-Model XGB, Predictions: [0 1], [  31 1232]
-y_train:
-1    506
-0    101
-Name: label, dtype: int64
-y_test:
-1    1009
-0     183
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1192]
-Model LogReg, Predictions: [0 1], [   7 1185]
-Model XGB, Predictions: [0 1], [  29 1163]
-y_train:
-1    501
-0    113
+1    558
+0    223
 Name: label, dtype: int64
 y_test:
 1    1014
-0     171
+0     405
 Name: label, dtype: int64
-Model SVM, Predictions: [1], [1185]
-Model LogReg, Predictions: [0 1], [  10 1175]
-Model XGB, Predictions: [0 1], [  34 1151]
+Model SVM, Predictions: [1], [1419]
+Model LogReg, Predictions: [1], [1419]
+Model XGB, Predictions: [0 1], [  31 1388]
+Ratio of negative to positive labels (0.28063241106719367) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.18556701030927836) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.16926070038910507) is under 0.4, oversampling negative class.
 y_train:
-1    462
-0    109
-Name: label, dtype: int64
-y_test:
-1    1053
-0     175
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1228]
-Model LogReg, Predictions: [0 1], [  21 1207]
-Model XGB, Predictions: [0 1], [  48 1180]
-y_train:
-1    461
-0    115
-Name: label, dtype: int64
-y_test:
-1    1054
-0     169
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1223]
-Model LogReg, Predictions: [0 1], [   9 1214]
-Model XGB, Predictions: [0 1], [  52 1171]
-y_train:
-1    486
-0     95
-Name: label, dtype: int64
-y_test:
-1    1029
-0     189
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1218]
-Model LogReg, Predictions: [0 1], [  22 1196]
-Model XGB, Predictions: [0 1], [  78 1140]
-y_train:
-1    488
-0    109
-Name: label, dtype: int64
-y_test:
-1    1027
-0     175
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1202]
-Model LogReg, Predictions: [0 1], [  14 1188]
-Model XGB, Predictions: [0 1], [  39 1163]
-y_train:
-1    457
-0    115
-Name: label, dtype: int64
-y_test:
-1    1058
-0     169
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1227]
-Model LogReg, Predictions: [0 1], [  13 1214]
-Model XGB, Predictions: [0 1], [  58 1169]
-y_train:
-1    478
-0    104
-Name: label, dtype: int64
-y_test:
-1    1037
-0     180
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1217]
-Model LogReg, Predictions: [1], [1217]
-Model XGB, Predictions: [0 1], [  65 1152]
-y_train:
-1    500
-0     93
-Name: label, dtype: int64
-y_test:
-1    1015
-0     191
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1206]
-Model LogReg, Predictions: [0 1], [   3 1203]
-Model XGB, Predictions: [0 1], [  40 1166]
-SVM accuracy over 10 rounds: 0.8525475657372686
-Model evaluation metrics for SVM:
-	Precision: 0.8525475657372686
-	Recall: 1.0
-	F1-score: 0.9203914804185995
-	AUC score: 0.5
-LogReg accuracy over 10 rounds: 0.8484332338453408
-Model evaluation metrics for LogReg:
-	Precision: 0.8534698135113541
-	Recall: 0.9926735252002535
-	F1-score: 0.9177967008214643
-	AUC score: 0.5036574337144468
-XGB accuracy over 10 rounds: 0.8232730299261884
-Model evaluation metrics for XGB:
-	Precision: 0.851604547312831
-	Recall: 0.9599830190009646
-	F1-score: 0.9024967739081016
-	AUC score: 0.4966348253711647
-
-
-APD PHASES 2 --------------------------------------------------
-y_train:
-1    434
-0     87
-Name: label, dtype: int64
-y_test:
-1    1025
-0     181
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1206]
-Model LogReg, Predictions: [0 1], [   4 1202]
-Model XGB, Predictions: [0 1], [  37 1169]
-y_train:
-1    414
-0     81
-Name: label, dtype: int64
-y_test:
-1    1045
-0     187
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1232]
-Model LogReg, Predictions: [0 1], [   4 1228]
-Model XGB, Predictions: [0 1], [   9 1223]
-y_train:
-1    424
-0     78
-Name: label, dtype: int64
-y_test:
-1    1035
-0     190
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1225]
-Model LogReg, Predictions: [1], [1225]
-Model XGB, Predictions: [0 1], [  16 1209]
-y_train:
-1    400
-0     94
-Name: label, dtype: int64
-y_test:
-1    1059
-0     174
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1233]
-Model LogReg, Predictions: [1], [1233]
-Model XGB, Predictions: [0 1], [  54 1179]
-y_train:
-1    444
-0     72
-Name: label, dtype: int64
-y_test:
-1    1015
-0     196
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1211]
-Model LogReg, Predictions: [1], [1211]
-Model XGB, Predictions: [0 1], [  15 1196]
-y_train:
-1    436
-0     97
-Name: label, dtype: int64
-y_test:
-1    1023
-0     171
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1194]
-Model LogReg, Predictions: [0 1], [   6 1188]
-Model XGB, Predictions: [0 1], [  69 1125]
-y_train:
-1    464
-0     77
-Name: label, dtype: int64
-y_test:
-1    995
-0    191
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1186]
-Model LogReg, Predictions: [0 1], [   6 1180]
-Model XGB, Predictions: [0 1], [  10 1176]
-y_train:
-1    393
-0    103
-Name: label, dtype: int64
-y_test:
-1    1066
-0     165
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1231]
-Model LogReg, Predictions: [0 1], [  19 1212]
-Model XGB, Predictions: [0 1], [  49 1182]
-y_train:
-1    452
-0     81
-Name: label, dtype: int64
-y_test:
-1    1007
-0     187
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1194]
-Model LogReg, Predictions: [1], [1194]
-Model XGB, Predictions: [0 1], [  32 1162]
-y_train:
-1    415
-0     74
-Name: label, dtype: int64
-y_test:
-1    1044
-0     194
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1238]
-Model LogReg, Predictions: [1], [1238]
-Model XGB, Predictions: [0 1], [  15 1223]
-SVM accuracy over 10 rounds: 0.8488440636887284
-Model evaluation metrics for SVM:
-	Precision: 0.8488440636887284
-	Recall: 1.0
-	F1-score: 0.9182194397977685
-	AUC score: 0.5
-LogReg accuracy over 10 rounds: 0.8467876919281215
-Model evaluation metrics for LogReg:
-	Precision: 0.8489624827160341
-	Recall: 0.9969261413815549
-	F1-score: 0.916971925392102
-	AUC score: 0.5005056127623521
-XGB accuracy over 10 rounds: 0.8309029900998851
-Model evaluation metrics for XGB:
-	Precision: 0.8487830937960249
-	Recall: 0.9747150860325531
-	F1-score: 0.9072502372512601
-	AUC score: 0.49969374202989975
-
-
-APD PHASES 3 --------------------------------------------------
-y_train:
-1    350
-0     57
-Name: label, dtype: int64
-y_test:
-1    1024
-0     188
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1212]
-Model LogReg, Predictions: [0 1], [  13 1199]
-Model XGB, Predictions: [0 1], [  39 1173]
-y_train:
-1    328
-0     48
-Name: label, dtype: int64
-y_test:
-1    1046
-0     197
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1243]
-Model LogReg, Predictions: [1], [1243]
-Model XGB, Predictions: [0 1], [   9 1234]
-y_train:
-1    349
-0     58
-Name: label, dtype: int64
-y_test:
-1    1025
-0     187
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1212]
-Model LogReg, Predictions: [0 1], [   5 1207]
-Model XGB, Predictions: [0 1], [  52 1160]
-y_train:
-1    347
-0     74
-Name: label, dtype: int64
-y_test:
-1    1027
-0     171
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1198]
-Model LogReg, Predictions: [1], [1198]
-Model XGB, Predictions: [0 1], [  96 1102]
-y_train:
-1    372
-0     62
-Name: label, dtype: int64
-y_test:
-1    1002
-0     183
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1185]
-Model LogReg, Predictions: [0 1], [   7 1178]
-Model XGB, Predictions: [0 1], [  53 1132]
-y_train:
-1    335
-0     77
-Name: label, dtype: int64
-y_test:
-1    1039
-0     168
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1207]
-Model LogReg, Predictions: [0 1], [   5 1202]
-Model XGB, Predictions: [0 1], [  47 1160]
-y_train:
-1    352
-0     69
-Name: label, dtype: int64
-y_test:
-1    1022
-0     176
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1198]
-Model LogReg, Predictions: [1], [1198]
-Model XGB, Predictions: [0 1], [  55 1143]
-y_train:
-1    313
-0     78
-Name: label, dtype: int64
-y_test:
-1    1061
-0     167
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1228]
-Model LogReg, Predictions: [0 1], [  16 1212]
-Model XGB, Predictions: [0 1], [  82 1146]
-y_train:
-1    346
-0     91
-Name: label, dtype: int64
-y_test:
-1    1028
-0     154
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1182]
-Model LogReg, Predictions: [0 1], [  18 1164]
-Model XGB, Predictions: [0 1], [  48 1134]
-y_train:
-1    384
-0     45
-Name: label, dtype: int64
-y_test:
-1    990
-0    200
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1190]
-Model LogReg, Predictions: [1], [1190]
-Model XGB, Predictions: [0 1], [  10 1180]
-SVM accuracy over 10 rounds: 0.8514490303916382
-Model evaluation metrics for SVM:
-	Precision: 0.8514490303916382
-	Recall: 1.0
-	F1-score: 0.9197270280325597
-	AUC score: 0.5
-LogReg accuracy over 10 rounds: 0.8486184054272201
-Model evaluation metrics for LogReg:
-	Precision: 0.8519425689089278
-	Recall: 0.9952533042939568
-	F1-score: 0.9179748023780357
-	AUC score: 0.502007003263649
-XGB accuracy over 10 rounds: 0.8231332521419542
-Model evaluation metrics for XGB:
-	Precision: 0.8517879239927538
-	Recall: 0.9596066927777143
-	F1-score: 0.9022566421163777
-	AUC score: 0.5012355809322223
-
-
-APD PHASES 4 --------------------------------------------------
-y_train:
-1    340
-0     70
-Name: label, dtype: int64
-y_test:
-1    1034
-0     175
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1209]
-Model LogReg, Predictions: [1], [1209]
-Model XGB, Predictions: [0 1], [  48 1161]
-y_train:
-1    350
-0     61
-Name: label, dtype: int64
-y_test:
-1    1024
-0     184
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1208]
-Model LogReg, Predictions: [0 1], [   4 1204]
-Model XGB, Predictions: [0 1], [  34 1174]
-y_train:
-1    329
-0     75
-Name: label, dtype: int64
-y_test:
-1    1045
-0     170
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1215]
-Model LogReg, Predictions: [0 1], [   3 1212]
-Model XGB, Predictions: [0 1], [  97 1118]
-y_train:
-1    321
-0     57
-Name: label, dtype: int64
-y_test:
-1    1053
-0     188
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1241]
-Model LogReg, Predictions: [0 1], [  11 1230]
-Model XGB, Predictions: [0 1], [  66 1175]
-y_train:
-1    348
-0     58
-Name: label, dtype: int64
-y_test:
-1    1026
-0     187
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1213]
-Model LogReg, Predictions: [1], [1213]
-Model XGB, Predictions: [0 1], [  19 1194]
-y_train:
-1    346
-0     76
-Name: label, dtype: int64
-y_test:
-1    1028
-0     169
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1197]
-Model LogReg, Predictions: [0 1], [   7 1190]
-Model XGB, Predictions: [0 1], [  23 1174]
-y_train:
-1    380
-0     56
-Name: label, dtype: int64
-y_test:
-1    994
-0    189
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1183]
-Model LogReg, Predictions: [1], [1183]
-Model XGB, Predictions: [0 1], [  37 1146]
-y_train:
-1    346
-0     84
-Name: label, dtype: int64
-y_test:
-1    1028
-0     161
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1189]
-Model LogReg, Predictions: [0 1], [  13 1176]
-Model XGB, Predictions: [0 1], [ 125 1064]
-y_train:
-1    326
-0     76
-Name: label, dtype: int64
-y_test:
-1    1048
-0     169
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1217]
-Model LogReg, Predictions: [0 1], [   4 1213]
-Model XGB, Predictions: [0 1], [  15 1202]
-y_train:
-1    325
-0     80
-Name: label, dtype: int64
-y_test:
-1    1049
-0     165
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1214]
-Model LogReg, Predictions: [0 1], [   5 1209]
-Model XGB, Predictions: [0 1], [  46 1168]
-SVM accuracy over 10 rounds: 0.8546224818032586
-Model evaluation metrics for SVM:
-	Precision: 0.8546224818032586
-	Recall: 1.0
-	F1-score: 0.9215930442698431
-	AUC score: 0.5
-LogReg accuracy over 10 rounds: 0.8532150149574769
-Model evaluation metrics for LogReg:
-	Precision: 0.8553138643336118
-	Recall: 0.9969167624585363
-	F1-score: 0.9206722678924979
-	AUC score: 0.5028239383893982
-XGB accuracy over 10 rounds: 0.8241325956647261
-Model evaluation metrics for XGB:
-	Precision: 0.8544532808714441
-	Recall: 0.9575479391101039
-	F1-score: 0.9027976711908814
-	AUC score: 0.49947375444845477
-
-
-APD PHASES 5 --------------------------------------------------
-y_train:
-1    373
-0     79
-Name: label, dtype: int64
-y_test:
-1    1059
-0     180
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1239]
-Model LogReg, Predictions: [0 1], [   2 1237]
-Model XGB, Predictions: [0 1], [  33 1206]
-y_train:
-1    391
-0     76
-Name: label, dtype: int64
-y_test:
-1    1041
-0     183
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1224]
-Model LogReg, Predictions: [1], [1224]
-Model XGB, Predictions: [0 1], [  66 1158]
-y_train:
-1    386
-0     84
-Name: label, dtype: int64
-y_test:
-1    1046
-0     175
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1221]
-Model LogReg, Predictions: [0 1], [   3 1218]
-Model XGB, Predictions: [0 1], [ 112 1109]
-y_train:
-1    329
-0     84
-Name: label, dtype: int64
-y_test:
-1    1103
-0     175
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1278]
-Model LogReg, Predictions: [0 1], [  16 1262]
-Model XGB, Predictions: [0 1], [  57 1221]
-y_train:
-1    397
-0     72
-Name: label, dtype: int64
-y_test:
-1    1035
-0     187
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1222]
-Model LogReg, Predictions: [0 1], [   6 1216]
-Model XGB, Predictions: [0 1], [  24 1198]
-y_train:
-1    403
-0     62
-Name: label, dtype: int64
-y_test:
-1    1029
-0     197
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1226]
-Model LogReg, Predictions: [0 1], [   1 1225]
-Model XGB, Predictions: [0 1], [   6 1220]
-y_train:
-1    412
-0     58
-Name: label, dtype: int64
-y_test:
-1    1020
-0     201
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1221]
-Model LogReg, Predictions: [1], [1221]
-Model XGB, Predictions: [0 1], [  12 1209]
-y_train:
-1    389
-0     72
-Name: label, dtype: int64
-y_test:
-1    1043
-0     187
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1230]
-Model LogReg, Predictions: [0 1], [   1 1229]
-Model XGB, Predictions: [0 1], [ 117 1113]
-y_train:
-1    440
-0     77
-Name: label, dtype: int64
-y_test:
-1    992
-0    182
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1174]
-Model LogReg, Predictions: [1], [1174]
-Model XGB, Predictions: [0 1], [  33 1141]
-y_train:
-1    429
-0     73
-Name: label, dtype: int64
-y_test:
-1    1003
-0     186
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1189]
-Model LogReg, Predictions: [1], [1189]
-Model XGB, Predictions: [0 1], [  27 1162]
-SVM accuracy over 10 rounds: 0.8483129700078784
-Model evaluation metrics for SVM:
-	Precision: 0.8483129700078784
-	Recall: 1.0
-	F1-score: 0.9179126393794818
-	AUC score: 0.5
-LogReg accuracy over 10 rounds: 0.8471215303258013
-Model evaluation metrics for LogReg:
-	Precision: 0.8485441073998652
-	Recall: 0.9979567938324413
-	F1-score: 0.9171719319774002
-	AUC score: 0.500920218622599
-XGB accuracy over 10 rounds: 0.8203620786792598
-Model evaluation metrics for XGB:
-	Precision: 0.8482788953412946
-	Recall: 0.9602672697395146
-	F1-score: 0.9004916053140786
-	AUC score: 0.49993305081572154
-
-
------- RESAMPLED ------
-APD PHASES 0 --------------------------------------------------
-Ratio of negative to positive labels (0.28063241106719367) is under 33%, oversampling negative class.
-y_train:
-1    454
-0    242
-Name: label, dtype: int64
-y_test:
-1    672
-0    516
-Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   2 1186]
-Model LogReg, Predictions: [0 1], [  81 1107]
-Model XGB, Predictions: [0 1], [446 742]
-Ratio of negative to positive labels (0.28063241106719367) is under 33%, oversampling negative class.
-y_train:
-1    429
-0    242
-Name: label, dtype: int64
-y_test:
-1    697
-0    516
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1213]
-Model LogReg, Predictions: [0 1], [ 191 1022]
-Model XGB, Predictions: [0 1], [512 701]
-Ratio of negative to positive labels (0.28063241106719367) is under 33%, oversampling negative class.
-y_train:
-1    447
-0    230
-Name: label, dtype: int64
-y_test:
-1    679
-0    528
-Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   3 1204]
-Model LogReg, Predictions: [0 1], [ 106 1101]
-Model XGB, Predictions: [0 1], [528 679]
-Ratio of negative to positive labels (0.28063241106719367) is under 33%, oversampling negative class.
-y_train:
-1    467
-0    193
-Name: label, dtype: int64
-y_test:
-1    659
-0    565
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1224]
-Model LogReg, Predictions: [1], [1224]
-Model XGB, Predictions: [0 1], [238 986]
-Ratio of negative to positive labels (0.28063241106719367) is under 33%, oversampling negative class.
-y_train:
-1    439
-0    233
-Name: label, dtype: int64
-y_test:
-1    687
-0    525
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1212]
-Model LogReg, Predictions: [0 1], [ 181 1031]
-Model XGB, Predictions: [0 1], [618 594]
-Ratio of negative to positive labels (0.28063241106719367) is under 33%, oversampling negative class.
-y_train:
-1    470
-0    221
-Name: label, dtype: int64
-y_test:
-1    656
-0    537
-Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   1 1192]
-Model LogReg, Predictions: [1], [1193]
-Model XGB, Predictions: [0 1], [342 851]
-Ratio of negative to positive labels (0.28063241106719367) is under 33%, oversampling negative class.
-y_train:
-1    437
-0    209
-Name: label, dtype: int64
-y_test:
-1    689
-0    549
-Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   1 1237]
-Model LogReg, Predictions: [0 1], [  45 1193]
-Model XGB, Predictions: [0 1], [410 828]
-Ratio of negative to positive labels (0.28063241106719367) is under 33%, oversampling negative class.
-y_train:
-1    437
-0    219
-Name: label, dtype: int64
-y_test:
-1    689
-0    539
-Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   1 1227]
-Model LogReg, Predictions: [0 1], [  34 1194]
-Model XGB, Predictions: [0 1], [436 792]
-Ratio of negative to positive labels (0.28063241106719367) is under 33%, oversampling negative class.
-y_train:
-1    435
-0    242
-Name: label, dtype: int64
-y_test:
-1    691
-0    516
-Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   1 1206]
-Model LogReg, Predictions: [0 1], [ 146 1061]
-Model XGB, Predictions: [0 1], [509 698]
-Ratio of negative to positive labels (0.28063241106719367) is under 33%, oversampling negative class.
-y_train:
-1    437
-0    228
-Name: label, dtype: int64
-y_test:
-1    689
-0    530
-Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   1 1218]
-Model LogReg, Predictions: [0 1], [  62 1157]
-Model XGB, Predictions: [0 1], [463 756]
-SVM accuracy over 10 rounds: 0.5613197512912261
-Model evaluation metrics for SVM:
-	Precision: 0.5613740738119655
-	Recall: 0.999259482841496
-	F1-score: 0.7188294857430035
-	AUC score: 0.50009951629761
-LogReg accuracy over 10 rounds: 0.555043129080609
-Model evaluation metrics for LogReg:
-	Precision: 0.5631241487478261
-	Recall: 0.9329891464022367
-	F1-score: 0.7014091867960192
-	AUC score: 0.5032793741309617
-XGB accuracy over 10 rounds: 0.5266634733017829
-Model evaluation metrics for XGB:
-	Precision: 0.5718324005946371
-	Recall: 0.6395905955924422
-	F1-score: 0.6005649838359873
-	AUC score: 0.5125658806914292
-
-
-APD PHASES 1 --------------------------------------------------
-Ratio of negative to positive labels (0.2857142857142857) is under 33%, oversampling negative class.
-y_train:
-1    384
+1    544
 0    217
 Name: label, dtype: int64
 y_test:
-1    685
-0    522
+1    1028
+0     411
 Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   1 1206]
-Model LogReg, Predictions: [0 1], [  62 1145]
-Model XGB, Predictions: [0 1], [426 781]
-Ratio of negative to positive labels (0.2857142857142857) is under 33%, oversampling negative class.
+Model SVM, Predictions: [1], [1439]
+Model LogReg, Predictions: [0 1], [   6 1433]
+Model XGB, Predictions: [0 1], [ 101 1338]
+Ratio of negative to positive labels (0.28063241106719367) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.18874172185430463) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.168141592920354) is under 0.4, oversampling negative class.
 y_train:
-1    391
-0    202
+1    555
+0    221
 Name: label, dtype: int64
 y_test:
-1    678
-0    537
+1    1017
+0     406
 Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   1 1214]
-Model LogReg, Predictions: [1], [1215]
-Model XGB, Predictions: [0 1], [227 988]
-Ratio of negative to positive labels (0.2857142857142857) is under 33%, oversampling negative class.
+Model SVM, Predictions: [1], [1423]
+Model LogReg, Predictions: [0 1], [  53 1370]
+Model XGB, Predictions: [0 1], [  51 1372]
+Ratio of negative to positive labels (0.28063241106719367) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.16262975778546712) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.17572815533980582) is under 0.4, oversampling negative class.
 y_train:
-1    367
-0    198
-Name: label, dtype: int64
-y_test:
-1    702
-0    541
-Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   2 1241]
-Model LogReg, Predictions: [0 1], [ 130 1113]
-Model XGB, Predictions: [0 1], [409 834]
-Ratio of negative to positive labels (0.2857142857142857) is under 33%, oversampling negative class.
-y_train:
-1    371
-0    214
-Name: label, dtype: int64
-y_test:
-1    698
-0    525
-Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   3 1220]
-Model LogReg, Predictions: [0 1], [  68 1155]
-Model XGB, Predictions: [0 1], [461 762]
-Ratio of negative to positive labels (0.2857142857142857) is under 33%, oversampling negative class.
-y_train:
-1    384
-0    202
-Name: label, dtype: int64
-y_test:
-1    685
-0    537
-Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   1 1221]
-Model LogReg, Predictions: [0 1], [ 114 1108]
-Model XGB, Predictions: [0 1], [490 732]
-Ratio of negative to positive labels (0.2857142857142857) is under 33%, oversampling negative class.
-y_train:
-1    406
-0    180
-Name: label, dtype: int64
-y_test:
-1    663
-0    559
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1222]
-Model LogReg, Predictions: [0 1], [  27 1195]
-Model XGB, Predictions: [0 1], [ 183 1039]
-Ratio of negative to positive labels (0.2857142857142857) is under 33%, oversampling negative class.
-y_train:
-1    398
-0    187
-Name: label, dtype: int64
-y_test:
-1    671
-0    552
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1223]
-Model LogReg, Predictions: [0 1], [  50 1173]
-Model XGB, Predictions: [0 1], [300 923]
-Ratio of negative to positive labels (0.2857142857142857) is under 33%, oversampling negative class.
-y_train:
-1    360
-0    186
-Name: label, dtype: int64
-y_test:
-1    709
-0    553
-Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   2 1260]
-Model LogReg, Predictions: [0 1], [  81 1181]
-Model XGB, Predictions: [0 1], [382 880]
-Ratio of negative to positive labels (0.2857142857142857) is under 33%, oversampling negative class.
-y_train:
-1    407
-0    210
-Name: label, dtype: int64
-y_test:
-1    662
-0    529
-Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   1 1190]
-Model LogReg, Predictions: [0 1], [  24 1167]
-Model XGB, Predictions: [0 1], [267 924]
-Ratio of negative to positive labels (0.2857142857142857) is under 33%, oversampling negative class.
-y_train:
-1    374
-0    213
-Name: label, dtype: int64
-y_test:
-1    695
-0    526
-Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   2 1219]
-Model LogReg, Predictions: [0 1], [ 131 1090]
-Model XGB, Predictions: [0 1], [513 708]
-SVM accuracy over 10 rounds: 0.5602137882725382
-Model evaluation metrics for SVM:
-	Precision: 0.5601582569736202
-	Recall: 0.99928608829062
-	F1-score: 0.7178523728448113
-	AUC score: 0.5003926997680612
-LogReg accuracy over 10 rounds: 0.5532417854070564
-Model evaluation metrics for LogReg:
-	Precision: 0.5601448267846632
-	Recall: 0.9443320516674356
-	F1-score: 0.7028116251905284
-	AUC score: 0.5003424806460837
-XGB accuracy over 10 rounds: 0.5347549815510813
-Model evaluation metrics for XGB:
-	Precision: 0.5685821366708339
-	Recall: 0.7117698817327325
-	F1-score: 0.6291718113902736
-	AUC score: 0.5120659012316923
-
-
-APD PHASES 2 --------------------------------------------------
-Ratio of negative to positive labels (0.2857142857142857) is under 33%, oversampling negative class.
-y_train:
-1    322
-0    200
-Name: label, dtype: int64
-y_test:
-1    691
-0    520
-Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   2 1209]
-Model LogReg, Predictions: [0 1], [  95 1116]
-Model XGB, Predictions: [0 1], [430 781]
-Ratio of negative to positive labels (0.2857142857142857) is under 33%, oversampling negative class.
-y_train:
-1    286
-0    156
-Name: label, dtype: int64
-y_test:
-1    727
-0    564
-Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   1 1290]
-Model LogReg, Predictions: [0 1], [ 204 1087]
-Model XGB, Predictions: [0 1], [453 838]
-Ratio of negative to positive labels (0.2857142857142857) is under 33%, oversampling negative class.
-y_train:
-1    357
-0    169
-Name: label, dtype: int64
-y_test:
-1    656
-0    551
-Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   2 1205]
-Model LogReg, Predictions: [0 1], [ 190 1017]
-Model XGB, Predictions: [0 1], [305 902]
-Ratio of negative to positive labels (0.2857142857142857) is under 33%, oversampling negative class.
-y_train:
-1    315
-0    175
-Name: label, dtype: int64
-y_test:
-1    698
-0    545
-Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   1 1242]
-Model LogReg, Predictions: [0 1], [  42 1201]
-Model XGB, Predictions: [0 1], [521 722]
-Ratio of negative to positive labels (0.2857142857142857) is under 33%, oversampling negative class.
-y_train:
-1    337
-0    208
-Name: label, dtype: int64
-y_test:
-1    676
-0    512
-Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   4 1184]
-Model LogReg, Predictions: [0 1], [ 102 1086]
-Model XGB, Predictions: [0 1], [500 688]
-Ratio of negative to positive labels (0.2857142857142857) is under 33%, oversampling negative class.
-y_train:
-1    349
-0    191
-Name: label, dtype: int64
-y_test:
-1    664
-0    529
-Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   1 1192]
-Model LogReg, Predictions: [0 1], [  88 1105]
-Model XGB, Predictions: [0 1], [408 785]
-Ratio of negative to positive labels (0.2857142857142857) is under 33%, oversampling negative class.
-y_train:
-1    327
-0    210
-Name: label, dtype: int64
-y_test:
-1    686
-0    510
-Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   1 1195]
-Model LogReg, Predictions: [0 1], [266 930]
-Model XGB, Predictions: [0 1], [357 839]
-Ratio of negative to positive labels (0.2857142857142857) is under 33%, oversampling negative class.
-y_train:
-1    324
-0    193
-Name: label, dtype: int64
-y_test:
-1    689
-0    527
-Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   4 1212]
-Model LogReg, Predictions: [0 1], [ 126 1090]
-Model XGB, Predictions: [0 1], [450 766]
-Ratio of negative to positive labels (0.2857142857142857) is under 33%, oversampling negative class.
-y_train:
-1    314
+1    542
 0    216
 Name: label, dtype: int64
 y_test:
-1    699
-0    504
+1    1030
+0     412
 Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   1 1202]
-Model LogReg, Predictions: [0 1], [262 941]
-Model XGB, Predictions: [0 1], [416 787]
-Ratio of negative to positive labels (0.2857142857142857) is under 33%, oversampling negative class.
+Model SVM, Predictions: [1], [1442]
+Model LogReg, Predictions: [0 1], [   1 1441]
+Model XGB, Predictions: [0 1], [  65 1377]
+Ratio of negative to positive labels (0.28063241106719367) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.10031347962382445) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.196) is under 0.4, oversampling negative class.
 y_train:
-1    346
-0    182
+1    572
+0    228
 Name: label, dtype: int64
 y_test:
-1    667
-0    538
+1    1000
+0     400
 Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   1 1204]
-Model LogReg, Predictions: [0 1], [   8 1197]
-Model XGB, Predictions: [0 1], [532 673]
-SVM accuracy over 10 rounds: 0.5637558914902918
+Model SVM, Predictions: [1], [1400]
+Model LogReg, Predictions: [0 1], [  10 1390]
+Model XGB, Predictions: [0 1], [  19 1381]
+Ratio of negative to positive labels (0.28063241106719367) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.09032258064516129) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.19821605550049554) is under 0.4, oversampling negative class.
+y_train:
+1    563
+0    225
+Name: label, dtype: int64
+y_test:
+1    1009
+0     403
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [1412]
+Model LogReg, Predictions: [0 1], [   9 1403]
+Model XGB, Predictions: [0 1], [  51 1361]
+Ratio of negative to positive labels (0.28063241106719367) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.11705685618729098) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.1892156862745098) is under 0.4, oversampling negative class.
+y_train:
+1    552
+0    220
+Name: label, dtype: int64
+y_test:
+1    1020
+0     408
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [1428]
+Model LogReg, Predictions: [0 1], [  51 1377]
+Model XGB, Predictions: [0 1], [ 137 1291]
+Ratio of negative to positive labels (0.28063241106719367) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.11635220125786164) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.19080919080919082) is under 0.4, oversampling negative class.
+y_train:
+1    571
+0    228
+Name: label, dtype: int64
+y_test:
+1    1001
+0     400
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [1401]
+Model LogReg, Predictions: [0 1], [   5 1396]
+Model XGB, Predictions: [0 1], [  55 1346]
+Ratio of negative to positive labels (0.28063241106719367) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.21484375) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.1627469426152399) is under 0.4, oversampling negative class.
+y_train:
+1    509
+0    203
+Name: label, dtype: int64
+y_test:
+1    1063
+0     425
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [1488]
+Model LogReg, Predictions: [0 1], [  35 1453]
+Model XGB, Predictions: [0 1], [  51 1437]
+Ratio of negative to positive labels (0.28063241106719367) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.10725552050473186) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.1936127744510978) is under 0.4, oversampling negative class.
+y_train:
+1    570
+0    227
+Name: label, dtype: int64
+y_test:
+1    1002
+0     400
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [1402]
+Model LogReg, Predictions: [1], [1402]
+Model XGB, Predictions: [0 1], [  16 1386]
+SVM accuracy over 10 rounds: 0.7144671051770171
 Model evaluation metrics for SVM:
-	Precision: 0.5639311009051599
-	Recall: 0.9985422274416023
-	F1-score: 0.7207361752404677
-	AUC score: 0.5000340535079317
-LogReg accuracy over 10 rounds: 0.5478743194700233
+	Precision: 0.7144671051770171
+	Recall: 1.0
+	F1-score: 0.8334567572333368
+	AUC score: 0.5
+LogReg accuracy over 10 rounds: 0.7143192728688413
 Model evaluation metrics for LogReg:
-	Precision: 0.5633535916673721
-	Recall: 0.8854448529128096
-	F1-score: 0.687317427428205
-	AUC score: 0.49910788772633063
-XGB accuracy over 10 rounds: 0.5280849590883808
+	Precision: 0.7170035295841602
+	Recall: 0.9916087399289205
+	F1-score: 0.8321985197538379
+	AUC score: 0.5060428452545087
+XGB accuracy over 10 rounds: 0.6998314891748542
 Model evaluation metrics for XGB:
-	Precision: 0.5719981639816887
-	Recall: 0.649494854036653
-	F1-score: 0.6070927377806754
-	AUC score: 0.5104801234237215
+	Precision: 0.7159102133489902
+	Recall: 0.9615162500191277
+	F1-score: 0.8206009000010572
+	AUC score: 0.503269484622661
 
 
-APD PHASES 3 --------------------------------------------------
-Ratio of negative to positive labels (0.3090909090909091) is under 33%, oversampling negative class.
+APD PHASES 1 --------------------------------------------------
+Ratio of negative to positive labels (0.2857142857142857) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.17375886524822695) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.1726133076181292) is under 0.4, oversampling negative class.
 y_train:
-1    235
-0    162
+1    478
+0    190
 Name: label, dtype: int64
 y_test:
-1    693
-0    530
+1    1037
+0     414
 Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   1 1222]
-Model LogReg, Predictions: [1], [1223]
-Model XGB, Predictions: [0 1], [488 735]
-Ratio of negative to positive labels (0.3090909090909091) is under 33%, oversampling negative class.
+Model SVM, Predictions: [1], [1451]
+Model LogReg, Predictions: [1], [1451]
+Model XGB, Predictions: [0 1], [ 168 1283]
+Ratio of negative to positive labels (0.2857142857142857) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.14963503649635038) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.17894736842105263) is under 0.4, oversampling negative class.
 y_train:
-1    226
-0    179
+1    470
+0    187
 Name: label, dtype: int64
 y_test:
-1    702
-0    513
+1    1045
+0     418
 Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   3 1212]
-Model LogReg, Predictions: [0 1], [370 845]
-Model XGB, Predictions: [0 1], [636 579]
-Ratio of negative to positive labels (0.3090909090909091) is under 33%, oversampling negative class.
+Model SVM, Predictions: [1], [1463]
+Model LogReg, Predictions: [0 1], [  67 1396]
+Model XGB, Predictions: [0 1], [  38 1425]
+Ratio of negative to positive labels (0.2857142857142857) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.2425531914893617) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.1577490774907749) is under 0.4, oversampling negative class.
 y_train:
-1    232
-0    145
-Name: label, dtype: int64
-y_test:
-1    696
-0    547
-Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   1 1242]
-Model LogReg, Predictions: [0 1], [  41 1202]
-Model XGB, Predictions: [0 1], [297 946]
-Ratio of negative to positive labels (0.3090909090909091) is under 33%, oversampling negative class.
-y_train:
-1    215
+1    431
 0    172
 Name: label, dtype: int64
 y_test:
-1    713
-0    520
+1    1084
+0     433
 Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   2 1231]
-Model LogReg, Predictions: [0 1], [302 931]
-Model XGB, Predictions: [0 1], [534 699]
-Ratio of negative to positive labels (0.3090909090909091) is under 33%, oversampling negative class.
+Model SVM, Predictions: [1], [1517]
+Model LogReg, Predictions: [0 1], [  28 1489]
+Model XGB, Predictions: [0 1], [ 103 1414]
+Ratio of negative to positive labels (0.2857142857142857) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.24180327868852458) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.1572093023255814) is under 0.4, oversampling negative class.
 y_train:
-1    223
-0    163
+1    440
+0    175
 Name: label, dtype: int64
 y_test:
-1    705
-0    529
+1    1075
+0     430
 Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   3 1231]
-Model LogReg, Predictions: [0 1], [ 123 1111]
-Model XGB, Predictions: [0 1], [479 755]
-Ratio of negative to positive labels (0.3090909090909091) is under 33%, oversampling negative class.
+Model SVM, Predictions: [1], [1505]
+Model LogReg, Predictions: [0 1], [  26 1479]
+Model XGB, Predictions: [0 1], [  47 1458]
+Ratio of negative to positive labels (0.2857142857142857) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.14968152866242038) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.18009950248756218) is under 0.4, oversampling negative class.
 y_train:
-1    237
-0    164
+1    510
+0    203
 Name: label, dtype: int64
 y_test:
-1    691
-0    528
+1    1005
+0     402
 Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   2 1217]
-Model LogReg, Predictions: [0 1], [  32 1187]
-Model XGB, Predictions: [0 1], [347 872]
-Ratio of negative to positive labels (0.3090909090909091) is under 33%, oversampling negative class.
+Model SVM, Predictions: [1], [1407]
+Model LogReg, Predictions: [0 1], [   8 1399]
+Model XGB, Predictions: [0 1], [  32 1375]
+Ratio of negative to positive labels (0.2857142857142857) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.21476510067114093) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.16062683643486778) is under 0.4, oversampling negative class.
 y_train:
-1    251
-0    168
+1    494
+0    197
 Name: label, dtype: int64
 y_test:
-1    677
-0    524
+1    1021
+0     408
 Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   5 1196]
-Model LogReg, Predictions: [0 1], [  24 1177]
-Model XGB, Predictions: [0 1], [497 704]
-Ratio of negative to positive labels (0.3090909090909091) is under 33%, oversampling negative class.
+Model SVM, Predictions: [1], [1429]
+Model LogReg, Predictions: [1], [1429]
+Model XGB, Predictions: [0 1], [ 132 1297]
+Ratio of negative to positive labels (0.2857142857142857) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.2357142857142857) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.15591915303176132) is under 0.4, oversampling negative class.
 y_train:
-1    223
-0    167
+1    476
+0    190
 Name: label, dtype: int64
 y_test:
-1    705
-0    525
+1    1039
+0     415
 Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   1 1229]
-Model LogReg, Predictions: [0 1], [ 144 1086]
-Model XGB, Predictions: [0 1], [490 740]
-Ratio of negative to positive labels (0.3090909090909091) is under 33%, oversampling negative class.
+Model SVM, Predictions: [1], [1454]
+Model LogReg, Predictions: [0 1], [  37 1417]
+Model XGB, Predictions: [0 1], [ 138 1316]
+Ratio of negative to positive labels (0.2857142857142857) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.10897435897435898) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.1926514399205561) is under 0.4, oversampling negative class.
 y_train:
-1    251
-0    150
+1    508
+0    202
 Name: label, dtype: int64
 y_test:
-1    677
-0    542
+1    1007
+0     402
 Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   2 1217]
-Model LogReg, Predictions: [0 1], [   2 1217]
-Model XGB, Predictions: [0 1], [369 850]
-Ratio of negative to positive labels (0.3090909090909091) is under 33%, oversampling negative class.
+Model SVM, Predictions: [1], [1409]
+Model LogReg, Predictions: [1], [1409]
+Model XGB, Predictions: [0 1], [  31 1378]
+Ratio of negative to positive labels (0.2857142857142857) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.2490974729241877) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.15259117082533588) is under 0.4, oversampling negative class.
 y_train:
-1    237
-0    147
+1    473
+0    188
 Name: label, dtype: int64
 y_test:
-1    691
-0    545
+1    1042
+0     416
 Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   4 1232]
-Model LogReg, Predictions: [0 1], [   5 1231]
-Model XGB, Predictions: [0 1], [312 924]
-SVM accuracy over 10 rounds: 0.567375074995488
-Model evaluation metrics for SVM:
-	Precision: 0.5674236669063928
-	Recall: 0.9984171117816194
-	F1-score: 0.7235767928491438
-	AUC score: 0.5004350849217556
-LogReg accuracy over 10 rounds: 0.5521380947775371
-Model evaluation metrics for LogReg:
-	Precision: 0.5657254803594399
-	Recall: 0.9128929194220105
-	F1-score: 0.6958007325694837
-	AUC score: 0.49764755508033875
-XGB accuracy over 10 rounds: 0.5294125289323697
-Model evaluation metrics for XGB:
-	Precision: 0.5774682522906911
-	Recall: 0.6471297607678441
-	F1-score: 0.6070463714580459
-	AUC score: 0.5123318246576506
-
-
-APD PHASES 4 --------------------------------------------------
-Ratio of negative to positive labels (0.3090909090909091) is under 33%, oversampling negative class.
+Model SVM, Predictions: [1], [1458]
+Model LogReg, Predictions: [0 1], [  50 1408]
+Model XGB, Predictions: [0 1], [  62 1396]
+Ratio of negative to positive labels (0.2857142857142857) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.24521072796934865) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.15500945179584122) is under 0.4, oversampling negative class.
 y_train:
-1    214
-0    185
-Name: label, dtype: int64
-y_test:
-1    714
-0    507
-Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   7 1214]
-Model LogReg, Predictions: [0 1], [369 852]
-Model XGB, Predictions: [0 1], [449 772]
-Ratio of negative to positive labels (0.3090909090909091) is under 33%, oversampling negative class.
-y_train:
-1    246
-0    177
-Name: label, dtype: int64
-y_test:
-1    682
-0    515
-Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   3 1194]
-Model LogReg, Predictions: [0 1], [367 830]
-Model XGB, Predictions: [0 1], [579 618]
-Ratio of negative to positive labels (0.3090909090909091) is under 33%, oversampling negative class.
-y_train:
-1    249
-0    153
-Name: label, dtype: int64
-y_test:
-1    679
-0    539
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1218]
-Model LogReg, Predictions: [0 1], [  62 1156]
-Model XGB, Predictions: [0 1], [382 836]
-Ratio of negative to positive labels (0.3090909090909091) is under 33%, oversampling negative class.
-y_train:
-1    225
-0    180
-Name: label, dtype: int64
-y_test:
-1    703
-0    512
-Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   1 1214]
-Model LogReg, Predictions: [0 1], [334 881]
-Model XGB, Predictions: [0 1], [555 660]
-Ratio of negative to positive labels (0.3090909090909091) is under 33%, oversampling negative class.
-y_train:
-1    263
-0    148
-Name: label, dtype: int64
-y_test:
-1    665
-0    544
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1209]
-Model LogReg, Predictions: [0 1], [  24 1185]
-Model XGB, Predictions: [0 1], [213 996]
-Ratio of negative to positive labels (0.3090909090909091) is under 33%, oversampling negative class.
-y_train:
-1    274
-0    155
-Name: label, dtype: int64
-y_test:
-1    654
-0    537
-Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   1 1190]
-Model LogReg, Predictions: [0 1], [  12 1179]
-Model XGB, Predictions: [0 1], [258 933]
-Ratio of negative to positive labels (0.3090909090909091) is under 33%, oversampling negative class.
-y_train:
-1    242
-0    154
-Name: label, dtype: int64
-y_test:
-1    686
-0    538
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1224]
-Model LogReg, Predictions: [0 1], [  12 1212]
-Model XGB, Predictions: [0 1], [427 797]
-Ratio of negative to positive labels (0.3090909090909091) is under 33%, oversampling negative class.
-y_train:
-1    226
-0    160
-Name: label, dtype: int64
-y_test:
-1    702
-0    532
-Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   7 1227]
-Model LogReg, Predictions: [0 1], [  76 1158]
-Model XGB, Predictions: [0 1], [486 748]
-Ratio of negative to positive labels (0.3090909090909091) is under 33%, oversampling negative class.
-y_train:
-1    229
-0    135
-Name: label, dtype: int64
-y_test:
-1    699
-0    557
-Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   1 1255]
-Model LogReg, Predictions: [0 1], [ 186 1070]
-Model XGB, Predictions: [0 1], [488 768]
-Ratio of negative to positive labels (0.3090909090909091) is under 33%, oversampling negative class.
-y_train:
-1    225
-0    159
-Name: label, dtype: int64
-y_test:
-1    703
-0    533
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1236]
-Model LogReg, Predictions: [0 1], [ 103 1133]
-Model XGB, Predictions: [0 1], [512 724]
-SVM accuracy over 10 rounds: 0.564275913091077
-Model evaluation metrics for SVM:
-	Precision: 0.5644776812193164
-	Recall: 0.9984279924333542
-	F1-score: 0.721133728157088
-	AUC score: 0.5000794217437587
-LogReg accuracy over 10 rounds: 0.5494045268940402
-Model evaluation metrics for LogReg:
-	Precision: 0.5666439445066243
-	Recall: 0.8762220921165558
-	F1-score: 0.6843364937382468
-	AUC score: 0.5034234529979174
-XGB accuracy over 10 rounds: 0.5258296882933212
-Model evaluation metrics for XGB:
-	Precision: 0.5712675989149615
-	Recall: 0.6517430220652082
-	F1-score: 0.6052006404352929
-	AUC score: 0.5089470037449557
-
-
-APD PHASES 5 --------------------------------------------------
-Ratio of negative to positive labels (0.2743362831858407) is under 33%, oversampling negative class.
-y_train:
-1    304
-0    185
-Name: label, dtype: int64
-y_test:
-1    682
-0    526
-Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   2 1206]
-Model LogReg, Predictions: [0 1], [  12 1196]
-Model XGB, Predictions: [0 1], [450 758]
-Ratio of negative to positive labels (0.2743362831858407) is under 33%, oversampling negative class.
-y_train:
-1    280
-0    149
-Name: label, dtype: int64
-y_test:
-1    706
-0    562
-Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   1 1267]
-Model LogReg, Predictions: [0 1], [ 111 1157]
-Model XGB, Predictions: [0 1], [507 761]
-Ratio of negative to positive labels (0.2743362831858407) is under 33%, oversampling negative class.
-y_train:
-1    294
-0    186
-Name: label, dtype: int64
-y_test:
-1    692
-0    525
-Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   2 1215]
-Model LogReg, Predictions: [0 1], [  45 1172]
-Model XGB, Predictions: [0 1], [396 821]
-Ratio of negative to positive labels (0.2743362831858407) is under 33%, oversampling negative class.
-y_train:
-1    295
-0    146
-Name: label, dtype: int64
-y_test:
-1    691
-0    565
-Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   1 1255]
-Model LogReg, Predictions: [0 1], [  40 1216]
-Model XGB, Predictions: [0 1], [298 958]
-Ratio of negative to positive labels (0.2743362831858407) is under 33%, oversampling negative class.
-y_train:
-1    282
+1    457
 0    182
 Name: label, dtype: int64
 y_test:
-1    704
-0    529
+1    1058
+0     423
 Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   2 1231]
-Model LogReg, Predictions: [0 1], [ 226 1007]
-Model XGB, Predictions: [0 1], [452 781]
-Ratio of negative to positive labels (0.2743362831858407) is under 33%, oversampling negative class.
-y_train:
-1    289
-0    181
-Name: label, dtype: int64
-y_test:
-1    697
-0    530
-Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   4 1223]
-Model LogReg, Predictions: [0 1], [  79 1148]
-Model XGB, Predictions: [0 1], [417 810]
-Ratio of negative to positive labels (0.2743362831858407) is under 33%, oversampling negative class.
-y_train:
-1    320
-0    181
-Name: label, dtype: int64
-y_test:
-1    666
-0    530
-Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   2 1194]
-Model LogReg, Predictions: [0 1], [ 121 1075]
-Model XGB, Predictions: [0 1], [213 983]
-Ratio of negative to positive labels (0.2743362831858407) is under 33%, oversampling negative class.
-y_train:
-1    302
-0    207
-Name: label, dtype: int64
-y_test:
-1    684
-0    504
-Name: label, dtype: int64
-Model SVM, Predictions: [0 1], [   6 1182]
-Model LogReg, Predictions: [0 1], [274 914]
-Model XGB, Predictions: [0 1], [537 651]
-Ratio of negative to positive labels (0.2743362831858407) is under 33%, oversampling negative class.
-y_train:
-1    273
-0    154
-Name: label, dtype: int64
-y_test:
-1    713
-0    557
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1270]
-Model LogReg, Predictions: [0 1], [  40 1230]
-Model XGB, Predictions: [0 1], [528 742]
-Ratio of negative to positive labels (0.2743362831858407) is under 33%, oversampling negative class.
-y_train:
-1    305
-0    213
-Name: label, dtype: int64
-y_test:
-1    681
-0    498
-Name: label, dtype: int64
-Model SVM, Predictions: [1], [1179]
-Model LogReg, Predictions: [0 1], [244 935]
-Model XGB, Predictions: [0 1], [508 671]
-SVM accuracy over 10 rounds: 0.5647510636101678
+Model SVM, Predictions: [1], [1481]
+Model LogReg, Predictions: [0 1], [  48 1433]
+Model XGB, Predictions: [0 1], [ 131 1350]
+SVM accuracy over 10 rounds: 0.7144922108171989
 Model evaluation metrics for SVM:
-	Precision: 0.5650262365407771
-	Recall: 0.9982585679314738
-	F1-score: 0.7215720826924457
-	AUC score: 0.49989552861994485
-LogReg accuracy over 10 rounds: 0.5530137066303735
+	Precision: 0.7144922108171989
+	Recall: 1.0
+	F1-score: 0.8334738383422025
+	AUC score: 0.5
+LogReg accuracy over 10 rounds: 0.7119449957012776
 Model evaluation metrics for LogReg:
-	Precision: 0.5660020888545334
-	Recall: 0.9029621542518488
-	F1-score: 0.694287005913168
-	AUC score: 0.5016464640353431
-XGB accuracy over 10 rounds: 0.5282633321392984
+	Precision: 0.7171545382730102
+	Recall: 0.9856646567608793
+	F1-score: 0.8301887963999832
+	AUC score: 0.5063055125150919
+XGB accuracy over 10 rounds: 0.6888361225080274
 Model evaluation metrics for XGB:
-	Precision: 0.5729725076518807
-	Recall: 0.6569142482865697
-	F1-score: 0.6093887917170387
-	AUC score: 0.5100537749263561
+	Precision: 0.7146077072504202
+	Recall: 0.9397890551989091
+	F1-score: 0.811614743689622
+	AUC score: 0.5003106658217171
+
+
+APD PHASES 2 --------------------------------------------------
+Ratio of negative to positive labels (0.2857142857142857) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.14240506329113925) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.18245264207377868) is under 0.4, oversampling negative class.
+y_train:
+1    456
+0    182
+Name: label, dtype: int64
+y_test:
+1    1003
+0     401
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [1404]
+Model LogReg, Predictions: [1], [1404]
+Model XGB, Predictions: [0 1], [  36 1368]
+Ratio of negative to positive labels (0.2857142857142857) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.2028985507246377) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.16490891658676893) is under 0.4, oversampling negative class.
+y_train:
+1    416
+0    166
+Name: label, dtype: int64
+y_test:
+1    1043
+0     417
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [1460]
+Model LogReg, Predictions: [0 1], [   5 1455]
+Model XGB, Predictions: [0 1], [ 160 1300]
+Ratio of negative to positive labels (0.2857142857142857) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.21160409556313994) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.1617933723196881) is under 0.4, oversampling negative class.
+y_train:
+1    433
+0    173
+Name: label, dtype: int64
+y_test:
+1    1026
+0     410
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [1436]
+Model LogReg, Predictions: [1], [1436]
+Model XGB, Predictions: [0 1], [  76 1360]
+Ratio of negative to positive labels (0.2857142857142857) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.14426229508196722) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.1814595660749507) is under 0.4, oversampling negative class.
+y_train:
+1    445
+0    178
+Name: label, dtype: int64
+y_test:
+1    1014
+0     405
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [1419]
+Model LogReg, Predictions: [0 1], [   5 1414]
+Model XGB, Predictions: [0 1], [  27 1392]
+Ratio of negative to positive labels (0.2857142857142857) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.15636363636363637) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.1772030651340996) is under 0.4, oversampling negative class.
+y_train:
+1    415
+0    166
+Name: label, dtype: int64
+y_test:
+1    1044
+0     417
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [1461]
+Model LogReg, Predictions: [0 1], [  58 1403]
+Model XGB, Predictions: [0 1], [  81 1380]
+Ratio of negative to positive labels (0.2857142857142857) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.13175675675675674) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.18475073313782991) is under 0.4, oversampling negative class.
+y_train:
+1    436
+0    174
+Name: label, dtype: int64
+y_test:
+1    1023
+0     409
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [1432]
+Model LogReg, Predictions: [1], [1432]
+Model XGB, Predictions: [0 1], [  80 1352]
+Ratio of negative to positive labels (0.2857142857142857) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.14426229508196722) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.1814595660749507) is under 0.4, oversampling negative class.
+y_train:
+1    445
+0    178
+Name: label, dtype: int64
+y_test:
+1    1014
+0     405
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [1419]
+Model LogReg, Predictions: [0 1], [  16 1403]
+Model XGB, Predictions: [0 1], [  29 1390]
+Ratio of negative to positive labels (0.2857142857142857) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.18120805369127516) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.17042115572967678) is under 0.4, oversampling negative class.
+y_train:
+1    438
+0    175
+Name: label, dtype: int64
+y_test:
+1    1021
+0     408
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [1429]
+Model LogReg, Predictions: [1], [1429]
+Model XGB, Predictions: [0 1], [  70 1359]
+Ratio of negative to positive labels (0.2857142857142857) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.17747440273037543) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.17153996101364521) is under 0.4, oversampling negative class.
+y_train:
+1    433
+0    173
+Name: label, dtype: int64
+y_test:
+1    1026
+0     410
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [1436]
+Model LogReg, Predictions: [1], [1436]
+Model XGB, Predictions: [0 1], [  94 1342]
+Ratio of negative to positive labels (0.2857142857142857) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.1505016722408027) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.17941176470588235) is under 0.4, oversampling negative class.
+y_train:
+1    439
+0    175
+Name: label, dtype: int64
+y_test:
+1    1020
+0     408
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [1428]
+Model LogReg, Predictions: [0 1], [   5 1423]
+Model XGB, Predictions: [0 1], [  53 1375]
+SVM accuracy over 10 rounds: 0.7144651759941117
+Model evaluation metrics for SVM:
+	Precision: 0.7144651759941117
+	Recall: 1.0
+	F1-score: 0.8334554504235007
+	AUC score: 0.5
+LogReg accuracy over 10 rounds: 0.715644384933869
+Model evaluation metrics for LogReg:
+	Precision: 0.7164301418759687
+	Recall: 0.9965270120204666
+	F1-score: 0.8335492376761506
+	AUC score: 0.5046760948933752
+XGB accuracy over 10 rounds: 0.6934271116138404
+Model evaluation metrics for XGB:
+	Precision: 0.7145385974107139
+	Recall: 0.9509504220529379
+	F1-score: 0.8158203928363588
+	AUC score: 0.49999899374591605
+
+
+APD PHASES 3 --------------------------------------------------
+Ratio of negative to positive labels (0.3090909090909091) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.18791946308724833) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.168462291870715) is under 0.4, oversampling negative class.
+y_train:
+1    353
+0    141
+Name: label, dtype: int64
+y_test:
+1    1021
+0     408
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [1429]
+Model LogReg, Predictions: [1], [1429]
+Model XGB, Predictions: [0 1], [  83 1346]
+Ratio of negative to positive labels (0.3090909090909091) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.15034965034965034) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.17909002904162633) is under 0.4, oversampling negative class.
+y_train:
+1    341
+0    136
+Name: label, dtype: int64
+y_test:
+1    1033
+0     413
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [1446]
+Model LogReg, Predictions: [0 1], [ 180 1266]
+Model XGB, Predictions: [0 1], [  83 1363]
+Ratio of negative to positive labels (0.3090909090909091) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.20622568093385213) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.1647834274952919) is under 0.4, oversampling negative class.
+y_train:
+1    312
+0    124
+Name: label, dtype: int64
+y_test:
+1    1062
+0     424
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [1486]
+Model LogReg, Predictions: [1], [1486]
+Model XGB, Predictions: [0 1], [  87 1399]
+Ratio of negative to positive labels (0.3090909090909091) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.21785714285714286) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.16073147256977863) is under 0.4, oversampling negative class.
+y_train:
+1    335
+0    134
+Name: label, dtype: int64
+y_test:
+1    1039
+0     415
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [1454]
+Model LogReg, Predictions: [0 1], [  71 1383]
+Model XGB, Predictions: [0 1], [ 148 1306]
+Ratio of negative to positive labels (0.3090909090909091) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.12171052631578948) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.18817733990147784) is under 0.4, oversampling negative class.
+y_train:
+1    359
+0    143
+Name: label, dtype: int64
+y_test:
+1    1015
+0     406
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [1421]
+Model LogReg, Predictions: [1], [1421]
+Model XGB, Predictions: [0 1], [  26 1395]
+Ratio of negative to positive labels (0.3090909090909091) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.18928571428571428) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.16843118383060635) is under 0.4, oversampling negative class.
+y_train:
+1    335
+0    134
+Name: label, dtype: int64
+y_test:
+1    1039
+0     415
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [1454]
+Model LogReg, Predictions: [0 1], [  26 1428]
+Model XGB, Predictions: [0 1], [  92 1362]
+Ratio of negative to positive labels (0.3090909090909091) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.096875) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.1971971971971972) is under 0.4, oversampling negative class.
+y_train:
+1    375
+0    150
+Name: label, dtype: int64
+y_test:
+1    999
+0    399
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [1398]
+Model LogReg, Predictions: [1], [1398]
+Model XGB, Predictions: [0 1], [  78 1320]
+Ratio of negative to positive labels (0.3090909090909091) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.23161764705882354) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.15759312320916904) is under 0.4, oversampling negative class.
+y_train:
+1    327
+0    130
+Name: label, dtype: int64
+y_test:
+1    1047
+0     418
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [1465]
+Model LogReg, Predictions: [1], [1465]
+Model XGB, Predictions: [0 1], [ 172 1293]
+Ratio of negative to positive labels (0.3090909090909091) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.19434628975265017) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.166988416988417) is under 0.4, oversampling negative class.
+y_train:
+1    338
+0    135
+Name: label, dtype: int64
+y_test:
+1    1036
+0     414
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [1450]
+Model LogReg, Predictions: [0 1], [  31 1419]
+Model XGB, Predictions: [0 1], [  58 1392]
+Ratio of negative to positive labels (0.3090909090909091) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.2062937062937063) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.16360116166505323) is under 0.4, oversampling negative class.
+y_train:
+1    341
+0    136
+Name: label, dtype: int64
+y_test:
+1    1033
+0     413
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [1446]
+Model LogReg, Predictions: [0 1], [  16 1430]
+Model XGB, Predictions: [0 1], [  94 1352]
+SVM accuracy over 10 rounds: 0.7145122378857761
+Model evaluation metrics for SVM:
+	Precision: 0.7145122378857761
+	Recall: 1.0
+	F1-score: 0.8334874687901849
+	AUC score: 0.5
+LogReg accuracy over 10 rounds: 0.7146393230301855
+Model evaluation metrics for LogReg:
+	Precision: 0.7197126306534056
+	Recall: 0.9844375374838569
+	F1-score: 0.8312041276988046
+	AUC score: 0.5119109874536001
+XGB accuracy over 10 rounds: 0.6838838267691342
+Model evaluation metrics for XGB:
+	Precision: 0.7127456584872652
+	Recall: 0.9340925533827269
+	F1-score: 0.8083792850727649
+	AUC score: 0.4958871979147042
+
+
+APD PHASES 4 --------------------------------------------------
+Ratio of negative to positive labels (0.2743362831858407) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.13707165109034267) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.1843687374749499) is under 0.4, oversampling negative class.
+y_train:
+1    434
+0    173
+Name: label, dtype: int64
+y_test:
+1    998
+0    399
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [1397]
+Model LogReg, Predictions: [1], [1397]
+Model XGB, Predictions: [0 1], [  41 1356]
+Ratio of negative to positive labels (0.2743362831858407) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.2489451476793249) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.15619223659889095) is under 0.4, oversampling negative class.
+y_train:
+1    350
+0    139
+Name: label, dtype: int64
+y_test:
+1    1082
+0     432
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [1514]
+Model LogReg, Predictions: [0 1], [  49 1465]
+Model XGB, Predictions: [0 1], [  58 1456]
+Ratio of negative to positive labels (0.2743362831858407) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.18702290076335878) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.1693472090823084) is under 0.4, oversampling negative class.
+y_train:
+1    375
+0    149
+Name: label, dtype: int64
+y_test:
+1    1057
+0     422
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [1479]
+Model LogReg, Predictions: [0 1], [  20 1459]
+Model XGB, Predictions: [0 1], [  41 1438]
+Ratio of negative to positive labels (0.2743362831858407) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.11145510835913312) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.1927710843373494) is under 0.4, oversampling negative class.
+y_train:
+1    436
+0    174
+Name: label, dtype: int64
+y_test:
+1    996
+0    398
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [1394]
+Model LogReg, Predictions: [0 1], [   5 1389]
+Model XGB, Predictions: [0 1], [  50 1344]
+Ratio of negative to positive labels (0.2743362831858407) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.21201413427561838) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.16216216216216217) is under 0.4, oversampling negative class.
+y_train:
+1    396
+0    158
+Name: label, dtype: int64
+y_test:
+1    1036
+0     414
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [1450]
+Model LogReg, Predictions: [0 1], [  77 1373]
+Model XGB, Predictions: [0 1], [  56 1394]
+Ratio of negative to positive labels (0.2743362831858407) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.15302491103202848) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.17822736030828518) is under 0.4, oversampling negative class.
+y_train:
+1    394
+0    157
+Name: label, dtype: int64
+y_test:
+1    1038
+0     415
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [1453]
+Model LogReg, Predictions: [0 1], [ 101 1352]
+Model XGB, Predictions: [0 1], [  83 1370]
+Ratio of negative to positive labels (0.2743362831858407) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.19298245614035087) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.16731141199226304) is under 0.4, oversampling negative class.
+y_train:
+1    398
+0    159
+Name: label, dtype: int64
+y_test:
+1    1034
+0     413
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [1447]
+Model LogReg, Predictions: [0 1], [   2 1445]
+Model XGB, Predictions: [0 1], [  79 1368]
+Ratio of negative to positive labels (0.2743362831858407) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.12040133779264214) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.18823529411764706) is under 0.4, oversampling negative class.
+y_train:
+1    412
+0    164
+Name: label, dtype: int64
+y_test:
+1    1020
+0     408
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [1428]
+Model LogReg, Predictions: [0 1], [ 132 1296]
+Model XGB, Predictions: [0 1], [ 108 1320]
+Ratio of negative to positive labels (0.2743362831858407) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.087248322147651) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.197845249755142) is under 0.4, oversampling negative class.
+y_train:
+1    411
+0    164
+Name: label, dtype: int64
+y_test:
+1    1021
+0     408
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [1429]
+Model LogReg, Predictions: [0 1], [ 109 1320]
+Model XGB, Predictions: [0 1], [  40 1389]
+Ratio of negative to positive labels (0.2743362831858407) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.12237762237762238) is under 0.4, oversampling negative class.
+Ratio of negative to positive labels (0.1868344627299129) is under 0.4, oversampling negative class.
+y_train:
+1    399
+0    159
+Name: label, dtype: int64
+y_test:
+1    1033
+0     413
+Name: label, dtype: int64
+Model SVM, Predictions: [1], [1446]
+Model LogReg, Predictions: [0 1], [  44 1402]
+Model XGB, Predictions: [0 1], [  33 1413]
+SVM accuracy over 10 rounds: 0.7144818431073716
+Model evaluation metrics for SVM:
+	Precision: 0.7144818431073716
+	Recall: 1.0
+	F1-score: 0.8334667888500367
+	AUC score: 0.5
+LogReg accuracy over 10 rounds: 0.7181546195360595
+Model evaluation metrics for LogReg:
+	Precision: 0.7249828949535384
+	Recall: 0.9764927032989531
+	F1-score: 0.8319216357826003
+	AUC score: 0.5240821295056626
+XGB accuracy over 10 rounds: 0.6943257870540832
+Model evaluation metrics for XGB:
+	Precision: 0.7130734687822496
+	Recall: 0.9573391001783375
+	F1-score: 0.8172925801659702
+	AUC score: 0.4967475491746386
 
 

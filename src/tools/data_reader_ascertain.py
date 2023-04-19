@@ -92,7 +92,8 @@ def get_self_reports(self_report_type):
 
 def get_mean_self_reports(self_report_type):
     self_report_df = get_self_reports(self_report_type)
-    mean_self_reports = pd.DataFrame(self_report_df[CLIPS].mean(axis=1), columns=["mean"])
+    # mean_self_reports = pd.DataFrame(self_report_df[CLIPS].mean(axis=1), columns=["mean"])
+    mean_self_reports = pd.DataFrame(self_report_df[CLIPS].median(axis=1), columns=["mean"])  # use median because self-reports are strongly skewed to the right
     mean_self_reports.insert(0, column="subject", value=list(range(1, 59)))
     return mean_self_reports
     

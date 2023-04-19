@@ -97,22 +97,22 @@ def train_test_split(x, y, test_size=0.15, by_subject=True, is_resample=False):
     return x_train, y_train, x_test, y_test, indices
 
 
-def resample(x, y):
+def resample(x, y, threshold=0.333):
     if not x.empty and not y.empty:
         _, counts = np.unique(y["label"], return_counts=True)
         if counts.shape[0] > 1:
             neg = counts[0]
             pos = counts[1]
-            if neg / pos < 0.333:
-                print(f"Ratio of negative to positive labels ({neg/pos}) is under 33%, oversampling negative class.")
+            if neg / pos < threshold:
+                print(f"Ratio of negative to positive labels ({neg/pos}) is under {threshold}, oversampling negative class.")
                 random.seed(datetime.datetime.now().timestamp())
-                oversample = RandomOverSampler(sampling_strategy=0.333)
+                oversample = RandomOverSampler(sampling_strategy=threshold)
                 x, y = oversample.fit_resample(x, y["label"])
                 y = pd.concat([x["subject"], y], axis=1)
-            elif pos / neg < 0.333:
-                print(f"Ratio of positive to negative labels ({pos/neg}) is under 33%, oversampling positive class.")
+            elif pos / neg < threshold:
+                print(f"Ratio of positive to negative labels ({pos/neg}) is under {threshold}, oversampling positive class.")
                 random.seed(datetime.datetime.now().timestamp())
-                oversample = RandomOverSampler(sampling_strategy=0.333)
+                oversample = RandomOverSampler(sampling_strategy=threshold)
                 x, y = oversample.fit_resample(x, y["label"])
                 y = pd.concat([x["subject"], y], axis=1)
     return x, y
