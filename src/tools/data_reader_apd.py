@@ -423,16 +423,16 @@ def get_dass_labels(dass="Anxiety", threshold="fixed"):
 
 def get_suds_labels(phases, threshold="fixed"):
     label_dict = {
-    "Baseline_Rest": "Baseline_SUDS", 
-    "BugBox_Relax": "BugBox_Relax_SUDS",
-    "BugBox_Anticipate": "BugBox_Preparation_SUDS",
-    "BugBox_Exposure": "BugBox_Exposure_SUDS", 
-    "BugBox_Break": "BugBox_Break_SUDS", 
-    "Speech_Relax": "Speech_Relax_SUDS",
-    "Speech_Anticipate": "Speech_SUDS",
-    "Speech_Exposure": "Speech_Exposure_SUDS",
-    "Speech_Break": "Speech_Break_SUDS"
-}
+        "Baseline_Rest": "Baseline_SUDS", 
+        "BugBox_Relax": "BugBox_Relax_SUDS",
+        "BugBox_Anticipate": "BugBox_Preparation_SUDS",
+        "BugBox_Exposure": "BugBox_Exposure_SUDS", 
+        "BugBox_Break": "BugBox_Break_SUDS", 
+        "Speech_Relax": "Speech_Relax_SUDS",
+        "Speech_Anticipate": "Speech_SUDS",
+        "Speech_Exposure": "Speech_Exposure_SUDS",
+        "Speech_Break": "Speech_Break_SUDS"
+    }
     for i in range(len(phases)):
         phases[i] = label_dict[phases[i]]
     participant_file = os.path.join(Paths.DATA_DIR, "participants_details.csv")

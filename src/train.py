@@ -158,7 +158,7 @@ def train_predict(models, x, y, test_size=0.15, by_subject=True, save_metrics=Tr
             report = None
         if print_preds and acc > 0.5:
             print(y_pred)
-        if get_shap_values and acc > 0.5:
+        if get_shap_values and acc > 0.:
             try: 
                 explainer = shap.Explainer(model)
             except Exception as e:
@@ -270,13 +270,18 @@ class Train_ASCERTAIN:
 
 class Train_APD:
     
-    def get_ratings(threshold="dynamic"):
-        SUDS_labels = [
-            "Participant",
-            "Baseline_SUDS",
-            "BugBox_Relax_SUDS", "BugBox_Preparation_SUDS", "BugBox_Exposure_SUDS", "BugBox_Break_SUDS",
-            "Speech_Relax_SUDS", "Speech_SUDS", "Speech_Exposure_SUDS", "Speech_Break_SUDS"
-        ]
+    def get_ratings(phases, threshold="dynamic"):
+        label_dict = {
+            "Baseline_Rest": "Baseline_SUDS", 
+            "BugBox_Relax": "BugBox_Relax_SUDS",
+            "BugBox_Anticipate": "BugBox_Preparation_SUDS",
+            "BugBox_Exposure": "BugBox_Exposure_SUDS", 
+            "BugBox_Break": "BugBox_Break_SUDS", 
+            "Speech_Relax": "Speech_Relax_SUDS",
+            "Speech_Anticipate": "Speech_SUDS",
+            "Speech_Exposure": "Speech_Exposure_SUDS",
+            "Speech_Break": "Speech_Break_SUDS"
+        }
 
         ha_participant_indices = [
             'P4', 'P6', 'P7', 'P8', 'P10', 'P12', 'P15', 'P16', 'P18', 'P22', 'P26', 'P27', 'P29', 'P31', 'P32', 'P33', 'P35', 'P42', 'P45', 'P47', 'P48', 'P49', 'P54', 'P55', 'P66', 'P69'
@@ -289,7 +294,8 @@ class Train_APD:
         participant_file = os.path.join(dr_a.Paths.DATA_DIR, "participants_details.csv")
         df = pd.read_csv(participant_file)
 
-        suds_df = df[SUDS_labels]
+        suds_labels = ["Participant"] + [label_dict[phase] for phase in phases]
+        suds_df = df[suds_labels]
         ha_suds_df = suds_df.loc[suds_df['Participant'].isin(ha_participant_indices)]
         la_suds_df = suds_df.loc[suds_df['Participant'].isin(la_participant_indices)]
 
@@ -304,15 +310,14 @@ class Train_APD:
             la_suds_df.iloc[i, la_suds_df.columns.get_loc("subject")] = p
 
         if threshold == "fixed": 
-            ha_suds_df['mean'] = pd.Series([50 for _ in range(ha_suds_df.shape[0])])
-            la_suds_df['mean'] = pd.Series([50 for _ in range(la_suds_df.shape[0])])    
+            ha_suds_df['mean'] = [50 for _ in range(ha_suds_df.shape[0])]
+            la_suds_df['mean'] = [50 for _ in range(la_suds_df.shape[0])]
         else:
             ha_suds_df['mean'] = ha_suds_df.iloc[:, 1:].mean(axis=1)
             la_suds_df['mean'] = la_suds_df.iloc[:, 1:].mean(axis=1)
-        columns = {c: SUDS_labels.index(c)-1 for c in ha_suds_df.columns[1:-1]}
 
-        ha_rankings = ha_suds_df.rename(columns={c: SUDS_labels.index(c)-1 for c in ha_suds_df.columns[1:-1]}).reset_index(drop=True)
-        la_rankings = la_suds_df.rename(columns={c: SUDS_labels.index(c)-1 for c in la_suds_df.columns[1:-1]}).reset_index(drop=True)
+        ha_rankings = ha_suds_df.rename(columns={c: suds_labels.index(c)-1 for c in ha_suds_df.columns[1:-1]}).reset_index(drop=True)
+        la_rankings = la_suds_df.rename(columns={c: suds_labels.index(c)-1 for c in la_suds_df.columns[1:-1]}).reset_index(drop=True)
 
         return ha_rankings, la_rankings
 
@@ -321,10 +326,10 @@ class Train_APD:
         """
         anxiety_label_type: can be None, "Trait", "Anxiety", "Depression", "Gender", "Random"
             - Adds an extra feature vector 
-            - Labels geerated based on SUDS responses
+            - Labels generated based on SUDS responses
         """
         metrics_folder = dr_a.Paths.METRICS
-        ha_rankings, la_rankings = Train_APD.get_ratings(threshold)
+        ha_rankings, la_rankings = Train_APD.get_ratings(phases, threshold)
 
         columns = metrics.copy()
         columns.insert(0, "subject")
@@ -428,7 +433,6 @@ class Train_APD:
                 label.append(0)  # low anxiety
             else:
                 label.append(1)  # high anxiety
-        
         data_y = pd.DataFrame({"subject": subjects, "label": label})
         # data_y = pd.DataFrame({"ranking": ranking_col})
 
@@ -440,12 +444,12 @@ class Train_APD:
 
 class Train_WESAD:
 
-    def get_labels():
-        stai_scores = dr_w.get_stai_scores()
+    def get_labels(phases):
+        stai_scores = dr_w.get_stai_scores(phases)
         stai_scores = stai_scores[stai_scores.iloc[:, 0] != 3.0].reset_index(drop=True)  # remove subject 3 due to NaNs in Medi_2 phase
-        dim_scores_valence = dr_w.get_dim_scores(dim_type="valence")
+        dim_scores_valence = dr_w.get_dim_scores(phases, dim_type="valence")
         dim_scores_valence = dim_scores_valence[dim_scores_valence.iloc[:, 0] != 3.0].reset_index(drop=True)
-        dim_scores_arousal = dr_w.get_dim_scores(dim_type="arousal")
+        dim_scores_arousal = dr_w.get_dim_scores(phases, dim_type="arousal")
         dim_scores_arousal = dim_scores_arousal[dim_scores_arousal.iloc[:, 0] != 3.0].reset_index(drop=True)
 
         return stai_scores, dim_scores_arousal, dim_scores_valence
@@ -456,7 +460,7 @@ class Train_WESAD:
             label_type == "all": classification between stress and non-stress phases
         """
         metrics_folder = dr_w.Paths.METRICS
-        stai_scores, dim_scores_arousal, dim_scores_valence = Train_WESAD.get_labels()
+        stai_scores, dim_scores_arousal, dim_scores_valence = Train_WESAD.get_labels(phases)
 
         columns = metrics.copy()
         columns.insert(0, "subject")
@@ -558,7 +562,6 @@ class Train_WESAD:
                 data_col = data_x[metric]
                 data_col = (data_col - data_col.min())/(data_col.max() - data_col.min())
                 data_x[metric] = data_col
-
         return data_x, data_y
 
     
@@ -649,7 +652,7 @@ class Train_POPANE:
                 else:
                     print(row.loc[:, phase].iloc[0])
                     y_labels.append(row.loc[:, phase].iloc[0])
-
+        
         y_labels = pd.Series(data=y_labels)
         data_y = pd.DataFrame({"subject": subjects, "label": y_labels})
 
@@ -766,7 +769,8 @@ class Train_Multi_Dataset:
                 }
             else:
                 report = None
-            if get_shap_values and acc > 0.65:
+            if get_shap_values and acc > 0:
+                print("Calculating SHAP values")
                 try: 
                     explainer = shap.Explainer(model)
                 except Exception as e:
