@@ -77,6 +77,7 @@ def train_test_split(x, y, test_size=0.15, by_subject=True, is_resample=False):
     if by_subject:
         subjects = list(x.loc[:, "subject"].unique())
         indices = random.sample(subjects, int(len(subjects)*test_size))
+        indices = sorted(indices)
         # print(f"test subjects: {indices}")
         x_train = x[~x["subject"].isin(indices)]
         y_train = y[~y["subject"].isin(indices)]
@@ -85,6 +86,7 @@ def train_test_split(x, y, test_size=0.15, by_subject=True, is_resample=False):
     else:
         num_samples = x.shape[0]
         indices = random.sample(range(num_samples), int(num_samples*test_size))
+        indices = sorted(indices)
         x_train = x[~x.index.isin(indices)]
         y_train = y[~y.index.isin(indices)]
         x_test = x[x.index.isin(indices)]
@@ -158,12 +160,13 @@ def train_predict(models, x, y, test_size=0.15, by_subject=True, save_metrics=Tr
             report = None
         if print_preds and acc > 0.5:
             print(y_pred)
-        if get_shap_values and acc > 0.:
+        if get_shap_values:
             try: 
                 explainer = shap.Explainer(model)
             except Exception as e:
                 explainer = shap.Explainer(model.predict, x_train)
-            shap_values = explainer(x_test)
+            shap_values = explainer(x_train)
+            # shap_values = explainer(x_test)
         else:
             shap_values = None
         out[model_name] = (acc, report, shap_values)
@@ -780,7 +783,6 @@ class Train_Multi_Dataset:
                 shap_values = None
             out[model_name] = (acc, report, shap_values)
         return out
-
 
 
 if __name__ == "__main__":
