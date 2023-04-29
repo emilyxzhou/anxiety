@@ -105,22 +105,25 @@ def resample(x, y, threshold=0.333):
         if counts.shape[0] > 1:
             neg = counts[0]
             pos = counts[1]
-            if neg / pos < threshold:
-                print(f"Ratio of negative to positive labels ({neg/pos}) is under {threshold}, oversampling negative class.")
-                random.seed(datetime.datetime.now().timestamp())
-                oversample = RandomOverSampler(sampling_strategy=threshold)
-                x, y = oversample.fit_resample(x, y["label"])
-                y = pd.concat([x["subject"], y], axis=1)
-            elif pos / neg < threshold:
-                print(f"Ratio of positive to negative labels ({pos/neg}) is under {threshold}, oversampling positive class.")
-                random.seed(datetime.datetime.now().timestamp())
-                oversample = RandomOverSampler(sampling_strategy=threshold)
-                x, y = oversample.fit_resample(x, y["label"])
-                y = pd.concat([x["subject"], y], axis=1)
+            try:
+                if neg / pos < threshold:
+                    print(f"Ratio of negative to positive labels ({neg/pos}) is under {threshold}, oversampling negative class.")
+                    random.seed(datetime.datetime.now().timestamp())
+                    oversample = RandomOverSampler(sampling_strategy=threshold)
+                    x, y = oversample.fit_resample(x, y["label"])
+                    y = pd.concat([x["subject"], y], axis=1)
+                elif pos / neg < threshold:
+                    print(f"Ratio of positive to negative labels ({pos/neg}) is under {threshold}, oversampling positive class.")
+                    random.seed(datetime.datetime.now().timestamp())
+                    oversample = RandomOverSampler(sampling_strategy=threshold)
+                    x, y = oversample.fit_resample(x, y["label"])
+                    y = pd.concat([x["subject"], y], axis=1)
+            except Exception as e:
+                print("Error in resampling train/test data")
     return x, y
 
 
-def train_predict(models, x, y, test_size=0.15, by_subject=True, save_metrics=True, get_shap_values=False, print_preds=False, is_resample=False):
+def train_predict(models, x, y, test_size=0.15, by_subject=True, save_metrics=True, get_shap_values=False, print_preds=False, is_resample=False, drop_subject=False):
     """
     models: dictionary of {"name": model}
     """
@@ -131,6 +134,9 @@ def train_predict(models, x, y, test_size=0.15, by_subject=True, save_metrics=Tr
         x_train, y_train, x_test, y_test, test_subjects = train_test_split(x, y, test_size, by_subject, is_resample=is_resample)
     # print(f"x_train: {x_train.shape}")
     # print(f"y_train: {y_train.shape}")
+    if drop_subject:
+        x_train = x_train.drop("subject", axis=1)
+        x_test = x_test.drop("subject", axis=1)
     y_test = y_test.loc[:, "label"]
 
     print(f"y_train:\n{y_train.loc[:, 'label'].value_counts()}")
@@ -138,7 +144,7 @@ def train_predict(models, x, y, test_size=0.15, by_subject=True, save_metrics=Tr
 
     for model_name in models.keys():
         model = models[model_name]
-        model.fit(x_train, y_train.loc[:, "label"])
+        model = model.fit(x_train, y_train.loc[:, "label"])
         y_pred = model.predict(x_test)
 
         unique, counts = np.unique(y_pred, return_counts=True)
@@ -161,15 +167,15 @@ def train_predict(models, x, y, test_size=0.15, by_subject=True, save_metrics=Tr
         if print_preds and acc > 0.5:
             print(y_pred)
         if get_shap_values:
-            try: 
-                explainer = shap.Explainer(model)
-            except Exception as e:
-                explainer = shap.Explainer(model.predict, x_train)
-            shap_values = explainer(x_train)
-            # shap_values = explainer(x_test)
+            print("Calculating shap values")
+            if model_name == "XGB":
+                explainer  = shap.Explainer(model, x_train)
+                importance = explainer(x_train)
+            elif model_name == "LogReg":
+                importance = model.coef_
         else:
-            shap_values = None
-        out[model_name] = (acc, report, shap_values)
+            importance = None
+        out[model_name] = (acc, report, importance)
     return out
 
 
@@ -728,7 +734,7 @@ class Train_SFI:
 
 class Train_Multi_Dataset:
     
-    def train_across_datasets(models, dataset_a_x, dataset_a_y, dataset_b_x, dataset_b_y, test_size=0.80, by_subject=True, save_metrics=True, target_names=["1", "0"], get_shap_values=False, is_resample=False):
+    def train_across_datasets(models, dataset_a_x, dataset_a_y, dataset_b_x, dataset_b_y, test_size=0.80, by_subject=True, save_metrics=True, target_names=["1", "0"], get_shap_values=False, is_resample=False, drop_subject=False):
         """
         test_size: Proportion of dataset_b to hold out for model testing.
         """
@@ -740,6 +746,10 @@ class Train_Multi_Dataset:
         x_train = pd.concat([x_train_a, x_train_b])
         y_train = pd.concat([y_train_a, y_train_b])
         x_test = x_test_b
+
+        if drop_subject:
+            x_train = x_train.drop("subject", axis=1)
+            x_test = x_test.drop("subject", axis=1)
         y_test = y_test_b.loc[:, "label"]
 
         print(f"y_train:\n{y_train.loc[:, 'label'].value_counts()}")
@@ -772,16 +782,18 @@ class Train_Multi_Dataset:
                 }
             else:
                 report = None
-            if get_shap_values and acc > 0:
-                print("Calculating SHAP values")
-                try: 
-                    explainer = shap.Explainer(model)
-                except Exception as e:
-                    explainer = shap.Explainer(model.predict, x_train)
-                shap_values = explainer(x_test)
+            if get_shap_values:
+                print("Calculating shap values")
+                if model_name == "XGB":
+                    explainer  = shap.Explainer(model, x_train)
+                    importance = explainer(x_train)
+                elif model_name == "LogReg":
+                    importance = model.coef_
+                elif model_name == "RF":
+                    importance = model.feature_importances_
             else:
-                shap_values = None
-            out[model_name] = (acc, report, shap_values)
+                importance = None
+            out[model_name] = (acc, report, importance)
         return out
 
 

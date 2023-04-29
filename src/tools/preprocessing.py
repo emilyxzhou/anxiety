@@ -174,8 +174,9 @@ def calculate_fft_1d(data, fs):
     data_amp = np.abs(fft(data.flatten()))
     data_amp = data_amp
     n = data_amp.size
-    data_amp = data_amp / n
-    freq = fftfreq(n, d=1/fs)
+    # data_amp = data_amp / n
+    data_amp = data_amp[0:n//2]
+    freq = fftfreq(n, d=1/fs)[0:n//2]
     # freq = fftshift(freq)  # don't need this
     freq = np.reshape(freq, (freq.size, 1))
     data_amp = np.reshape(data_amp, (data_amp.size, 1))
