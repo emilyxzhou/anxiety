@@ -1,6 +1,7 @@
 import datetime
 import glob
 import importlib
+import itertools
 import matplotlib.pyplot as plt
 import numpy as np
 import os
@@ -73,16 +74,28 @@ class Metrics:
     WRIST = [MEAN_WRIST_ACT_L, MEAN_WRIST_ACT_R, PEAK_WRIST_ACC_L, PEAK_WRIST_ACC_R]
 
 
-def train_test_split(x, y, test_size=0.15, by_subject=True, is_resample=False):        
+def train_test_split(x, y, test_size=0.1, by_subject=True, is_resample=False, folds=1): 
     if by_subject:
         subjects = list(x.loc[:, "subject"].unique())
-        indices = random.sample(subjects, int(len(subjects)*test_size))
-        indices = sorted(indices)
-        # print(f"test subjects: {indices}")
-        x_train = x[~x["subject"].isin(indices)]
-        y_train = y[~y["subject"].isin(indices)]
-        x_test = x[x["subject"].isin(indices)]
-        y_test = y[y["subject"].isin(indices)]
+        if folds == 1:
+            indices = random.sample(subjects, int(len(subjects)*test_size))
+            indices = sorted(indices)
+            # print(f"test subjects: {indices}")
+            x_train = [x[~x["subject"].isin(indices)]]
+            y_train = [y[~y["subject"].isin(indices)]]
+            x_test = [x[x["subject"].isin(indices)]]
+            y_test = [y[y["subject"].isin(indices)]]
+        else:
+            x_train = []
+            y_train = []
+            x_test = []
+            y_test = []
+            indices_list = list(itertools.combinations(subjects, len(subjects) // folds))
+            for indices in indices_list:
+                x_train.append(x[~x["subject"].isin(indices)])
+                y_train.append(y[~y["subject"].isin(indices)])
+                x_test.append(x[x["subject"].isin(indices)])
+                y_test.append(y[y["subject"].isin(indices)])
     else:
         num_samples = x.shape[0]
         indices = random.sample(range(num_samples), int(num_samples*test_size))
@@ -96,7 +109,8 @@ def train_test_split(x, y, test_size=0.15, by_subject=True, is_resample=False):
         x_train, y_train = resample(x_train, y_train)
         x_test, y_test = resample(x_test, y_test)
 
-    return x_train, y_train, x_test, y_test, indices
+    # return x_train, y_train, x_test, y_test, indices
+    return x_train, y_train, x_test, y_test
 
 
 def resample(x, y, threshold=0.333):
@@ -123,65 +137,71 @@ def resample(x, y, threshold=0.333):
     return x, y
 
 
-def train_predict(models, x, y, test_size=0.15, by_subject=True, save_metrics=True, get_shap_values=False, print_preds=False, is_resample=False, drop_subject=False):
+def train_predict(models, x, y, test_size=0.15, by_subject=True, save_metrics=True, get_shap_values=False, print_preds=False, is_resample=False, drop_subject=False, folds=1):
     """
     models: dictionary of {"name": model}
     """
-    out = {}
-    x_train, y_train, x_test, y_test, test_subjects = train_test_split(x, y, test_size, by_subject, is_resample=is_resample)
-    while y_test.loc[:, "label"].nunique() == 1:
+    # TODO: FIX K-FOLD CV
+    # x_train, y_train, x_test, y_test, test_subjects = train_test_split(x, y, test_size, by_subject, is_resample=is_resample, folds)
+    x_train, y_train, x_test, y_test = train_test_split(x, y, test_size, by_subject, is_resample=is_resample, folds=folds)
+    while any(labels.loc[:, "label"].nunique() == 1 for labels in y_test):
         print("Only one label in test data, rerunning train_test_split")
-        x_train, y_train, x_test, y_test, test_subjects = train_test_split(x, y, test_size, by_subject, is_resample=is_resample)
+        # x_train, y_train, x_test, y_test, test_subjects = train_test_split(x, y, test_size, by_subject, is_resample=is_resample, folds)
+        x_train, y_train, x_test, y_test = train_test_split(x, y, test_size, by_subject, is_resample=is_resample, folds=folds)
     # print(f"x_train: {x_train.shape}")
     # print(f"y_train: {y_train.shape}")
     if drop_subject:
-        x_train = x_train.drop("subject", axis=1)
-        x_test = x_test.drop("subject", axis=1)
+        x_train = [x_train.drop("subject", axis=1)]
+        x_test = [x_test.drop("subject", axis=1)]
     y_test = y_test.loc[:, "label"]
 
     print(f"y_train:\n{y_train.loc[:, 'label'].value_counts()}")
     print(f"y_test:\n{y_test.value_counts()}")
 
     for model_name in models.keys():
-        model = models[model_name]
-        model = model.fit(x_train, y_train.loc[:, "label"])
-        y_pred = model.predict(x_test)
+        model_data = {}
+        for i in range(len(x_train)):
+            out = []
+            model = models[model_name]
+            model = model.fit(x_train[i], y_train[i].loc[:, "label"])
+            y_pred = model.predict(x_test[i])
 
-        unique, counts = np.unique(y_pred, return_counts=True)
-        print(f"Model {model_name}, Predictions: {unique}, {counts}")
-        
-        acc = accuracy_score(y_test, y_pred)
-        if save_metrics:
-            precision = precision_score(y_test, y_pred, zero_division=0)
-            recall = recall_score(y_test, y_pred, zero_division=0)
-            f1 = f1_score(y_test, y_pred, zero_division=0)
-            auc = roc_auc_score(y_test, y_pred)
-            report = {
-                "precision": precision,
-                "recall": recall,
-                "f1": f1,
-                "auc": auc
-            }
-        else:
-            report = None
-        if print_preds and acc > 0.5:
-            print(y_pred)
-        if get_shap_values:
-            print("Calculating shap values")
-            if model_name == "XGB":
-                explainer  = shap.Explainer(model, x_train)
-                importance = explainer(x_train)
-            elif model_name == "LogReg":
-                importance = model.coef_
-        else:
-            importance = None
-        out[model_name] = (acc, report, importance)
-    return out
+            unique, counts = np.unique(y_pred[i], return_counts=True)
+            print(f"Model {model_name}, Predictions: {unique}, {counts}")
+            
+            acc = accuracy_score(y_test[i], y_pred[i])
+            if save_metrics:
+                precision = precision_score(y_test[i], y_pred[i], zero_division=0)
+                recall = recall_score(y_test[i], y_pred[i], zero_division=0)
+                f1 = f1_score(y_test[i], y_pred[i], zero_division=0)
+                auc = roc_auc_score(y_test[i], y_pred[i])
+                report = {
+                    "precision": precision,
+                    "recall": recall,
+                    "f1": f1,
+                    "auc": auc
+                }
+            else:
+                report = None
+            if print_preds and acc > 0.5:
+                print(y_pred)
+            if get_shap_values:
+                print("Calculating shap values")
+                if model_name == "XGB":
+                    explainer  = shap.Explainer(model, x_train)
+                    importance = explainer(x_train)
+                elif model_name == "LogReg":
+                    importance = model.coef_
+            else:
+                importance = None
+            out.append((acc, report, importance))
+        model_data[model_name] = out
+    return model_data
 
 
 class Train_ASCERTAIN:
 
-    def get_ascertain_data(metrics, verbose=False, label_type="Arousal", threshold="dynamic", normalize=False, binary_labels=True):
+    def get_ascertain_data(metrics, verbose=False, label_type="Arousal", threshold="dynamic", normalize=True, binary_labels=True):
         metrics_folder = dr_asc.Paths.METRICS
         
         columns = metrics.copy()
@@ -218,6 +238,8 @@ class Train_ASCERTAIN:
             data_x.append(x)
         
         data_x = pd.concat(data_x).reset_index(drop=True)
+        data_x["lf_hf_ratio"] = data_x["lf_rr"] / data_x["hf_rr"]
+        metrics.append("lf_hf_ratio")
 
         subjects = data_x.loc[:, "subject"]
         phase_col = data_x.loc[:, "phaseId"]
@@ -273,7 +295,8 @@ class Train_ASCERTAIN:
                 data_col = data_x[metric]
                 data_col = (data_col - data_col.min())/(data_col.max() - data_col.min())
                 data_x[metric] = data_col
-
+        if "lf_hf_ratio" in metrics:
+            metrics.remove("lf_hf_ratio")
         return data_x, data_y
 
 
@@ -331,7 +354,7 @@ class Train_APD:
         return ha_rankings, la_rankings
 
 
-    def get_apd_data_ranking(metrics, phases, verbose=False, anxiety_label_type=None, threshold="dynamic", normalize=False, binary_labels=True):
+    def get_apd_data_ranking(metrics, phases, verbose=False, anxiety_label_type=None, threshold="dynamic", normalize=True, binary_labels=True):
         """
         anxiety_label_type: can be None, "Trait", "Anxiety", "Depression", "Gender", "Random"
             - Adds an extra feature vector 
@@ -416,7 +439,13 @@ class Train_APD:
 
             data_x.append(x)
         
-        data_x = pd.concat(data_x).reset_index(drop=True)
+        try:
+            data_x = pd.concat(data_x).reset_index(drop=True)
+            data_x["lf_hf_ratio"] = data_x["lf_rr"] / data_x["hf_rr"]
+            metrics.append("lf_hf_ratio")
+        except Exception:
+            pass
+            # print("Error in generating lf_hf_ratio")
 
         if normalize:
             # normalize columns
@@ -446,7 +475,8 @@ class Train_APD:
         # data_y = pd.DataFrame({"ranking": ranking_col})
 
         # out = pd.concat([data_x, data_y.iloc[:, 1:]], axis=1)
-        
+        if "lf_hf_ratio" in metrics:
+            metrics.remove("lf_hf_ratio")
         return data_x, data_y
         # return out
 
@@ -513,6 +543,9 @@ class Train_WESAD:
             data_x.append(x)
         
         data_x = pd.concat(data_x).reset_index(drop=True)
+        if "lf_rr" in metrics and "hf_rr" in metrics:
+            data_x["lf_hf_ratio"] = data_x["lf_rr"] / data_x["hf_rr"]
+            metrics.append("lf_hf_ratio")
 
         subjects = data_x.loc[:, "subject"]
         phase_col = data_x.loc[:, "phaseId"]
@@ -571,6 +604,8 @@ class Train_WESAD:
                 data_col = data_x[metric]
                 data_col = (data_col - data_col.min())/(data_col.max() - data_col.min())
                 data_x[metric] = data_col
+        if "lf_hf_ratio" in metrics:
+            metrics.remove("lf_hf_ratio")
         return data_x, data_y
 
     
