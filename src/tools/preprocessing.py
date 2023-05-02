@@ -3,8 +3,12 @@ import os
 import sys
 # NOTE: THIS IS THE CORRECT WAY TO DO RELATIVE IMPORTS
 cvx_eda_path = os.path.abspath(os.path.join(__file__, '..', '..', '..', 'cvxEDA', 'src'))
+pyeda_path = os.path.abspath(os.path.join(__file__, '..', '..', '..', 'pyEDA'))
+pyeda_main_path = os.path.abspath(os.path.join(__file__, '..', '..', '..', 'pyEDA', 'main'))
 src_path = os.path.abspath(os.path.join(__file__, '..', '..'))
 sys.path.append(cvx_eda_path)
+sys.path.append(pyeda_path)
+sys.path.append(pyeda_main_path)
 sys.path.append(src_path)
 import glob
 import heartpy as hp
@@ -18,6 +22,7 @@ import scipy.signal as ss
 import tools.data_reader_apd as dr
 
 from cvxEDA import cvxEDA
+import pyEDA
 from scipy.fft import fft, fftfreq
 
 import biosppy
@@ -380,9 +385,10 @@ def get_SC_metrics(eda, fs=FS_DICT[dr.DataTypes.EDA]):
     # sr = 200*(272+filtered)/(752-filtered)
     # sc = 1/sr
     [r, p, t, l, d, e, obj] = cvxEDA(eda, 1./fs, options={"show_progress": False})
-    r = np.log10(r + 1)
-    p = np.log10(p + 1)
-    return r, p
+    # r = np.log10(r + 1)
+    # p = np.log10(p + 1)
+    return r, t
+    # return phasic, tonic
 
 
 def get_mean_SCL(eda_signal, fs=FS_DICT[dr.DataTypes.EDA], window_size=60):
