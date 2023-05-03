@@ -90,7 +90,8 @@ def train_test_split(x, y, test_size=0.1, by_subject=True, is_resample=False, fo
             y_train = []
             x_test = []
             y_test = []
-            indices_list = list(itertools.combinations(subjects, len(subjects) // folds))
+            indices_list = list(itertools.combinations(subjects, int(len(subjects)*test_size)))
+            indices_list = random.sample(indices_list, folds)
             for indices in indices_list:
                 x_train.append(x[~x["subject"].isin(indices)])
                 y_train.append(y[~y["subject"].isin(indices)])
@@ -104,10 +105,26 @@ def train_test_split(x, y, test_size=0.1, by_subject=True, is_resample=False, fo
         y_train = y[~y.index.isin(indices)]
         x_test = x[x.index.isin(indices)]
         y_test = y[y.index.isin(indices)]
+    
+    # print([x for x in x_train])
+    # print([y for y in y_train])
+    # print([x for x in x_test])
+    # print([y for y in y_test])
 
     if is_resample:
-        x_train, y_train = resample(x_train, y_train)
-        x_test, y_test = resample(x_test, y_test)
+        resampled_x_train = []
+        resampled_y_train = []
+        resampled_x_test = []
+        resampled_y_test = []
+        for pair in zip(x_train, y_train):
+            x, y = resample(pair[0], pair[1])
+            resampled_x_train.append(x)
+            resampled_y_train.append(y)
+        for pair in zip(x_test, y_test):
+            x, y = resample(pair[0], pair[1])
+            resampled_x_test.append(x)
+            resampled_y_test.append(y)
+        return resampled_x_train, resampled_y_train, resampled_x_test, resampled_y_train
 
     # return x_train, y_train, x_test, y_test, indices
     return x_train, y_train, x_test, y_test
@@ -144,37 +161,37 @@ def train_predict(models, x, y, test_size=0.15, by_subject=True, save_metrics=Tr
     # TODO: FIX K-FOLD CV
     # x_train, y_train, x_test, y_test, test_subjects = train_test_split(x, y, test_size, by_subject, is_resample=is_resample, folds)
     x_train, y_train, x_test, y_test = train_test_split(x, y, test_size, by_subject, is_resample=is_resample, folds=folds)
-    while any(labels.loc[:, "label"].nunique() == 1 for labels in y_test):
-        print("Only one label in test data, rerunning train_test_split")
-        # x_train, y_train, x_test, y_test, test_subjects = train_test_split(x, y, test_size, by_subject, is_resample=is_resample, folds)
-        x_train, y_train, x_test, y_test = train_test_split(x, y, test_size, by_subject, is_resample=is_resample, folds=folds)
-    # print(f"x_train: {x_train.shape}")
-    # print(f"y_train: {y_train.shape}")
+    # while any(labels.loc[:, "label"].nunique() == 1 for labels in y_test):
+    #     print("Only one label in test data, rerunning train_test_split")
+    #     x_train, y_train, x_test, y_test = train_test_split(x, y, test_size, by_subject, is_resample=is_resample, folds=folds)
     if drop_subject:
-        x_train = [x_train.drop("subject", axis=1)]
-        x_test = [x_test.drop("subject", axis=1)]
-    y_test = y_test.loc[:, "label"]
+        x_train = [x.drop("subject", axis=1) for x in x_train]
+        x_test = [x.drop("subject", axis=1) for x in x_test]
+    y_test = [y.loc[:, "label"] for y in y_test]
 
-    print(f"y_train:\n{y_train.loc[:, 'label'].value_counts()}")
-    print(f"y_test:\n{y_test.value_counts()}")
+    for i in range(folds):
+        print(x_train[i].isnull().values.any())
+        print(y_train[i].isnull().values.any())
+        print(x_test[i].isnull().values.any())
+        print(y_test[i].isnull().values.any())
+        print(f"y_train | y_test:\n{y_train[i].loc[:, 'label'].value_counts()}\n{y_test[i].value_counts()}")
 
+    model_data = {}
     for model_name in models.keys():
-        model_data = {}
         for i in range(len(x_train)):
             out = []
             model = models[model_name]
             model = model.fit(x_train[i], y_train[i].loc[:, "label"])
             y_pred = model.predict(x_test[i])
 
-            unique, counts = np.unique(y_pred[i], return_counts=True)
+            unique, counts = np.unique(y_pred, return_counts=True)
             print(f"Model {model_name}, Predictions: {unique}, {counts}")
-            
-            acc = accuracy_score(y_test[i], y_pred[i])
+            acc = accuracy_score(y_test[i], y_pred)
             if save_metrics:
-                precision = precision_score(y_test[i], y_pred[i], zero_division=0)
-                recall = recall_score(y_test[i], y_pred[i], zero_division=0)
-                f1 = f1_score(y_test[i], y_pred[i], zero_division=0)
-                auc = roc_auc_score(y_test[i], y_pred[i])
+                precision = precision_score(y_test[i], y_pred, zero_division=0)
+                recall = recall_score(y_test[i], y_pred, zero_division=0)
+                f1 = f1_score(y_test[i], y_pred, zero_division=0)
+                auc = roc_auc_score(y_test[i], y_pred)
                 report = {
                     "precision": precision,
                     "recall": recall,
@@ -188,8 +205,8 @@ def train_predict(models, x, y, test_size=0.15, by_subject=True, save_metrics=Tr
             if get_shap_values:
                 print("Calculating shap values")
                 if model_name == "XGB":
-                    explainer  = shap.Explainer(model, x_train)
-                    importance = explainer(x_train)
+                    explainer = shap.Explainer(model, x_train[i])
+                    importance = explainer(x_train[i])
                 elif model_name == "LogReg":
                     importance = model.coef_
             else:

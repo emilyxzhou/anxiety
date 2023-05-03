@@ -22,7 +22,6 @@ import scipy.signal as ss
 import tools.data_reader_apd as dr
 
 from cvxEDA import cvxEDA
-import pyEDA
 from scipy.fft import fft, fftfreq
 
 import biosppy
@@ -385,8 +384,10 @@ def get_SC_metrics(eda, fs=FS_DICT[dr.DataTypes.EDA]):
     # sr = 200*(272+filtered)/(752-filtered)
     # sc = 1/sr
     [r, p, t, l, d, e, obj] = cvxEDA(eda, 1./fs, options={"show_progress": False})
-    # r = np.log10(r + 1)
-    # p = np.log10(p + 1)
+    r = np.log10(r + 1)
+    t = np.log10(t + 1)
+    print(r)
+    print(t)
     return r, t
     # return phasic, tonic
 
