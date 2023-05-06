@@ -2,6 +2,7 @@ import datetime
 import glob
 import importlib
 import itertools
+import math
 import matplotlib.pyplot as plt
 import numpy as np
 import os
@@ -33,6 +34,8 @@ warnings.filterwarnings(
     "ignore", 
     category=RuntimeWarning
 )
+
+random.seed(datetime.datetime.now().timestamp())
 
 
 class Metrics:
@@ -80,7 +83,6 @@ def train_test_split(x, y, test_size=0.1, by_subject=True, is_resample=False, fo
         if folds == 1:
             indices = random.sample(subjects, int(len(subjects)*test_size))
             indices = sorted(indices)
-            # print(f"test subjects: {indices}")
             x_train = [x[~x["subject"].isin(indices)]]
             y_train = [y[~y["subject"].isin(indices)]]
             x_test = [x[x["subject"].isin(indices)]]
@@ -90,13 +92,22 @@ def train_test_split(x, y, test_size=0.1, by_subject=True, is_resample=False, fo
             y_train = []
             x_test = []
             y_test = []
-            indices_list = list(itertools.combinations(subjects, int(len(subjects)*test_size)))
-            indices_list = random.sample(indices_list, folds)
-            for indices in indices_list:
-                x_train.append(x[~x["subject"].isin(indices)])
-                y_train.append(y[~y["subject"].isin(indices)])
-                x_test.append(x[x["subject"].isin(indices)])
-                y_test.append(y[y["subject"].isin(indices)])
+            random.shuffle(subjects)
+            indices_list =  []
+            fold_size = math.ceil(len(subjects) / folds)
+            for i in range(folds):
+                if i == folds-1:
+                    indices = subjects[i*fold_size:]
+                    indices_list.append(indices)
+                else:
+                    indices = subjects[i*fold_size:i*fold_size+fold_size]
+                    indices_list.append(indices)
+            print(indices_list)
+            for i in indices_list:
+                x_train.append(x[~x["subject"].isin(i)])
+                y_train.append(y[~y["subject"].isin(i)])
+                x_test.append(x[x["subject"].isin(i)])
+                y_test.append(y[y["subject"].isin(i)])
     else:
         num_samples = x.shape[0]
         indices = random.sample(range(num_samples), int(num_samples*test_size))
@@ -105,11 +116,6 @@ def train_test_split(x, y, test_size=0.1, by_subject=True, is_resample=False, fo
         y_train = y[~y.index.isin(indices)]
         x_test = x[x.index.isin(indices)]
         y_test = y[y.index.isin(indices)]
-    
-    # print([x for x in x_train])
-    # print([y for y in y_train])
-    # print([x for x in x_test])
-    # print([y for y in y_test])
 
     if is_resample:
         resampled_x_train = []
@@ -124,9 +130,8 @@ def train_test_split(x, y, test_size=0.1, by_subject=True, is_resample=False, fo
             x, y = resample(pair[0], pair[1])
             resampled_x_test.append(x)
             resampled_y_test.append(y)
-        return resampled_x_train, resampled_y_train, resampled_x_test, resampled_y_train
-
-    # return x_train, y_train, x_test, y_test, indices
+        return resampled_x_train, resampled_y_train, resampled_x_test, resampled_y_test
+    
     return x_train, y_train, x_test, y_test
 
 
@@ -139,13 +144,11 @@ def resample(x, y, threshold=0.333):
             try:
                 if neg / pos < threshold:
                     print(f"Ratio of negative to positive labels ({neg/pos}) is under {threshold}, oversampling negative class.")
-                    random.seed(datetime.datetime.now().timestamp())
                     oversample = RandomOverSampler(sampling_strategy=threshold)
                     x, y = oversample.fit_resample(x, y["label"])
                     y = pd.concat([x["subject"], y], axis=1)
                 elif pos / neg < threshold:
                     print(f"Ratio of positive to negative labels ({pos/neg}) is under {threshold}, oversampling positive class.")
-                    random.seed(datetime.datetime.now().timestamp())
                     oversample = RandomOverSampler(sampling_strategy=threshold)
                     x, y = oversample.fit_resample(x, y["label"])
                     y = pd.concat([x["subject"], y], axis=1)
@@ -154,11 +157,10 @@ def resample(x, y, threshold=0.333):
     return x, y
 
 
-def train_predict(models, x, y, test_size=0.15, by_subject=True, save_metrics=True, get_shap_values=False, print_preds=False, is_resample=False, drop_subject=False, folds=1):
+def train_predict(models, x, y, test_size=0.15, by_subject=True, save_metrics=True, get_importance=False, print_preds=False, is_resample=False, drop_subject=False, folds=1):
     """
     models: dictionary of {"name": model}
     """
-    # TODO: FIX K-FOLD CV
     # x_train, y_train, x_test, y_test, test_subjects = train_test_split(x, y, test_size, by_subject, is_resample=is_resample, folds)
     x_train, y_train, x_test, y_test = train_test_split(x, y, test_size, by_subject, is_resample=is_resample, folds=folds)
     # while any(labels.loc[:, "label"].nunique() == 1 for labels in y_test):
@@ -170,16 +172,17 @@ def train_predict(models, x, y, test_size=0.15, by_subject=True, save_metrics=Tr
     y_test = [y.loc[:, "label"] for y in y_test]
 
     for i in range(folds):
-        print(x_train[i].isnull().values.any())
-        print(y_train[i].isnull().values.any())
-        print(x_test[i].isnull().values.any())
-        print(y_test[i].isnull().values.any())
-        print(f"y_train | y_test:\n{y_train[i].loc[:, 'label'].value_counts()}\n{y_test[i].value_counts()}")
+        # print(x_train[i].isnull().values.any())
+        # print(y_train[i].isnull().values.any())
+        # print(x_test[i].isnull().values.any())
+        # print(y_test[i].isnull().values.any())
+        print(f"y_train | y_test:\n{y_train[i].loc[:, 'label'].value_counts().to_dict()} | {y_test[i].value_counts().to_dict()}")
 
     model_data = {}
     for model_name in models.keys():
-        for i in range(len(x_train)):
-            out = []
+        out = []
+        for i in range(folds):
+            print(f"Fold #{i}")
             model = models[model_name]
             model = model.fit(x_train[i], y_train[i].loc[:, "label"])
             y_pred = model.predict(x_test[i])
@@ -191,24 +194,32 @@ def train_predict(models, x, y, test_size=0.15, by_subject=True, save_metrics=Tr
                 precision = precision_score(y_test[i], y_pred, zero_division=0)
                 recall = recall_score(y_test[i], y_pred, zero_division=0)
                 f1 = f1_score(y_test[i], y_pred, zero_division=0)
-                auc = roc_auc_score(y_test[i], y_pred)
+                try:
+                    auc = roc_auc_score(y_test[i], y_pred)
+                except Exception as e:
+                    print("Only one class present in y_true. ROC AUC score is not defined in that case. Setting AUC score to -1.")
+                    auc = -1
                 report = {
                     "precision": precision,
                     "recall": recall,
                     "f1": f1,
                     "auc": auc
                 }
+                print(report)
             else:
                 report = None
             if print_preds and acc > 0.5:
                 print(y_pred)
-            if get_shap_values:
-                print("Calculating shap values")
+            if get_importance:
+                # print("Calculating shap values")
                 if model_name == "XGB":
                     explainer = shap.Explainer(model, x_train[i])
-                    importance = explainer(x_train[i])
+                    # importance = explainer(x_train[i], check_additivity=False)
+                    importance = model.feature_importances_
                 elif model_name == "LogReg":
-                    importance = model.coef_
+                    importance = model.coef_[0]
+                elif model_name == "RF":
+                    importance = model.feature_importances_
             else:
                 importance = None
             out.append((acc, report, importance))
@@ -255,8 +266,9 @@ class Train_ASCERTAIN:
             data_x.append(x)
         
         data_x = pd.concat(data_x).reset_index(drop=True)
-        data_x["lf_hf_ratio"] = data_x["lf_rr"] / data_x["hf_rr"]
-        metrics.append("lf_hf_ratio")
+        if "lf_rr" in metrics and "hf_rr" in metrics:
+            data_x["lf_hf_ratio"] = data_x["lf_rr"] / data_x["hf_rr"]
+            metrics.append("lf_hf_ratio")
 
         subjects = data_x.loc[:, "subject"]
         phase_col = data_x.loc[:, "phaseId"]
@@ -786,23 +798,33 @@ class Train_SFI:
 
 class Train_Multi_Dataset:
     
-    def train_across_datasets(models, dataset_a_x, dataset_a_y, dataset_b_x, dataset_b_y, test_size=0.80, by_subject=True, save_metrics=True, target_names=["1", "0"], get_shap_values=False, is_resample=False, drop_subject=False):
+    def train_across_datasets(models, dataset_a_x, dataset_a_y, dataset_b_x, dataset_b_y, test_size=0.80, by_subject=True, save_metrics=True, target_names=["1", "0"], get_importance=False, is_resample=False, drop_subject=False):
         """
         test_size: Proportion of dataset_b to hold out for model testing.
         """
         out = {}
-        x_train_a, y_train_a, x_test_a, y_test_a, test_subjects = train_test_split(dataset_a_x, dataset_a_y, test_size=0.0, by_subject=by_subject, is_resample=is_resample)
-        x_train_b, y_train_b, x_test_b, y_test_b, test_subjects = train_test_split(dataset_b_x, dataset_b_y, test_size=test_size, by_subject=by_subject, is_resample=is_resample)
-        # print(f"x_train: {x_train.shape}")
-        # print(f"y_train: {y_train.shape}")
-        x_train = pd.concat([x_train_a, x_train_b])
-        y_train = pd.concat([y_train_a, y_train_b])
-        x_test = x_test_b
+        x_train_a, y_train_a, x_test_a, y_test_a = train_test_split(dataset_a_x, dataset_a_y, test_size=0.0, by_subject=by_subject, is_resample=is_resample, folds=1)
+        x_train_b, y_train_b, x_test_b, y_test_b = train_test_split(dataset_b_x, dataset_b_y, test_size=test_size, by_subject=by_subject, is_resample=is_resample, folds=1)
+        x_train = pd.concat([x_train_a[0], x_train_b[0]])
+        y_train = pd.concat([y_train_a[0], y_train_b[0]])
+        x_test = x_test_b[0]
+
+        # print("A -----")
+        # print(x_train_a[0].shape)
+        # print(y_train_a[0].shape)
+        # print(x_test_a[0].shape)
+        # print(y_test_a[0].shape)
+        
+        # print("B -----")
+        # print(x_train_b[0].shape)
+        # print(y_train_b[0].shape)
+        # print(x_test_b[0].shape)
+        # print(y_test_b[0].shape)
 
         if drop_subject:
             x_train = x_train.drop("subject", axis=1)
             x_test = x_test.drop("subject", axis=1)
-        y_test = y_test_b.loc[:, "label"]
+        y_test = y_test_b[0].loc[:, "label"]
 
         print(f"y_train:\n{y_train.loc[:, 'label'].value_counts()}")
         print(f"y_test:\n{y_test.value_counts()}")
@@ -834,13 +856,14 @@ class Train_Multi_Dataset:
                 }
             else:
                 report = None
-            if get_shap_values:
-                print("Calculating shap values")
+            if get_importance:
+                # print("Calculating shap values")
                 if model_name == "XGB":
                     explainer  = shap.Explainer(model, x_train)
-                    importance = explainer(x_train)
+                    # importance = explainer(x_train, check_additivity=False)
+                    importance = model.feature_importances_
                 elif model_name == "LogReg":
-                    importance = model.coef_
+                    importance = model.coef_[0]
                 elif model_name == "RF":
                     importance = model.feature_importances_
             else:
