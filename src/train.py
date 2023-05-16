@@ -20,10 +20,11 @@ import tools.data_reader_wesad as dr_w
 import tools.preprocessing as preprocessing
 
 from imblearn.over_sampling import RandomOverSampler
+from imblearn.over_sampling import SMOTE
 from scipy.fft import fft, fftfreq, fftshift
-from sklearn.metrics import accuracy_score, classification_report, confusion_matrix, precision_score, f1_score, \
-    recall_score, roc_auc_score
-from sklearn.model_selection import train_test_split, cross_val_score, RepeatedKFold
+from sklearn.metrics import accuracy_score, auc, classification_report, confusion_matrix, precision_score, f1_score, \
+    recall_score, roc_auc_score, roc_curve, RocCurveDisplay
+from sklearn.model_selection import train_test_split, StratifiedGroupKFold
 from sklearn.preprocessing import normalize
 
 import cvxopt.solvers
@@ -77,10 +78,10 @@ class Metrics:
     WRIST = [MEAN_WRIST_ACT_L, MEAN_WRIST_ACT_R, PEAK_WRIST_ACC_L, PEAK_WRIST_ACC_R]
 
 
-def train_test_split(x, y, test_size=0.1, by_subject=True, is_resample=False, folds=1): 
+def train_test_split(x, y, test_size=0.1, by_subject=True, is_resample=False, folds=1):
     if by_subject:
-        subjects = list(x.loc[:, "subject"].unique())
         if folds == 1:
+            subjects = list(x.loc[:, "subject"].unique())
             indices = random.sample(subjects, int(len(subjects)*test_size))
             indices = sorted(indices)
             x_train = [x[~x["subject"].isin(indices)]]
@@ -88,26 +89,17 @@ def train_test_split(x, y, test_size=0.1, by_subject=True, is_resample=False, fo
             x_test = [x[x["subject"].isin(indices)]]
             y_test = [y[y["subject"].isin(indices)]]
         else:
+            subjects = list(x.loc[:, "subject"])
+            sgkf = StratifiedGroupKFold(n_splits=folds)
             x_train = []
             y_train = []
             x_test = []
             y_test = []
-            random.shuffle(subjects)
-            indices_list =  []
-            fold_size = math.ceil(len(subjects) / folds)
-            for i in range(folds):
-                if i == folds-1:
-                    indices = subjects[i*fold_size:]
-                    indices_list.append(indices)
-                else:
-                    indices = subjects[i*fold_size:i*fold_size+fold_size]
-                    indices_list.append(indices)
-            print(indices_list)
-            for i in indices_list:
-                x_train.append(x[~x["subject"].isin(i)])
-                y_train.append(y[~y["subject"].isin(i)])
-                x_test.append(x[x["subject"].isin(i)])
-                y_test.append(y[y["subject"].isin(i)])
+            for _, (train_index, test_index) in enumerate(sgkf.split(x, y.loc[:, "label"], subjects)):
+                x_train.append(x.iloc[train_index, :])
+                y_train.append(y.iloc[train_index, :])
+                x_test.append(x.iloc[test_index, :])
+                y_test.append(y.iloc[test_index, :])
     else:
         num_samples = x.shape[0]
         indices = random.sample(range(num_samples), int(num_samples*test_size))
@@ -144,12 +136,14 @@ def resample(x, y, threshold=0.333):
             try:
                 if neg / pos < threshold:
                     print(f"Ratio of negative to positive labels ({neg/pos}) is under {threshold}, oversampling negative class.")
-                    oversample = RandomOverSampler(sampling_strategy=threshold)
+                    oversample = SMOTE()
+                    # oversample = RandomOverSampler(sampling_strategy=threshold)
                     x, y = oversample.fit_resample(x, y["label"])
                     y = pd.concat([x["subject"], y], axis=1)
                 elif pos / neg < threshold:
                     print(f"Ratio of positive to negative labels ({pos/neg}) is under {threshold}, oversampling positive class.")
-                    oversample = RandomOverSampler(sampling_strategy=threshold)
+                    oversample = SMOTE()
+                    # oversample = RandomOverSampler(sampling_strategy=threshold)
                     x, y = oversample.fit_resample(x, y["label"])
                     y = pd.concat([x["subject"], y], axis=1)
             except Exception as e:
@@ -185,7 +179,11 @@ def train_predict(models, x, y, test_size=0.15, by_subject=True, save_metrics=Tr
             print(f"Fold #{i}")
             model = models[model_name]
             model = model.fit(x_train[i], y_train[i].loc[:, "label"])
-            y_pred = model.predict(x_test[i])
+            if model_name == "LogReg":
+                y_pred = model.predict_proba(x_test[i])
+                y_pred = (y_pred[:,1] >= 0.7).astype(int)
+            else:
+                y_pred = model.predict(x_test[i])
 
             unique, counts = np.unique(y_pred, return_counts=True)
             print(f"Model {model_name}, Predictions: {unique}, {counts}")
@@ -195,17 +193,23 @@ def train_predict(models, x, y, test_size=0.15, by_subject=True, save_metrics=Tr
                 recall = recall_score(y_test[i], y_pred, zero_division=0)
                 f1 = f1_score(y_test[i], y_pred, zero_division=0)
                 try:
-                    auc = roc_auc_score(y_test[i], y_pred)
+                    fpr, tpr, thresholds = roc_curve(y_test[i], y_pred)
+                    roc_auc = auc(fpr, tpr)
+                    display = RocCurveDisplay(fpr=fpr, tpr=tpr, roc_auc=roc_auc, estimator_name='example estimator')
+                    display.plot()
+                    plt.show()
+                    auc_score = roc_auc_score(y_test[i], y_pred)
                 except Exception as e:
+                    print(e)
                     print("Only one class present in y_true. ROC AUC score is not defined in that case. Setting AUC score to -1.")
-                    auc = -1
+                    auc_score = -1
                 report = {
                     "precision": precision,
                     "recall": recall,
                     "f1": f1,
-                    "auc": auc
+                    "auc": auc_score
                 }
-                print(report)
+                # print(report)
             else:
                 report = None
             if print_preds and acc > 0.5:
@@ -220,6 +224,8 @@ def train_predict(models, x, y, test_size=0.15, by_subject=True, save_metrics=Tr
                     importance = model.coef_[0]
                 elif model_name == "RF":
                     importance = model.feature_importances_
+                else:
+                    importance = None
             else:
                 importance = None
             out.append((acc, report, importance))
@@ -275,12 +281,8 @@ class Train_ASCERTAIN:
 
         if label_type == dr_asc.SelfReports.AROUSAL:
             scores = dr_asc.get_self_reports(label_type)
-            if threshold == "fixed":
-                label_mean = 50
         elif label_type == dr_asc.SelfReports.VALENCE:
             scores = dr_asc.get_self_reports(label_type)
-            if threshold == "fixed":
-                label_mean = 50
         else:
             raise ValueError(f"Invalid label type: {label_type}")
 
@@ -371,8 +373,8 @@ class Train_APD:
             la_suds_df.iloc[i, la_suds_df.columns.get_loc("subject")] = p
 
         if threshold == "fixed": 
-            ha_suds_df['mean'] = [50 for _ in range(ha_suds_df.shape[0])]
-            la_suds_df['mean'] = [50 for _ in range(la_suds_df.shape[0])]
+            ha_suds_df['mean'] = [30 for _ in range(ha_suds_df.shape[0])]
+            la_suds_df['mean'] = [30 for _ in range(la_suds_df.shape[0])]
         else:
             ha_suds_df['mean'] = ha_suds_df.iloc[:, 1:].mean(axis=1)
             la_suds_df['mean'] = la_suds_df.iloc[:, 1:].mean(axis=1)
