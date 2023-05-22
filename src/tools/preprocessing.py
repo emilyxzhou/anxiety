@@ -232,7 +232,7 @@ def clean_RR(clean_ecg_signal):
     return filtered
 
 
-def get_hf_rr(ecg, fs=FS_DICT[dr.DataTypes.ECG], window_size=55):
+def get_hf_rr(ecg, fs=FS_DICT[dr.DataTypes.ECG], window_size=50):
     n = ecg.size
     if n == 0:
         print("ECG signal has length 0, returning None")
@@ -272,11 +272,11 @@ def get_hf_rr(ecg, fs=FS_DICT[dr.DataTypes.ECG], window_size=55):
             power = np.multiply(amp, amp).sum() # Parseval's theorem
             out.append(power)
 
-            start += int(5*fs)
+            start = stop
     return np.asarray(out)
 
 
-def get_lf_rr(ecg, fs=FS_DICT[dr.DataTypes.ECG], window_size=55):
+def get_lf_rr(ecg, fs=FS_DICT[dr.DataTypes.ECG], window_size=50):
     n = ecg.size
     if n == 0:
         print("ECG signal has length 0, returning None")
@@ -315,11 +315,11 @@ def get_lf_rr(ecg, fs=FS_DICT[dr.DataTypes.ECG], window_size=55):
             power = np.multiply(amp, amp).sum() # Parseval's theorem
             out.append(power)
 
-            start += int(5*fs)
+            start = stop
     return np.asarray(out)
 
 
-def get_ecg_metrics_pyhrv(ecg_signal, fs=FS_DICT[dr.DataTypes.ECG], window_size=55):
+def get_ecg_metrics_pyhrv(ecg_signal, fs=FS_DICT[dr.DataTypes.ECG], window_size=50):
     n = ecg_signal.size
     if n == 0:
         print("ECG signal has length 0, returning None")
@@ -334,7 +334,6 @@ def get_ecg_metrics_pyhrv(ecg_signal, fs=FS_DICT[dr.DataTypes.ECG], window_size=
     start = 0
     window_size = int(window_size*fs)
     stop = start + window_size
-    out = []
     if stop > n:
         segment = ecg_signal
         t, filtered_signal, rpeaks = biosppy.signals.ecg.ecg(signal=segment, sampling_rate=fs, show=False)[:3]
@@ -367,10 +366,45 @@ def get_ecg_metrics_pyhrv(ecg_signal, fs=FS_DICT[dr.DataTypes.ECG], window_size=
             # metrics_dict["ibi"].append(ibi)
             metrics_dict["sdnn"].append(sdnn)
 
-            start += int(5*fs)
+            start = stop
     
     return metrics_dict
 
+
+def get_bpm_biosppy(ecg_signal, fs=FS_DICT[dr.DataTypes.ECG], window_size=50):
+    n = ecg_signal.size
+    if n == 0:
+        print("ECG signal has length 0, returning None")
+        return None
+    
+    start = 0
+    window_size = int(window_size*fs)
+    stop = start + window_size
+    out = []
+    if stop > n:
+        segment = ecg_signal
+        data = biosppy.signals.ecg.ecg(signal=segment, sampling_rate=fs, show=False)
+        bpm = data["heart_rate"].tolist()
+        out.append(np.mean(bpm))
+
+    else:
+        while stop < n:
+            stop = start + window_size
+            try:
+                segment = ecg_signal.iloc[start:stop]
+            except AttributeError:
+                segment = ecg_signal[start:stop]
+            try:
+                data = biosppy.signals.ecg.ecg(signal=segment, sampling_rate=fs, show=False)
+                bpm = data["heart_rate"].tolist()
+                out.append(np.mean(bpm))
+            except Exception as e:
+                bpm = [np.nan]
+                out.append(bpm)
+
+            start = stop
+    
+    return out
 
 
 def get_SC_metrics(eda, fs=FS_DICT[dr.DataTypes.EDA]):
@@ -386,33 +420,41 @@ def get_SC_metrics(eda, fs=FS_DICT[dr.DataTypes.EDA]):
     [r, p, t, l, d, e, obj] = cvxEDA(eda, 1./fs, options={"show_progress": False})
     r = np.log10(r + 1)
     t = np.log10(t + 1)
-    print(r)
-    print(t)
+    # print(r)
+    # print(t)
     return r, t
     # return phasic, tonic
 
 
-def get_mean_SCL(eda_signal, fs=FS_DICT[dr.DataTypes.EDA], window_size=60):
+def get_mean_SCL(eda_signal, fs=FS_DICT[dr.DataTypes.EDA], window_size=50):
     _, scl = get_SC_metrics(eda_signal, fs)
     if scl is None:
+        print("mean SCL is None")
         return None
     n = scl.size
     start = 0
     window_size = int(window_size*fs)
     stop = start + window_size
     out = []
+    if n < stop:
+        segment = scl
+        segment_mean = np.mean(segment)
+        print(f"mean SCL: {segment_mean}")
+        out.append(segment_mean)
     while stop < n:
         stop = start + window_size
         segment = scl[start:stop]
         segment_mean = np.mean(segment)
+        print(f"mean SCL: {segment_mean}")
         out.append(segment_mean)
-        start += int(5*fs)
+        start = stop
     return np.asarray(out)
 
 
-def get_SCR_rate(eda_signal, fs=FS_DICT[dr.DataTypes.EDA], window_size=60):
+def  get_SCR_rate(eda_signal, fs=FS_DICT[dr.DataTypes.EDA], window_size=50):
     scr, _ = get_SC_metrics(eda_signal, fs)
     if scr is None:
+        print("SCR rate is None")
         return None
 
     grad = np.gradient(scr)
@@ -421,8 +463,13 @@ def get_SCR_rate(eda_signal, fs=FS_DICT[dr.DataTypes.EDA], window_size=60):
     window_size = int(window_size*fs)
     stop = start + window_size
     # threshold = max()
-
     out = []
+    if n < stop:
+        segment = scr
+        peaks, _ = ss.find_peaks(segment)
+        num_peaks = len(peaks)
+        print(f"SCR rate: {num_peaks}")
+        out.append(num_peaks//2 + 1)
     while stop < n:
         stop = start + window_size
         # segment = grad[start:stop]
@@ -430,8 +477,9 @@ def get_SCR_rate(eda_signal, fs=FS_DICT[dr.DataTypes.EDA], window_size=60):
         # num_peaks = len(list(itertools.groupby(segment, lambda x: x > 0)))
         peaks, _ = ss.find_peaks(segment)
         num_peaks = len(peaks)
+        print(f"SCR rate: {num_peaks}")
         out.append(num_peaks//2 + 1)
-        start += int(5*fs)
+        start = stop
     return np.asarray(out)
 
 
@@ -458,7 +506,7 @@ def get_peak_acc_value(acc_signal, acc_type):
 
     n = acc_signal.shape[0]
     start = 0
-    window_size = int(5*fs)
+    window_size = int(window_size*fs)
     stop = start + window_size
 
     out = []
@@ -470,7 +518,7 @@ def get_peak_acc_value(acc_signal, acc_type):
         segment = np.sqrt(segment)
         peak = segment.max()
         out.append(peak)
-        start += int(5*fs)
+        start = stop
     return np.asarray(out)
 
 
@@ -491,7 +539,7 @@ def get_mean_ankle_activity(acc_signal):
         segment = np.sqrt(segment)
         mean = np.mean(segment)
         out.append(mean)
-        start += int(5*fs)
+        start = stop
     return np.asarray(out)
 
 
@@ -509,7 +557,7 @@ def get_mean_posture(posture_signal):
         segment = posture_signal.iloc[start:stop, 0]
         mean = np.mean(segment)
         out.append(mean)
-        start += int(5*fs)
+        start = stop
     return np.asarray(out)
 
 
@@ -527,7 +575,7 @@ def get_mean_activity_torso(posture_signal):
         segment = posture_signal.iloc[start:stop, 1]
         mean = np.mean(segment)
         out.append(mean)
-        start += int(5*fs)
+        start = stop
     return np.asarray(out)
 
 
