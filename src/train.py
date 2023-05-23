@@ -221,6 +221,8 @@ def train_predict(models, x, y, test_size=0.15, by_subject=True, save_metrics=Tr
                     explainer = shap.Explainer(model, x_train[i])
                     # importance = explainer(x_train[i], check_additivity=False)
                     importance = model.feature_importances_
+                elif model_name == "DT":
+                    importance = model.feature_importances_
                 elif model_name == "LogReg":
                     importance = model.coef_[0]
                 elif model_name == "RF":
@@ -228,9 +230,10 @@ def train_predict(models, x, y, test_size=0.15, by_subject=True, save_metrics=Tr
                 elif model_name == "SVM":
                     importance = model.coef_[0]
                 else:
+                    print(f"Feature importance not available for {model_name}")
                     importance = None
             else:
-                importance = None
+                importance = None  # not defined for KNN
             out.append((acc, report, importance))
         model_data[model_name] = out
     return model_data
@@ -238,7 +241,7 @@ def train_predict(models, x, y, test_size=0.15, by_subject=True, save_metrics=Tr
 
 class Train_ASCERTAIN:
 
-    def get_ascertain_data(metrics, verbose=False, label_type="Arousal", threshold="dynamic", normalize=True, binary_labels=True):
+    def get_ascertain_data(metrics, verbose=False, label_type="Arousal", threshold="dynamic", normalize=True, binary_labels=True, combine_phases=False):
         metrics_folder = dr_asc.Paths.METRICS
         
         columns = metrics.copy()
@@ -256,35 +259,34 @@ class Train_ASCERTAIN:
                 metric = metrics[i]
                 if verbose: print(f"Generating features for metric {metric}")
                 file = os.path.join(metrics_folder, f"{metric}_Clip{clip}.csv")
-                # ------------------------------
-                # arr = pd.read_csv(file, index_col=[0])
-                arr = pd.read_csv(file, index_col=[0]).reset_index(drop=True).to_numpy()
-                # the following comment block is for generating one sample per subject, per phase
-                # if i == 0:  # subject IDs
-                #     ids = arr.iloc[:, 0].tolist()
-                #     ids = pd.DataFrame(data=ids, columns=["subject"])
-                #     features.append(ids)
-                # arr = np.nanmean(arr.iloc[:, 1:], axis=1)
-                # arr = np.reshape(arr, (arr.size, 1))
-                # arr = pd.DataFrame(data=arr, columns=[f"{metric}"])
-                # features.append(arr)
-                # ------------------------------
-                num_cols = arr.shape[1]
-                count = 0
-                for row in range(arr.shape[0]):  # split each 50-second segment into a separate sample
-                    for col in range(num_cols-1):
-                        if i == 0:  # first metric
-                            features.append([arr[row, 0], phase_id, arr[row][col+1]])  # subject, phase ID, value
-                        else:
-                            features[count].append(arr[row, col+1])
-                        count += 1
+                if combine_phases:
+                    arr = pd.read_csv(file, index_col=[0])
+                    if i == 0:  # subject IDs
+                        ids = arr.iloc[:, 0].tolist()
+                        ids = pd.DataFrame(data=ids, columns=["subject"])
+                        features.append(ids)
+                    arr = np.nanmean(arr.iloc[:, 1:], axis=1)
+                    arr = np.reshape(arr, (arr.size, 1))
+                    arr = pd.DataFrame(data=arr, columns=[f"{metric}"])
+                    features.append(arr)
+                else:
+                    arr = pd.read_csv(file, index_col=[0]).reset_index(drop=True).to_numpy()
+                    num_cols = arr.shape[1]
+                    count = 0
+                    for row in range(arr.shape[0]):  # split each 50-second segment into a separate sample
+                        for col in range(num_cols-1):
+                            if i == 0:  # first metric
+                                features.append([arr[row, 0], phase_id, arr[row][col+1]])  # subject, phase ID, value
+                            else:
+                                features[count].append(arr[row, col+1])
+                            count += 1
 
-            # ------------------------------
-            # x = pd.concat(features, axis=1)
-            # phase = pd.DataFrame(data=[phase_id for _ in range(x.shape[0])])
-            # x.insert(1, "phaseId", phase)
-            
-            x = pd.DataFrame(features, columns=["subject", "phaseId"] + metrics)
+            if combine_phases:
+                x = pd.concat(features, axis=1)
+                phase = pd.DataFrame(data=[phase_id for _ in range(x.shape[0])])
+                x.insert(1, "phaseId", phase)
+            else:
+                x = pd.DataFrame(features, columns=["subject", "phaseId"] + metrics)
             data_x.append(x)
         
         data_x = pd.concat(data_x).reset_index(drop=True)
@@ -402,7 +404,7 @@ class Train_APD:
         return ha_rankings, la_rankings
 
 
-    def get_apd_data_ranking(metrics, phases, verbose=False, anxiety_label_type=None, threshold="dynamic", normalize=True, binary_labels=True):
+    def get_apd_data_ranking(metrics, phases, verbose=False, anxiety_label_type=None, threshold="dynamic", normalize=True, binary_labels=True, combine_phases=False):
         """
         anxiety_label_type: can be None, "Trait", "Anxiety", "Depression", "Gender", "Random"
             - Adds an extra feature vector 
@@ -428,61 +430,55 @@ class Train_APD:
                 if verbose: print(f"Generating features for metric {metric}")
                 file = os.path.join(metrics_folder, f"{metric}_{phase}_ha.csv")
                 arr = pd.read_csv(file, index_col=[0]).to_numpy()
-                # ------------------------------
-                # if i == 0:  # subject IDs
-                #     ids = np.reshape(arr[:, 0], (arr[:, 0].size, 1))
-                #     ids = pd.DataFrame(data=ids, columns=["subject"])
-                #     ha_features.append(ids)
-
-                # arr = arr[1:, 1:]
                 col_mean = np.nanmean(arr, axis=1)
                 idx = np.where(np.isnan(arr))
                 arr[idx] = np.take(col_mean, idx[0])
                 arr = np.nan_to_num(arr)
-                # ------------------------------
-                # arr = np.mean(arr[:, 1:], axis=1)
-                # arr = np.reshape(arr, (arr.size, 1))
-                # arr = pd.DataFrame(data=arr, columns=[f"{metric}"])
-                # ha_features.append(arr)
-
-                num_cols = arr.shape[1]
-                count = 0
-                for row in range(arr.shape[0]):  # split each 50-second segment into a separate sample
-                    for col in range(num_cols-1):
-                        if i == 0:  # first metric
-                            ha_features.append([arr[row, 0], phase_id, arr[row][col+1]])  # subject, phase ID, value
-                        else:
-                            ha_features[count].append(arr[row, col+1])
-                        count += 1
+                if combine_phases:
+                    if i == 0:  # subject IDs
+                        ids = np.reshape(arr[:, 0], (arr[:, 0].size, 1))
+                        ids = pd.DataFrame(data=ids, columns=["subject"])
+                        ha_features.append(ids)
+                    arr = np.mean(arr[:, 1:], axis=1)
+                    arr = np.reshape(arr, (arr.size, 1))
+                    arr = pd.DataFrame(data=arr, columns=[f"{metric}"])
+                    ha_features.append(arr)
+                else:
+                    num_cols = arr.shape[1]
+                    count = 0
+                    for row in range(arr.shape[0]):  # split each 50-second segment into a separate sample
+                        for col in range(num_cols-1):
+                            if i == 0:  # first metric
+                                ha_features.append([arr[row, 0], phase_id, arr[row][col+1]])  # subject, phase ID, value
+                            else:
+                                ha_features[count].append(arr[row, col+1])
+                            count += 1
 
                 file = os.path.join(metrics_folder, f"{metric}_{phase}_la.csv")
                 arr = pd.read_csv(file, index_col=[0]).to_numpy()
-                # ------------------------------
-                # if i == 0:  # subject IDs
-                #     ids = np.reshape(arr[:, 0], (arr[:, 0].size, 1))
-                #     ids = pd.DataFrame(data=ids, columns=["subject"])
-                #     la_features.append(ids)
-
-                # arr = arr[1:, 1:]
                 col_mean = np.nanmean(arr, axis=1)
                 idx = np.where(np.isnan(arr))
                 arr[idx] = np.take(col_mean, idx[0])
                 arr = np.nan_to_num(arr)
-                # ------------------------------
-                # arr = np.mean(arr[:, 1:], axis=1)
-                # arr = np.reshape(arr, (arr.size, 1))
-                # arr = pd.DataFrame(data=arr, columns=[f"{metric}"])
-                # la_features.append(arr)
-                
-                num_cols = arr.shape[1]
-                count = 0
-                for row in range(arr.shape[0]):  # split each 50-second segment into a separate sample
-                    for col in range(num_cols-1):
-                        if i == 0:  # first metric
-                            la_features.append([arr[row, 0], phase_id, arr[row][col+1]])  # subject, phase ID, value
-                        else:
-                            la_features[count].append(arr[row, col+1])
-                        count += 1
+                if combine_phases:
+                    if i == 0:  # subject IDs
+                        ids = np.reshape(arr[:, 0], (arr[:, 0].size, 1))
+                        ids = pd.DataFrame(data=ids, columns=["subject"])
+                        la_features.append(ids)
+                    arr = np.mean(arr[:, 1:], axis=1)
+                    arr = np.reshape(arr, (arr.size, 1))
+                    arr = pd.DataFrame(data=arr, columns=[f"{metric}"])
+                    la_features.append(arr)
+                else:
+                    num_cols = arr.shape[1]
+                    count = 0
+                    for row in range(arr.shape[0]):  # split each 50-second segment into a separate sample
+                        for col in range(num_cols-1):
+                            if i == 0:  # first metric
+                                la_features.append([arr[row, 0], phase_id, arr[row][col+1]])  # subject, phase ID, value
+                            else:
+                                la_features[count].append(arr[row, col+1])
+                            count += 1
 
             if anxiety_label_type is not None: 
                 if anxiety_label_type == "Trait":
@@ -495,15 +491,16 @@ class Train_APD:
                     anxiety_label = dr_a.get_dass_labels("Depression", threshold)
                 elif anxiety_label_type == "Gender":
                     anxiety_label = dr_a.get_gender_labels()
-            # ------------------------------
-            # ha_features = pd.concat(ha_features, axis=1)
-            # la_features = pd.concat(la_features, axis=1)
-            ha_features = pd.DataFrame(ha_features, columns=["subject", "phaseId"] + metrics)
-            la_features = pd.DataFrame(la_features, columns=["subject", "phaseId"] + metrics)
+            if combine_phases:
+                ha_features = pd.concat(ha_features, axis=1)
+                la_features = pd.concat(la_features, axis=1)
+            else:
+                ha_features = pd.DataFrame(ha_features, columns=["subject", "phaseId"] + metrics)
+                la_features = pd.DataFrame(la_features, columns=["subject", "phaseId"] + metrics)
             x = pd.concat([ha_features, la_features], axis=0)
-            # ------------------------------
-            # phase = pd.DataFrame(data=[phase_id for _ in range(x.shape[0])])
-            # x.insert(1, "phaseId", phase)
+            if combine_phases:
+                phase = pd.DataFrame(data=[phase_id for _ in range(x.shape[0])])
+                x.insert(1, "phaseId", phase)
 
             if anxiety_label_type is not None: 
                 x.insert(1, "anxietyGroup", anxiety_label)
@@ -562,7 +559,7 @@ class Train_WESAD:
 
         return stai_scores, dim_scores_arousal, dim_scores_valence
 
-    def get_wesad_data(metrics, phases, verbose=False, label_type="stai", normalize=True, threshold="dynamic", binary_labels=True):
+    def get_wesad_data(metrics, phases, verbose=False, label_type="stai", normalize=True, threshold="dynamic", binary_labels=True, combine_phases=False):
         """
         label_type: "stai", "arousal", "valence", "all"
             label_type == "all": classification between stress and non-stress phases
@@ -589,42 +586,42 @@ class Train_WESAD:
                 arr = pd.read_csv(file, index_col=[0]).reset_index(drop=True).to_numpy()
                 # arr = arr[arr.iloc[:, 0] != 3.0].reset_index(drop=True).to_numpy()  # remove subject 3 due to NaNs in Medi_2 phase
 
-                # the following comment block is for generating one sample per subject, per phase
-                # if i == 0:  # subject IDs
-                #     # ids = arr.iloc[:, 0]
-                #     ids = arr[:, 0]
-                #     ids = pd.DataFrame(data=ids, columns=["subject"])
-                #     features.append(ids)
                 col_mean = np.nanmean(arr, axis=1)
                 idx = np.where(np.isnan(arr))
                 arr[idx] = np.take(col_mean, idx[0])
                 arr = np.nan_to_num(arr)
 
-                # the following comment block is for generating one sample per subject, per phase
-                # arr = np.mean(arr[:, 1:], axis=1) 
-                # arr = np.reshape(arr, (arr.size, 1))
-                # arr = pd.DataFrame(data=arr, columns=[f"{metric}"])
-                # features.append(arr)
-                # ------------------------------
-                num_cols = arr.shape[1]
-                count = 0
-                for row in range(arr.shape[0]):  # split each 50-second segment into a separate sample
-                    for col in range(num_cols-1):
-                        if i == 0:  # first metric
-                            features.append([arr[row, 0], phase_id, arr[row][col+1]])  # subject, phase ID, value
-                        else:
-                            features[count].append(arr[row, col+1])
-                        count += 1
+                if combine_phases:
+                    if i == 0:  # subject IDs
+                        # ids = arr.iloc[:, 0]
+                        ids = arr[:, 0]
+                        ids = pd.DataFrame(data=ids, columns=["subject"])
+                        features.append(ids)
+                    arr = np.mean(arr[:, 1:], axis=1) 
+                    arr = np.reshape(arr, (arr.size, 1))
+                    arr = pd.DataFrame(data=arr, columns=[f"{metric}"])
+                    features.append(arr)
+                else:
+                    num_cols = arr.shape[1]
+                    count = 0
+                    for row in range(arr.shape[0]):  # split each 50-second segment into a separate sample
+                        for col in range(num_cols-1):
+                            if i == 0:  # first metric
+                                features.append([arr[row, 0], phase_id, arr[row][col+1]])  # subject, phase ID, value
+                            else:
+                                features[count].append(arr[row, col+1])
+                            count += 1
 
-            # ------------------------------
-            # x = pd.concat(features, axis=1)
-            # if label_type == "all":
-            #     for scores in [stai_scores, dim_scores_arousal, dim_scores_valence]:
-            #         x = pd.concat([x, scores.iloc[:, 1:]], axis=1)
-            # phase = pd.DataFrame(data=[phase_id for _ in range(x.shape[0])])
-            # x.insert(1, "phaseId", phase)
-                
-            x = pd.DataFrame(features, columns=["subject", "phaseId"] + metrics)
+            if combine_phases:
+                x = pd.concat(features, axis=1)
+                if label_type == "all":
+                    for scores in [stai_scores, dim_scores_arousal, dim_scores_valence]:
+                        x = pd.concat([x, scores.iloc[:, 1:]], axis=1)
+                phase = pd.DataFrame(data=[phase_id for _ in range(x.shape[0])])
+                x.insert(1, "phaseId", phase)
+            else:
+                x = pd.DataFrame(features, columns=["subject", "phaseId"] + metrics)
+            
             data_x.append(x)
         
         data_x = pd.concat(data_x).reset_index(drop=True)
@@ -920,10 +917,15 @@ class Train_Multi_Dataset:
                     importance = model.feature_importances_
                 elif model_name == "LogReg":
                     importance = model.coef_[0]
+                elif model_name == "DT":
+                    importance = model.feature_importances_
                 elif model_name == "RF":
                     importance = model.feature_importances_
                 elif model_name == "SVM":
                     importance = model.coef_[0]
+                else:
+                    print(f"Feature importance not available for {model_name}")
+                    importance = None
             else:
                 importance = None
             out[model_name] = (acc, report, importance)
