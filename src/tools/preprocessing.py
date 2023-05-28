@@ -241,7 +241,7 @@ def get_hf_rr(ecg, fs=FS_DICT[dr.DataTypes.ECG], window_size=50):
     window_size = int(window_size*fs)
     stop = start + window_size
     out = []
-    if stop > n:
+    if stop >= n:
         segment = ecg
         freq, amp = calculate_fft_1d(segment, fs)
         
@@ -285,7 +285,7 @@ def get_lf_rr(ecg, fs=FS_DICT[dr.DataTypes.ECG], window_size=50):
     window_size = int(window_size*fs)
     stop = start + window_size
     out = []
-    if stop > n:
+    if stop >= n:
         segment = ecg
         freq, amp = calculate_fft_1d(segment, fs)
         
@@ -334,7 +334,7 @@ def get_ecg_metrics_pyhrv(ecg_signal, fs=FS_DICT[dr.DataTypes.ECG], window_size=
     start = 0
     window_size = int(window_size*fs)
     stop = start + window_size
-    if stop > n:
+    if stop >= n:
         segment = ecg_signal
         t, filtered_signal, rpeaks = biosppy.signals.ecg.ecg(signal=segment, sampling_rate=fs, show=False)[:3]
         rmssd = td.rmssd(rpeaks=t[rpeaks])["rmssd"]
@@ -381,7 +381,7 @@ def get_bpm_biosppy(ecg_signal, fs=FS_DICT[dr.DataTypes.ECG], window_size=50):
     window_size = int(window_size*fs)
     stop = start + window_size
     out = []
-    if stop > n:
+    if stop >= n:
         segment = ecg_signal
         data = biosppy.signals.ecg.ecg(signal=segment, sampling_rate=fs, show=False)
         bpm = data["heart_rate"].tolist()
@@ -399,7 +399,7 @@ def get_bpm_biosppy(ecg_signal, fs=FS_DICT[dr.DataTypes.ECG], window_size=50):
                 bpm = data["heart_rate"].tolist()
                 out.append(np.mean(bpm))
             except Exception as e:
-                bpm = [np.nan]
+                bpm = np.nan
                 out.append(bpm)
 
             start = stop
@@ -436,7 +436,7 @@ def get_mean_SCL(eda_signal, fs=FS_DICT[dr.DataTypes.EDA], window_size=50):
     window_size = int(window_size*fs)
     stop = start + window_size
     out = []
-    if n < stop:
+    if stop >= n:
         segment = scl
         segment_mean = np.mean(segment)
         print(f"mean SCL: {segment_mean}")
@@ -464,7 +464,7 @@ def  get_SCR_rate(eda_signal, fs=FS_DICT[dr.DataTypes.EDA], window_size=50):
     stop = start + window_size
     # threshold = max()
     out = []
-    if n < stop:
+    if stop >= n:
         segment = scr
         peaks, _ = ss.find_peaks(segment)
         num_peaks = len(peaks)

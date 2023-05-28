@@ -24,7 +24,7 @@ from imblearn.over_sampling import SMOTE
 from scipy.fft import fft, fftfreq, fftshift
 from sklearn.metrics import accuracy_score, auc, classification_report, confusion_matrix, precision_score, f1_score, \
     recall_score, roc_auc_score, roc_curve, RocCurveDisplay
-from sklearn.model_selection import train_test_split, StratifiedGroupKFold
+from sklearn.model_selection import train_test_split, GridSearchCV, StratifiedGroupKFold
 from sklearn.preprocessing import normalize
 
 import cvxopt.solvers
@@ -78,53 +78,26 @@ class Metrics:
     WRIST = [MEAN_WRIST_ACT_L, MEAN_WRIST_ACT_R, PEAK_WRIST_ACC_L, PEAK_WRIST_ACC_R]
 
 
-def train_test_split(x, y, test_size=0.1, by_subject=True, is_resample=False, folds=1):
-    if by_subject:
-        if folds == 1:
-            subjects = list(x.loc[:, "subject"].unique())
-            indices = random.sample(subjects, int(len(subjects)*test_size))
-            indices = sorted(indices)
-            x_train = [x[~x["subject"].isin(indices)]]
-            y_train = [y[~y["subject"].isin(indices)]]
-            x_test = [x[x["subject"].isin(indices)]]
-            y_test = [y[y["subject"].isin(indices)]]
-        else:
-            subjects = list(x.loc[:, "subject"])
-            sgkf = StratifiedGroupKFold(n_splits=folds)
-            x_train = []
-            y_train = []
-            x_test = []
-            y_test = []
-            for _, (train_index, test_index) in enumerate(sgkf.split(x, y.loc[:, "label"], subjects)):
-                x_train.append(x.iloc[train_index, :])
-                y_train.append(y.iloc[train_index, :])
-                x_test.append(x.iloc[test_index, :])
-                y_test.append(y.iloc[test_index, :])
-    else:
-        num_samples = x.shape[0]
-        indices = random.sample(range(num_samples), int(num_samples*test_size))
-        indices = sorted(indices)
-        x_train = x[~x.index.isin(indices)]
-        y_train = y[~y.index.isin(indices)]
-        x_test = x[x.index.isin(indices)]
-        y_test = y[y.index.isin(indices)]
+def kfold_train_test_split(x, y, test_size=0.1, is_resample=False, folds=1):
+    n_splits = int(1/test_size)
+    cv_index = random.choice(range(0, n_splits))
+    sgkf = StratifiedGroupKFold(n_splits=n_splits)
+    subjects = list(x.loc[:, "subject"])
+    x_train = []
+    y_train = []
+    x_test = []
+    y_test = []
+    cv = sgkf.split(x, y.loc[:, "label"], subjects)
+    for i, (train_index, test_index) in enumerate(sgkf.split(x, y.loc[:, "label"], subjects)):
+        if i == cv_index:
+            break
+    x_train = (x.iloc[train_index, :])
+    y_train = (y.iloc[train_index, :])
+    x_test = (x.iloc[test_index, :])
+    y_test = (y.iloc[test_index, :])
 
-    if is_resample:
-        resampled_x_train = []
-        resampled_y_train = []
-        resampled_x_test = []
-        resampled_y_test = []
-        for pair in zip(x_train, y_train):
-            x, y = resample(pair[0], pair[1])
-            resampled_x_train.append(x)
-            resampled_y_train.append(y)
-        for pair in zip(x_test, y_test):
-            x, y = resample(pair[0], pair[1])
-            resampled_x_test.append(x)
-            resampled_y_test.append(y)
-        return resampled_x_train, resampled_y_train, resampled_x_test, resampled_y_test
-    
-    return x_train, y_train, x_test, y_test
+    sgkf = StratifiedGroupKFold(n_splits=folds)
+    return sgkf.split(x_train, y_train.loc[:, "label"], subjects), x_test, y_test
 
 
 def resample(x, y, threshold=0.333):
@@ -151,90 +124,108 @@ def resample(x, y, threshold=0.333):
     return x, y
 
 
-def train_predict(models, x, y, test_size=0.15, by_subject=True, save_metrics=True, get_importance=False, print_preds=False, is_resample=False, drop_subject=False, folds=1):
+def grid_search_cv(
+        models, parameters, x, y, test_size=0.15, 
+        by_subject=True, save_metrics=True, get_importance=False, print_preds=False, 
+        is_resample=False, drop_subject=False, folds=1
+    ):
     """
     models: dictionary of {"name": model}
     """
-    # x_train, y_train, x_test, y_test, test_subjects = train_test_split(x, y, test_size, by_subject, is_resample=is_resample, folds)
-    x_train, y_train, x_test, y_test = train_test_split(x, y, test_size, by_subject, is_resample=is_resample, folds=folds)
-    # while any(labels.loc[:, "label"].nunique() == 1 for labels in y_test):
-    #     print("Only one label in test data, rerunning train_test_split")
-    #     x_train, y_train, x_test, y_test = train_test_split(x, y, test_size, by_subject, is_resample=is_resample, folds=folds)
+    # x_train, y_train, x_val, y_val, x_test, y_test = kfold_train_test_split(x, y, test_size, is_resample=is_resample, folds=folds)
+    cv, x_test, y_test = kfold_train_test_split(x, y, test_size, is_resample=is_resample, folds=folds)
     if drop_subject:
-        x_train = [x.drop("subject", axis=1) for x in x_train]
-        x_test = [x.drop("subject", axis=1) for x in x_test]
-    y_test = [y.loc[:, "label"] for y in y_test]
+        x = x.drop("subject", axis=1)
+        y = y.drop("subject", axis=1)
+    #     x_train = [x.drop("subject", axis=1) for x in x_train]
+    #     x_val = [x.drop("subject", axis=1) for x in x_val]
+    #     x_test = [x.drop("subject", axis=1) for x in x_test]
+    # y_val = [y.loc[:, "label"] for y in y_val]
 
-    for i in range(folds):
+    # for i in range(folds):
         # print(x_train[i].isnull().values.any())
         # print(y_train[i].isnull().values.any())
         # print(x_test[i].isnull().values.any())
         # print(y_test[i].isnull().values.any())
-        print(f"y_train | y_test:\n{y_train[i].loc[:, 'label'].value_counts().to_dict()} | {y_test[i].value_counts().to_dict()}")
+        # print(f"y_train | y_val:\n{y_train[i].loc[:, 'label'].value_counts().to_dict()} | {x_val[i].value_counts().to_dict()}")
 
     model_data = {}
     for model_name in models.keys():
-        out = []
-        for i in range(folds):
-            print(f"Fold #{i}")
-            model = models[model_name]
-            model = model.fit(x_train[i], y_train[i].loc[:, "label"])
-            if model_name == "LogReg":
-                y_pred = model.predict_proba(x_test[i])
-                y_pred = (y_pred[:,1] >= 0.7).astype(int)
-            else:
-                y_pred = model.predict(x_test[i])
+        model = models[model_name]
+        params = parameters[model_name]
 
-            unique, counts = np.unique(y_pred, return_counts=True)
-            print(f"Model {model_name}, Predictions: {unique}, {counts}")
-            acc = accuracy_score(y_test[i], y_pred)
-            if save_metrics:
-                precision = precision_score(y_test[i], y_pred, zero_division=0)
-                recall = recall_score(y_test[i], y_pred, zero_division=0)
-                f1 = f1_score(y_test[i], y_pred, zero_division=0)
-                try:
-                    fpr, tpr, thresholds = roc_curve(y_test[i], y_pred)
-                    roc_auc = auc(fpr, tpr)
-                    display = RocCurveDisplay(fpr=fpr, tpr=tpr, roc_auc=roc_auc, estimator_name='example estimator')
-                    # Uncomment the following two lines to see ROC plot
-                    # display.plot()
-                    # plt.show()
-                    auc_score = roc_auc_score(y_test[i], y_pred)
-                except Exception as e:
-                    print(e)
-                    print("Only one class present in y_true. ROC AUC score is not defined in that case. Setting AUC score to -1.")
-                    auc_score = -1
-                report = {
-                    "precision": precision,
-                    "recall": recall,
-                    "f1": f1,
-                    "auc": auc_score
-                }
-                # print(report)
-            else:
-                report = None
-            if print_preds and acc > 0.5:
-                print(y_pred)
-            if get_importance:
-                # print("Calculating shap values")
-                if model_name == "XGB":
-                    explainer = shap.Explainer(model, x_train[i])
-                    # importance = explainer(x_train[i], check_additivity=False)
-                    importance = model.feature_importances_
-                elif model_name == "DT":
-                    importance = model.feature_importances_
-                elif model_name == "LogReg":
-                    importance = model.coef_[0]
-                elif model_name == "RF":
-                    importance = model.feature_importances_
-                elif model_name == "SVM":
-                    importance = model.coef_[0]
-                else:
-                    print(f"Feature importance not available for {model_name}")
-                    importance = None
-            else:
-                importance = None  # not defined for KNN
-            out.append((acc, report, importance))
+        x_train = []
+        y_train = []
+        x_val = []
+        y_val = []
+        for _, (train_index, val_index) in enumerate(cv):
+            x_train.append(x.iloc[train_index, :])
+            y_train.append(y.iloc[train_index, :])
+            x_val.append(x.iloc[val_index, :])
+            y_val.append(y.iloc[val_index, :])
+        for i in range(len(x_train)):
+            print(x_train[i].shape)
+            print(y_train[i].shape)
+        for i in range(len(x_val)):
+            print(x_val[i].shape)
+            print(y_val[i].shape)
+
+        # if model_name == "random":
+        #     y_pred = [random.choice([0, 1]) for i in range(x_val[i].shape[0])]
+        clf = GridSearchCV(model, params, cv=cv)
+        clf.fit(x, y)
+        out = clf.best_params_
+
+        #     unique, counts = np.unique(y_pred, return_counts=True)
+        #     print(f"Model {model_name}, Predictions: {unique}, {counts}")
+        #     acc = accuracy_score(y_val[i], y_pred)
+        #     if save_metrics:
+        #         precision = precision_score(y_val[i], y_pred, zero_division=0)
+        #         recall = recall_score(y_val[i], y_pred, zero_division=0)
+        #         f1 = f1_score(y_val[i], y_pred, zero_division=0)
+        #         try:
+        #             fpr, tpr, thresholds = roc_curve(y_val[i], y_pred)
+        #             roc_auc = auc(fpr, tpr)
+        #             display = RocCurveDisplay(fpr=fpr, tpr=tpr, roc_auc=roc_auc, estimator_name='example estimator')
+        #             # Uncomment the following two lines to see ROC plot
+        #             # display.plot()
+        #             # plt.show()
+        #             auc_score = roc_auc_score(y_val [i], y_pred)
+        #         except Exception as e:
+        #             print(e)
+        #             print("Only one class present in y_true. ROC AUC score is not defined in that case. Setting AUC score to -1.")
+        #             auc_score = -1
+        #         report = {
+        #             "precision": precision,
+        #             "recall": recall,
+        #             "f1": f1,
+        #             "auc": auc_score
+        #         }
+        #         # print(report)
+        #     else:
+        #         report = None
+        #     if print_preds and acc > 0.5:
+        #         print(y_pred)
+        #     if get_importance:
+        #         # print("Calculating shap values")
+        #         if model_name == "XGB":
+        #             explainer = shap.Explainer(model, x_train[i])
+        #             # importance = explainer(x_train[i], check_additivity=False)
+        #             importance = model.feature_importances_
+        #         elif model_name == "DT":
+        #             importance = model.feature_importances_
+        #         elif model_name == "LogReg":
+        #             importance = model.coef_[0]
+        #         elif model_name == "RF":
+        #             importance = model.feature_importances_
+        #         elif model_name == "SVM":
+        #             importance = model.coef_[0]
+        #         else:
+        #             print(f"Feature importance not available for {model_name}")
+        #             importance = None
+        #     else:
+        #         importance = None  # not defined for KNN
+        #     out.append((acc, report, importance))
         model_data[model_name] = out
     return model_data
 
@@ -261,6 +252,7 @@ class Train_ASCERTAIN:
                 file = os.path.join(metrics_folder, f"{metric}_Clip{clip}.csv")
                 if combine_phases:
                     arr = pd.read_csv(file, index_col=[0])
+                    arr[arr == -np.inf] = np.nan
                     if i == 0:  # subject IDs
                         ids = arr.iloc[:, 0].tolist()
                         ids = pd.DataFrame(data=ids, columns=["subject"])
@@ -271,6 +263,7 @@ class Train_ASCERTAIN:
                     features.append(arr)
                 else:
                     arr = pd.read_csv(file, index_col=[0]).reset_index(drop=True).to_numpy()
+                    arr[arr == -np.inf] = 0
                     num_cols = arr.shape[1]
                     count = 0
                     for row in range(arr.shape[0]):  # split each 50-second segment into a separate sample
@@ -278,7 +271,8 @@ class Train_ASCERTAIN:
                             if i == 0:  # first metric
                                 features.append([arr[row, 0], phase_id, arr[row][col+1]])  # subject, phase ID, value
                             else:
-                                features[count].append(arr[row, col+1])
+                                if count < len(features):
+                                    features[count].append(arr[row, col+1])
                             count += 1
 
             if combine_phases:
@@ -856,8 +850,8 @@ class Train_Multi_Dataset:
         test_size: Proportion of dataset_b to hold out for model testing.
         """
         out = {}
-        x_train_a, y_train_a, x_test_a, y_test_a = train_test_split(dataset_a_x, dataset_a_y, test_size=0.0, by_subject=by_subject, is_resample=is_resample, folds=1)
-        x_train_b, y_train_b, x_test_b, y_test_b = train_test_split(dataset_b_x, dataset_b_y, test_size=test_size, by_subject=by_subject, is_resample=is_resample, folds=1)
+        x_train_a, y_train_a, x_test_a, y_test_a = kfold_train_test_split(dataset_a_x, dataset_a_y, test_size=0.0, by_subject=by_subject, is_resample=is_resample, folds=1)
+        x_train_b, y_train_b, x_test_b, y_test_b = kfold_train_test_split(dataset_b_x, dataset_b_y, test_size=test_size, by_subject=by_subject, is_resample=is_resample, folds=1)
         x_train = pd.concat([x_train_a[0], x_train_b[0]])
         y_train = pd.concat([y_train_a[0], y_train_b[0]])
         x_test = x_test_b[0]
@@ -883,9 +877,12 @@ class Train_Multi_Dataset:
         print(f"y_test:\n{y_test.value_counts()}")
 
         for model_name in models.keys():
-            model = models[model_name]
-            model = model.fit(x_train, y_train.loc[:, "label"])
-            y_pred = model.predict(x_test)
+            if model_name == "random":
+                y_pred = [random.choice([0, 1]) for i in range(x_test.shape[0])]
+            else:
+                model = models[model_name]
+                model = model.fit(x_train, y_train.loc[:, "label"])
+                y_pred = model.predict(x_test)
 
             unique, counts = np.unique(y_pred, return_counts=True)
             print(f"Model {model_name}, Predictions: {unique}, {counts}")
