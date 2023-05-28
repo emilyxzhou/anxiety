@@ -83,21 +83,18 @@ def kfold_train_test_split(x, y, test_size=0.1, is_resample=False, folds=1):
     cv_index = random.choice(range(0, n_splits))
     sgkf = StratifiedGroupKFold(n_splits=n_splits)
     subjects = list(x.loc[:, "subject"])
-    x_train = []
-    y_train = []
-    x_test = []
-    y_test = []
     cv = sgkf.split(x, y.loc[:, "label"], subjects)
     for i, (train_index, test_index) in enumerate(sgkf.split(x, y.loc[:, "label"], subjects)):
         if i == cv_index:
             break
-    x_train = (x.iloc[train_index, :])
-    y_train = (y.iloc[train_index, :])
-    x_test = (x.iloc[test_index, :])
-    y_test = (y.iloc[test_index, :])
+    x_train = x.iloc[train_index, :].reset_index(drop=True)
+    y_train = y.iloc[train_index, :].reset_index(drop=True)
+    x_test = x.iloc[test_index, :].reset_index(drop=True)
+    y_test = y.iloc[test_index, :].reset_index(drop=True)
+    subjects = list(x_train.loc[:, "subject"])
 
     sgkf = StratifiedGroupKFold(n_splits=folds)
-    return sgkf.split(x_train, y_train.loc[:, "label"], subjects), x_test, y_test
+    return sgkf.split(x_train, y_train.loc[:, "label"], subjects), x_train, y_train, x_test, y_test
 
 
 def resample(x, y, threshold=0.333):
@@ -129,104 +126,87 @@ def grid_search_cv(
         by_subject=True, save_metrics=True, get_importance=False, print_preds=False, 
         is_resample=False, drop_subject=False, folds=1
     ):
-    """
-    models: dictionary of {"name": model}
-    """
-    # x_train, y_train, x_val, y_val, x_test, y_test = kfold_train_test_split(x, y, test_size, is_resample=is_resample, folds=folds)
-    cv, x_test, y_test = kfold_train_test_split(x, y, test_size, is_resample=is_resample, folds=folds)
+    cv, x_train, y_train, x_test, y_test = kfold_train_test_split(x, y, test_size, is_resample=is_resample, folds=folds)
     if drop_subject:
-        x = x.drop("subject", axis=1)
-        y = y.drop("subject", axis=1)
-    #     x_train = [x.drop("subject", axis=1) for x in x_train]
-    #     x_val = [x.drop("subject", axis=1) for x in x_val]
-    #     x_test = [x.drop("subject", axis=1) for x in x_test]
-    # y_val = [y.loc[:, "label"] for y in y_val]
-
-    # for i in range(folds):
-        # print(x_train[i].isnull().values.any())
-        # print(y_train[i].isnull().values.any())
-        # print(x_test[i].isnull().values.any())
-        # print(y_test[i].isnull().values.any())
-        # print(f"y_train | y_val:\n{y_train[i].loc[:, 'label'].value_counts().to_dict()} | {x_val[i].value_counts().to_dict()}")
-
-    model_data = {}
+        x_train = x_train.drop("subject", axis=1)
+        y_train = y_train.drop("subject", axis=1).to_numpy().flatten()
+        x_test = x_test.drop("subject", axis=1)
+        y_test = y_test.drop("subject", axis=1).to_numpy().flatten()
+    cv_list = []
+    # HYPERPARAMETER GRID SEARCH
+    for _, (train_index, test_index) in enumerate(cv):
+        cv_list.append((train_index, test_index))
+    model_data = {name: {} for name in models.keys()}
     for model_name in models.keys():
         model = models[model_name]
         params = parameters[model_name]
+        clf = GridSearchCV(model, params, cv=cv_list)
+        clf.fit(x_train, y_train)
+        best_params = clf.best_params_
+        model_data[model_name]["best_params"] = best_params
+        model = clf.best_estimator_
+    # TEST MODELS WITH BEST PARAMETERS ON HOLDOUT SET
+        if model_name == "random":
+            y_pred = [random.choice([0, 1]) for i in range(x_test.shape[0])]
+        else:
+            model = model.fit(x_test, y_test)
+            if model_name == "LogReg":
+                y_pred = model.predict_proba(x_test)
+                y_pred = (y_pred[:,1] >= 0.7).astype(int)
+            else:
+                y_pred = model.predict(x_test)
 
-        x_train = []
-        y_train = []
-        x_val = []
-        y_val = []
-        for _, (train_index, val_index) in enumerate(cv):
-            x_train.append(x.iloc[train_index, :])
-            y_train.append(y.iloc[train_index, :])
-            x_val.append(x.iloc[val_index, :])
-            y_val.append(y.iloc[val_index, :])
-        for i in range(len(x_train)):
-            print(x_train[i].shape)
-            print(y_train[i].shape)
-        for i in range(len(x_val)):
-            print(x_val[i].shape)
-            print(y_val[i].shape)
+        unique, counts = np.unique(y_pred, return_counts=True)
+        print(f"Model {model_name}, Predictions: {unique}, {counts}")
+        acc = accuracy_score(y_test, y_pred)
+        if save_metrics:
+            precision = precision_score(y_test, y_pred, zero_division=0)
+            recall = recall_score(y_test, y_pred, zero_division=0)
+            f1 = f1_score(y_test, y_pred, zero_division=0)
+            try:
+                fpr, tpr, thresholds = roc_curve(y_test, y_pred)
+                roc_auc = auc(fpr, tpr)
+                display = RocCurveDisplay(fpr=fpr, tpr=tpr, roc_auc=roc_auc, estimator_name='example estimator')
+                # Uncomment the following two lines to see ROC plot
+                # display.plot()
+                # plt.show()
+                auc_score = roc_auc_score(y_test, y_pred)
+            except Exception as e:
+                print(e)
+                print("Only one class present in y_true. ROC AUC score is not defined in that case. Setting AUC score to -1.")
+                auc_score = -1
+            report = {
+                "precision": precision,
+                "recall": recall,
+                "f1": f1,
+                "auc": auc_score
+            }
+            # print(report)
+        else:
+            report = None
+        if print_preds and acc > 0.5:
+            print(y_pred)
+        if get_importance:
+            # print("Calculating shap values")
+            if model_name == "XGB":
+                explainer = shap.Explainer(model, x_test)
+                # importance = explainer(x_train[i], check_additivity=False)
+                importance = model.feature_importances_
+            elif model_name == "DT":
+                importance = model.feature_importances_
+            elif model_name == "LogReg":
+                importance = model.coef_[0]
+            elif model_name == "RF":
+                importance = model.feature_importances_
+            elif model_name == "SVM":
+                importance = model.coef_[0]
+            else:
+                print(f"Feature importance not available for {model_name}")
+                importance = None
+        else:
+            importance = None  # not defined for KNN
+        model_data[model_name]["performance"] = (acc, report, importance)
 
-        # if model_name == "random":
-        #     y_pred = [random.choice([0, 1]) for i in range(x_val[i].shape[0])]
-        clf = GridSearchCV(model, params, cv=cv)
-        clf.fit(x, y)
-        out = clf.best_params_
-
-        #     unique, counts = np.unique(y_pred, return_counts=True)
-        #     print(f"Model {model_name}, Predictions: {unique}, {counts}")
-        #     acc = accuracy_score(y_val[i], y_pred)
-        #     if save_metrics:
-        #         precision = precision_score(y_val[i], y_pred, zero_division=0)
-        #         recall = recall_score(y_val[i], y_pred, zero_division=0)
-        #         f1 = f1_score(y_val[i], y_pred, zero_division=0)
-        #         try:
-        #             fpr, tpr, thresholds = roc_curve(y_val[i], y_pred)
-        #             roc_auc = auc(fpr, tpr)
-        #             display = RocCurveDisplay(fpr=fpr, tpr=tpr, roc_auc=roc_auc, estimator_name='example estimator')
-        #             # Uncomment the following two lines to see ROC plot
-        #             # display.plot()
-        #             # plt.show()
-        #             auc_score = roc_auc_score(y_val [i], y_pred)
-        #         except Exception as e:
-        #             print(e)
-        #             print("Only one class present in y_true. ROC AUC score is not defined in that case. Setting AUC score to -1.")
-        #             auc_score = -1
-        #         report = {
-        #             "precision": precision,
-        #             "recall": recall,
-        #             "f1": f1,
-        #             "auc": auc_score
-        #         }
-        #         # print(report)
-        #     else:
-        #         report = None
-        #     if print_preds and acc > 0.5:
-        #         print(y_pred)
-        #     if get_importance:
-        #         # print("Calculating shap values")
-        #         if model_name == "XGB":
-        #             explainer = shap.Explainer(model, x_train[i])
-        #             # importance = explainer(x_train[i], check_additivity=False)
-        #             importance = model.feature_importances_
-        #         elif model_name == "DT":
-        #             importance = model.feature_importances_
-        #         elif model_name == "LogReg":
-        #             importance = model.coef_[0]
-        #         elif model_name == "RF":
-        #             importance = model.feature_importances_
-        #         elif model_name == "SVM":
-        #             importance = model.coef_[0]
-        #         else:
-        #             print(f"Feature importance not available for {model_name}")
-        #             importance = None
-        #     else:
-        #         importance = None  # not defined for KNN
-        #     out.append((acc, report, importance))
-        model_data[model_name] = out
     return model_data
 
 
