@@ -22,6 +22,7 @@ import tools.preprocessing as preprocessing
 from imblearn.over_sampling import RandomOverSampler
 from imblearn.over_sampling import SMOTE
 from scipy.fft import fft, fftfreq, fftshift
+from sklearn.feature_selection import SequentialFeatureSelector
 from sklearn.metrics import accuracy_score, auc, classification_report, confusion_matrix, precision_score, f1_score, \
     recall_score, roc_auc_score, roc_curve, RocCurveDisplay
 from sklearn.model_selection import train_test_split, GridSearchCV, StratifiedGroupKFold
@@ -125,6 +126,17 @@ def grid_search_cv(
         by_subject=True, save_metrics=True, get_importance=False, print_preds=False, 
         is_resample=False, drop_subject=True, folds=1
     ):
+    """
+    return: model_data = {{
+        model_name: {
+            "cv": ___,
+            "best_params": ___,
+            "best_model": ___,
+            "train": ___,
+            "test": ___,
+        }
+    }}
+    """
     cv, x_train, y_train, x_test, y_test = kfold_train_test_split(x, y, test_size, is_resample=is_resample, folds=folds)
     # subjects = np.unique(list(x_train.loc[:, "subject"]))
     # subjects.sort()
@@ -138,9 +150,11 @@ def grid_search_cv(
         x_test = x_test.drop("subject", axis=1)
         y_test = y_test.drop("subject", axis=1).to_numpy().flatten()
     cv_list = []
+
     # HYPERPARAMETER GRID SEARCH
     for _, (train_index, test_index) in enumerate(cv):
         cv_list.append((train_index, test_index))
+    model_data["cv"] = cv_list
     model_data = {name: {} for name in models.keys()}
     for model_name in models.keys():
         model = models[model_name]
@@ -148,9 +162,26 @@ def grid_search_cv(
         clf = GridSearchCV(model, params, cv=cv_list, scoring="roc_auc")
         clf.fit(x_train, y_train)
         best_params = clf.best_params_
+        best_model = clf.best_estimator_
         model_data[model_name]["best_params"] = best_params
-    # TEST MODELS WITH BEST PARAMETERS ON HOLDOUT SET
-        model = clf.best_estimator_
+        model_data[model_name]["best_model"] = best_model
+    model_data["train"] = (x_train, y_train)
+    model_data["test"] = (x_test, y_test)
+
+    return model_data
+
+
+def feature_selection(models, cv, x_train, y_train, n_features=5):
+    model_data = {name: {} for name in models.keys()}
+    for model_name in models.keys():
+        model = models[model_name]
+        sfs = SequentialFeatureSelector(model, n_features_to_select=n_features)
+
+
+def test_model(models, x_test, y_test):
+    model_data = {name: {} for name in models.keys()}
+    for model_name in models.keys():
+        model = models[model_name]
         if model_name == "random":
             y_pred = [random.choice([0, 1]) for i in range(x_test.shape[0])]
         else:
@@ -163,52 +194,42 @@ def grid_search_cv(
         unique_pred, counts_pred = np.unique(y_pred, return_counts=True)
         print(f"Model {model_name}, Actual: {unique}, {counts}, Predictions: {unique_pred}, {counts_pred}")
         acc = accuracy_score(y_test, y_pred)
-        if save_metrics:
-            precision = precision_score(y_test, y_pred, zero_division=0)
-            recall = recall_score(y_test, y_pred, zero_division=0)
-            f1 = f1_score(y_test, y_pred, zero_division=0)
-            try:
-                fpr, tpr, thresholds = roc_curve(y_test, y_pred)
-                roc_auc = auc(fpr, tpr)
-                display = RocCurveDisplay(fpr=fpr, tpr=tpr, roc_auc=roc_auc, estimator_name='example estimator')
-                # Uncomment the following two lines to see ROC plot
-                # display.plot()
-                # plt.show()
-                auc_score = roc_auc_score(y_test, y_pred)
-            except Exception as e:
-                print(e)
-                print("Only one class present in y_true. ROC AUC score is not defined in that case. Setting AUC score to -1.")
-                auc_score = -1
-            report = {
-                "precision": precision,
-                "recall": recall,
-                "f1": f1,
-                "auc": auc_score
-            }
-            # print(report)
+        precision = precision_score(y_test, y_pred, zero_division=0)
+        recall = recall_score(y_test, y_pred, zero_division=0)
+        f1 = f1_score(y_test, y_pred, zero_division=0)
+        try:
+            fpr, tpr, thresholds = roc_curve(y_test, y_pred)
+            roc_auc = auc(fpr, tpr)
+            display = RocCurveDisplay(fpr=fpr, tpr=tpr, roc_auc=roc_auc, estimator_name='example estimator')
+            # Uncomment the following two lines to see ROC plot
+            # display.plot()
+            # plt.show()
+            auc_score = roc_auc_score(y_test, y_pred)
+        except Exception as e:
+            print(e)
+            print("Only one class present in y_true. ROC AUC score is not defined in that case. Setting AUC score to -1.")
+            auc_score = -1
+        report = {
+            "precision": precision,
+            "recall": recall,
+            "f1": f1,
+            "auc": auc_score
+        }
+
+        if model_name == "XGB":
+            importance = model.feature_importances_
+        elif model_name == "DT":
+            importance = model.feature_importances_
+        elif model_name == "LogReg":
+            importance = model.coef_[0]
+        elif model_name == "RF":
+            importance = model.feature_importances_
+        elif model_name == "SVM":
+            importance = model.coef_[0]
         else:
-            report = None
-        if print_preds and acc > 0.5:
-            print(y_pred)
-        if get_importance:
-            # print("Calculating shap values")
-            if model_name == "XGB":
-                explainer = shap.Explainer(model, x_test)
-                # importance = explainer(x_train[i], check_additivity=False)
-                importance = model.feature_importances_
-            elif model_name == "DT":
-                importance = model.feature_importances_
-            elif model_name == "LogReg":
-                importance = model.coef_[0]
-            elif model_name == "RF":
-                importance = model.feature_importances_
-            elif model_name == "SVM":
-                importance = model.coef_[0]
-            else:
-                print(f"Feature importance not available for {model_name}")
-                importance = None
-        else:
-            importance = None  # not defined for KNN
+            print(f"Feature importance not available for {model_name}")
+            importance = None
+
         model_data[model_name]["performance"] = (acc, report, importance)
 
     return model_data
