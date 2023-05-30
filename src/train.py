@@ -83,7 +83,6 @@ def kfold_train_test_split(x, y, test_size=0.1, is_resample=False, folds=1):
     cv_index = random.choice(range(0, n_splits))
     sgkf = StratifiedGroupKFold(n_splits=n_splits)
     subjects = list(x.loc[:, "subject"])
-    cv = sgkf.split(x, y.loc[:, "label"], subjects)
     for i, (train_index, test_index) in enumerate(sgkf.split(x, y.loc[:, "label"], subjects)):
         if i == cv_index:
             break
@@ -122,11 +121,17 @@ def resample(x, y, threshold=0.333):
 
 
 def grid_search_cv(
-        models, parameters, x, y, test_size=0.15, 
+        models, parameters, x, y, test_size=0.1, 
         by_subject=True, save_metrics=True, get_importance=False, print_preds=False, 
-        is_resample=False, drop_subject=False, folds=1
+        is_resample=False, drop_subject=True, folds=1
     ):
     cv, x_train, y_train, x_test, y_test = kfold_train_test_split(x, y, test_size, is_resample=is_resample, folds=folds)
+    # subjects = np.unique(list(x_train.loc[:, "subject"]))
+    # subjects.sort()
+    # print(f"x_train subjects: {subjects}")
+    # subjects = np.unique(list(x_test.loc[:, "subject"]))
+    # subjects.sort()
+    # print(f"x_test subjects: {subjects}")
     if drop_subject:
         x_train = x_train.drop("subject", axis=1)
         y_train = y_train.drop("subject", axis=1).to_numpy().flatten()
@@ -140,24 +145,23 @@ def grid_search_cv(
     for model_name in models.keys():
         model = models[model_name]
         params = parameters[model_name]
-        clf = GridSearchCV(model, params, cv=cv_list)
+        clf = GridSearchCV(model, params, cv=cv_list, scoring="roc_auc")
         clf.fit(x_train, y_train)
         best_params = clf.best_params_
         model_data[model_name]["best_params"] = best_params
-        model = clf.best_estimator_
     # TEST MODELS WITH BEST PARAMETERS ON HOLDOUT SET
+        model = clf.best_estimator_
         if model_name == "random":
             y_pred = [random.choice([0, 1]) for i in range(x_test.shape[0])]
         else:
-            model = model.fit(x_test, y_test)
             if model_name == "LogReg":
                 y_pred = model.predict_proba(x_test)
-                y_pred = (y_pred[:,1] >= 0.7).astype(int)
+                y_pred = (y_pred[:, 1] >= 0.7).astype(int)
             else:
                 y_pred = model.predict(x_test)
-
-        unique, counts = np.unique(y_pred, return_counts=True)
-        print(f"Model {model_name}, Predictions: {unique}, {counts}")
+        unique, counts = np.unique(y_test, return_counts=True)
+        unique_pred, counts_pred = np.unique(y_pred, return_counts=True)
+        print(f"Model {model_name}, Actual: {unique}, {counts}, Predictions: {unique_pred}, {counts_pred}")
         acc = accuracy_score(y_test, y_pred)
         if save_metrics:
             precision = precision_score(y_test, y_pred, zero_division=0)

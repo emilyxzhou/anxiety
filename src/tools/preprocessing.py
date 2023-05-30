@@ -232,13 +232,14 @@ def clean_RR(clean_ecg_signal):
     return filtered
 
 
-def get_hf_rr(ecg, fs=FS_DICT[dr.DataTypes.ECG], window_size=50):
+def get_hf_rr(ecg, fs=FS_DICT[dr.DataTypes.ECG], window_size=60, overlap=30):
     n = ecg.size
     if n == 0:
         print("ECG signal has length 0, returning None")
         return None
     start = 0
     window_size = int(window_size*fs)
+    overlap = int(overlap*fs)
     stop = start + window_size
     out = []
     if stop >= n:
@@ -272,17 +273,18 @@ def get_hf_rr(ecg, fs=FS_DICT[dr.DataTypes.ECG], window_size=50):
             power = np.multiply(amp, amp).sum() # Parseval's theorem
             out.append(power)
 
-            start = stop
+            start = stop - overlap - overlap
     return np.asarray(out)
 
 
-def get_lf_rr(ecg, fs=FS_DICT[dr.DataTypes.ECG], window_size=50):
+def get_lf_rr(ecg, fs=FS_DICT[dr.DataTypes.ECG], window_size=60, overlap=30):
     n = ecg.size
     if n == 0:
         print("ECG signal has length 0, returning None")
         return None
     start = 0
     window_size = int(window_size*fs)
+    overlap = int(overlap*fs)
     stop = start + window_size
     out = []
     if stop >= n:
@@ -315,11 +317,11 @@ def get_lf_rr(ecg, fs=FS_DICT[dr.DataTypes.ECG], window_size=50):
             power = np.multiply(amp, amp).sum() # Parseval's theorem
             out.append(power)
 
-            start = stop
+            start = stop - overlap
     return np.asarray(out)
 
 
-def get_ecg_metrics_pyhrv(ecg_signal, fs=FS_DICT[dr.DataTypes.ECG], window_size=50):
+def get_ecg_metrics_pyhrv(ecg_signal, fs=FS_DICT[dr.DataTypes.ECG], window_size=60, overlap=30):
     n = ecg_signal.size
     if n == 0:
         print("ECG signal has length 0, returning None")
@@ -333,6 +335,7 @@ def get_ecg_metrics_pyhrv(ecg_signal, fs=FS_DICT[dr.DataTypes.ECG], window_size=
 
     start = 0
     window_size = int(window_size*fs)
+    overlap = int(overlap*fs)
     stop = start + window_size
     if stop >= n:
         segment = ecg_signal
@@ -366,12 +369,12 @@ def get_ecg_metrics_pyhrv(ecg_signal, fs=FS_DICT[dr.DataTypes.ECG], window_size=
             # metrics_dict["ibi"].append(ibi)
             metrics_dict["sdnn"].append(sdnn)
 
-            start = stop
+            start = stop - overlap
     
     return metrics_dict
 
 
-def get_bpm_biosppy(ecg_signal, fs=FS_DICT[dr.DataTypes.ECG], window_size=50):
+def get_bpm_biosppy(ecg_signal, fs=FS_DICT[dr.DataTypes.ECG], window_size=60, overlap=30):
     n = ecg_signal.size
     if n == 0:
         print("ECG signal has length 0, returning None")
@@ -379,6 +382,7 @@ def get_bpm_biosppy(ecg_signal, fs=FS_DICT[dr.DataTypes.ECG], window_size=50):
     
     start = 0
     window_size = int(window_size*fs)
+    overlap = int(overlap*fs)
     stop = start + window_size
     out = []
     if stop >= n:
@@ -402,7 +406,7 @@ def get_bpm_biosppy(ecg_signal, fs=FS_DICT[dr.DataTypes.ECG], window_size=50):
                 bpm = np.nan
                 out.append(bpm)
 
-            start = stop
+            start = stop - overlap
     
     return out
 
@@ -426,7 +430,7 @@ def get_SC_metrics(eda, fs=FS_DICT[dr.DataTypes.EDA]):
     # return phasic, tonic
 
 
-def get_mean_SCL(eda_signal, fs=FS_DICT[dr.DataTypes.EDA], window_size=50):
+def get_mean_SCL(eda_signal, fs=FS_DICT[dr.DataTypes.EDA], window_size=60, overlap=30):
     _, scl = get_SC_metrics(eda_signal, fs)
     if scl is None:
         print("mean SCL is None")
@@ -434,6 +438,7 @@ def get_mean_SCL(eda_signal, fs=FS_DICT[dr.DataTypes.EDA], window_size=50):
     n = scl.size
     start = 0
     window_size = int(window_size*fs)
+    overlap = int(overlap*fs)
     stop = start + window_size
     out = []
     if stop >= n:
@@ -447,11 +452,11 @@ def get_mean_SCL(eda_signal, fs=FS_DICT[dr.DataTypes.EDA], window_size=50):
         segment_mean = np.mean(segment)
         print(f"mean SCL: {segment_mean}")
         out.append(segment_mean)
-        start = stop
+        start = stop - overlap
     return np.asarray(out)
 
 
-def  get_SCR_rate(eda_signal, fs=FS_DICT[dr.DataTypes.EDA], window_size=50):
+def  get_SCR_rate(eda_signal, fs=FS_DICT[dr.DataTypes.EDA], window_size=60, overlap=30):
     scr, _ = get_SC_metrics(eda_signal, fs)
     if scr is None:
         print("SCR rate is None")
@@ -461,6 +466,7 @@ def  get_SCR_rate(eda_signal, fs=FS_DICT[dr.DataTypes.EDA], window_size=50):
     n = grad.size
     start = 0
     window_size = int(window_size*fs)
+    overlap = int(overlap*fs)
     stop = start + window_size
     # threshold = max()
     out = []
@@ -479,7 +485,7 @@ def  get_SCR_rate(eda_signal, fs=FS_DICT[dr.DataTypes.EDA], window_size=50):
         num_peaks = len(peaks)
         print(f"SCR rate: {num_peaks}")
         out.append(num_peaks//2 + 1)
-        start = stop
+        start = stop - overlap
     return np.asarray(out)
 
 
@@ -507,6 +513,7 @@ def get_peak_acc_value(acc_signal, acc_type):
     n = acc_signal.shape[0]
     start = 0
     window_size = int(window_size*fs)
+    overlap = int(overlap*fs)
     stop = start + window_size
 
     out = []
@@ -518,7 +525,7 @@ def get_peak_acc_value(acc_signal, acc_type):
         segment = np.sqrt(segment)
         peak = segment.max()
         out.append(peak)
-        start = stop
+        start = stop - overlap
     return np.asarray(out)
 
 
