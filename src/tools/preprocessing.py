@@ -261,7 +261,6 @@ def get_hf_rr(ecg, fs=FS_DICT[dr.DataTypes.ECG], window_size=60, overlap=30):
                 segment = ecg.iloc[start:stop]
             except AttributeError:
                 segment = ecg[start:stop]
-
             freq, amp = calculate_fft_1d(segment, fs)
             
             low = 0.15
@@ -273,7 +272,7 @@ def get_hf_rr(ecg, fs=FS_DICT[dr.DataTypes.ECG], window_size=60, overlap=30):
             power = np.multiply(amp, amp).sum() # Parseval's theorem
             out.append(power)
 
-            start = stop - overlap - overlap
+            start = stop - overlap
     return np.asarray(out)
 
 
@@ -444,13 +443,13 @@ def get_mean_SCL(eda_signal, fs=FS_DICT[dr.DataTypes.EDA], window_size=60, overl
     if stop >= n:
         segment = scl
         segment_mean = np.mean(segment)
-        print(f"mean SCL: {segment_mean}")
+        # print(f"mean SCL: {segment_mean}")
         out.append(segment_mean)
     while stop < n:
         stop = start + window_size
         segment = scl[start:stop]
         segment_mean = np.mean(segment)
-        print(f"mean SCL: {segment_mean}")
+        # print(f"mean SCL: {segment_mean}")
         out.append(segment_mean)
         start = stop - overlap
     return np.asarray(out)
@@ -474,7 +473,7 @@ def  get_SCR_rate(eda_signal, fs=FS_DICT[dr.DataTypes.EDA], window_size=60, over
         segment = scr
         peaks, _ = ss.find_peaks(segment)
         num_peaks = len(peaks)
-        print(f"SCR rate: {num_peaks}")
+        # print(f"SCR rate: {num_peaks}")
         out.append(num_peaks//2 + 1)
     while stop < n:
         stop = start + window_size
@@ -483,7 +482,7 @@ def  get_SCR_rate(eda_signal, fs=FS_DICT[dr.DataTypes.EDA], window_size=60, over
         # num_peaks = len(list(itertools.groupby(segment, lambda x: x > 0)))
         peaks, _ = ss.find_peaks(segment)
         num_peaks = len(peaks)
-        print(f"SCR rate: {num_peaks}")
+        # print(f"SCR rate: {num_peaks}")
         out.append(num_peaks//2 + 1)
         start = stop - overlap
     return np.asarray(out)
