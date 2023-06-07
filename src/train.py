@@ -125,8 +125,8 @@ def grid_search_cv(
     ):
     """
     return: model_data = {{
+        "cv": ___,
         model_name: {
-            "cv": ___,
             "best_params": ___,
             "best_model": ___,
         },
@@ -141,24 +141,25 @@ def grid_search_cv(
     # subjects = np.unique(list(x_test.loc[:, "subject"]))
     # subjects.sort()
     # print(f"x_test subjects: {subjects}")
-    if drop_subject:
-        x_train = x_train.drop("subject", axis=1)
-        y_train = y_train.drop("subject", axis=1).to_numpy().flatten()
-        x_test = x_test.drop("subject", axis=1)
-        y_test = y_test.drop("subject", axis=1).to_numpy().flatten()
     cv_list = []
 
     # HYPERPARAMETER GRID SEARCH
     model_data = {name: {} for name in models.keys()}
     for _, (train_index, test_index) in enumerate(cv):
         cv_list.append((train_index, test_index))
-    model_data["cv"] = cv_list
+
     model_data = {name: {} for name in models.keys()}
+    model_data["cv"] = cv_list
     for model_name in models.keys():
         model = models[model_name]
         params = parameters[model_name]
         clf = GridSearchCV(model, params, cv=cv_list, scoring="roc_auc")
-        clf.fit(x_train, y_train)
+        if drop_subject:
+            x_train_temp = x_train.drop("subject", axis=1)
+            y_train_temp = y_train.drop("subject", axis=1).to_numpy().flatten()
+            clf.fit(x_train_temp, y_train_temp)
+        else:
+            clf.fit(x_train, y_train)
         best_params = clf.best_params_
         best_model = clf.best_estimator_
         model_data[model_name]["best_params"] = best_params
@@ -169,28 +170,57 @@ def grid_search_cv(
     return model_data
 
 
-def feature_selection(models, cv, x_train, y_train, n_features=5):
+def feature_selection(models, cv, x_train, y_train, n_features=5, folds=5, drop_subject=True):
     """
     models is a dictionary of {model_name: classifier object}
     """
+    subjects = list(x_train.loc[:, "subject"])
+    sgkf = StratifiedGroupKFold(n_splits=folds)
+    model_data = {name: {} for name in models.keys()}
+
+    # cv = sgkf.split(x_train, y_train.loc[:, "label"], subjects)
+    cv_list = []
+    for _, (train_index, test_index) in enumerate(cv):
+        cv_list.append((train_index, test_index))
+
+    for model_name in models.keys():
+        model = models[model_name]
+        sfs = SequentialFeatureSelector(model, n_features_to_select=n_features, cv=cv_list)
+        if drop_subject:
+            x_train_temp = x_train.drop("subject", axis=1)
+            y_train_temp = y_train.drop("subject", axis=1).to_numpy().flatten()
+            sfs.fit(x_train_temp, y_train_temp)
+        else:
+            sfs.fit(x_train, y_train)
+        features = list((sfs.support_*sfs.feature_names_in_).flatten())
+        features = list(filter(None, features))
+        model_data[model_name] = features
+    return model_data
+
+
+def train_test_model(models, features, x_train, y_train, x_test, y_test, drop_subject=True):
+    if drop_subject:
+        x_train = x_train.drop("subject", axis=1)
+        y_train = y_train.drop("subject", axis=1).to_numpy().flatten()
+        x_test = x_test.drop("subject", axis=1)
+        y_test = y_test.drop("subject", axis=1).to_numpy().flatten()
+
     model_data = {name: {} for name in models.keys()}
     for model_name in models.keys():
         model = models[model_name]
-        sfs = SequentialFeatureSelector(model, n_features_to_select=n_features)
+        test_features = features[model_name]
+        x_train_in = x_train.loc[:, test_features]
+        x_test_in = x_test.loc[:, test_features]
+        model.fit(x_train_in, y_train)
 
-
-def test_model(models, x_test, y_test):
-    model_data = {name: {} for name in models.keys()}
-    for model_name in models.keys():
-        model = models[model_name]
         if model_name == "random":
             y_pred = [random.choice([0, 1]) for i in range(x_test.shape[0])]
         else:
             if model_name == "LogReg":
-                y_pred = model.predict_proba(x_test)
+                y_pred = model.predict_proba(x_test_in)
                 y_pred = (y_pred[:, 1] >= 0.7).astype(int)
             else:
-                y_pred = model.predict(x_test)
+                y_pred = model.predict(x_test_in)
         unique, counts = np.unique(y_test, return_counts=True)
         unique_pred, counts_pred = np.unique(y_pred, return_counts=True)
         print(f"Model {model_name}, Actual: {unique}, {counts}, Predictions: {unique_pred}, {counts_pred}")
@@ -450,16 +480,18 @@ class Train_APD:
                     ha_features.append(arr)
                 else:
                     num_cols = arr.shape[1]-1
-                    num_segments = num_cols // 5
+                    num_segments = math.ceil(num_cols / 3)
                     # num_segments = num_cols
                     for row in range(arr.shape[0]):
                         for j in range(num_segments):
+                            data = np.nanmean(arr[row, j*3:j*3+3])
                             if i == 0:  # subject ID
-                                ha_features.append([arr[row, 0], np.nanmean(arr[row, j*5:j*5+5])])
-                                # ha_features.append([arr[row, 0], arr[row, j]])
+                                ha_features.append([arr[row, 0], data])
                             else:
-                                ha_features[row*num_segments + j].append(np.nanmean(arr[row, j*5:j*5+5]))
-                                # ha_features[row*num_segments + j].append(arr[row, j])
+                                try:
+                                    ha_features[row*num_segments + j].append(data)
+                                except Exception:
+                                    pass
 
                 file = os.path.join(metrics_folder, f"{metric}_{phase}_la.csv")
                 arr = pd.read_csv(file, index_col=[0]).to_numpy()
@@ -478,16 +510,18 @@ class Train_APD:
                     la_features.append(arr)
                 else:
                     num_cols = arr.shape[1]-1
-                    num_segments = num_cols // 5
+                    num_segments = math.ceil(num_cols / 3)
                     # num_segments = num_cols
                     for row in range(arr.shape[0]):
                         for j in range(num_segments):
+                            data = np.nanmean(arr[row, j*3:j*3+3])
                             if i == 0:  # subject ID
-                                la_features.append([arr[row, 0], np.nanmean(arr[row, j*5:j*5+5])])
-                                # la_features.append([arr[row, 0], arr[row, j]])
+                                la_features.append([arr[row, 0], data])
                             else:
-                                la_features[row*num_segments + j].append(np.nanmean(arr[row, j*5:j*5+5]))
-                                # la_features[row*num_segments + j].append(arr[row, j])
+                                try:
+                                    la_features[row*num_segments + j].append(data)
+                                except Exception:
+                                    pass
 
             if anxiety_label_type is not None: 
                 if anxiety_label_type == "Trait":
