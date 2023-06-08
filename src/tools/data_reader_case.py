@@ -9,16 +9,22 @@ for i in range(len(SUBJECTS)):
     temp = str(SUBJECTS[i])
     SUBJECTS[i] = temp
 
-CLIPS = [1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12]
+CLIPS = [1, 2, 3, 4, 5, 6, 7, 8]
 # amusing: 1, 2
 # boring: 3, 4
 # relaxing: 5, 6
 # scary: 7, 8
+# 10: starting video; 11: in-between video; 12: ending video
 
 
 class Signals:
     ECG = "ECG"  # column 2, 1000 Hz
     EDA = "EDA"  # column 4, 1000 Hz
+
+
+class SelfReports:
+    AROUSAL = "arousal"
+    VALENCE = "valence"
 
 
 class Paths:
@@ -54,18 +60,41 @@ def read_gsr(subject, clip):
     return data
 
 
-def read_self_reports(subject, clip, self_report_type="arousal"):
+def read_single_self_report(subject, clip, label_type=SelfReports.AROUSAL):
     """ subject: int """
     file = os.path.join(Paths.SELF_REPORTS, f"sub_{subject}.csv")
-    data = pd.read_csv(file).loc[:, ["jstime", self_report_type, "video"]]
+    data = pd.read_csv(file).loc[:, ["jstime", label_type, "video"]]
     data = data[data["video"] == clip]
     subject_col = [subject for _ in range(data.shape[0])]
     data.insert(0, "subject", subject_col)
     return data
 
 
+def get_self_reports(label_type=SelfReports.AROUSAL):
+    out = []
+    for s in SUBJECTS:
+        temp = [s]
+        for c in CLIPS:
+            data = read_single_self_report(s, c, label_type)
+            temp.append(np.mean(data.loc[:, label_type]))
+        out.append(temp)
+    out = pd.DataFrame(out, columns=["subject"] + [c for c in CLIPS])
+    return out
+
+    
+def get_mean_self_reports(label_type=SelfReports.AROUSAL):
+    out = []
+    for s in SUBJECTS:
+        sum = 0
+        for c in CLIPS:
+            data = read_single_self_report(s, c, label_type)
+            sum += np.mean(data.loc[:, label_type])
+        mean = sum / len(CLIPS)
+        out.append([s, mean])
+    out = pd.DataFrame(out, columns=["subject", "mean"])
+    return out
+
+
 if __name__ == "__main__":
-    subject = 1
-    clip = 1
-    data = read_ecg(subject, clip)
-    print(data.head())
+    data = get_self_reports(SelfReports.AROUSAL)
+    print(data)

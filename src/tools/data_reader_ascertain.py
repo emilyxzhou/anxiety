@@ -100,14 +100,5 @@ def get_mean_self_reports(self_report_type):
 
 
 if __name__ == "__main__":
-    # for p in ["01", "02"]:
-    #     ecg = read_ecg(p, "1")
-    #     print(ecg)
-    #     eda = read_gsr(p, "1")
-    #     print(eda)
-
-    # self_reports = get_self_reports("Arousal")
-    # print(self_reports.head())
-
     mean_self_reports = get_mean_self_reports("Arousal")
     print(mean_self_reports)

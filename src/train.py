@@ -14,6 +14,7 @@ import scipy.signal as ss
 
 import tools.data_reader_apd as dr_a
 import tools.data_reader_ascertain as dr_asc
+import tools.data_reader_case as dr_c
 import tools.data_reader_popane as dr_p
 import tools.data_reader_sfi as dr_s
 import tools.data_reader_wesad as dr_w
@@ -251,6 +252,8 @@ def train_test_model(models, features, x_train, y_train, x_test, y_test, drop_su
             importance = model.feature_importances_
         elif model_name == "DT":
             importance = model.feature_importances_
+        elif model_name == "LGB":
+            importance = model.feature_importances_
         elif model_name == "LogReg":
             importance = model.coef_[0]
         elif model_name == "RF":
@@ -264,124 +267,6 @@ def train_test_model(models, features, x_train, y_train, x_test, y_test, drop_su
         model_data[model_name]["performance"] = (acc, report, importance)
 
     return model_data
-
-
-class Train_ASCERTAIN:
-
-    def get_ascertain_data(metrics, verbose=False, label_type="Arousal", threshold="dynamic", normalize=True, binary_labels=True, combine_phases=False):
-        metrics_folder = dr_asc.Paths.METRICS
-        
-        columns = metrics.copy()
-        columns.insert(0, "subject")
-        
-        data_x = []
-        data_y = []
-
-        for c, clip in enumerate(dr_asc.CLIPS):
-            if verbose: print(f"Generating features for clip {clip} " + "-"*30)
-            phase_id = dr_asc.CLIPS.index(clip)
-            features = []
-
-            for i in range(len(metrics)):
-                metric = metrics[i]
-                # print(metric)
-                if verbose: print(f"Generating features for metric {metric}")
-                file = os.path.join(metrics_folder, f"{metric}_Clip{clip}.csv")
-                arr = pd.read_csv(file, index_col=[0])
-                if combine_phases:
-                    if i == 0:  # subject IDs
-                        ids = arr.iloc[:, 0].tolist()
-                        ids = pd.DataFrame(data=ids, columns=["subject"])
-                        features.append(ids)
-                    arr = np.nanmean(arr.iloc[:, 1:], axis=1)
-                    arr = np.reshape(arr, (arr.size, 1))
-                    arr = pd.DataFrame(data=arr, columns=[f"{metric}"])
-                    features.append(arr)
-                else:
-                    num_cols = arr.shape[1]-1
-                    num_segments = math.ceil(num_cols / 3)
-                    # num_segments = num_cols
-                    for row in range(arr.shape[0]):
-                        for j in range(num_segments):
-                            # print(f"Clip {clip}, row {row}, segment {j}")
-                            try:
-                                data = np.nanmean(arr.iloc[row, j*3:j*3+3])
-                            except Exception:
-                                data = np.nanmean(arr.iloc[row, j*3:])
-                            if i == 0:  # subject ID
-                                features.append([arr.iloc[row, 0], data])
-                            else:
-                                try:
-                                    features[row*num_segments + j].append(data)
-                                except Exception:
-                                    pass
-
-            if combine_phases:
-                x = pd.concat(features, axis=1)
-            else:
-                x = pd.DataFrame(features, columns=["subject"] + metrics)
-            phase = pd.DataFrame(data=[phase_id for _ in range(x.shape[0])])
-            x.insert(1, "phaseId", phase)
-            data_x.append(x)
-        
-        data_x = pd.concat(data_x).reset_index(drop=True)
-        if "lf_rr" in metrics and "hf_rr" in metrics:
-            data_x["lf_hf_ratio"] = data_x["lf_rr"] / data_x["hf_rr"]
-            metrics.append("lf_hf_ratio")
-
-        subjects = data_x.loc[:, "subject"]
-        phase_col = data_x.loc[:, "phaseId"]
-
-        if label_type == dr_asc.SelfReports.AROUSAL:
-            scores = dr_asc.get_self_reports(label_type)
-        elif label_type == dr_asc.SelfReports.VALENCE:
-            scores = dr_asc.get_self_reports(label_type)
-        else:
-            raise ValueError(f"Invalid label type: {label_type}")
-
-        columns = scores.columns
-        
-        y_labels = []
-        for i in range(scores.shape[0]):
-            if binary_labels:
-                if threshold != "fixed":
-                    s = scores.iloc[i, 0]
-                    label_means = dr_asc.get_mean_self_reports(label_type)
-                    label_mean = label_means[label_means["subject"] == s].loc[:, "mean"].iloc[0]
-                else:
-                    if label_type == dr_asc.SelfReports.AROUSAL:
-                        label_mean = 4
-                    if label_type == dr_asc.SelfReports.VALENCE:
-                        label_mean = 0
-                labels = [scores.iloc[i, 0]]  # subject ID
-                for j in range(1, scores.shape[1]):
-                    if scores.iloc[i, j] < label_mean:
-                        labels.append(0)
-                    else:
-                        labels.append(1)
-            else:
-                labels = [scores.iloc[i, 0]]  # subject ID
-                for j in range(1, scores.shape[1]):
-                    labels.append(scores.iloc[i, j])
-            y_labels.append(labels)
-        y_labels = pd.DataFrame(data=y_labels, columns=columns)
-
-        for i in range(data_x.shape[0]):
-            s = subjects.iloc[i]
-            p = int(phase_col.iloc[i])
-            label = y_labels.loc[y_labels["subject"] == s].iloc[0, p+1]
-            data_y.append(label)
-
-        data_y = pd.DataFrame({"subject": subjects, "label": data_y})
-
-        if normalize:
-            for metric in metrics:
-                data_col = data_x[metric]
-                data_col = (data_col - data_col.min())/(data_col.max() - data_col.min())
-                data_x[metric] = data_col
-        if "lf_hf_ratio" in metrics:
-            metrics.remove("lf_hf_ratio")
-        return data_x, data_y
 
 
 class Train_APD:
@@ -588,6 +473,245 @@ class Train_APD:
             metrics.remove("lf_hf_ratio")
         return data_x, data_y
         # return out
+
+
+class Train_ASCERTAIN:
+
+    def get_ascertain_data(metrics, verbose=False, label_type="Arousal", threshold="dynamic", normalize=True, binary_labels=True, combine_phases=False):
+        metrics_folder = dr_asc.Paths.METRICS
+        
+        columns = metrics.copy()
+        columns.insert(0, "subject")
+        
+        data_x = []
+        data_y = []
+
+        for c, clip in enumerate(dr_asc.CLIPS):
+            if verbose: print(f"Generating features for clip {clip} " + "-"*30)
+            phase_id = dr_asc.CLIPS.index(clip)
+            features = []
+
+            for i in range(len(metrics)):
+                metric = metrics[i]
+                # print(metric)
+                if verbose: print(f"Generating features for metric {metric}")
+                file = os.path.join(metrics_folder, f"{metric}_Clip{clip}.csv")
+                arr = pd.read_csv(file, index_col=[0])
+                if combine_phases:
+                    if i == 0:  # subject IDs
+                        ids = arr.iloc[:, 0].tolist()
+                        ids = pd.DataFrame(data=ids, columns=["subject"])
+                        features.append(ids)
+                    arr = np.nanmean(arr.iloc[:, 1:], axis=1)
+                    arr = np.reshape(arr, (arr.size, 1))
+                    arr = pd.DataFrame(data=arr, columns=[f"{metric}"])
+                    features.append(arr)
+                else:
+                    num_cols = arr.shape[1]-1
+                    num_segments = math.ceil(num_cols / 3)
+                    # num_segments = num_cols
+                    for row in range(arr.shape[0]):
+                        for j in range(num_segments):
+                            # print(f"Clip {clip}, row {row}, segment {j}")
+                            try:
+                                data = np.nanmean(arr.iloc[row, j*3:j*3+3])
+                            except Exception:
+                                data = np.nanmean(arr.iloc[row, j*3:])
+                            if i == 0:  # subject ID
+                                features.append([arr.iloc[row, 0], data])
+                            else:
+                                try:
+                                    features[row*num_segments + j].append(data)
+                                except Exception:
+                                    pass
+
+            if combine_phases:
+                x = pd.concat(features, axis=1)
+            else:
+                x = pd.DataFrame(features, columns=["subject"] + metrics)
+            phase = pd.DataFrame(data=[phase_id for _ in range(x.shape[0])])
+            x.insert(1, "phaseId", phase)
+            data_x.append(x)
+        
+        data_x = pd.concat(data_x).reset_index(drop=True)
+        if "lf_rr" in metrics and "hf_rr" in metrics:
+            data_x["lf_hf_ratio"] = data_x["lf_rr"] / data_x["hf_rr"]
+            metrics.append("lf_hf_ratio")
+
+        subjects = data_x.loc[:, "subject"]
+        phase_col = data_x.loc[:, "phaseId"]
+
+        if label_type == dr_asc.SelfReports.AROUSAL:
+            scores = dr_asc.get_self_reports(label_type)
+        elif label_type == dr_asc.SelfReports.VALENCE:
+            scores = dr_asc.get_self_reports(label_type)
+        else:
+            raise ValueError(f"Invalid label type: {label_type}")
+
+        columns = scores.columns
+        
+        y_labels = []
+        for i in range(scores.shape[0]):
+            if binary_labels:
+                if threshold != "fixed":
+                    s = scores.iloc[i, 0]
+                    label_means = dr_asc.get_mean_self_reports(label_type)
+                    label_mean = label_means[label_means["subject"] == s].loc[:, "mean"].iloc[0]
+                else:
+                    if label_type == dr_asc.SelfReports.AROUSAL:
+                        label_mean = 4
+                    if label_type == dr_asc.SelfReports.VALENCE:
+                        label_mean = 0
+                labels = [scores.iloc[i, 0]]  # subject ID
+                for j in range(1, scores.shape[1]):
+                    if scores.iloc[i, j] < label_mean:
+                        labels.append(0)
+                    else:
+                        labels.append(1)
+            else:
+                labels = [scores.iloc[i, 0]]  # subject ID
+                for j in range(1, scores.shape[1]):
+                    labels.append(scores.iloc[i, j])
+            y_labels.append(labels)
+        y_labels = pd.DataFrame(data=y_labels, columns=columns)
+
+        for i in range(data_x.shape[0]):
+            s = subjects.iloc[i]
+            p = int(phase_col.iloc[i])
+            label = y_labels.loc[y_labels["subject"] == s].iloc[0, p+1]
+            data_y.append(label)
+
+        data_y = pd.DataFrame({"subject": subjects, "label": data_y})
+
+        if normalize:
+            for metric in metrics:
+                data_col = data_x[metric]
+                data_col = (data_col - data_col.min())/(data_col.max() - data_col.min())
+                data_x[metric] = data_col
+        if "lf_hf_ratio" in metrics:
+            metrics.remove("lf_hf_ratio")
+        return data_x, data_y
+    
+
+class Train_CASE:
+
+    def get_self_reports():
+        pass
+
+    def get_case_data(metrics, verbose=False, label_type="arousal", threshold="dynamic", normalize=True, binary_labels=True, combine_phases=False):
+        metrics_folder = dr_c.Paths.METRICS
+        
+        columns = metrics.copy()
+        columns.insert(0, "subject")
+        
+        data_x = []
+        data_y = []
+
+        for c, clip in enumerate(dr_c.CLIPS):
+            if verbose: print(f"Generating features for clip {clip} " + "-"*30)
+            phase_id = dr_c.CLIPS.index(clip)
+            features = []
+
+            for i in range(len(metrics)):
+                metric = metrics[i]
+                # print(metric)
+                if verbose: print(f"Generating features for metric {metric}")
+                file = os.path.join(metrics_folder, f"{metric}_{clip}.csv")
+                arr = pd.read_csv(file, index_col=[0])
+                if combine_phases:
+                    if i == 0:  # subject IDs
+                        ids = arr.iloc[:, 0].tolist()
+                        ids = pd.DataFrame(data=ids, columns=["subject"])
+                        features.append(ids)
+                    arr = np.nanmean(arr.iloc[:, 1:], axis=1)
+                    arr = np.reshape(arr, (arr.size, 1))
+                    arr = pd.DataFrame(data=arr, columns=[f"{metric}"])
+                    features.append(arr)
+                else:
+                    num_cols = arr.shape[1]-1
+                    num_segments = math.ceil(num_cols / 3)
+                    # num_segments = num_cols
+                    for row in range(arr.shape[0]):
+                        for j in range(num_segments):
+                            # print(f"Clip {clip}, row {row}, segment {j}")
+                            try:
+                                data = np.nanmean(arr.iloc[row, j*3:j*3+3])
+                            except Exception:
+                                data = np.nanmean(arr.iloc[row, j*3:])
+                            if i == 0:  # subject ID
+                                features.append([arr.iloc[row, 0], data])
+                            else:
+                                try:
+                                    features[row*num_segments + j].append(data)
+                                except Exception:
+                                    pass
+
+            if combine_phases:
+                x = pd.concat(features, axis=1)
+            else:
+                x = pd.DataFrame(features, columns=["subject"] + metrics)
+            phase = pd.DataFrame(data=[phase_id for _ in range(x.shape[0])])
+            x.insert(1, "phaseId", phase)
+            data_x.append(x)
+        
+        data_x = pd.concat(data_x).reset_index(drop=True)
+        if "lf_rr" in metrics and "hf_rr" in metrics:
+            data_x["lf_hf_ratio"] = data_x["lf_rr"] / data_x["hf_rr"]
+            metrics.append("lf_hf_ratio")
+
+        subjects = data_x.loc[:, "subject"]
+        phase_col = data_x.loc[:, "phaseId"]
+
+        if label_type == dr_c.SelfReports.AROUSAL:
+            scores = dr_c.get_self_reports(label_type)
+        elif label_type == dr_c.SelfReports.VALENCE:
+            scores = dr_c.get_self_reports(label_type)
+        else:
+            raise ValueError(f"Invalid label type: {label_type}")
+
+        columns = scores.columns
+        
+        y_labels = []
+        for i in range(scores.shape[0]):
+            if binary_labels:
+                if threshold != "fixed":
+                    s = scores.iloc[i, 0]
+                    label_means = dr_c.get_mean_self_reports(label_type)
+                    label_mean = label_means[label_means["subject"] == s].loc[:, "mean"].iloc[0]
+                else:
+                    if label_type == dr_c.SelfReports.AROUSAL:
+                        label_mean = 6
+                    if label_type == dr_c.SelfReports.VALENCE:
+                        label_mean = 6
+                labels = [scores.iloc[i, 0]]  # subject ID
+                for j in range(1, scores.shape[1]):
+                    if scores.iloc[i, j] < label_mean:
+                        labels.append(0)
+                    else:
+                        labels.append(1)
+            else:
+                labels = [scores.iloc[i, 0]]  # subject ID
+                for j in range(1, scores.shape[1]):
+                    labels.append(scores.iloc[i, j])
+            y_labels.append(labels)
+        y_labels = pd.DataFrame(data=y_labels, columns=columns)
+
+        for i in range(data_x.shape[0]):
+            s = str(subjects.iloc[i])
+            p = int(phase_col.iloc[i])
+            label = y_labels.loc[y_labels["subject"] == s].iloc[0, p+1]
+            data_y.append(label)
+
+        data_y = pd.DataFrame({"subject": subjects, "label": data_y})
+
+        if normalize:
+            for metric in metrics:
+                data_col = data_x[metric]
+                data_col = (data_col - data_col.min())/(data_col.max() - data_col.min())
+                data_x[metric] = data_col
+        if "lf_hf_ratio" in metrics:
+            metrics.remove("lf_hf_ratio")
+        return data_x, data_y
 
 
 class Train_WESAD:
@@ -974,6 +1098,9 @@ class Train_Multi_Dataset:
                     importance = model.feature_importances_
                 elif model_name == "RF":
                     importance = model.feature_importances_
+                elif model_name == "LGB":
+                    importance = model.feature_importances_
+                    print(importance)
                 elif model_name == "SVM":
                     importance = model.coef_[0]
                 else:
