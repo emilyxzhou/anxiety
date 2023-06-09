@@ -50,34 +50,38 @@ class Metrics:
     SDNN = "sdnn"
     MEAN_SCL = "mean_SCL"
     SCR_RATE = "SCR_rate"
-    RESP = "breathingrate"
-    MEAN_ANKLE_ACT_L = "mean_ankle_activity_l"
-    MEAN_ANKLE_ACT_R =  "mean_ankle_activity_r"
-    MEAN_WRIST_ACT = "mean_wrist_activity"
-    MEAN_WRIST_ACT_L = "mean_wrist_activity_l"
-    MEAN_WRIST_ACT_R =  "mean_wrist_activity_r"
-    PEAK_ANKLE_ACC_L = "peak_ankle_acc_l"
-    PEAK_ANKLE_ACC_R = "peak_ankle_acc_r"
-    PEAK_WRIST_ACC = "peak_wrist_acc"
-    PEAK_WRIST_ACC_L = "peak_wrist_acc_l"
-    PEAK_WRIST_ACC_R = "peak_wrist_acc_r"
-    MEAN_POSTURE = "mean_posture"
+    ECG_IQR = "ecg_iqr"
+    ECG_KURTOSIS = "ecg_kurtosis"
+    ECG_MEAN = "ecg_mean"
+    ECG_MEDIAN = "ecg_median"
+    ECG_RMS = "ecg_rms"
+    ECG_SKEW = "ecg_skew"
+    ECG_STD = "ecg_std"
+    ECG_VAR = "ecg_var"
+    EDA_IQR = "eda_iqr"
+    EDA_KURTOSIS = "eda_kurtosis"
+    EDA_MEAN = "eda_mean"
+    EDA_MEDIAN = "eda_median"
+    EDA_RMS = "eda_rms"
+    EDA_SKEW = "eda_skew"
+    EDA_STD = "eda_std"
+    EDA_VAR = "eda_var"
+
 
     ALL = [
         BPM, RMSSD, HF_RR, LF_RR, IBI, SDNN,
         MEAN_SCL, SCR_RATE,
-        RESP,
-        MEAN_ANKLE_ACT_L, MEAN_ANKLE_ACT_R,
-        MEAN_WRIST_ACT_L, MEAN_WRIST_ACT_R,
-        PEAK_ANKLE_ACC_L, PEAK_ANKLE_ACC_R,
-        PEAK_WRIST_ACC_L, PEAK_WRIST_ACC_R,
-        MEAN_POSTURE
+        ECG_IQR, ECG_KURTOSIS, ECG_MEAN, ECG_MEDIAN, ECG_RMS, ECG_SKEW, ECG_STD, ECG_VAR,
+        EDA_IQR, EDA_KURTOSIS, EDA_MEAN, EDA_MEDIAN, EDA_RMS, EDA_SKEW, EDA_STD, EDA_VAR
     ]
 
-    ECG = [BPM, RMSSD, HF_RR, LF_RR, IBI, SDNN]
-    EDA = [MEAN_SCL, SCR_RATE]
-    ANKLE = [MEAN_ANKLE_ACT_L, MEAN_ANKLE_ACT_R, PEAK_ANKLE_ACC_L, PEAK_ANKLE_ACC_R]
-    WRIST = [MEAN_WRIST_ACT_L, MEAN_WRIST_ACT_R, PEAK_WRIST_ACC_L, PEAK_WRIST_ACC_R]
+    ECG = [BPM, RMSSD, HF_RR, LF_RR, IBI, SDNN, ECG_IQR, ECG_KURTOSIS, ECG_MEAN, ECG_MEDIAN, ECG_RMS, ECG_SKEW, ECG_STD, ECG_VAR]
+    EDA = [MEAN_SCL, SCR_RATE, EDA_IQR, EDA_KURTOSIS, EDA_MEAN, EDA_MEDIAN, EDA_RMS, EDA_SKEW, EDA_STD, EDA_VAR]
+
+    STATISTICAL = [
+        ECG_IQR, ECG_KURTOSIS, ECG_MEAN, ECG_MEDIAN, ECG_RMS, ECG_SKEW, ECG_STD, ECG_VAR,
+        EDA_IQR, EDA_KURTOSIS, EDA_MEAN, EDA_MEDIAN, EDA_RMS, EDA_SKEW, EDA_STD, EDA_VAR
+    ]
 
 
 def kfold_train_test_split(x, y, test_size=0.1, is_resample=False, folds=1):
@@ -175,10 +179,9 @@ def feature_selection(models, cv, x_train, y_train, n_features=5, folds=5, drop_
     """
     models is a dictionary of {model_name: classifier object}
     """
+    model_data = {name: {} for name in models.keys()}
     subjects = list(x_train.loc[:, "subject"])
     sgkf = StratifiedGroupKFold(n_splits=folds)
-    model_data = {name: {} for name in models.keys()}
-
     # cv = sgkf.split(x_train, y_train.loc[:, "label"], subjects)
     cv_list = []
     for _, (train_index, test_index) in enumerate(cv):

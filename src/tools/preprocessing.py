@@ -488,100 +488,28 @@ def  get_SCR_rate(eda_signal, fs=FS_DICT[dr.DataTypes.EDA], window_size=60, over
     return np.asarray(out)
 
 
-def clean_acc_data(acc_signal):
-    if acc_signal.size <= 1:
-        print("ACC signal has size 0, returning zero DataFrame")
-        return pd.DataFrame([0.0])
-    fs = FS_DICT[dr.DataTypes.ANKLE_L]
-    sos = ss.butter(N=2, Wn=0.8, btype="highpass", fs=fs, output="sos")
-    acc_signal = ss.sosfilt(sos, acc_signal)
-    return acc_signal
+
+def rms(x):
+    return np.sqrt(np.mean(x**2))
 
 
-def get_peak_acc_value(acc_signal, acc_type):
-    """
-    Calculate peak acceleration in the x-y plane.
-    """
-    if acc_type == "torso":
-        fs = FS_DICT[dr.DataTypes.POSTURE]
-    elif acc_type == "wrist":
-        fs = FS_DICT[dr.DataTypes.WRIST_L]
-    elif acc_type == "ankle":
-        fs = FS_DICT[dr.DataTypes.ANKLE_L]
-
-    n = acc_signal.shape[0]
+def get_statistical_metrics(signal, function, fs, window_size=60, overlap=30):
+    n = signal.size
     start = 0
     window_size = int(window_size*fs)
     overlap = int(overlap*fs)
     stop = start + window_size
-
     out = []
+    if stop >= n:
+        segment = signal
+        value = function(segment)
+        out.append(value)
     while stop < n:
         stop = start + window_size
-        segment = acc_signal.iloc[start:stop, 0:2]
-        segment = np.square(segment)
-        segment = segment.sum(axis=1)
-        segment = np.sqrt(segment)
-        peak = segment.max()
-        out.append(peak)
+        segment = signal[start:stop]
+        value = function(segment)
+        out.append(value)
         start = stop - overlap
-    return np.asarray(out)
-
-
-def get_mean_ankle_activity(acc_signal):
-    fs = FS_DICT[dr.DataTypes.ANKLE_L]
-
-    n = acc_signal.shape[0]
-    start = 0
-    window_size = int(60*fs)
-    stop = start + window_size
-
-    out = []
-    while stop < n:
-        stop = start + window_size
-        segment = acc_signal.iloc[start:stop, 0:3]
-        segment = np.square(segment)
-        segment = np.mean(segment, axis=0)
-        segment = np.sqrt(segment)
-        mean = np.mean(segment)
-        out.append(mean)
-        start = stop
-    return np.asarray(out)
-
-
-def get_mean_posture(posture_signal):
-    fs = FS_DICT[dr.DataTypes.POSTURE]
-
-    n = posture_signal.shape[0]
-    start = 0
-    window_size = int(60*fs)
-    stop = start + window_size
-
-    out = []
-    while stop < n:
-        stop = start + window_size
-        segment = posture_signal.iloc[start:stop, 0]
-        mean = np.mean(segment)
-        out.append(mean)
-        start = stop
-    return np.asarray(out)
-
-
-def get_mean_activity_torso(posture_signal):
-    fs = FS_DICT[dr.DataTypes.POSTURE]
-
-    n = posture_signal.shape[0]
-    start = 0
-    window_size = int(60*fs)
-    stop = start + window_size
-
-    out = []
-    while stop < n:
-        stop = start + window_size
-        segment = posture_signal.iloc[start:stop, 1]
-        mean = np.mean(segment)
-        out.append(mean)
-        start = stop
     return np.asarray(out)
 
 
