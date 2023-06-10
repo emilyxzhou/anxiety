@@ -488,11 +488,6 @@ def  get_SCR_rate(eda_signal, fs=FS_DICT[dr.DataTypes.EDA], window_size=60, over
     return np.asarray(out)
 
 
-
-def rms(x):
-    return np.sqrt(np.mean(x**2))
-
-
 def get_statistical_metrics(signal, function, fs, window_size=60, overlap=30):
     n = signal.size
     start = 0
