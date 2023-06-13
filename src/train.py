@@ -85,14 +85,20 @@ class Metrics:
 
 
 def kfold_train_test_split(x, y, test_size=0.1, is_resample=False, folds=1):
-    gss = GroupShuffleSplit(n_splits=1, test_size=test_size)
-    subjects = list(x.loc[:, "subject"])
+    if test_size != 0.0:
+        gss = GroupShuffleSplit(n_splits=1, test_size=test_size)
+        subjects = list(x.loc[:, "subject"])
 
-    for _, (train_index, test_index) in enumerate(gss.split(x, y.loc[:, "label"], subjects)):
-        x_train = x.iloc[train_index, :].reset_index(drop=True)
-        y_train = y.iloc[train_index, :].reset_index(drop=True)
-        x_test = x.iloc[test_index, :].reset_index(drop=True)
-        y_test = y.iloc[test_index, :].reset_index(drop=True)
+        for _, (train_index, test_index) in enumerate(gss.split(x, y.loc[:, "label"], subjects)):
+            x_train = x.iloc[train_index, :].reset_index(drop=True)
+            y_train = y.iloc[train_index, :].reset_index(drop=True)
+            x_test = x.iloc[test_index, :].reset_index(drop=True)
+            y_test = y.iloc[test_index, :].reset_index(drop=True)
+    else:
+        x_train = x
+        y_train = y
+        x_test = None
+        y_test = None
 
     subjects = list(x_train.loc[:, "subject"])
     sgkf = StratifiedGroupKFold(n_splits=folds)
@@ -156,6 +162,7 @@ def grid_search_cv(
     model_data = {name: {} for name in models.keys()}
     model_data["cv"] = cv_list
     for model_name in models.keys():
+        print(f"Grid search for {model_name} ...")
         model = models[model_name]
         params = parameters[model_name]
         clf = GridSearchCV(model, params, cv=cv_list, scoring="roc_auc")
@@ -188,6 +195,7 @@ def feature_selection(models, cv, x_train, y_train, n_features=5, folds=5, drop_
         cv_list.append((train_index, test_index))
 
     for model_name in models.keys():
+        print(f"Feature selection for {model_name} ...")
         model = models[model_name]
         sfs = SequentialFeatureSelector(model, n_features_to_select=n_features, cv=cv_list)
         if drop_subject:
@@ -211,6 +219,7 @@ def train_test_model(models, features, x_train, y_train, x_test, y_test, drop_su
 
     model_data = {name: {} for name in models.keys()}
     for model_name in models.keys():
+        print(f"Training {model_name} ...")
         model = models[model_name]
         test_features = features[model_name]
         x_train_in = x_train.loc[:, test_features]
@@ -262,7 +271,11 @@ def train_test_model(models, features, x_train, y_train, x_test, y_test, drop_su
         elif model_name == "RF":
             importance = model.feature_importances_
         elif model_name == "SVM":
-            importance = model.coef_[0]
+            try:
+                importance = model.coef_[0]
+            except Exception as e:
+                print("coef_ only available for SVC with linear kernel")
+                importance = None
         else:
             print(f"Feature importance not available for {model_name}")
             importance = None
@@ -1028,47 +1041,43 @@ class Train_SFI:
 
 class Train_Multi_Dataset:
     
-    def train_across_datasets(models, dataset_a_x, dataset_a_y, dataset_b_x, dataset_b_y, test_size=0.80, by_subject=True, save_metrics=True, target_names=["1", "0"], get_importance=False, is_resample=False, drop_subject=False):
+    def train_across_datasets(models, features, x_train, y_train, x_test, y_test, test_size=0.80, by_subject=True, save_metrics=True, target_names=["1", "0"], get_importance=False, is_resample=False, drop_subject=False):
         """
         test_size: Proportion of dataset_b to hold out for model testing.
         """
-        out = {}
-        x_train_a, y_train_a, x_test_a, y_test_a = kfold_train_test_split(dataset_a_x, dataset_a_y, test_size=0.0, by_subject=by_subject, is_resample=is_resample, folds=1)
-        x_train_b, y_train_b, x_test_b, y_test_b = kfold_train_test_split(dataset_b_x, dataset_b_y, test_size=test_size, by_subject=by_subject, is_resample=is_resample, folds=1)
-        x_train = pd.concat([x_train_a[0], x_train_b[0]])
-        y_train = pd.concat([y_train_a[0], y_train_b[0]])
-        x_test = x_test_b[0]
-
-        # print("A -----")
-        # print(x_train_a[0].shape)
-        # print(y_train_a[0].shape)
-        # print(x_test_a[0].shape)
-        # print(y_test_a[0].shape)
-        
-        # print("B -----")
-        # print(x_train_b[0].shape)
-        # print(y_train_b[0].shape)
-        # print(x_test_b[0].shape)
-        # print(y_test_b[0].shape)
+        # x_train_a, y_train_a, x_test_a, y_test_a = kfold_train_test_split(dataset_a_x, dataset_a_y, test_size=0.0, by_subject=by_subject, is_resample=is_resample, folds=1)
+        # x_train_b, y_train_b, x_test_b, y_test_b = kfold_train_test_split(dataset_b_x, dataset_b_y, test_size=test_size, by_subject=by_subject, is_resample=is_resample, folds=1)
+        # x_train = pd.concat([x_train_a[0], x_train_b[0]])
+        # y_train = pd.concat([y_train_a[0], y_train_b[0]])
+        # x_test = x_test_b[0]
 
         if drop_subject:
             x_train = x_train.drop("subject", axis=1)
             x_test = x_test.drop("subject", axis=1)
-        y_test = y_test_b[0].loc[:, "label"]
+        y_train = y_train.loc[:, "label"]
+        y_test = y_test.loc[:, "label"]
 
-        print(f"y_train:\n{y_train.loc[:, 'label'].value_counts()}")
-        print(f"y_test:\n{y_test.value_counts()}")
+        # print(f"y_train:\n{y_train.loc[:, 'label'].value_counts()}")
+        # print(f"y_test:\n{y_test.value_counts()}")
 
+        model_data = {name: {} for name in models.keys()}
         for model_name in models.keys():
+            model = models[model_name]
+            test_features = features[model_name]
+            x_train_in = x_train.loc[:, test_features]
+            x_test_in = x_test.loc[:, test_features]
+            model.fit(x_train_in, y_train)
+
             if model_name == "random":
-                y_pred = [random.choice([0, 1]) for i in range(x_test.shape[0])]
+                y_pred = [random.choice([0, 1]) for i in range(x_test_in.shape[0])]
             else:
                 model = models[model_name]
-                model = model.fit(x_train, y_train.loc[:, "label"])
-                y_pred = model.predict(x_test)
+                model = model.fit(x_train_in, y_train)
+                y_pred = model.predict(x_test_in)
 
-            unique, counts = np.unique(y_pred, return_counts=True)
-            print(f"Model {model_name}, Predictions: {unique}, {counts}")
+            unique, counts = np.unique(y_test, return_counts=True)
+            unique_pred, counts_pred = np.unique(y_pred, return_counts=True)
+            print(f"Model {model_name}, Actual: {unique}, {counts}, Predictions: {unique_pred}, {counts_pred}")
 
             acc = accuracy_score(y_test, y_pred)
             if save_metrics:
@@ -1103,16 +1112,19 @@ class Train_Multi_Dataset:
                     importance = model.feature_importances_
                 elif model_name == "LGB":
                     importance = model.feature_importances_
-                    print(importance)
                 elif model_name == "SVM":
-                    importance = model.coef_[0]
+                    try:
+                        importance = model.coef_[0]
+                    except Exception as e:
+                        print("coef_ only available for SVC with linear kernel")
+                        importance = None
                 else:
                     print(f"Feature importance not available for {model_name}")
                     importance = None
             else:
                 importance = None
-            out[model_name] = (acc, report, importance)
-        return out
+            model_data[model_name]["performance"] = (acc, report, importance)
+        return model_data
 
 
 if __name__ == "__main__":
