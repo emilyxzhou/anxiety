@@ -1,0 +1,332 @@
+Grid search for SVM ...
+Grid search for LGB ...
+Grid search for RF ...
+One or more of the test scores are non-finite: [0.86068306 0.88502281 0.89363103 0.89557051 0.89669385 0.86905019
+ 0.88478179 0.88670178 0.8899848  0.89841301 0.8674841  0.8804441
+ 0.88968767 0.89580356 0.89951736 0.86611379 0.87658378 0.88117315
+ 0.88447588 0.8896475  0.85798638 0.87827494 0.88119928 0.87800653
+ 0.88820858        nan        nan        nan        nan        nan
+        nan        nan        nan        nan        nan        nan
+        nan        nan        nan        nan        nan        nan
+        nan        nan        nan        nan        nan        nan
+        nan        nan]
+Grid search for XGB ...
+SVM: {'C': 1, 'gamma': 'scale', 'kernel': 'rbf'}
+LGB: {'max_depth': 3, 'metric': 'mean_absolute_error', 'num_leaves': 10, 'objective': 'binary'}
+RF: {'max_features': 'sqrt', 'min_samples_split': 5, 'n_estimators': 50, 'random_state': 16}
+XGB: {'eval_metric': 'error', 'learning_rate': 0.5, 'max_depth': 5, 'n_estimators': 10, 'objective': 'binary:logistic', 'random_state': 16, 'use_label_encoder': False}
+Training SVM ...
+Model SVM, Actual: [0 1], [54 16], Predictions: [0 1], [57 13]
+coef_ only available for SVC with linear kernel
+Training LGB ...
+Model LGB, Actual: [0 1], [54 16], Predictions: [0 1], [50 20]
+Training RF ...
+Model RF, Actual: [0 1], [54 16], Predictions: [0 1], [51 19]
+Training XGB ...
+Model XGB, Actual: [0 1], [54 16], Predictions: [0 1], [50 20]
+
+None
+
+
+[('bpm', 164), ('rmssd', 108), ('sdnn', 108), ('lf_rr', 82), ('hf_rr', 66)]
+
+
+[('bpm', 0.4668565709320435), ('rmssd', 0.17997908673587615), ('sdnn', 0.13589589071652938), ('hf_rr', 0.13231472134871083), ('lf_rr', 0.08495373026684015)]
+
+
+[('bpm', 0.4315621), ('rmssd', 0.18634912), ('hf_rr', 0.15313163), ('sdnn', 0.12286803), ('lf_rr', 0.10608909)]
+
+Grid search for SVM ...
+Grid search for LGB ...
+Grid search for RF ...
+One or more of the test scores are non-finite: [0.87873631 0.91726842 0.91948554 0.91772739 0.92773251 0.89479626
+ 0.92299732 0.92193457 0.92842067 0.92878528 0.89542914 0.92471275
+ 0.92195849 0.92539505 0.92680133 0.88397248 0.90673    0.90999161
+ 0.9140221  0.91872673 0.89351652 0.90452494 0.91295941 0.91586828
+ 0.92119407        nan        nan        nan        nan        nan
+        nan        nan        nan        nan        nan        nan
+        nan        nan        nan        nan        nan        nan
+        nan        nan        nan        nan        nan        nan
+        nan        nan]
+Grid search for XGB ...
+SVM: {'C': 10, 'gamma': 1, 'kernel': 'rbf'}
+LGB: {'max_depth': 3, 'metric': 'mean_absolute_error', 'num_leaves': 10, 'objective': 'binary'}
+RF: {'max_features': 'sqrt', 'min_samples_split': 4, 'n_estimators': 50, 'random_state': 16}
+XGB: {'eval_metric': 'error', 'learning_rate': 0.3, 'max_depth': 5, 'n_estimators': 50, 'objective': 'binary:logistic', 'random_state': 16, 'use_label_encoder': False}
+Training SVM ...
+Model SVM, Actual: [0 1], [62  8], Predictions: [0 1], [64  6]
+coef_ only available for SVC with linear kernel
+Training LGB ...
+Model LGB, Actual: [0 1], [62  8], Predictions: [0 1], [55 15]
+Training RF ...
+Model RF, Actual: [0 1], [62  8], Predictions: [0 1], [57 13]
+Training XGB ...
+Model XGB, Actual: [0 1], [62  8], Predictions: [0 1], [52 18]
+
+None
+
+
+[('bpm', 149), ('rmssd', 126), ('sdnn', 95), ('hf_rr', 93), ('lf_rr', 74)]
+
+
+[('bpm', 0.4730874151005053), ('rmssd', 0.1994606349877523), ('hf_rr', 0.12397162370441454), ('sdnn', 0.12275319627316647), ('lf_rr', 0.08072712993416142)]
+
+
+[('bpm', 0.4943726), ('rmssd', 0.18551177), ('hf_rr', 0.14227656), ('sdnn', 0.095793456), ('lf_rr', 0.082045585)]
+
+Grid search for SVM ...
+Grid search for LGB ...
+Grid search for RF ...
+One or more of the test scores are non-finite: [0.84483227 0.88533796 0.89760612 0.89542117 0.89847431 0.84290178
+ 0.881276   0.89208605 0.89435238 0.89009608 0.85499994 0.87906448
+ 0.892068   0.88694474 0.8842368  0.865705   0.88512441 0.89372222
+ 0.89136254 0.88365831 0.87867802 0.88639572 0.89465665 0.8859307
+ 0.88110865        nan        nan        nan        nan        nan
+        nan        nan        nan        nan        nan        nan
+        nan        nan        nan        nan        nan        nan
+        nan        nan        nan        nan        nan        nan
+        nan        nan]
+Grid search for XGB ...
+SVM: {'C': 100, 'gamma': 1, 'kernel': 'rbf'}
+LGB: {'max_depth': 3, 'metric': 'mean_absolute_error', 'num_leaves': 10, 'objective': 'binary'}
+RF: {'max_features': 'sqrt', 'min_samples_split': 3, 'n_estimators': 50, 'random_state': 16}
+XGB: {'eval_metric': 'error', 'learning_rate': 0.1, 'max_depth': 4, 'n_estimators': 40, 'objective': 'binary:logistic', 'random_state': 16, 'use_label_encoder': False}
+Training SVM ...
+Model SVM, Actual: [0 1], [62  8], Predictions: [0 1], [64  6]
+coef_ only available for SVC with linear kernel
+Training LGB ...
+Model LGB, Actual: [0 1], [62  8], Predictions: [0 1], [63  7]
+Training RF ...
+Model RF, Actual: [0 1], [62  8], Predictions: [0 1], [64  6]
+Training XGB ...
+Model XGB, Actual: [0 1], [62  8], Predictions: [0 1], [62  8]
+
+None
+
+
+[('bpm', 168), ('rmssd', 122), ('hf_rr', 91), ('sdnn', 89), ('lf_rr', 64)]
+
+
+[('bpm', 0.4488860312494252), ('rmssd', 0.20164777781788018), ('hf_rr', 0.13652207160197885), ('sdnn', 0.12352090133455113), ('lf_rr', 0.08942321799616457)]
+
+
+[('bpm', 0.48244113), ('rmssd', 0.18679054), ('hf_rr', 0.14395133), ('lf_rr', 0.09880763), ('sdnn', 0.088009275)]
+
+Grid search for SVM ...
+Grid search for LGB ...
+Grid search for RF ...
+One or more of the test scores are non-finite: [0.85099764 0.85451449 0.86467725 0.86464138 0.87577664 0.85468317
+ 0.85786643 0.86885803 0.86885909 0.87985293 0.84704184 0.86625546
+ 0.87608189 0.87767794 0.88883902 0.85868977 0.87538262 0.88569182
+ 0.88995048 0.89754606 0.85013421 0.86922374 0.88557016 0.88880321
+ 0.89029067        nan        nan        nan        nan        nan
+        nan        nan        nan        nan        nan        nan
+        nan        nan        nan        nan        nan        nan
+        nan        nan        nan        nan        nan        nan
+        nan        nan]
+Grid search for XGB ...
+SVM: {'C': 10, 'gamma': 1, 'kernel': 'rbf'}
+LGB: {'max_depth': 3, 'metric': 'mean_absolute_error', 'num_leaves': 10, 'objective': 'binary'}
+RF: {'max_features': 'sqrt', 'min_samples_split': 6, 'n_estimators': 50, 'random_state': 16}
+XGB: {'eval_metric': 'error', 'learning_rate': 0.3, 'max_depth': 4, 'n_estimators': 20, 'objective': 'binary:logistic', 'random_state': 16, 'use_label_encoder': False}
+Training SVM ...
+Model SVM, Actual: [0 1], [61  8], Predictions: [0 1], [62  7]
+coef_ only available for SVC with linear kernel
+Training LGB ...
+Model LGB, Actual: [0 1], [61  8], Predictions: [0 1], [62  7]
+Training RF ...
+Model RF, Actual: [0 1], [61  8], Predictions: [0 1], [62  7]
+Training XGB ...
+Model XGB, Actual: [0 1], [61  8], Predictions: [0 1], [63  6]
+
+None
+
+
+[('bpm', 149), ('rmssd', 128), ('sdnn', 90), ('hf_rr', 83), ('lf_rr', 64)]
+
+
+[('bpm', 0.4342487098254582), ('rmssd', 0.20218824170429855), ('hf_rr', 0.14052246174278243), ('sdnn', 0.13795788443842644), ('lf_rr', 0.08508270228903438)]
+
+
+[('bpm', 0.44674084), ('rmssd', 0.18113512), ('hf_rr', 0.13769464), ('sdnn', 0.13371763), ('lf_rr', 0.10071173)]
+
+Grid search for SVM ...
+Grid search for LGB ...
+Grid search for RF ...
+One or more of the test scores are non-finite: [0.847957   0.86366306 0.87548824 0.87320083 0.87245235 0.85818384
+ 0.86887579 0.88180588 0.88386967 0.88055501 0.8540271  0.86000983
+ 0.88658267 0.88412575 0.88316706 0.84236085 0.86850167 0.89071914
+ 0.88683824 0.88629253 0.84705493 0.86960864 0.89433607 0.88231811
+ 0.88394202        nan        nan        nan        nan        nan
+        nan        nan        nan        nan        nan        nan
+        nan        nan        nan        nan        nan        nan
+        nan        nan        nan        nan        nan        nan
+        nan        nan]
+Grid search for XGB ...
+SVM: {'C': 1, 'gamma': 1, 'kernel': 'rbf'}
+LGB: {'max_depth': 3, 'metric': 'mean_absolute_error', 'num_leaves': 10, 'objective': 'binary'}
+RF: {'max_features': 'sqrt', 'min_samples_split': 7, 'n_estimators': 30, 'random_state': 16}
+XGB: {'eval_metric': 'error', 'learning_rate': 0.1, 'max_depth': 4, 'n_estimators': 50, 'objective': 'binary:logistic', 'random_state': 16, 'use_label_encoder': False}
+Training SVM ...
+Model SVM, Actual: [0 1], [61  8], Predictions: [0 1], [62  7]
+coef_ only available for SVC with linear kernel
+Training LGB ...
+Model LGB, Actual: [0 1], [61  8], Predictions: [0 1], [61  8]
+Training RF ...
+Model RF, Actual: [0 1], [61  8], Predictions: [0 1], [62  7]
+Training XGB ...
+Model XGB, Actual: [0 1], [61  8], Predictions: [0 1], [63  6]
+
+None
+
+
+[('bpm', 158), ('rmssd', 124), ('sdnn', 81), ('hf_rr', 79), ('lf_rr', 69)]
+
+
+[('bpm', 0.4310644377769634), ('rmssd', 0.22394553613884313), ('sdnn', 0.14046366783937791), ('hf_rr', 0.12594348873877256), ('lf_rr', 0.078582869506043)]
+
+
+[('bpm', 0.46164525), ('rmssd', 0.18214494), ('hf_rr', 0.15616576), ('sdnn', 0.109486125), ('lf_rr', 0.090557896)]
+
+Model evaluation metrics for SVM:
+	Accuracy: 0.9571428571428572
+	Precision: 1.0
+	Recall: 0.8125
+	F1-score: 0.896551724137931
+	AUC score: 0.90625
+----------------------------------------
+	Accuracy: 0.9428571428571428
+	Precision: 0.8333333333333334
+	Recall: 0.625
+	F1-score: 0.7142857142857143
+	AUC score: 0.8044354838709677
+----------------------------------------
+	Accuracy: 0.9714285714285714
+	Precision: 1.0
+	Recall: 0.75
+	F1-score: 0.8571428571428571
+	AUC score: 0.875
+----------------------------------------
+	Accuracy: 0.9855072463768116
+	Precision: 1.0
+	Recall: 0.875
+	F1-score: 0.9333333333333333
+	AUC score: 0.9375
+----------------------------------------
+	Accuracy: 0.9855072463768116
+	Precision: 1.0
+	Recall: 0.875
+	F1-score: 0.9333333333333333
+	AUC score: 0.9375
+----------------------------------------
+Mean acc: 0.968488612836439
+Mean F1-score: 0.8669293924466339
+Mean AUC score: 0.8921370967741936
+
+
+Model evaluation metrics for LGB:
+	Accuracy: 0.8857142857142857
+	Precision: 0.7
+	Recall: 0.875
+	F1-score: 0.7777777777777777
+	AUC score: 0.8819444444444444
+----------------------------------------
+	Accuracy: 0.8714285714285714
+	Precision: 0.4666666666666667
+	Recall: 0.875
+	F1-score: 0.608695652173913
+	AUC score: 0.8729838709677419
+----------------------------------------
+	Accuracy: 0.9857142857142858
+	Precision: 1.0
+	Recall: 0.875
+	F1-score: 0.9333333333333333
+	AUC score: 0.9375
+----------------------------------------
+	Accuracy: 0.9855072463768116
+	Precision: 1.0
+	Recall: 0.875
+	F1-score: 0.9333333333333333
+	AUC score: 0.9375
+----------------------------------------
+	Accuracy: 0.9710144927536232
+	Precision: 0.875
+	Recall: 0.875
+	F1-score: 0.875
+	AUC score: 0.9293032786885246
+----------------------------------------
+Mean acc: 0.9398757763975155
+Mean F1-score: 0.8256280193236716
+Mean AUC score: 0.9118463188201421
+
+
+Model evaluation metrics for RF:
+	Accuracy: 0.9285714285714286
+	Precision: 0.7894736842105263
+	Recall: 0.9375
+	F1-score: 0.8571428571428572
+	AUC score: 0.9317129629629629
+----------------------------------------
+	Accuracy: 0.8714285714285714
+	Precision: 0.46153846153846156
+	Recall: 0.75
+	F1-score: 0.5714285714285714
+	AUC score: 0.8185483870967742
+----------------------------------------
+	Accuracy: 0.9714285714285714
+	Precision: 1.0
+	Recall: 0.75
+	F1-score: 0.8571428571428571
+	AUC score: 0.875
+----------------------------------------
+	Accuracy: 0.9855072463768116
+	Precision: 1.0
+	Recall: 0.875
+	F1-score: 0.9333333333333333
+	AUC score: 0.9375
+----------------------------------------
+	Accuracy: 0.9855072463768116
+	Precision: 1.0
+	Recall: 0.875
+	F1-score: 0.9333333333333333
+	AUC score: 0.9375
+----------------------------------------
+Mean acc: 0.9484886128364389
+Mean F1-score: 0.8304761904761906
+Mean AUC score: 0.9000522700119475
+
+
+Model evaluation metrics for XGB:
+	Accuracy: 0.9142857142857143
+	Precision: 0.75
+	Recall: 0.9375
+	F1-score: 0.8333333333333334
+	AUC score: 0.9224537037037037
+----------------------------------------
+	Accuracy: 0.8285714285714286
+	Precision: 0.3888888888888889
+	Recall: 0.875
+	F1-score: 0.5384615384615385
+	AUC score: 0.8487903225806451
+----------------------------------------
+	Accuracy: 0.9714285714285714
+	Precision: 0.875
+	Recall: 0.875
+	F1-score: 0.875
+	AUC score: 0.9294354838709677
+----------------------------------------
+	Accuracy: 0.9710144927536232
+	Precision: 1.0
+	Recall: 0.75
+	F1-score: 0.8571428571428571
+	AUC score: 0.875
+----------------------------------------
+	Accuracy: 0.9710144927536232
+	Precision: 1.0
+	Recall: 0.75
+	F1-score: 0.8571428571428571
+	AUC score: 0.875
+----------------------------------------
+Mean acc: 0.9312629399585921
+Mean F1-score: 0.7922161172161173
+Mean AUC score: 0.8901359020310633

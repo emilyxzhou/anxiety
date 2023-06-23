@@ -27,7 +27,7 @@ from sklearn.feature_selection import SequentialFeatureSelector
 from sklearn.metrics import accuracy_score, auc, classification_report, confusion_matrix, precision_score, f1_score, \
     recall_score, roc_auc_score, roc_curve, RocCurveDisplay
 from sklearn.model_selection import train_test_split, GridSearchCV, StratifiedGroupKFold, GroupShuffleSplit
-from sklearn.preprocessing import normalize
+from sklearn.preprocessing import normalize, MinMaxScaler, PowerTransformer, StandardScaler
 
 import cvxopt.solvers
 cvxopt.solvers.options['show_progress'] = False
@@ -225,6 +225,13 @@ def train_test_model(models, features, x_train, y_train, x_test, y_test, drop_su
         test_features = features[model_name]
         x_train_in = x_train.loc[:, test_features]
         x_test_in = x_test.loc[:, test_features]
+        # standardize
+        # scaler = PowerTransformer(method="box-cox")
+        scaler = StandardScaler()
+        transformed = scaler.fit_transform(x_train_in.loc[:, test_features])
+        x_train_in[test_features] = transformed
+        transformed = scaler.transform(x_test_in.loc[:, test_features])
+        x_test_in[test_features] = transformed
         model.fit(x_train_in, y_train)
 
         if model_name == "random":
@@ -451,14 +458,13 @@ class Train_APD:
                 x.insert(1, "anxietyGroup", anxiety_label)
 
             data_x.append(x)
-        
         try:
             data_x = pd.concat(data_x).reset_index(drop=True)
             data_x["lf_hf_ratio"] = data_x["lf_rr"] / data_x["hf_rr"]
             metrics.append("lf_hf_ratio")
-        except Exception:
-            pass
+        except Exception as e:
             # print("Error in generating lf_hf_ratio")
+            pass
 
         if normalize:
             # normalize columns
@@ -471,6 +477,8 @@ class Train_APD:
             #     data_row = data_x.loc[data_x.index[i], metrics]
             #     data_row = (data_row - data_row.min())/(data_row.max() - data_row.min())
             #     data_x.loc[data_x.index[i], metrics] = data_row
+        if "lf_hf_ratio" in metrics:
+            metrics.remove("lf_hf_ratio")
 
         subjects = data_x.loc[:, "subject"]
         phase_col = data_x.loc[:, "phaseId"]
@@ -486,8 +494,6 @@ class Train_APD:
                 label.append(1)  # high anxiety
         data_y = pd.DataFrame({"subject": subjects, "label": label})
 
-        if "lf_hf_ratio" in metrics:
-            metrics.remove("lf_hf_ratio")
         return data_x, data_y
         # return out
 
@@ -601,10 +607,16 @@ class Train_ASCERTAIN:
         data_y = pd.DataFrame({"subject": subjects, "label": data_y})
 
         if normalize:
+            # normalize columns
             for metric in metrics:
                 data_col = data_x[metric]
                 data_col = (data_col - data_col.min())/(data_col.max() - data_col.min())
                 data_x[metric] = data_col
+            # normalize rows
+            # for i in range(data_x.shape[0]):
+            #     data_row = data_x.loc[data_x.index[i], metrics]
+            #     data_row = (data_row - data_row.min())/(data_row.max() - data_row.min())
+            #     data_x.loc[data_x.index[i], metrics] = data_row
         if "lf_hf_ratio" in metrics:
             metrics.remove("lf_hf_ratio")
         return data_x, data_y
@@ -714,7 +726,7 @@ class Train_CASE:
         y_labels = pd.DataFrame(data=y_labels, columns=columns)
 
         for i in range(data_x.shape[0]):
-            s = str(subjects.iloc[i])
+            s = str(int(subjects.iloc[i]))
             p = int(phase_col.iloc[i])
             label = y_labels.loc[y_labels["subject"] == s].iloc[0, p+1]
             data_y.append(label)
@@ -722,10 +734,16 @@ class Train_CASE:
         data_y = pd.DataFrame({"subject": subjects, "label": data_y})
 
         if normalize:
+            # normalize columns
             for metric in metrics:
                 data_col = data_x[metric]
                 data_col = (data_col - data_col.min())/(data_col.max() - data_col.min())
                 data_x[metric] = data_col
+            # normalize rows
+            # for i in range(data_x.shape[0]):
+            #     data_row = data_x.loc[data_x.index[i], metrics]
+            #     data_row = (data_row - data_row.min())/(data_row.max() - data_row.min())
+            #     data_x.loc[data_x.index[i], metrics] = data_row
         if "lf_hf_ratio" in metrics:
             metrics.remove("lf_hf_ratio")
         return data_x, data_y
@@ -873,10 +891,16 @@ class Train_WESAD:
         data_y = pd.DataFrame({"subject": subjects, "label": data_y})
 
         if normalize:
+            # normalize columns
             for metric in metrics:
                 data_col = data_x[metric]
                 data_col = (data_col - data_col.min())/(data_col.max() - data_col.min())
                 data_x[metric] = data_col
+            # normalize rows
+            # for i in range(data_x.shape[0]):
+            #     data_row = data_x.loc[data_x.index[i], metrics]
+            #     data_row = (data_row - data_row.min())/(data_row.max() - data_row.min())
+            #     data_x.loc[data_x.index[i], metrics] = data_row
         if "lf_hf_ratio" in metrics:
             metrics.remove("lf_hf_ratio")
         return data_x, data_y
@@ -973,11 +997,19 @@ class Train_POPANE:
         y_labels = pd.Series(data=y_labels)
         data_y = pd.DataFrame({"subject": subjects, "label": y_labels})
 
-        if normalize: 
+        if normalize:
+            # normalize columns
             for metric in metrics:
                 data_col = data_x[metric]
                 data_col = (data_col - data_col.min())/(data_col.max() - data_col.min())
                 data_x[metric] = data_col
+            # normalize rows
+            # for i in range(data_x.shape[0]):
+            #     data_row = data_x.loc[data_x.index[i], metrics]
+            #     data_row = (data_row - data_row.min())/(data_row.max() - data_row.min())
+            #     data_x.loc[data_x.index[i], metrics] = data_row
+        if "lf_hf_ratio" in metrics:
+            metrics.remove("lf_hf_ratio")
 
         return data_x, data_y
 

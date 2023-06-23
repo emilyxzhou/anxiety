@@ -499,12 +499,13 @@ def get_statistical_metrics(signal, function, fs, window_size=60, overlap=30):
         segment = signal
         value = function(segment)
         out.append(value)
-    while stop < n:
-        stop = start + window_size
-        segment = signal[start:stop]
-        value = function(segment)
-        out.append(value)
-        start = stop - overlap
+    else:
+        while stop < n:
+            stop = start + window_size
+            segment = signal[start:stop]
+            value = function(segment)
+            out.append(value)
+            start = stop - overlap
     return np.asarray(out)
 
 
