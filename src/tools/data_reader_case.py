@@ -9,7 +9,7 @@ for i in range(len(SUBJECTS)):
     temp = str(SUBJECTS[i])
     SUBJECTS[i] = temp
 
-CLIPS = [1, 2, 3, 4, 5, 6, 7, 8]
+CLIPS = [1, 2, 3, 4, 5, 6, 7, 8, 10]
 # amusing: 1, 2
 # boring: 3, 4
 # relaxing: 5, 6

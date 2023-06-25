@@ -539,7 +539,7 @@ class Train_ASCERTAIN:
                             try:
                                 data = np.nanmean(arr.iloc[row, j*3:j*3+3])
                             except Exception:
-                                data = np.nanmean(arr.iloc[row, j*3:])
+                                data = np.nanmean(arr.iloc[row, j*4:])
                             if i == 0:  # subject ID
                                 features.append([arr.iloc[row, 0], data])
                             else:
@@ -666,7 +666,7 @@ class Train_CASE:
                             try:
                                 data = np.nanmean(arr.iloc[row, j*3:j*3+3])
                             except Exception:
-                                data = np.nanmean(arr.iloc[row, j*3:])
+                                data = np.nanmean(arr.iloc[row, j*4:])
                             if i == 0:  # subject ID
                                 features.append([arr.iloc[row, 0], data])
                             else:
@@ -813,7 +813,7 @@ class Train_WESAD:
                             try:
                                 data = np.nanmean(arr.iloc[row, j*3:j*3+3])
                             except Exception:
-                                data = np.nanmean(arr.iloc[row, j*3:])
+                                data = np.nanmean(arr.iloc[row, j*4:])
                             if i == 0:  # subject ID
                                 features.append([arr.iloc[row, 0], data])
                             else:
