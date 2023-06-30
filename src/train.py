@@ -28,6 +28,7 @@ from sklearn.metrics import accuracy_score, auc, classification_report, confusio
     recall_score, roc_auc_score, roc_curve, RocCurveDisplay
 from sklearn.model_selection import train_test_split, GridSearchCV, StratifiedGroupKFold, GroupShuffleSplit
 from sklearn.preprocessing import normalize, MinMaxScaler, PowerTransformer, StandardScaler
+from scipy.stats import iqr
 
 import cvxopt.solvers
 cvxopt.solvers.options['show_progress'] = False
@@ -348,7 +349,10 @@ class Train_APD:
         return ha_rankings, la_rankings
 
 
-    def get_apd_data_ranking(metrics, phases, verbose=False, anxiety_label_type=None, threshold="dynamic", normalize=True, binary_labels=True, combine_phases=False):
+    def get_apd_data_ranking(
+            metrics, phases, verbose=False, anxiety_label_type=None, threshold="dynamic", 
+            normalize=True, binary_labels=True, combine_phases=False, standardize=False
+        ):
         """
         anxiety_label_type: can be None, "Trait", "Anxiety", "Depression", "Gender", "Random"
             - Adds an extra feature vector 
@@ -374,6 +378,19 @@ class Train_APD:
                 if verbose: print(f"Generating features for metric {metric}")
                 file = os.path.join(metrics_folder, f"{metric}_{phase}_ha.csv")
                 arr = pd.read_csv(file, index_col=[0]).to_numpy()
+                if standardize:
+                    # BASELINING 
+                    baseline_file = os.path.join(metrics_folder, f"{metric}_Baseline_Rest_ha.csv")
+                    baseline_df = pd.read_csv(baseline_file, index_col=[0]).to_numpy()
+                    base_med = np.reshape(np.nanmedian(baseline_df[:, 1:], axis=1), (arr.shape[0], 1))
+                    base_med = np.tile(base_med, (1, arr.shape[1] - 1))
+
+                    base_iqr = np.reshape(iqr(baseline_df[:, 1:], axis=1, nan_policy="omit"), (arr.shape[0], 1))
+                    base_iqr = np.tile(base_iqr, (1, arr.shape[1] - 1))
+                    baselined = arr[:, 1:]
+                    baselined = np.divide(np.subtract(baselined, base_med), base_iqr)
+                    arr = np.insert(baselined, 0, arr[:, 0], axis=1)
+
                 # col_mean = np.nanmean(arr, axis=1)
                 # idx = np.where(np.isnan(arr))
                 # arr[idx] = np.take(col_mean, idx[0])
@@ -401,13 +418,25 @@ class Train_APD:
                                     ha_features[row*num_segments + j].append(data)
                                 except Exception:
                                     pass
-
                 file = os.path.join(metrics_folder, f"{metric}_{phase}_la.csv")
                 arr = pd.read_csv(file, index_col=[0]).to_numpy()
-                col_mean = np.nanmean(arr, axis=1)
-                idx = np.where(np.isnan(arr))
-                arr[idx] = np.take(col_mean, idx[0])
-                arr = np.nan_to_num(arr)
+                if standardize:
+                    # BASELINING 
+                    baseline_file = os.path.join(metrics_folder, f"{metric}_Baseline_Rest_la.csv")
+                    baseline_df = pd.read_csv(baseline_file, index_col=[0]).to_numpy()
+                    base_med = np.reshape(np.nanmedian(baseline_df[:, 1:], axis=1), (arr.shape[0], 1))
+                    base_med = np.tile(base_med, (1, arr.shape[1] - 1))
+
+                    base_iqr = np.reshape(iqr(baseline_df[:, 1:], axis=1, nan_policy="omit"), (arr.shape[0], 1))
+                    base_iqr = np.tile(base_iqr, (1, arr.shape[1] - 1))
+                    baselined = arr[:, 1:]
+                    baselined = np.divide(np.subtract(baselined, base_med), base_iqr)
+                    arr = np.insert(baselined, 0, arr[:, 0], axis=1)
+
+                # col_mean = np.nanmean(arr, axis=1)
+                # idx = np.where(np.isnan(arr))
+                # arr[idx] = np.take(col_mean, idx[0])
+                # arr = np.nan_to_num(arr)
                 if combine_phases:
                     if i == 0:  # subject IDs
                         ids = np.reshape(arr[:, 0], (arr[:, 0].size, 1))
@@ -627,7 +656,10 @@ class Train_CASE:
     def get_self_reports():
         pass
 
-    def get_case_data(metrics, verbose=False, label_type="arousal", threshold="dynamic", normalize=True, binary_labels=True, combine_phases=False):
+    def get_case_data(
+            metrics, verbose=False, label_type="arousal", threshold="dynamic", 
+            normalize=True, binary_labels=True, combine_phases=False, standardize=False
+        ):
         metrics_folder = dr_c.Paths.METRICS
         
         columns = metrics.copy()
@@ -646,7 +678,20 @@ class Train_CASE:
                 # print(metric)
                 if verbose: print(f"Generating features for metric {metric}")
                 file = os.path.join(metrics_folder, f"{metric}_{clip}.csv")
-                arr = pd.read_csv(file, index_col=[0])
+                arr = pd.read_csv(file, index_col=[0]).to_numpy()
+                if standardize:
+                    # BASELINING 
+                    baseline_file = os.path.join(metrics_folder, f"{metric}_10.csv")
+                    baseline_df = pd.read_csv(baseline_file, index_col=[0]).to_numpy()
+                    base_med = np.reshape(np.nanmedian(baseline_df[:, 1:], axis=1), (arr.shape[0], 1))
+                    base_med = np.tile(base_med, (1, arr.shape[1] - 1))
+
+                    base_iqr = np.reshape(iqr(baseline_df[:, 1:], axis=1, nan_policy="omit"), (arr.shape[0], 1))
+                    base_iqr = np.tile(base_iqr, (1, arr.shape[1] - 1))
+                    baselined = arr[:, 1:]
+                    baselined = np.divide(np.subtract(baselined, base_med), base_iqr)
+                    arr = np.insert(baselined, 0, arr[:, 0], axis=1)
+
                 if combine_phases:
                     if i == 0:  # subject IDs
                         ids = arr.iloc[:, 0].tolist()
@@ -664,11 +709,11 @@ class Train_CASE:
                         for j in range(num_segments):
                             # print(f"Clip {clip}, row {row}, segment {j}")
                             try:
-                                data = np.nanmean(arr.iloc[row, j*3:j*3+3])
+                                data = np.nanmean(arr[row, j*3:j*3+3])
                             except Exception:
-                                data = np.nanmean(arr.iloc[row, j*4:])
+                                data = np.nanmean(arr[row, j*4:])
                             if i == 0:  # subject ID
-                                features.append([arr.iloc[row, 0], data])
+                                features.append([arr[row, 0], data])
                             else:
                                 try:
                                     features[row*num_segments + j].append(data)
@@ -761,7 +806,10 @@ class Train_WESAD:
 
         return stai_scores, dim_scores_arousal, dim_scores_valence
 
-    def get_wesad_data(metrics, phases, verbose=False, label_type="stai", normalize=True, threshold="dynamic", binary_labels=True, combine_phases=False):
+    def get_wesad_data(
+            metrics, phases, verbose=False, label_type="stai", normalize=True, 
+            threshold="dynamic", binary_labels=True, combine_phases=False, standardize=False
+        ):
         """
         label_type: "stai", "arousal", "valence", "all"
             label_type == "all": classification between stress and non-stress phases
@@ -785,21 +833,27 @@ class Train_WESAD:
                 # print(f"----- {metric}")
                 if verbose: print(f"Generating features for metric {metric}")
                 file = os.path.join(metrics_folder, f"{metric}_{phase}.csv")
-                arr = pd.read_csv(file, index_col=[0]).reset_index(drop=True)
-                # arr = arr[arr.iloc[:, 0] != 3.0].reset_index(drop=True).to_numpy()  # remove subject 3 due to NaNs in Medi_2 phase
+                arr = pd.read_csv(file, index_col=[0]).to_numpy()
+                if standardize:
+                    # BASELINING 
+                    baseline_file = os.path.join(metrics_folder, f"{metric}_Base.csv")
+                    baseline_df = pd.read_csv(baseline_file, index_col=[0]).to_numpy()
+                    base_med = np.reshape(np.nanmedian(baseline_df[:, 1:], axis=1), (arr.shape[0], 1))
+                    base_med = np.tile(base_med, (1, arr.shape[1] - 1))
 
-                # col_mean = np.nanmean(arr, axis=1)
-                # idx = np.where(np.isnan(arr))
-                # arr[idx] = np.take(col_mean, idx[0])
-                # arr = np.nan_to_num(arr)
+                    base_iqr = np.reshape(iqr(baseline_df[:, 1:], axis=1, nan_policy="omit"), (arr.shape[0], 1))
+                    base_iqr = np.tile(base_iqr, (1, arr.shape[1] - 1))
+                    baselined = arr[:, 1:]
+                    baselined = np.divide(np.subtract(baselined, base_med), base_iqr)
+                    arr = np.insert(baselined, 0, arr[:, 0], axis=1)
 
                 if combine_phases:
                     if i == 0:  # subject IDs
                         # ids = arr.iloc[:, 0]
-                        ids = arr.iloc[:, 0]
+                        ids = arr[:, 0]
                         ids = pd.DataFrame(data=ids, columns=["subject"])
                         features.append(ids)
-                    arr = np.mean(arr.iloc[:, 1:], axis=1) 
+                    arr = np.mean(arr[:, 1:], axis=1) 
                     arr = np.reshape(arr, (arr.size, 1))
                     arr = pd.DataFrame(data=arr, columns=[f"{metric}"])
                     features.append(arr)
@@ -811,11 +865,11 @@ class Train_WESAD:
                         for j in range(num_segments):
                             # print(f"Clip {clip}, row {row}, segment {j}")
                             try:
-                                data = np.nanmean(arr.iloc[row, j*3:j*3+3])
+                                data = np.nanmean(arr[row, j*3:j*3+3])
                             except Exception:
-                                data = np.nanmean(arr.iloc[row, j*4:])
+                                data = np.nanmean(arr[row, j*4:])
                             if i == 0:  # subject ID
-                                features.append([arr.iloc[row, 0], data])
+                                features.append([arr[row, 0], data])
                             else:
                                 try:
                                     features[row*num_segments + j].append(data)
