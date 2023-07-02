@@ -330,3 +330,13 @@ Model evaluation metrics for XGB:
 Mean acc: 0.9312629399585921
 Mean F1-score: 0.7922161172161173
 Mean AUC score: 0.8901359020310633
+
+
+### ENSEMBLE ###
+SVM, LGB, RF, XGB
+	Accuracy: 0.9809523809523809
+	Precision: 1.0
+	Recall: 0.875
+	F1-score: 0.9333333333333333
+	AUC score: 0.9375
+----------------------------------------

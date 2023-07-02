@@ -675,7 +675,6 @@ class Train_CASE:
 
             for i in range(len(metrics)):
                 metric = metrics[i]
-                # print(metric)
                 if verbose: print(f"Generating features for metric {metric}")
                 file = os.path.join(metrics_folder, f"{metric}_{clip}.csv")
                 arr = pd.read_csv(file, index_col=[0]).to_numpy()
