@@ -85,9 +85,9 @@ class Metrics:
     ]
 
 
-def kfold_train_test_split(x, y, test_size=0.1, is_resample=False, folds=1):
+def kfold_train_test_split(x, y, test_size=0.1, is_resample=False, folds=1, random_seed=None):
     if test_size != 0.0:
-        gss = GroupShuffleSplit(n_splits=1, test_size=test_size)
+        gss = GroupShuffleSplit(n_splits=1, test_size=test_size, random_state=random_seed)
         subjects = list(x.loc[:, "subject"])
 
         for _, (train_index, test_index) in enumerate(gss.split(x, y.loc[:, "label"], subjects)):
@@ -102,7 +102,7 @@ def kfold_train_test_split(x, y, test_size=0.1, is_resample=False, folds=1):
         y_test = None
 
     subjects = list(x_train.loc[:, "subject"])
-    sgkf = StratifiedGroupKFold(n_splits=folds)
+    sgkf = StratifiedGroupKFold(n_splits=folds, shuffle=True, random_state=random_seed)
     return sgkf.split(x_train, y_train.loc[:, "label"], subjects), x_train, y_train, x_test, y_test
 
 
@@ -133,7 +133,7 @@ def resample(x, y, threshold=0.333):
 def grid_search_cv(
         models, parameters, x, y, test_size=0.1, 
         by_subject=True, save_metrics=True, get_importance=False, print_preds=False, 
-        is_resample=False, drop_subject=True, folds=1
+        is_resample=False, drop_subject=True, folds=1, random_seed=None
     ):
     """
     return: model_data = {{
@@ -146,7 +146,7 @@ def grid_search_cv(
         "test": ___,
     }}
     """
-    cv, x_train, y_train, x_test, y_test = kfold_train_test_split(x, y, test_size, is_resample=is_resample, folds=folds)
+    cv, x_train, y_train, x_test, y_test = kfold_train_test_split(x, y, test_size, is_resample=is_resample, folds=folds, random_seed=random_seed)
     # subjects = np.unique(list(x_train.loc[:, "subject"]))
     # subjects.sort()
     # print(f"x_train subjects: {subjects}")
@@ -163,6 +163,10 @@ def grid_search_cv(
     model_data = {name: {} for name in models.keys()}
     model_data["cv"] = cv_list
     for model_name in models.keys():
+        if model_name == "random":
+            model_data[model_name]["best_params"] = None
+            model_data[model_name]["best_model"] = None
+            continue
         print(f"Grid search for {model_name} ...")
         model = models[model_name]
         params = parameters[model_name]
@@ -184,19 +188,24 @@ def grid_search_cv(
     return model_data
 
 
-def feature_selection(models, cv, x_train, y_train, n_features=5, folds=5, drop_subject=True):
+def feature_selection(models, cv, x_train, y_train, n_features=5, folds=5, drop_subject=True, random_seed=None):
     """
     models is a dictionary of {model_name: classifier object}
     """
+    if random_seed is not None:
+        random.seed(random_seed)
     model_data = {name: {} for name in models.keys()}
     subjects = list(x_train.loc[:, "subject"])
-    sgkf = StratifiedGroupKFold(n_splits=folds)
+    sgkf = StratifiedGroupKFold(n_splits=folds, shuffle=True, random_state=random_seed)
     # cv = sgkf.split(x_train, y_train.loc[:, "label"], subjects)
     cv_list = []
     for _, (train_index, test_index) in enumerate(cv):
         cv_list.append((train_index, test_index))
 
     for model_name in models.keys():
+        if model_name == "random":
+            model_data[model_name] = None
+            continue
         print(f"Feature selection for {model_name} ...")
         model = models[model_name]
         sfs = SequentialFeatureSelector(model, n_features_to_select=n_features, cv=cv_list)
@@ -206,6 +215,7 @@ def feature_selection(models, cv, x_train, y_train, n_features=5, folds=5, drop_
             sfs.fit(x_train_temp, y_train_temp)
         else:
             sfs.fit(x_train, y_train)
+        # print(f"Feature names for selection: {sfs.feature_names_in_}")
         features = list((sfs.support_*sfs.feature_names_in_).flatten())
         features = list(filter(None, features))
         model_data[model_name] = features
@@ -221,28 +231,29 @@ def train_test_model(models, features, x_train, y_train, x_test, y_test, drop_su
 
     model_data = {name: {} for name in models.keys()}
     for model_name in models.keys():
-        print(f"Training {model_name} ...")
-        model = models[model_name]
-        test_features = features[model_name]
-        x_train_in = x_train.loc[:, test_features]
-        x_test_in = x_test.loc[:, test_features]
-        # standardize
-        # scaler = PowerTransformer(method="box-cox")
-        scaler = StandardScaler()
-        transformed = scaler.fit_transform(x_train_in.loc[:, test_features])
-        x_train_in[test_features] = transformed
-        transformed = scaler.transform(x_test_in.loc[:, test_features])
-        x_test_in[test_features] = transformed
-        model.fit(x_train_in, y_train)
-
         if model_name == "random":
             y_pred = [random.choice([0, 1]) for i in range(x_test.shape[0])]
         else:
+            print(f"Training {model_name} ...")
+            model = models[model_name]
+            test_features = features[model_name]
+            x_train_in = x_train.loc[:, test_features]
+            x_test_in = x_test.loc[:, test_features]
+            # standardize
+            # scaler = PowerTransformer(method="box-cox")
+            scaler = StandardScaler()
+            transformed = scaler.fit_transform(x_train_in.loc[:, test_features])
+            x_train_in[test_features] = transformed
+            transformed = scaler.transform(x_test_in.loc[:, test_features])
+            x_test_in[test_features] = transformed
+
+            model.fit(x_train_in, y_train)
             if model_name == "LogReg":
                 y_pred = model.predict_proba(x_test_in)
                 y_pred = (y_pred[:, 1] >= 0.7).astype(int)
             else:
                 y_pred = model.predict(x_test_in)
+
         unique, counts = np.unique(y_test, return_counts=True)
         unique_pred, counts_pred = np.unique(y_pred, return_counts=True)
         print(f"Model {model_name}, Actual: {unique}, {counts}, Predictions: {unique_pred}, {counts_pred}")
@@ -1152,7 +1163,6 @@ class Train_Multi_Dataset:
             test_features = features[model_name]
             x_train_in = x_train.loc[:, test_features]
             x_test_in = x_test.loc[:, test_features]
-            model.fit(x_train_in, y_train)
 
             if model_name == "random":
                 y_pred = [random.choice([0, 1]) for i in range(x_test_in.shape[0])]
@@ -1210,6 +1220,12 @@ class Train_Multi_Dataset:
             else:
                 importance = None
             model_data[model_name]["performance"] = (acc, report, importance)
+
+            print(model_name)
+            if model_name == "LGB": 
+                print(model.feature_name_)
+            elif model_name == "RF":
+                print(model.feature_names_in_)
         return model_data
 
 
