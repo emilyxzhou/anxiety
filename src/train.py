@@ -251,8 +251,16 @@ def train_test_model(models, features, x_train, y_train, x_test, y_test, drop_su
             if model_name == "LogReg":
                 y_pred = model.predict_proba(x_test_in)
                 y_pred = (y_pred[:, 1] >= 0.7).astype(int)
+            # elif model_name == "SVM":
+            #     try:
+            #         y_pred = model.predict(x_test_in)
+            #     except Exception:
+            #         y_pred = model.predict_proba(x_test_in)
+            #         y_pred = (y_pred[:, 1] >= 0.5).astype(int)
             else:
-                y_pred = model.predict(x_test_in)
+                # y_pred = model.predict(x_test_in)
+                y_pred = model.predict_proba(x_test_in)
+                y_pred = (y_pred[:, 1] >= 0.6).astype(int)
 
         unique, counts = np.unique(y_test, return_counts=True)
         unique_pred, counts_pred = np.unique(y_pred, return_counts=True)
@@ -1169,7 +1177,10 @@ class Train_Multi_Dataset:
             else:
                 model = models[model_name]
                 model = model.fit(x_train_in, y_train)
-                y_pred = model.predict(x_test_in)
+                # y_pred = model.predict(x_test_in)
+                
+                y_pred = model.predict_proba(x_test_in)
+                y_pred = (y_pred[:, 1] >= 0.4).astype(int)
 
             unique, counts = np.unique(y_test, return_counts=True)
             unique_pred, counts_pred = np.unique(y_pred, return_counts=True)
