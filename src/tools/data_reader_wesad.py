@@ -117,7 +117,8 @@ def get_stai_scores(phases):
             stai.iloc[0, i] = 5 - stai.iloc[0, i]
             stai.iloc[3, i] = 5 - stai.iloc[3, i]
             stai.iloc[5, i] = 5 - stai.iloc[5, i]
-        stai = stai.sum(axis=0)/6*20  # proper scaling
+        # stai = stai.sum(axis=0)/6*20  # proper scaling
+        stai = stai.sum(axis=0)
         stai = stai.tolist()
         stai.insert(0, int(s))
         stai_scores.append(stai)
@@ -133,7 +134,7 @@ def get_stai_labels(phases, threshold="fixed"):
         if threshold != "fixed":
             label_mean = stai_scores.iloc[i, 1:].mean()
         else:
-            label_mean = 50
+            label_mean = 15
         labels = [stai_scores.iloc[i, 0]]  # subject ID
         for j in range(1, stai_scores.shape[1]):
             if stai_scores.iloc[i, j] < label_mean:

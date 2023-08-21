@@ -503,7 +503,7 @@ class Train_APD:
             
             phase = pd.DataFrame(data=[phase_id for _ in range(x.shape[0])])
             x.insert(1, "phaseId", phase)
-
+            
             if anxiety_label_type is not None: 
                 x.insert(1, "anxietyGroup", anxiety_label)
 
@@ -928,7 +928,7 @@ class Train_WESAD:
             if label_type == "stai":
                 scores = stai_scores
                 if threshold == "fixed":
-                    label_mean = 60
+                    label_mean = 18
             elif label_type == "valence":
                 scores = dim_scores_valence
                 # not sure what the fixed threshold is for the DIM survey

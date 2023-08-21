@@ -374,6 +374,7 @@ def get_ecg_metrics_pyhrv(ecg_signal, fs=FS_DICT[dr.DataTypes.ECG], window_size=
 
 
 def get_bpm_biosppy(ecg_signal, fs=FS_DICT[dr.DataTypes.ECG], window_size=60, overlap=30):
+    ecg_signal = ecg_signal.rolling(8).mean().to_numpy().flatten()
     n = ecg_signal.size
     if n == 0:
         print("ECG signal has length 0, returning None")
@@ -455,7 +456,7 @@ def get_mean_SCL(eda_signal, fs=FS_DICT[dr.DataTypes.EDA], window_size=60, overl
     return np.asarray(out)
 
 
-def  get_SCR_rate(eda_signal, fs=FS_DICT[dr.DataTypes.EDA], window_size=60, overlap=30):
+def get_SCR_rate(eda_signal, fs=FS_DICT[dr.DataTypes.EDA], window_size=60, overlap=30):
     scr, _ = get_SC_metrics(eda_signal, fs)
     if scr is None:
         print("SCR rate is None")
@@ -471,19 +472,22 @@ def  get_SCR_rate(eda_signal, fs=FS_DICT[dr.DataTypes.EDA], window_size=60, over
     out = []
     if stop >= n:
         segment = scr
-        peaks, _ = ss.find_peaks(segment)
+        # peaks, _ = ss.find_peaks(segment)
+        _, peaks, _ = biosppy.signals.eda.kbk_scr(segment, fs)
         num_peaks = len(peaks)
         # print(f"SCR rate: {num_peaks}")
-        out.append(num_peaks//2 + 1)
+        # out.append(num_peaks//2 + 1)
+        out.append(num_peaks)
     while stop < n:
         stop = start + window_size
         # segment = grad[start:stop]
         segment = scr[start:stop]
-        # num_peaks = len(list(itertools.groupby(segment, lambda x: x > 0)))
-        peaks, _ = ss.find_peaks(segment)
+        # peaks, _ = ss.find_peaks(segment)
+        _, peaks, _ = biosppy.signals.eda.kbk_scr(segment, fs)
         num_peaks = len(peaks)
         # print(f"SCR rate: {num_peaks}")
-        out.append(num_peaks//2 + 1)
+        # out.append(num_peaks//2 + 1)
+        out.append(num_peaks)
         start = stop - overlap
     return np.asarray(out)
 
