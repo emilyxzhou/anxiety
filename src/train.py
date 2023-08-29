@@ -427,11 +427,12 @@ class Train_APD:
                     ha_features.append(arr)
                 else:
                     num_cols = arr.shape[1]-1
-                    num_segments = math.ceil(num_cols / 3)
+                    k = 1
+                    num_segments = math.ceil(num_cols / k)
                     # num_segments = num_cols
                     for row in range(arr.shape[0]):
                         for j in range(num_segments):
-                            data = np.nanmean(arr[row, j*3:j*3+3])
+                            data = np.nanmean(arr[row, j*k:j*k+k])
                             if i == 0:  # subject ID
                                 ha_features.append([arr[row, 0], data])
                             else:
@@ -469,11 +470,12 @@ class Train_APD:
                     la_features.append(arr)
                 else:
                     num_cols = arr.shape[1]-1
-                    num_segments = math.ceil(num_cols / 3)
+                    k = 1
+                    num_segments = math.ceil(num_cols / k)
                     # num_segments = num_cols
                     for row in range(arr.shape[0]):
                         for j in range(num_segments):
-                            data = np.nanmean(arr[row, j*3:j*3+3])
+                            data = np.nanmean(arr[row, j*k:j*k+k])
                             if i == 0:  # subject ID
                                 la_features.append([arr[row, 0], data])
                             else:
@@ -581,15 +583,16 @@ class Train_ASCERTAIN:
                     features.append(arr)
                 else:
                     num_cols = arr.shape[1]-1
-                    num_segments = math.ceil(num_cols / 3)
+                    k = 1
+                    num_segments = math.ceil(num_cols / k)
                     # num_segments = num_cols
                     for row in range(arr.shape[0]):
                         for j in range(num_segments):
                             # print(f"Clip {clip}, row {row}, segment {j}")
                             try:
-                                data = np.nanmean(arr.iloc[row, j*3:j*3+3])
+                                data = np.nanmean(arr.iloc[row, j*k:j*k+k])
                             except Exception:
-                                data = np.nanmean(arr.iloc[row, j*4:])
+                                data = np.nanmean(arr.iloc[row, j*k:])
                             if i == 0:  # subject ID
                                 features.append([arr.iloc[row, 0], data])
                             else:
@@ -723,15 +726,16 @@ class Train_CASE:
                     features.append(arr)
                 else:
                     num_cols = arr.shape[1]-1
-                    num_segments = math.ceil(num_cols / 3)
+                    k = 1
+                    num_segments = math.ceil(num_cols / k)
                     # num_segments = num_cols
                     for row in range(arr.shape[0]):
                         for j in range(num_segments):
                             # print(f"Clip {clip}, row {row}, segment {j}")
                             try:
-                                data = np.nanmean(arr[row, j*3:j*3+3])
+                                data = np.nanmean(arr[row, j*k:j*k+k])
                             except Exception:
-                                data = np.nanmean(arr[row, j*4:])
+                                data = np.nanmean(arr[row, j*k:])
                             if i == 0:  # subject ID
                                 features.append([arr[row, 0], data])
                             else:
@@ -879,15 +883,16 @@ class Train_WESAD:
                     features.append(arr)
                 else:
                     num_cols = arr.shape[1]-1
-                    num_segments = math.ceil(num_cols / 3)
+                    k = 1
+                    num_segments = math.ceil(num_cols / k)
                     # num_segments = num_cols
                     for row in range(arr.shape[0]):
                         for j in range(num_segments):
                             # print(f"Clip {clip}, row {row}, segment {j}")
                             try:
-                                data = np.nanmean(arr[row, j*3:j*3+3])
+                                data = np.nanmean(arr[row, j*k:j*k+k])
                             except Exception:
-                                data = np.nanmean(arr[row, j*4:])
+                                data = np.nanmean(arr[row, j*k:])
                             if i == 0:  # subject ID
                                 features.append([arr[row, 0], data])
                             else:
