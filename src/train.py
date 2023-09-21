@@ -427,7 +427,7 @@ class Train_APD:
                     ha_features.append(arr)
                 else:
                     num_cols = arr.shape[1]-1
-                    k = 1
+                    k = 3
                     num_segments = math.ceil(num_cols / k)
                     # num_segments = num_cols
                     for row in range(arr.shape[0]):
@@ -470,7 +470,7 @@ class Train_APD:
                     la_features.append(arr)
                 else:
                     num_cols = arr.shape[1]-1
-                    k = 1
+                    k = 3
                     num_segments = math.ceil(num_cols / k)
                     # num_segments = num_cols
                     for row in range(arr.shape[0]):
@@ -583,7 +583,7 @@ class Train_ASCERTAIN:
                     features.append(arr)
                 else:
                     num_cols = arr.shape[1]-1
-                    k = 1
+                    k = 3
                     num_segments = math.ceil(num_cols / k)
                     # num_segments = num_cols
                     for row in range(arr.shape[0]):
@@ -726,7 +726,7 @@ class Train_CASE:
                     features.append(arr)
                 else:
                     num_cols = arr.shape[1]-1
-                    k = 1
+                    k = 3
                     num_segments = math.ceil(num_cols / k)
                     # num_segments = num_cols
                     for row in range(arr.shape[0]):
@@ -883,7 +883,7 @@ class Train_WESAD:
                     features.append(arr)
                 else:
                     num_cols = arr.shape[1]-1
-                    k = 1
+                    k = 3
                     num_segments = math.ceil(num_cols / k)
                     # num_segments = num_cols
                     for row in range(arr.shape[0]):
