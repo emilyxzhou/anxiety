@@ -13,6 +13,7 @@ sys.path.append(src_path)
 import glob
 import heartpy as hp
 import itertools
+import neurokit2 as nk
 import numpy as np
 import pandas as pd
 import samplerate
@@ -359,7 +360,7 @@ def get_ecg_metrics_pyhrv(ecg_signal, fs=FS_DICT[dr.DataTypes.ECG], window_size=
                 # ibi = td.ibi(rpeaks=rr_ints)
                 sdnn = td.sdnn(rpeaks=t[rpeaks])["sdnn"]
             except Exception as e:
-                print(e)
+                raise(e)
                 rmssd = np.nan
                 # ibi = np.nan
                 sdnn = np.nan
@@ -426,6 +427,12 @@ def get_SC_metrics(eda, fs=FS_DICT[dr.DataTypes.EDA]):
     t = np.log10(t + 1)
     # print(r)
     # print(t)
+    
+    signals, info = nk.eda_process(eda, sampling_rate=fs)
+    eda_signal = signals["EDA_Clean"].to_numpy()
+    r = signals["EDA_Phasic"].to_numpy()
+    t = signals["EDA_Tonic"].to_numpy()
+    
     return r, t
     # return phasic, tonic
 
@@ -567,13 +574,16 @@ def crop_list_of_ndarrays(array_list):
 
 
 if __name__ == "__main__":
-    convert_sr = False
-    task = dr.Tasks.SPEAKING
-    data_type = dr.DataTypes.ECG
-    phase = dr.Phases.SPEECH_EXPOSURE
+    # convert_sr = False
+    # task = dr.Tasks.SPEAKING
+    # data_type = dr.DataTypes.ECG
+    # phase = dr.Phases.SPEECH_EXPOSURE
 
-    fs = FS_DICT[data_type]
-    n_dim = DATA_TYPE_DIMENSIONS[data_type]
+    # fs = FS_DICT[data_type]
+    # n_dim = DATA_TYPE_DIMENSIONS[data_type]
+
+    import platform
+    print(platform.python_version())
 
     # x, ha_ecg_mean = calculate_group_metric("HA", task, data_type, phase, metric="mean")
     # x, la_ecg_mean = calculate_group_metric("LA", task, data_type, phase, metric="mean")
