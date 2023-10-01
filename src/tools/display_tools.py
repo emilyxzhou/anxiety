@@ -16,6 +16,8 @@ def plot_1d_data(data, data_type=None, title=None, labels=None, start=0, stop=No
         stop = data.size
 
     x = np.arange(start, stop, 1)
+    if type(data) == pd.Series:
+        data = data.to_numpy()
     y = data[start:stop].flatten()
 
     # print(f"Min amplitude: {np.min(y)}")

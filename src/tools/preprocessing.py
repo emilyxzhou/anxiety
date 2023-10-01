@@ -233,18 +233,22 @@ def clean_RR(clean_ecg_signal):
     return filtered
 
 
-def get_hf_rr(ecg, fs=FS_DICT[dr.DataTypes.ECG], window_size=60, overlap=30):
-    n = ecg.size
+def get_hf_rr(ecg_signal, fs=FS_DICT[dr.DataTypes.ECG], window_size=60, overlap=30):
+    n = ecg_signal.size
     if n == 0:
         print("ECG signal has length 0, returning None")
         return None
+    
+    ecg_signal = hp.scale_data(ecg_signal)
+    ecg_signal = hp.filtering.remove_baseline_wander(ecg_signal, fs)
+    ecg_signal = biosppy.signals.ecg.ecg(signal=ecg_signal, sampling_rate=fs, show=False)[1]
     start = 0
     window_size = int(window_size*fs)
     overlap = int(overlap*fs)
     stop = start + window_size
     out = []
     if stop >= n:
-        segment = ecg
+        segment = ecg_signal
         freq, amp = calculate_fft_1d(segment, fs)
         
         low = 0.15
@@ -259,9 +263,9 @@ def get_hf_rr(ecg, fs=FS_DICT[dr.DataTypes.ECG], window_size=60, overlap=30):
         while stop < n:
             stop = start + window_size
             try:
-                segment = ecg.iloc[start:stop]
+                segment = ecg_signal.iloc[start:stop]
             except AttributeError:
-                segment = ecg[start:stop]
+                segment = ecg_signal[start:stop]
             freq, amp = calculate_fft_1d(segment, fs)
             
             low = 0.15
@@ -277,18 +281,22 @@ def get_hf_rr(ecg, fs=FS_DICT[dr.DataTypes.ECG], window_size=60, overlap=30):
     return np.asarray(out)
 
 
-def get_lf_rr(ecg, fs=FS_DICT[dr.DataTypes.ECG], window_size=60, overlap=30):
-    n = ecg.size
+def get_lf_rr(ecg_signal, fs=FS_DICT[dr.DataTypes.ECG], window_size=60, overlap=30):
+    n = ecg_signal.size
     if n == 0:
         print("ECG signal has length 0, returning None")
         return None
+    
+    ecg_signal = hp.scale_data(ecg_signal)
+    ecg_signal = hp.filtering.remove_baseline_wander(ecg_signal, fs)
+    ecg_signal = biosppy.signals.ecg.ecg(signal=ecg_signal, sampling_rate=fs, show=False)[1]
     start = 0
     window_size = int(window_size*fs)
     overlap = int(overlap*fs)
     stop = start + window_size
     out = []
     if stop >= n:
-        segment = ecg
+        segment = ecg_signal
         freq, amp = calculate_fft_1d(segment, fs)
         
         low = 0.04
@@ -303,9 +311,9 @@ def get_lf_rr(ecg, fs=FS_DICT[dr.DataTypes.ECG], window_size=60, overlap=30):
         while stop < n:
             stop = start + window_size
             try:
-                segment = ecg.iloc[start:stop]
+                segment = ecg_signal.iloc[start:stop]
             except AttributeError:
-                segment = ecg[start:stop]
+                segment = ecg_signal[start:stop]
             freq, amp = calculate_fft_1d(segment, fs)
             
             low = 0.04
@@ -321,95 +329,61 @@ def get_lf_rr(ecg, fs=FS_DICT[dr.DataTypes.ECG], window_size=60, overlap=30):
     return np.asarray(out)
 
 
-def get_ecg_metrics_pyhrv(ecg_signal, fs=FS_DICT[dr.DataTypes.ECG], window_size=60, overlap=30):
+def get_ecg_metrics(ecg_signal, fs=FS_DICT[dr.DataTypes.ECG], window_size=60, overlap=30):
     n = ecg_signal.size
     if n == 0:
         print("ECG signal has length 0, returning None")
         return None
     
     metrics_dict = {
+        "bpm": [],
         "rmssd": [],
-        # "ibi": [],
         "sdnn": []
     }
-
     start = 0
     window_size = int(window_size*fs)
     overlap = int(overlap*fs)
     stop = start + window_size
+    ecg_signal = hp.scale_data(ecg_signal)
+    ecg_signal = hp.filtering.remove_baseline_wander(ecg_signal, fs)
     if stop >= n:
-        segment = ecg_signal
-        t, filtered_signal, rpeaks = biosppy.signals.ecg.ecg(signal=segment, sampling_rate=fs, show=False)[:3]
-        rmssd = td.rmssd(rpeaks=t[rpeaks])["rmssd"]
-        # ibi = td.ibi(rpeaks=rr_ints)
-        sdnn = td.sdnn(rpeaks=t[rpeaks])["sdnn"]
+        t, filtered_signal, rpeaks, _, _, _, bpm = biosppy.signals.ecg.ecg(signal=segment, sampling_rate=fs, show=False)
+        bpm = np.mean(bpm)
+        rmssd = td.rmssd(rpeaks=t[rpeaks])
+        sdnn = td.sdnn(rpeaks=t[rpeaks])
 
+        metrics_dict["bpm"].append(bpm)
         metrics_dict["rmssd"].append(rmssd)
-        # metrics_dict["ibi"].append(ibi)
         metrics_dict["sdnn"].append(sdnn)
     else:
         while stop < n:
             stop = start + window_size
+            segment = ecg_signal[start:stop]
+            # start_idx = np.where(rpeaks == list(filter(lambda i: i > start, rpeaks))[0])[0][0]
+            # stop_idx = np.where(rpeaks == list(filter(lambda i: i > stop, rpeaks))[0])[0][0]
+            # rpeak_segment = rpeaks[start_idx:stop_idx]
+            t, filtered_signal, rpeaks, _, _, _, bpm = biosppy.signals.ecg.ecg(signal=segment, sampling_rate=fs, show=False)
             try:
                 segment = ecg_signal.iloc[start:stop]
             except AttributeError:
                 segment = ecg_signal[start:stop]
             try:
-                t, filtered_signal, rpeaks = biosppy.signals.ecg.ecg(signal=segment, sampling_rate=fs, show=False)[:3]
+                bpm = np.mean(bpm)
                 rmssd = td.rmssd(rpeaks=t[rpeaks])["rmssd"]
-                # ibi = td.ibi(rpeaks=rr_ints)
                 sdnn = td.sdnn(rpeaks=t[rpeaks])["sdnn"]
             except Exception as e:
                 raise(e)
+                bpm = np.nan
                 rmssd = np.nan
-                # ibi = np.nan
                 sdnn = np.nan
 
+            metrics_dict["bpm"].append(bpm)
             metrics_dict["rmssd"].append(rmssd)
-            # metrics_dict["ibi"].append(ibi)
             metrics_dict["sdnn"].append(sdnn)
 
             start = stop - overlap
     
     return metrics_dict
-
-
-def get_bpm_biosppy(ecg_signal, fs=FS_DICT[dr.DataTypes.ECG], window_size=60, overlap=30):
-    ecg_signal = ecg_signal.rolling(8).mean().to_numpy().flatten()
-    n = ecg_signal.size
-    if n == 0:
-        print("ECG signal has length 0, returning None")
-        return None
-    
-    start = 0
-    window_size = int(window_size*fs)
-    overlap = int(overlap*fs)
-    stop = start + window_size
-    out = []
-    if stop >= n:
-        segment = ecg_signal
-        data = biosppy.signals.ecg.ecg(signal=segment, sampling_rate=fs, show=False)
-        bpm = data["heart_rate"].tolist()
-        out.append(np.mean(bpm))
-
-    else:
-        while stop < n:
-            stop = start + window_size
-            try:
-                segment = ecg_signal.iloc[start:stop]
-            except AttributeError:
-                segment = ecg_signal[start:stop]
-            try:
-                data = biosppy.signals.ecg.ecg(signal=segment, sampling_rate=fs, show=False)
-                bpm = data["heart_rate"].tolist()
-                out.append(np.mean(bpm))
-            except Exception as e:
-                bpm = np.nan
-                out.append(bpm)
-
-            start = stop - overlap
-    
-    return out
 
 
 def get_SC_metrics(eda, fs=FS_DICT[dr.DataTypes.EDA]):
@@ -418,22 +392,17 @@ def get_SC_metrics(eda, fs=FS_DICT[dr.DataTypes.EDA]):
         print("Warning: EDA signal has size 0, retuning None")
         return None, None
     eda = eda.astype(np.double)
-    # sos = ss.butter(N=3, Wn=4.0, btype="lowpass", fs=fs, output="sos")
-    # filtered = ss.sosfilt(sos, eda_signal)
-    # sr = 200*(272+filtered)/(752-filtered)
-    # sc = 1/sr
-    [r, p, t, l, d, e, obj] = cvxEDA(eda, 1./fs, options={"show_progress": False})
-    r = np.log10(r + 1)
-    t = np.log10(t + 1)
-    # print(r)
-    # print(t)
+    # [r, p, t, l, d, e, obj] = cvxEDA(eda, 1./fs, options={"show_progress": False})
+    # r = np.log10(r + 1)
+    # t = np.log10(t + 1)
     
     signals, info = nk.eda_process(eda, sampling_rate=fs)
-    eda_signal = signals["EDA_Clean"].to_numpy()
-    r = signals["EDA_Phasic"].to_numpy()
-    t = signals["EDA_Tonic"].to_numpy()
+    # eda_signal = signals["EDA_Clean"].to_numpy()
+    # r = signals["EDA_Phasic"].to_numpy()
+    peaks = signals["SCR_Peaks"].to_numpy()
+    tonic = signals["EDA_Tonic"].to_numpy()
     
-    return r, t
+    return peaks, tonic
     # return phasic, tonic
 
 
@@ -479,21 +448,17 @@ def get_SCR_rate(eda_signal, fs=FS_DICT[dr.DataTypes.EDA], window_size=60, overl
     out = []
     if stop >= n:
         segment = scr
-        # peaks, _ = ss.find_peaks(segment)
-        _, peaks, _ = biosppy.signals.eda.kbk_scr(segment, fs)
-        num_peaks = len(peaks)
-        # print(f"SCR rate: {num_peaks}")
-        # out.append(num_peaks//2 + 1)
+        # _, peaks, _ = biosppy.signals.eda.kbk_scr(segment, fs)
+        # num_peaks = len(peaks)
+        num_peaks = sum(segment)
         out.append(num_peaks)
     while stop < n:
         stop = start + window_size
-        # segment = grad[start:stop]
         segment = scr[start:stop]
         # peaks, _ = ss.find_peaks(segment)
-        _, peaks, _ = biosppy.signals.eda.kbk_scr(segment, fs)
-        num_peaks = len(peaks)
-        # print(f"SCR rate: {num_peaks}")
-        # out.append(num_peaks//2 + 1)
+        # _, peaks, _ = biosppy.signals.eda.kbk_scr(segment, fs)
+        # num_peaks = len(peaks)
+        num_peaks = sum(segment)
         out.append(num_peaks)
         start = stop - overlap
     return np.asarray(out)
