@@ -233,6 +233,13 @@ def clean_RR(clean_ecg_signal):
     return filtered
 
 
+def bandpower(x, fs, fmin, fmax):
+    f, Pxx = scipy.signal.periodogram(x, fs=fs)
+    ind_min = scipy.argmax(f > fmin) - 1
+    ind_max = scipy.argmax(f > fmax) - 1
+    return scipy.trapz(Pxx[ind_min: ind_max], f[ind_min: ind_max])
+
+
 def get_hf_rr(ecg_signal, fs=FS_DICT[dr.DataTypes.ECG], window_size=60, overlap=30):
     n = ecg_signal.size
     if n == 0:
@@ -241,7 +248,9 @@ def get_hf_rr(ecg_signal, fs=FS_DICT[dr.DataTypes.ECG], window_size=60, overlap=
     
     ecg_signal = hp.scale_data(ecg_signal)
     ecg_signal = hp.filtering.remove_baseline_wander(ecg_signal, fs)
-    ecg_signal = biosppy.signals.ecg.ecg(signal=ecg_signal, sampling_rate=fs, show=False)[1]
+    # ecg_signal = biosppy.signals.ecg.ecg(signal=ecg_signal, sampling_rate=fs, show=False)[1]
+    ecg_signal, info = nk.ecg_process(ecg_signal, sampling_rate=fs)
+    ecg_signal = ecg_signal["ECG_Clean"]
     start = 0
     window_size = int(window_size*fs)
     overlap = int(overlap*fs)
@@ -249,15 +258,15 @@ def get_hf_rr(ecg_signal, fs=FS_DICT[dr.DataTypes.ECG], window_size=60, overlap=
     out = []
     if stop >= n:
         segment = ecg_signal
-        freq, amp = calculate_fft_1d(segment, fs)
-        
-        low = 0.15
-        high = 0.4
-        freq[freq < low] = 0
-        freq[freq > high] = 0
-        amp = np.multiply(freq, amp)
-        
-        power = np.multiply(amp, amp).sum() # Parseval's theorem
+        # freq, amp = calculate_fft_1d(segment, fs)
+        # low = 0.15
+        # high = 0.4
+        # freq[freq < low] = 0
+        # freq[freq > high] = 0
+        # amp = np.multiply(freq, amp)
+        # power = np.multiply(amp, amp).sum() # Parseval's theorem
+
+        power = bandpower(segment, fs, 0.15, 0.4)
         out.append(power)
     else:
         while stop < n:
@@ -266,17 +275,17 @@ def get_hf_rr(ecg_signal, fs=FS_DICT[dr.DataTypes.ECG], window_size=60, overlap=
                 segment = ecg_signal.iloc[start:stop]
             except AttributeError:
                 segment = ecg_signal[start:stop]
-            freq, amp = calculate_fft_1d(segment, fs)
-            
-            low = 0.15
-            high = 0.4
-            freq[freq < low] = 0
-            freq[freq > high] = 0
-            amp = np.multiply(freq, amp)
-            
-            power = np.multiply(amp, amp).sum() # Parseval's theorem
-            out.append(power)
+            # freq, amp = calculate_fft_1d(segment, fs)
+            # low = 0.15
+            # high = 0.4
+            # freq[freq < low] = 0
+            # freq[freq > high] = 0
+            # amp = np.multiply(freq, amp)
+            # power = np.multiply(amp, amp).sum() # Parseval's theorem
+            # out.append(power)
 
+            power = bandpower(segment, fs, 0.15, 0.4)
+            out.append(power)
             start = stop - overlap
     return np.asarray(out)
 
@@ -289,7 +298,9 @@ def get_lf_rr(ecg_signal, fs=FS_DICT[dr.DataTypes.ECG], window_size=60, overlap=
     
     ecg_signal = hp.scale_data(ecg_signal)
     ecg_signal = hp.filtering.remove_baseline_wander(ecg_signal, fs)
-    ecg_signal = biosppy.signals.ecg.ecg(signal=ecg_signal, sampling_rate=fs, show=False)[1]
+    # ecg_signal = biosppy.signals.ecg.ecg(signal=ecg_signal, sampling_rate=fs, show=False)[1]
+    ecg_signal, info = nk.ecg_process(ecg_signal, sampling_rate=fs)
+    ecg_signal = ecg_signal["ECG_Clean"]
     start = 0
     window_size = int(window_size*fs)
     overlap = int(overlap*fs)
@@ -297,15 +308,15 @@ def get_lf_rr(ecg_signal, fs=FS_DICT[dr.DataTypes.ECG], window_size=60, overlap=
     out = []
     if stop >= n:
         segment = ecg_signal
-        freq, amp = calculate_fft_1d(segment, fs)
-        
-        low = 0.04
-        high = 0.15
-        freq[freq < low] = 0
-        freq[freq > high] = 0
-        amp = np.multiply(freq, amp)
-        
-        power = np.multiply(amp, amp).sum() # Parseval's theorem
+        # freq, amp = calculate_fft_1d(segment, fs)
+        # low = 0.04
+        # high = 0.15
+        # freq[freq < low] = 0
+        # freq[freq > high] = 0
+        # amp = np.multiply(freq, amp)
+        # power = np.multiply(amp, amp).sum() # Parseval's theorem
+
+        power = bandpower(segment, fs, 0.04, 0.15)
         out.append(power)
     else:
         while stop < n:
@@ -314,15 +325,15 @@ def get_lf_rr(ecg_signal, fs=FS_DICT[dr.DataTypes.ECG], window_size=60, overlap=
                 segment = ecg_signal.iloc[start:stop]
             except AttributeError:
                 segment = ecg_signal[start:stop]
-            freq, amp = calculate_fft_1d(segment, fs)
-            
-            low = 0.04
-            high = 0.15
-            freq[freq < low] = 0
-            freq[freq > high] = 0
-            amp = np.multiply(freq, amp)
-            
-            power = np.multiply(amp, amp).sum() # Parseval's theorem
+            # freq, amp = calculate_fft_1d(segment, fs)
+            # low = 0.04
+            # high = 0.15
+            # freq[freq < low] = 0
+            # freq[freq > high] = 0
+            # amp = np.multiply(freq, amp)
+            # power = np.multiply(amp, amp).sum() # Parseval's theorem
+
+            power = bandpower(segment, fs, 0.04, 0.15)
             out.append(power)
 
             start = stop - overlap
@@ -347,7 +358,9 @@ def get_ecg_metrics(ecg_signal, fs=FS_DICT[dr.DataTypes.ECG], window_size=60, ov
     ecg_signal = hp.scale_data(ecg_signal)
     ecg_signal = hp.filtering.remove_baseline_wander(ecg_signal, fs)
     if stop >= n:
-        t, filtered_signal, rpeaks, _, _, _, bpm = biosppy.signals.ecg.ecg(signal=segment, sampling_rate=fs, show=False)
+        ecg_signal, info = nk.ecg_process(ecg_signal, sampling_rate=fs)
+        ecg_signal = ecg_signal["ECG_Clean"]
+        t, filtered_signal, rpeaks, _, _, _, bpm = biosppy.signals.ecg.ecg(signal=ecg_signal, sampling_rate=fs, show=False)
         bpm = np.mean(bpm)
         rmssd = td.rmssd(rpeaks=t[rpeaks])
         sdnn = td.sdnn(rpeaks=t[rpeaks])
@@ -362,6 +375,8 @@ def get_ecg_metrics(ecg_signal, fs=FS_DICT[dr.DataTypes.ECG], window_size=60, ov
             # start_idx = np.where(rpeaks == list(filter(lambda i: i > start, rpeaks))[0])[0][0]
             # stop_idx = np.where(rpeaks == list(filter(lambda i: i > stop, rpeaks))[0])[0][0]
             # rpeak_segment = rpeaks[start_idx:stop_idx]
+            segment, info = nk.ecg_process(segment, sampling_rate=fs)
+            segment = segment["ECG_Clean"]
             t, filtered_signal, rpeaks, _, _, _, bpm = biosppy.signals.ecg.ecg(signal=segment, sampling_rate=fs, show=False)
             try:
                 segment = ecg_signal.iloc[start:stop]
@@ -386,24 +401,31 @@ def get_ecg_metrics(ecg_signal, fs=FS_DICT[dr.DataTypes.ECG], window_size=60, ov
     return metrics_dict
 
 
-def get_SC_metrics(eda, fs=FS_DICT[dr.DataTypes.EDA]):
+def get_SC_metrics(eda_signal, fs=FS_DICT[dr.DataTypes.EDA]):
     """Returns r (phasic), t (tonic) components of the input EDA signal."""
-    if eda.size == 0:
+    if eda_signal.size == 0:
         print("Warning: EDA signal has size 0, retuning None")
         return None, None
-    eda = eda.astype(np.double)
+    eda_signal = eda_signal.astype(np.double)
+    eda_signal = hp.scale_data(eda_signal)
     # [r, p, t, l, d, e, obj] = cvxEDA(eda, 1./fs, options={"show_progress": False})
     # r = np.log10(r + 1)
     # t = np.log10(t + 1)
     
-    signals, info = nk.eda_process(eda, sampling_rate=fs)
-    # eda_signal = signals["EDA_Clean"].to_numpy()
-    # r = signals["EDA_Phasic"].to_numpy()
-    peaks = signals["SCR_Peaks"].to_numpy()
+    eda_signal = scipy.ndimage.median_filter(eda_signal, int(fs))  # median smoothing to reject outliers
+    eda_signal = np.convolve(eda_signal, np.ones(int(fs))/int(fs))  # mean filtering to smooth the output
+    signals, info = nk.eda_process(eda_signal, sampling_rate=fs)
+    phasic = signals["EDA_Phasic"].to_numpy()
     tonic = signals["EDA_Tonic"].to_numpy()
+
+    peak_info = nk.eda_findpeaks(phasic, fs, amplitude_min=0.5)
+    peak_idx = peak_info["SCR_Peaks"].astype(int)
+    peak_amps = peak_info["SCR_Height"]
+    peaks = np.zeros(phasic.shape)
+    np.put(peaks, peak_idx, [1])
+    tonic = tonic - peaks
     
     return peaks, tonic
-    # return phasic, tonic
 
 
 def get_mean_SCL(eda_signal, fs=FS_DICT[dr.DataTypes.EDA], window_size=60, overlap=30):

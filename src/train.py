@@ -747,6 +747,8 @@ class Train_CASE:
             if combine_phases:
                 x = pd.concat(features, axis=1)
             else:
+                # print(features[0])
+                # print(metrics)
                 x = pd.DataFrame(features, columns=["subject"] + metrics)
             phase = pd.DataFrame(data=[phase_id for _ in range(x.shape[0])])
             x.insert(1, "phaseId", phase)
