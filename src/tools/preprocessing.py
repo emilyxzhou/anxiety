@@ -299,7 +299,7 @@ def get_lf_rr(ecg_signal, fs=FS_DICT[dr.DataTypes.ECG], window_size=60, overlap=
     ecg_signal = hp.scale_data(ecg_signal)
     ecg_signal = hp.filtering.remove_baseline_wander(ecg_signal, fs)
     # ecg_signal = biosppy.signals.ecg.ecg(signal=ecg_signal, sampling_rate=fs, show=False)[1]
-    ecg_signal, info = nk.ecg_process(ecg_signal, sampling_rate=fs)
+    ecg_signal, _ = nk.ecg_process(ecg_signal, sampling_rate=fs)
     ecg_signal = ecg_signal["ECG_Clean"]
     start = 0
     window_size = int(window_size*fs)
@@ -356,6 +356,8 @@ def get_ecg_metrics(ecg_signal, fs=FS_DICT[dr.DataTypes.ECG], window_size=60, ov
     overlap = int(overlap*fs)
     stop = start + window_size
     ecg_signal = hp.scale_data(ecg_signal)
+    ecg_signal = scipy.ndimage.median_filter(ecg_signal, int(fs))  # median smoothing to reject outliers
+    # ecg_signal = np.convolve(ecg_signal, np.ones(int(fs))/int(fs))  # mean filtering to smooth the output
     ecg_signal = hp.filtering.remove_baseline_wander(ecg_signal, fs)
     if stop >= n:
         ecg_signal, info = nk.ecg_process(ecg_signal, sampling_rate=fs)
@@ -387,7 +389,6 @@ def get_ecg_metrics(ecg_signal, fs=FS_DICT[dr.DataTypes.ECG], window_size=60, ov
                 rmssd = td.rmssd(rpeaks=t[rpeaks])["rmssd"]
                 sdnn = td.sdnn(rpeaks=t[rpeaks])["sdnn"]
             except Exception as e:
-                raise(e)
                 bpm = np.nan
                 rmssd = np.nan
                 sdnn = np.nan
@@ -413,7 +414,7 @@ def get_SC_metrics(eda_signal, fs=FS_DICT[dr.DataTypes.EDA]):
     # t = np.log10(t + 1)
     
     eda_signal = scipy.ndimage.median_filter(eda_signal, int(fs))  # median smoothing to reject outliers
-    eda_signal = np.convolve(eda_signal, np.ones(int(fs))/int(fs))  # mean filtering to smooth the output
+    # eda_signal = np.convolve(eda_signal, np.ones(int(fs))/int(fs))  # mean filtering to smooth the output
     signals, info = nk.eda_process(eda_signal, sampling_rate=fs)
     phasic = signals["EDA_Phasic"].to_numpy()
     tonic = signals["EDA_Tonic"].to_numpy()
