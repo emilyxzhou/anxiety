@@ -414,7 +414,7 @@ def get_SC_metrics(eda_signal, fs=FS_DICT[dr.DataTypes.EDA]):
     # t = np.log10(t + 1)
     
     eda_signal = scipy.ndimage.median_filter(eda_signal, int(fs))  # median smoothing to reject outliers
-    # eda_signal = np.convolve(eda_signal, np.ones(int(fs))/int(fs))  # mean filtering to smooth the output
+    eda_signal = np.convolve(eda_signal, np.ones(int(fs))/int(fs))  # mean filtering to smooth the output
     signals, info = nk.eda_process(eda_signal, sampling_rate=fs)
     phasic = signals["EDA_Phasic"].to_numpy()
     tonic = signals["EDA_Tonic"].to_numpy()

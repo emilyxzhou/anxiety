@@ -172,8 +172,8 @@ def grid_search_cv(
         print(f"Grid search for {model_name} ...")
         model = models[model_name]
         params = parameters[model_name]
-        clf = GridSearchCV(model, params, cv=cv_list, scoring="roc_auc")
-        # clf = GridSearchCV(model, params, cv=cv_list, scoring="accuracy")
+        # clf = GridSearchCV(model, params, cv=cv_list, scoring="roc_auc")
+        clf = GridSearchCV(model, params, cv=cv_list, scoring="accuracy")
         if drop_subject:
             x_train_temp = x_train.drop("subject", axis=1)
             y_train_temp = y_train.drop("subject", axis=1).to_numpy().flatten()
